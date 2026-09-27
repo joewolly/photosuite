@@ -14,6 +14,8 @@
  * - `ping` — readiness check
  */
 
+import { handlePluginResultCommand } from "./plugin-result-ipc.js";
+
 import { FileFormatRegistry } from "../../document/formats/registry/file-format-registry.js";
 
 /** Marker on every plugin IPC message. */
@@ -78,6 +80,13 @@ export function handlePluginIpcMessage(controller, message, source) {
     }
     if (message.cmd === "getSelectionMask") {
       handleGetSelectionMask(controller, requestId, source);
+      return;
+    }
+    const frame = Array.from(document.querySelectorAll("iframe[" + PLUGIN_FRAME_ATTRIBUTE + "]"))
+      .find((item) => item.contentWindow === source);
+    const result = handlePluginResultCommand(controller, message, frame);
+    if (result) {
+      replyToPlugin(source, { psPlugin: PLUGIN_IPC_MARKER, requestId, ...result });
       return;
     }
     replyToPlugin(source, {
@@ -219,7 +228,7 @@ function handleGetSelectionMask(controller, requestId, source) {
   }
 
   const rect = selectionMask.rect;
-  const maskBuffer = copyBytesToArrayBuffer(selectionMask.channel);
+  const maskBuffer = copyBytesToArrayBuffer(selectionMask.channel.subarray(0, rect.width * rect.height));
 
   replyToPlugin(source, {
     psPlugin: PLUGIN_IPC_MARKER,

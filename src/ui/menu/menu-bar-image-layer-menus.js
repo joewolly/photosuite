@@ -414,6 +414,9 @@ export function buildLayerMenu() {
       resolveRowState: menuWhenDocOpen,
       sub: LayerStyleDialog.buildAdjustmentLayerMenuItems()
     }, {
+      name: "layer.removeBackground",
+      resolveRowState: menuWhenHasSelection
+    }, {
       // Masking: raster mask, vector mask, and clipping mask.
       name: "layer.rasterMask",
       sub: [{
@@ -690,6 +693,9 @@ export function buildLayerMenu() {
       }]
     }, {
       sub: LayerStyleDialog.buildAdjustmentLayerMenuActions()
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: { dispatchKind: UiCommand.removeBackgroundFromSelection }
     }, {
       sub: [{
         appEventType: EventType.documentAction,

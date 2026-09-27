@@ -1,3 +1,4 @@
+import { closeResultDocumentSession } from "../../features/results/result-targets.js";
 /**
  * Application shell controller — the top-level object that wires the whole editor
  * together.
@@ -538,6 +539,7 @@ AppController.prototype.onDocumentTabClose = function(closeEvent) {
     docIndex = this.openDocs.indexOf(closeEvent.target.pluginDocument);
   }
   if (docIndex < 0) return;
+  closeResultDocumentSession(this.openDocs[docIndex]);
   this.openDocs.splice(docIndex, 1);
   if (this.openDocs.length == 0) {
     this.onDocumentTabSelect(closeEvent);
@@ -634,6 +636,7 @@ applyKeyboardHandlers(AppController);
 export {
   AppController,
   scheduleWhenIdle,
+  handleHostWindowMessage,
   computeEdgeAutoPanDeltas,
   scaleEdgeAutoPanForFrame,
   resolveCurrentDocFromOpenList,

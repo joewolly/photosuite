@@ -90,6 +90,8 @@ export const UiCommand = Object.freeze({
   exportPopupResourceBundle: "exportPopupResourceBundle",
   confirmPersistStartupResource: "confirmPersistStartupResource",
 
+  removeBackgroundFromSelection: "removeBackgroundFromSelection",
+
   // Editing the active document
   applyDocumentMutationAndCloseExtra: "applyDocumentMutationAndCloseExtra",
   applyDocumentToolAction: "applyDocumentToolAction",

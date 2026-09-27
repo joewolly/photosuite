@@ -146,6 +146,29 @@ SelectTool.dispatchSelectionPrefPopups = function(dispatcher, appData) {
   if (!appData.prefs.showSelectionEdges) dispatcher.dispatch(uiEvent);
 };
 
+/** Prepare the existing set-selection history action without mutating a document. */
+export function prepareSelectionHistoryEntry(selectionMaskBefore, outcome, tracker) {
+  let newSelection = outcome.selection;
+  let historyLabel = outcome.label;
+  if (newSelection != null && isBufferUniform(newSelection.channel, 0)) {
+    newSelection = null;
+    historyLabel = "select.deselect";
+  }
+  if (newSelection) trimChannelToContent(newSelection);
+  const historyEntry = new HistoryEntry(historyLabel, tracker);
+  historyEntry.data = {
+    actionKind: "changesel",
+    selectionMaskBefore,
+    selectionMaskAfter: newSelection,
+    isQuickMaskToggle: outcome.isQuickMaskToggle || false,
+    quickMaskBefore: outcome.quickMaskBefore,
+    quickMaskAfter: outcome.quickMaskNew,
+    pathSelectionsBefore: outcome.pathSelectionsBefore,
+    pathSelectionsAfter: outcome.pathSelectionsAfter,
+  };
+  return historyEntry;
+}
+
 function installSelectToolPrototype() {
 
 SelectTool.prototype.getCursorStyle = function() {
@@ -198,24 +221,7 @@ SelectTool.prototype.handleInput = function(event, dispatcher, doc, keyboard, ap
     outcome = this.selectionFromSource(eventKind, event, doc);
   }
   if (outcome == null) return;
-  let newSelection = outcome.selection;
-  let historyLabel = outcome.label;
-  if (newSelection != null && isBufferUniform(newSelection.channel, 0)) {
-    newSelection = null;
-    historyLabel = "select.deselect";
-  }
-  if (newSelection) trimChannelToContent(newSelection);
-  const historyEntry = new HistoryEntry(historyLabel, this);
-  historyEntry.data = {
-    actionKind: "changesel",
-    selectionMaskBefore: doc.selectionMask,
-    selectionMaskAfter: newSelection,
-    isQuickMaskToggle: outcome.isQuickMaskToggle || false,
-    quickMaskBefore: outcome.quickMaskBefore,
-    quickMaskAfter: outcome.quickMaskNew,
-    pathSelectionsBefore: outcome.pathSelectionsBefore,
-    pathSelectionsAfter: outcome.pathSelectionsAfter,
-  };
+  const historyEntry = prepareSelectionHistoryEntry(doc.selectionMask, outcome, this);
   doc.pushHistory(historyEntry);
   this.redo(historyEntry.data, doc);
 };

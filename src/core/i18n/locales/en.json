@@ -120,6 +120,7 @@
     "enableClippingMask": "Enable Clipping Mask",
     "disableClippingMask": "Disable Clipping Mask",
     "newFolder": "New Folder",
+    "removeBackground": "Remove Background from Selection",
     "addRasterMask": "Add Raster Mask",
     "deleteRasterMask": "Delete Raster Mask",
     "addVectorMask": "Add Vector Mask",
@@ -185,6 +186,7 @@
     "flattenToSaveOverOriginal": "This document has VAR0 layers, but .VAR1 stores only a flattened image. Save a flattened copy over the original file?\n\nChoose Cancel to save it as a separate PSD file instead."
   },
   "select": {
+    "setSelection": "Set Selection",
     "all": "All",
     "deselect": "Deselect",
     "inverse": "Inverse",

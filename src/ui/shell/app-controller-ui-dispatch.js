@@ -1,3 +1,4 @@
+import { removeBackgroundFromSelection } from "../../features/trackers/exact-result-tracker.js";
 /**
  * `App.Dispatch` UI action router mixed onto `AppController`: dialogs, panels,
  * presets, placement, and document chrome updates from dispatched `AppEvent`s.
@@ -324,6 +325,14 @@ export function applyUiDispatchHandlers(AppController) {
  * module load: startup fills them after this module evaluates.
  */
 const UI_COMMAND_HANDLERS = {
+  removeBackgroundFromSelection(controller) {
+    try {
+      removeBackgroundFromSelection(controller);
+      controller.onComplete();
+    } catch (error) {
+      showToast(error.message);
+    }
+  },
   replayRecordedActionPair(controller, data) {
     ActionDescUtil.playActionSetSteps(
       controller.getCurrentDoc(),
