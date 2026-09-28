@@ -2329,6 +2329,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6877bb514081ee2a7ff5ef9de3281f14a4dd4bceac4c09388074a6b5df8a139a"
 
 [[package]]
+name = "mime_guess"
+version = "2.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f7c44f8e672c00fe5308fa235f821cb4198414e1c77935c1ab6948d3fd78550e"
+dependencies = [
+ "mime",
+ "unicase",
+]
+
+[[package]]
 name = "minimal-lexical"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2874,6 +2884,8 @@ version = "0.9.14"
 dependencies = [
  "cups_rs",
  "fontdb",
+ "png 0.17.16",
+ "reqwest 0.12.28",
  "serde",
  "serde_json",
  "tauri",
@@ -2883,6 +2895,7 @@ dependencies = [
  "tauri-plugin-fs",
  "tauri-plugin-shell",
  "tauri-plugin-store",
+ "uuid",
  "windows",
  "winprint",
 ]
@@ -3259,6 +3272,41 @@ name = "regex-syntax"
 version = "0.8.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
+
+[[package]]
+name = "reqwest"
+version = "0.12.28"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eddd3ca559203180a307f12d114c268abf583f59b03cb906fd0b3ff8646c1147"
+dependencies = [
+ "base64 0.22.1",
+ "bytes",
+ "futures-channel",
+ "futures-core",
+ "futures-util",
+ "http",
+ "http-body",
+ "http-body-util",
+ "hyper",
+ "hyper-util",
+ "js-sys",
+ "log",
+ "mime_guess",
+ "percent-encoding",
+ "pin-project-lite",
+ "serde",
+ "serde_json",
+ "serde_urlencoded",
+ "sync_wrapper",
+ "tokio",
+ "tower",
+ "tower-http",
+ "tower-service",
+ "url",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+]
 
 [[package]]
 name = "reqwest"
@@ -3925,7 +3973,7 @@ checksum = "641fdaaa40d0cd6e249cf1671c2240beff1a3ece578062cf43e750779e8db2b3"
 dependencies = [
  "base64 0.22.1",
  "hex",
- "reqwest",
+ "reqwest 0.13.5",
  "serde",
  "serde_json",
  "sigstore-crypto",
@@ -3968,7 +4016,7 @@ dependencies = [
  "der",
  "hex",
  "rand",
- "reqwest",
+ "reqwest 0.13.5",
  "rustls-pki-types",
  "rustls-webpki",
  "sigstore-crypto",
@@ -4400,7 +4448,7 @@ dependencies = [
  "percent-encoding",
  "plist",
  "raw-window-handle",
- "reqwest",
+ "reqwest 0.13.5",
  "serde",
  "serde_json",
  "serde_repr",
@@ -5101,6 +5149,12 @@ name = "typenum"
 version = "1.20.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6f5e870be6c3b371b77fe0ee0bafb859fa4964b4404c27de1d380043c4dda20"
+
+[[package]]
+name = "unicase"
+version = "2.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dbc4bc3a9f746d862c45cb89d705aa10f187bb96c76001afab07a0d35ce60142"
 
 [[package]]
 name = "unicode-ident"
@@ -5933,7 +5987,7 @@ checksum = "e043b52e3d73a1120ab499027bdab481a3381cf6701fb50942b4ac13af7d193e"
 dependencies = [
  "flate2",
  "fmt-derive",
- "reqwest",
+ "reqwest 0.13.5",
  "scopeguard",
  "sigstore-trust-root",
  "sigstore-types",

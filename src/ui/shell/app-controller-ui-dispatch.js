@@ -41,7 +41,7 @@ import {
 } from "../menu/menu-bar-predicates.js";
 import { AppWindow } from "./app-window.js";
 import { FileLoader, FileProcessor } from "./file-loader.js";
-import { persistAppSettings } from "../../core/app-settings.js";
+import { persistAppSettings, loadLocalInpaintConfig } from "../../core/app-settings.js";
 import { BrushPresetUtil } from "../../features/brush/brush-presets.js";
 import { EventType, UiCommand } from "../../core/event-bus.js";
 import { nativeWriteFile, openExternalUrl, pickSavePath } from "../../core/tauri-host.js";
@@ -325,6 +325,13 @@ export function applyUiDispatchHandlers(AppController) {
  * module load: startup fills them after this module evaluates.
  */
 const UI_COMMAND_HANDLERS = {
+  aiRemove(controller) {
+    const doc = controller.getCurrentDoc();
+    void loadLocalInpaintConfig().then((config) => {
+      if (!controller.openDocs.includes(doc)) throw new Error("The source document was closed.");
+      controller.getSelectionJobs().submitAI(doc, config);
+    }).catch((error) => showToast(error.message));
+  },
   removeBackgroundFromSelection(controller) {
     try {
       removeBackgroundFromSelection(controller);

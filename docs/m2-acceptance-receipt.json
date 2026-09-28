@@ -1,0 +1,1215 @@
+{
+  "date": "2026-09-28",
+  "baseline": "492b900a27f315c64978b004a6ff516bca5e5dd4",
+  "branch": "codex/m2-local-inpaint",
+  "backendVersion": "0.37.4",
+  "workflow": "photosuite-remove-v1",
+  "checkpoint": {
+    "repository": "stable-diffusion-v1-5/stable-diffusion-inpainting",
+    "revision": "8a4288a76071f7280aedbdb3253bdb9e9d5d84bb",
+    "file": {
+      "rfilename": "sd-v1-5-inpainting.ckpt",
+      "blobId": "477945c30dcad9c3d629470f7f52ceb86acd4cd7",
+      "size": 4265437280,
+      "lfs": {
+        "sha256": "c6bbc15e3224e6973459ba78de4998b80b50112b0ae5b5c67113d56b4e366b19",
+        "size": 4265437280,
+        "pointerSize": 135
+      }
+    },
+    "license": "creativeml-openrail-m",
+    "installedPath": "/Users/joe/ComfyUI-Shared/models/checkpoints/sd-v1-5-inpainting.ckpt",
+    "verifiedSha256": "c6bbc15e3224e6973459ba78de4998b80b50112b0ae5b5c67113d56b4e366b19",
+    "downloadSeconds": 77.91
+  },
+  "evidenceDirectory": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m2-acceptance",
+  "nativeChecks": {
+    "accepted": {
+      "label": "accepted",
+      "at": 1790598287782,
+      "history": 3,
+      "index": 2,
+      "layers": 2,
+      "names": [
+        "Source",
+        "AI Remove"
+      ],
+      "sourceExact": true,
+      "patchExact": true,
+      "rect": {
+        "x": 45,
+        "y": 15,
+        "width": 220,
+        "height": 234
+      },
+      "expectedROI": {
+        "x": 45,
+        "y": 15,
+        "width": 220,
+        "height": 234
+      },
+      "unselectedByteDifferences": 0,
+      "acceptedCompositeExact": true
+    },
+    "undo": {
+      "label": "undo",
+      "at": 1790598313322,
+      "history": 3,
+      "index": 1,
+      "layers": 1,
+      "names": [
+        "Source"
+      ],
+      "sourceExact": true,
+      "patchExact": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 256
+      },
+      "expectedROI": {
+        "x": 45,
+        "y": 15,
+        "width": 220,
+        "height": 234
+      },
+      "unselectedByteDifferences": 0,
+      "acceptedCompositeExact": false
+    },
+    "undo-composite": {
+      "label": "undo-composite",
+      "exact": true
+    },
+    "offline-redo": {
+      "label": "offline-redo",
+      "at": 1790598390076,
+      "history": 3,
+      "index": 2,
+      "layers": 2,
+      "names": [
+        "Source",
+        "AI Remove"
+      ],
+      "sourceExact": true,
+      "patchExact": true,
+      "rect": {
+        "x": 45,
+        "y": 15,
+        "width": 220,
+        "height": 234
+      },
+      "expectedROI": {
+        "x": 45,
+        "y": 15,
+        "width": 220,
+        "height": 234
+      },
+      "unselectedByteDifferences": 0,
+      "acceptedCompositeExact": true
+    },
+    "offline-psd-reopen": {
+      "label": "offline-psd-reopen",
+      "at": 1790598471480,
+      "history": 1,
+      "index": 0,
+      "layers": 2,
+      "names": [
+        "Source",
+        "AI Remove"
+      ],
+      "sourceExact": true,
+      "patchExact": true,
+      "rect": {
+        "x": 45,
+        "y": 15,
+        "width": 220,
+        "height": 234
+      },
+      "expectedROI": {
+        "x": 45,
+        "y": 15,
+        "width": 220,
+        "height": 234
+      },
+      "unselectedByteDifferences": 0,
+      "acceptedCompositeExact": true
+    },
+    "commit-duration": {
+      "label": "commit-duration",
+      "ms": 5,
+      "result": true
+    }
+  },
+  "stale": {
+    "label": "race:stale:Generating",
+    "at": 1790599074802,
+    "history": 4,
+    "index": 3,
+    "layers": 1,
+    "documentOpen": true,
+    "sourceExact": false,
+    "preview": false,
+    "job": {
+      "id": "m1-1",
+      "operation": "ai-remove",
+      "documentId": "636689a5-1a6c-4d81-af3f-169849fdd3dd",
+      "revision": 1,
+      "state": "stale",
+      "progress": {
+        "kind": "stage",
+        "stage": "Generating"
+      },
+      "error": {
+        "code": "stale-result",
+        "message": "The source layer, target or removal selection changed. Rerun AI Remove."
+      },
+      "cancelled": false,
+      "stopping": false,
+      "hasInput": false,
+      "hasResult": false
+    }
+  },
+  "closeSettled": {
+    "label": "race-settled",
+    "at": 1790599185631,
+    "history": 4,
+    "index": 2,
+    "layers": 1,
+    "documentOpen": false,
+    "sourceExact": true,
+    "preview": false,
+    "job": {
+      "id": "m1-3",
+      "operation": "ai-remove",
+      "documentId": "636689a5-1a6c-4d81-af3f-169849fdd3dd",
+      "revision": 1,
+      "state": "cancelled",
+      "progress": {
+        "kind": "stage",
+        "stage": "Generating"
+      },
+      "error": {
+        "code": "document-closed",
+        "message": "The source document was closed."
+      },
+      "cancelled": true,
+      "stopping": false,
+      "hasInput": false,
+      "hasResult": false
+    }
+  },
+  "jobRecords": {
+    "cancel": {
+      "id": "877fad47-8bb3-450c-9e5d-bfeb3161c138",
+      "status": "cancelled",
+      "priority": 0,
+      "create_time": 1790598036824,
+      "execution_start_time": 1790598036825,
+      "execution_end_time": 1790598051765,
+      "outputs_count": 0,
+      "previewable_outputs_count": 0,
+      "outputs": {},
+      "execution_status": {
+        "status_str": "error",
+        "completed": false,
+        "messages": [
+          [
+            "execution_start",
+            {
+              "prompt_id": "877fad47-8bb3-450c-9e5d-bfeb3161c138",
+              "timestamp": 1790598036825
+            }
+          ],
+          [
+            "execution_cached",
+            {
+              "nodes": [],
+              "prompt_id": "877fad47-8bb3-450c-9e5d-bfeb3161c138",
+              "timestamp": 1790598036833
+            }
+          ],
+          [
+            "execution_interrupted",
+            {
+              "prompt_id": "877fad47-8bb3-450c-9e5d-bfeb3161c138",
+              "node_id": "7",
+              "node_type": "KSampler",
+              "executed": [
+                "1",
+                "3",
+                "5",
+                "4",
+                "2",
+                "6"
+              ],
+              "timestamp": 1790598051765
+            }
+          ]
+        ]
+      },
+      "workflow": {
+        "prompt": {
+          "1": {
+            "class_type": "CheckpointLoaderSimple",
+            "inputs": {
+              "ckpt_name": "sd-v1-5-inpainting.ckpt"
+            }
+          },
+          "2": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "photosuite-877fad47-8bb3-450c-9e5d-bfeb3161c138-source.png"
+            }
+          },
+          "3": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "channel": "red",
+              "image": "photosuite-877fad47-8bb3-450c-9e5d-bfeb3161c138-mask.png"
+            }
+          },
+          "4": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "clean background, natural texture, seamless"
+            }
+          },
+          "5": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "object, text, watermark"
+            }
+          },
+          "6": {
+            "class_type": "InpaintModelConditioning",
+            "inputs": {
+              "mask": [
+                "3",
+                0
+              ],
+              "negative": [
+                "5",
+                0
+              ],
+              "noise_mask": true,
+              "pixels": [
+                "2",
+                0
+              ],
+              "positive": [
+                "4",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "7": {
+            "class_type": "KSampler",
+            "inputs": {
+              "cfg": 7.0,
+              "denoise": 1.0,
+              "latent_image": [
+                "6",
+                2
+              ],
+              "model": [
+                "1",
+                0
+              ],
+              "negative": [
+                "6",
+                1
+              ],
+              "positive": [
+                "6",
+                0
+              ],
+              "sampler_name": "euler",
+              "scheduler": "normal",
+              "seed": 2778165084,
+              "steps": 20
+            }
+          },
+          "8": {
+            "class_type": "VAEDecode",
+            "inputs": {
+              "samples": [
+                "7",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "9": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "filename_prefix": "photosuite-877fad47-8bb3-450c-9e5d-bfeb3161c138",
+              "images": [
+                "8",
+                0
+              ]
+            }
+          }
+        },
+        "extra_data": {
+          "photosuite_request_id": "877fad47-8bb3-450c-9e5d-bfeb3161c138",
+          "photosuite_workflow": "photosuite-remove-v1",
+          "client_id": "photosuite-877fad47-8bb3-450c-9e5d-bfeb3161c138",
+          "create_time": 1790598036824
+        }
+      }
+    },
+    "discard": {
+      "id": "ab981e29-c12e-45d0-88aa-ccf1dbcb225d",
+      "status": "completed",
+      "priority": 1,
+      "create_time": 1790598077150,
+      "execution_start_time": 1790598077151,
+      "execution_end_time": 1790598098422,
+      "outputs_count": 1,
+      "previewable_outputs_count": 1,
+      "preview_output": {
+        "filename": "photosuite-ab981e29-c12e-45d0-88aa-ccf1dbcb225d_00001_.png",
+        "subfolder": "",
+        "type": "output",
+        "nodeId": "9",
+        "mediaType": "images"
+      },
+      "outputs": {
+        "9": {
+          "images": [
+            {
+              "filename": "photosuite-ab981e29-c12e-45d0-88aa-ccf1dbcb225d_00001_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        }
+      },
+      "execution_status": {
+        "status_str": "success",
+        "completed": true,
+        "messages": [
+          [
+            "execution_start",
+            {
+              "prompt_id": "ab981e29-c12e-45d0-88aa-ccf1dbcb225d",
+              "timestamp": 1790598077151
+            }
+          ],
+          [
+            "execution_cached",
+            {
+              "nodes": [
+                "1",
+                "4",
+                "5"
+              ],
+              "prompt_id": "ab981e29-c12e-45d0-88aa-ccf1dbcb225d",
+              "timestamp": 1790598077155
+            }
+          ],
+          [
+            "execution_success",
+            {
+              "prompt_id": "ab981e29-c12e-45d0-88aa-ccf1dbcb225d",
+              "timestamp": 1790598098422
+            }
+          ]
+        ]
+      },
+      "workflow": {
+        "prompt": {
+          "1": {
+            "class_type": "CheckpointLoaderSimple",
+            "inputs": {
+              "ckpt_name": "sd-v1-5-inpainting.ckpt"
+            }
+          },
+          "2": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "photosuite-ab981e29-c12e-45d0-88aa-ccf1dbcb225d-source.png"
+            }
+          },
+          "3": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "channel": "red",
+              "image": "photosuite-ab981e29-c12e-45d0-88aa-ccf1dbcb225d-mask.png"
+            }
+          },
+          "4": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "clean background, natural texture, seamless"
+            }
+          },
+          "5": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "object, text, watermark"
+            }
+          },
+          "6": {
+            "class_type": "InpaintModelConditioning",
+            "inputs": {
+              "mask": [
+                "3",
+                0
+              ],
+              "negative": [
+                "5",
+                0
+              ],
+              "noise_mask": true,
+              "pixels": [
+                "2",
+                0
+              ],
+              "positive": [
+                "4",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "7": {
+            "class_type": "KSampler",
+            "inputs": {
+              "cfg": 7.0,
+              "denoise": 1.0,
+              "latent_image": [
+                "6",
+                2
+              ],
+              "model": [
+                "1",
+                0
+              ],
+              "negative": [
+                "6",
+                1
+              ],
+              "positive": [
+                "6",
+                0
+              ],
+              "sampler_name": "euler",
+              "scheduler": "normal",
+              "seed": 1028620957,
+              "steps": 20
+            }
+          },
+          "8": {
+            "class_type": "VAEDecode",
+            "inputs": {
+              "samples": [
+                "7",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "9": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "filename_prefix": "photosuite-ab981e29-c12e-45d0-88aa-ccf1dbcb225d",
+              "images": [
+                "8",
+                0
+              ]
+            }
+          }
+        },
+        "extra_data": {
+          "photosuite_request_id": "ab981e29-c12e-45d0-88aa-ccf1dbcb225d",
+          "photosuite_workflow": "photosuite-remove-v1",
+          "client_id": "photosuite-ab981e29-c12e-45d0-88aa-ccf1dbcb225d",
+          "create_time": 1790598077150
+        }
+      }
+    },
+    "stale": {
+      "id": "056b1bbc-3d34-40a0-878e-aa05d0baee41",
+      "status": "cancelled",
+      "priority": 0,
+      "create_time": 1790599061585,
+      "execution_start_time": 1790599061585,
+      "execution_end_time": 1790599074883,
+      "outputs_count": 0,
+      "previewable_outputs_count": 0,
+      "outputs": {},
+      "execution_status": {
+        "status_str": "error",
+        "completed": false,
+        "messages": [
+          [
+            "execution_start",
+            {
+              "prompt_id": "056b1bbc-3d34-40a0-878e-aa05d0baee41",
+              "timestamp": 1790599061585
+            }
+          ],
+          [
+            "execution_cached",
+            {
+              "nodes": [],
+              "prompt_id": "056b1bbc-3d34-40a0-878e-aa05d0baee41",
+              "timestamp": 1790599061590
+            }
+          ],
+          [
+            "execution_interrupted",
+            {
+              "prompt_id": "056b1bbc-3d34-40a0-878e-aa05d0baee41",
+              "node_id": "7",
+              "node_type": "KSampler",
+              "executed": [
+                "4",
+                "6",
+                "5",
+                "3",
+                "1",
+                "2"
+              ],
+              "timestamp": 1790599074883
+            }
+          ]
+        ]
+      },
+      "workflow": {
+        "prompt": {
+          "1": {
+            "class_type": "CheckpointLoaderSimple",
+            "inputs": {
+              "ckpt_name": "sd-v1-5-inpainting.ckpt"
+            }
+          },
+          "2": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "photosuite-056b1bbc-3d34-40a0-878e-aa05d0baee41-source.png"
+            }
+          },
+          "3": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "channel": "red",
+              "image": "photosuite-056b1bbc-3d34-40a0-878e-aa05d0baee41-mask.png"
+            }
+          },
+          "4": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "clean background, natural texture, seamless"
+            }
+          },
+          "5": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "object, text, watermark"
+            }
+          },
+          "6": {
+            "class_type": "InpaintModelConditioning",
+            "inputs": {
+              "mask": [
+                "3",
+                0
+              ],
+              "negative": [
+                "5",
+                0
+              ],
+              "noise_mask": true,
+              "pixels": [
+                "2",
+                0
+              ],
+              "positive": [
+                "4",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "7": {
+            "class_type": "KSampler",
+            "inputs": {
+              "cfg": 7.0,
+              "denoise": 1.0,
+              "latent_image": [
+                "6",
+                2
+              ],
+              "model": [
+                "1",
+                0
+              ],
+              "negative": [
+                "6",
+                1
+              ],
+              "positive": [
+                "6",
+                0
+              ],
+              "sampler_name": "euler",
+              "scheduler": "normal",
+              "seed": 891461828,
+              "steps": 20
+            }
+          },
+          "8": {
+            "class_type": "VAEDecode",
+            "inputs": {
+              "samples": [
+                "7",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "9": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "filename_prefix": "photosuite-056b1bbc-3d34-40a0-878e-aa05d0baee41",
+              "images": [
+                "8",
+                0
+              ]
+            }
+          }
+        },
+        "extra_data": {
+          "photosuite_request_id": "056b1bbc-3d34-40a0-878e-aa05d0baee41",
+          "photosuite_workflow": "photosuite-remove-v1",
+          "client_id": "photosuite-056b1bbc-3d34-40a0-878e-aa05d0baee41",
+          "create_time": 1790599061585
+        }
+      }
+    },
+    "close": {
+      "id": "cf41ab9a-e7f2-49b1-a13e-dae891a7989e",
+      "status": "cancelled",
+      "priority": 2,
+      "create_time": 1790599173425,
+      "execution_start_time": 1790599173425,
+      "execution_end_time": 1790599184724,
+      "outputs_count": 0,
+      "previewable_outputs_count": 0,
+      "outputs": {},
+      "execution_status": {
+        "status_str": "error",
+        "completed": false,
+        "messages": [
+          [
+            "execution_start",
+            {
+              "prompt_id": "cf41ab9a-e7f2-49b1-a13e-dae891a7989e",
+              "timestamp": 1790599173425
+            }
+          ],
+          [
+            "execution_cached",
+            {
+              "nodes": [
+                "1",
+                "4",
+                "5"
+              ],
+              "prompt_id": "cf41ab9a-e7f2-49b1-a13e-dae891a7989e",
+              "timestamp": 1790599173428
+            }
+          ],
+          [
+            "execution_interrupted",
+            {
+              "prompt_id": "cf41ab9a-e7f2-49b1-a13e-dae891a7989e",
+              "node_id": "7",
+              "node_type": "KSampler",
+              "executed": [
+                "3",
+                "6",
+                "2"
+              ],
+              "timestamp": 1790599184724
+            }
+          ]
+        ]
+      },
+      "workflow": {
+        "prompt": {
+          "1": {
+            "class_type": "CheckpointLoaderSimple",
+            "inputs": {
+              "ckpt_name": "sd-v1-5-inpainting.ckpt"
+            }
+          },
+          "2": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "photosuite-cf41ab9a-e7f2-49b1-a13e-dae891a7989e-source.png"
+            }
+          },
+          "3": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "channel": "red",
+              "image": "photosuite-cf41ab9a-e7f2-49b1-a13e-dae891a7989e-mask.png"
+            }
+          },
+          "4": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "clean background, natural texture, seamless"
+            }
+          },
+          "5": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "object, text, watermark"
+            }
+          },
+          "6": {
+            "class_type": "InpaintModelConditioning",
+            "inputs": {
+              "mask": [
+                "3",
+                0
+              ],
+              "negative": [
+                "5",
+                0
+              ],
+              "noise_mask": true,
+              "pixels": [
+                "2",
+                0
+              ],
+              "positive": [
+                "4",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "7": {
+            "class_type": "KSampler",
+            "inputs": {
+              "cfg": 7.0,
+              "denoise": 1.0,
+              "latent_image": [
+                "6",
+                2
+              ],
+              "model": [
+                "1",
+                0
+              ],
+              "negative": [
+                "6",
+                1
+              ],
+              "positive": [
+                "6",
+                0
+              ],
+              "sampler_name": "euler",
+              "scheduler": "normal",
+              "seed": 2877981669,
+              "steps": 20
+            }
+          },
+          "8": {
+            "class_type": "VAEDecode",
+            "inputs": {
+              "samples": [
+                "7",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "9": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "filename_prefix": "photosuite-cf41ab9a-e7f2-49b1-a13e-dae891a7989e",
+              "images": [
+                "8",
+                0
+              ]
+            }
+          }
+        },
+        "extra_data": {
+          "photosuite_request_id": "cf41ab9a-e7f2-49b1-a13e-dae891a7989e",
+          "photosuite_workflow": "photosuite-remove-v1",
+          "client_id": "photosuite-cf41ab9a-e7f2-49b1-a13e-dae891a7989e",
+          "create_time": 1790599173425
+        }
+      }
+    }
+  },
+  "validation": {
+    "npmTests": 1871,
+    "npmSuites": 422,
+    "npmFailures": 0,
+    "lint": "PASS",
+    "verify": "PASS (8 gates)",
+    "rustTests": 20,
+    "rustFailures": 0,
+    "cargoCheck": "PASS",
+    "nativeDebugBundle": "PASS",
+    "cargoFmt": "FAIL: formatting diff identical to accepted M1 baseline after normalizing paths/line numbers",
+    "diffCheck": "PASS",
+    "inpaintJavaScriptCases": 32
+  },
+  "performance": {
+    "roi": {
+      "x": 45,
+      "y": 15,
+      "width": 220,
+      "height": 234
+    },
+    "selection": {
+      "x": 109,
+      "y": 79,
+      "width": 92,
+      "height": 106
+    },
+    "modelWidth": 512,
+    "modelHeight": 512,
+    "binaryInputBytes": 1310720,
+    "sourcePngBytes": 103115,
+    "maskPngBytes": 5579,
+    "normalizedModelOutputBytes": 1048576,
+    "containedPatchBytes": 205920,
+    "discardRunQueueMs": 1,
+    "discardRunServiceExecutionMs": 21271,
+    "discardRunCompletionToPreviewMs": 210,
+    "acceptedRunCreateToPreviewMs": 20946,
+    "acceptMs": 5,
+    "hostRssPeakBytes": 128516096,
+    "serviceRssPeakBytes": 1015758848,
+    "sampleCount": 120,
+    "limitations": [
+      "Receive, decode and preview were measured as a combined post-completion interval, including polling latency.",
+      "PhotoSuite host RSS excludes WebKit subprocesses.",
+      "MPS reports system unified memory; dedicated VRAM allocation was unavailable.",
+      "Concurrent npm tests affected system memory; no general performance claim."
+    ]
+  },
+  "finalNativeOddSelection": {
+    "setup": "Diagnostic setup in the real native Document, then actual SelectionJobs/ComfyUI provider and native Accept control. No inference or transaction stubs.",
+    "preview": {
+      "label": "odd-native:preview",
+      "at": 1790599715282,
+      "selection": {
+        "x": 110,
+        "y": 80,
+        "width": 93,
+        "height": 107
+      },
+      "channelLength": 9952,
+      "padding": 255,
+      "sourceExact": true,
+      "layers": 1,
+      "history": 1,
+      "index": 0,
+      "preview": true,
+      "job": {
+        "id": "m1-1",
+        "operation": "ai-remove",
+        "documentId": "8eb059f1-c758-4358-b829-f8fc3fbb72ba",
+        "revision": 1,
+        "state": "preview",
+        "progress": {
+          "kind": "stage",
+          "stage": "Generating"
+        },
+        "error": null,
+        "cancelled": false,
+        "stopping": false,
+        "hasInput": false,
+        "hasResult": true
+      }
+    },
+    "accepted": {
+      "label": "odd-native:committed",
+      "at": 1790599725187,
+      "selection": {
+        "x": 110,
+        "y": 80,
+        "width": 93,
+        "height": 107
+      },
+      "channelLength": 9952,
+      "padding": 255,
+      "sourceExact": true,
+      "layers": 2,
+      "history": 2,
+      "index": 1,
+      "preview": false,
+      "job": {
+        "id": "m1-1",
+        "operation": "ai-remove",
+        "documentId": "8eb059f1-c758-4358-b829-f8fc3fbb72ba",
+        "revision": 1,
+        "state": "committed",
+        "progress": {
+          "kind": "stage",
+          "stage": "Generating"
+        },
+        "error": null,
+        "cancelled": false,
+        "stopping": false,
+        "hasInput": false,
+        "hasResult": false
+      }
+    },
+    "serverJob": {
+      "id": "3e3fc8e3-40f7-4c46-9905-45224c5694a9",
+      "status": "completed",
+      "priority": 3,
+      "create_time": 1790599693975,
+      "execution_start_time": 1790599693976,
+      "execution_end_time": 1790599714987,
+      "outputs_count": 1,
+      "previewable_outputs_count": 1,
+      "preview_output": {
+        "filename": "photosuite-3e3fc8e3-40f7-4c46-9905-45224c5694a9_00001_.png",
+        "subfolder": "",
+        "type": "output",
+        "nodeId": "9",
+        "mediaType": "images"
+      },
+      "outputs": {
+        "9": {
+          "images": [
+            {
+              "filename": "photosuite-3e3fc8e3-40f7-4c46-9905-45224c5694a9_00001_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        }
+      },
+      "execution_status": {
+        "status_str": "success",
+        "completed": true,
+        "messages": [
+          [
+            "execution_start",
+            {
+              "prompt_id": "3e3fc8e3-40f7-4c46-9905-45224c5694a9",
+              "timestamp": 1790599693976
+            }
+          ],
+          [
+            "execution_cached",
+            {
+              "nodes": [
+                "1",
+                "4",
+                "5"
+              ],
+              "prompt_id": "3e3fc8e3-40f7-4c46-9905-45224c5694a9",
+              "timestamp": 1790599693985
+            }
+          ],
+          [
+            "execution_success",
+            {
+              "prompt_id": "3e3fc8e3-40f7-4c46-9905-45224c5694a9",
+              "timestamp": 1790599714987
+            }
+          ]
+        ]
+      },
+      "workflow": {
+        "prompt": {
+          "1": {
+            "class_type": "CheckpointLoaderSimple",
+            "inputs": {
+              "ckpt_name": "sd-v1-5-inpainting.ckpt"
+            }
+          },
+          "2": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "photosuite-3e3fc8e3-40f7-4c46-9905-45224c5694a9-source.png"
+            }
+          },
+          "3": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "channel": "red",
+              "image": "photosuite-3e3fc8e3-40f7-4c46-9905-45224c5694a9-mask.png"
+            }
+          },
+          "4": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "clean background, natural texture, seamless"
+            }
+          },
+          "5": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "1",
+                1
+              ],
+              "text": "object, text, watermark"
+            }
+          },
+          "6": {
+            "class_type": "InpaintModelConditioning",
+            "inputs": {
+              "mask": [
+                "3",
+                0
+              ],
+              "negative": [
+                "5",
+                0
+              ],
+              "noise_mask": true,
+              "pixels": [
+                "2",
+                0
+              ],
+              "positive": [
+                "4",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "7": {
+            "class_type": "KSampler",
+            "inputs": {
+              "cfg": 7.0,
+              "denoise": 1.0,
+              "latent_image": [
+                "6",
+                2
+              ],
+              "model": [
+                "1",
+                0
+              ],
+              "negative": [
+                "6",
+                1
+              ],
+              "positive": [
+                "6",
+                0
+              ],
+              "sampler_name": "euler",
+              "scheduler": "normal",
+              "seed": 190489857,
+              "steps": 20
+            }
+          },
+          "8": {
+            "class_type": "VAEDecode",
+            "inputs": {
+              "samples": [
+                "7",
+                0
+              ],
+              "vae": [
+                "1",
+                2
+              ]
+            }
+          },
+          "9": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "filename_prefix": "photosuite-3e3fc8e3-40f7-4c46-9905-45224c5694a9",
+              "images": [
+                "8",
+                0
+              ]
+            }
+          }
+        },
+        "extra_data": {
+          "photosuite_request_id": "3e3fc8e3-40f7-4c46-9905-45224c5694a9",
+          "photosuite_workflow": "photosuite-remove-v1",
+          "client_id": "photosuite-3e3fc8e3-40f7-4c46-9905-45224c5694a9",
+          "create_time": 1790599693975
+        }
+      }
+    }
+  }
+}

@@ -83,7 +83,7 @@ describe("ui/dialogs/preferences-dialogs.js", () => {
       for (const section of PREFERENCE_SECTIONS) {
         for (const row of sectionRows(section)) {
           if (row.control != null) {
-            assert.ok(["theme", "language"].includes(row.control), "unknown control " + row.control);
+            assert.ok(["theme", "language", "localInpainting"].includes(row.control), "unknown control " + row.control);
             continue;
           }
           assert.notEqual(DEFAULT_EDITOR_PREFS[row.pref], undefined, row.pref + " is not a preference");
@@ -99,7 +99,7 @@ describe("ui/dialogs/preferences-dialogs.js", () => {
 
     it("names each section once, with a label to translate", () => {
       const ids = PREFERENCE_SECTIONS.map((section) => section.id);
-      assert.deepEqual(ids, ["general", "interface", "tools", "units", "guides"]);
+      assert.deepEqual(ids, ["general", "interface", "tools", "units", "guides", "ai-remove"]);
       assert.equal(new Set(ids).size, ids.length);
       for (const section of PREFERENCE_SECTIONS) {
         assert.match(section.labelKey, /^dialogs\.preferenceSections\./);

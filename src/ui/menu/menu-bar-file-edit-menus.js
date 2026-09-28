@@ -387,6 +387,11 @@ export function buildEditMenu() {
     }, {
       name: "file.resourceManager",
       opensDialog: true
+    }, {
+      name: "AI Remove",
+      resolveRowState: function(doc) {
+        return { enabled: !!doc?.selectionMask, labelOverride: "AI Remove (local service)…" };
+      }
     }],
     menuActions: [{
       appEventType: EventType.documentAction,
@@ -551,6 +556,11 @@ export function buildEditMenu() {
       payload: {
         dispatchKind: UiCommand.dispatchAppDialogRouter,
         dialogRouteId: "resmgr"
+      }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: {
+        dispatchKind: UiCommand.aiRemove
       }
     }]
   };

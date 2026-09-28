@@ -322,7 +322,8 @@
       "interface": "Interface",
       "tools": "Tools",
       "unitsAndRulers": "Units & Rulers",
-      "guidesGridSlices": "Guides, Grid & Slices"
+      "guidesGridSlices": "Guides, Grid & Slices",
+      "aiRemove": "AI Remove"
     },
     "addGuides": "Add Guides",
     "clearGuides": "Clear Guides",

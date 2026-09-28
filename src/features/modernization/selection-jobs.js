@@ -4,12 +4,15 @@ import { createQuickSelectProvider } from "./quick-select-provider.js";
 import { createSelectionAdapter, requireQuickSelectSource } from "./selection-target.js";
 import { getResultDocumentInfo } from "../results/result-targets.js";
 import { showToast } from "../../core/user-prompts.js";
+import { createComfyProvider } from "./comfy-provider.js";
+import { prepareInpaintInput } from "./inpaint-workload.js";
+import { requireInpaintSource, createInpaintAdapter } from "./inpaint-target.js";
 
 function plainRect(rect) { return { x: rect.x, y: rect.y, width: rect.width, height: rect.height }; }
 export class SelectionJobs {
-  constructor(controller, provider = createQuickSelectProvider(), mount = true) {
+  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider()) {
     this.controller = controller;
-    this.jobs = new ModernizationJobs({ "quick-select": provider });
+    this.jobs = new ModernizationJobs({ "quick-select": provider, "ai-remove": inpaintProvider });
     this.sessions = new Map();
     this.labels = new Map();
     this.latestCheck = 0;
@@ -22,11 +25,20 @@ export class SelectionJobs {
     });
     if (mount) {
       this.el = document.createElement("div");
-      this.el.setAttribute("aria-label", "Quick Select jobs");
+      this.el.setAttribute("aria-label", "Selection and AI Remove jobs");
       Object.assign(this.el.style, { position: "absolute", bottom: "20px", left: "64px", zIndex: "20", padding: "8px", background: "#292929", color: "#eee", border: "1px solid #666", borderRadius: "5px", maxWidth: "640px" });
       controller.mainColumn.appendChild(this.el);
       this.render();
     }
+  }
+  submitAI(doc, config) {
+    if (this.jobs.list().some((job) => job.operation === "ai-remove" && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Remove result first.");
+    const layer = requireInpaintSource(doc);
+    const { input, coverage } = prepareInpaintInput(layer, doc.selectionMask, doc.width, doc.height, config);
+    const id = this.jobs.submit({ operation: "ai-remove", input, adapter: createInpaintAdapter(this.controller, doc, layer, input.rect, coverage) });
+    this.labels.set(this.jobs.get(id).documentId, doc.name || "Untitled");
+    this.render();
+    return id;
   }
   begin(doc, mode) {
     const layer = requireQuickSelectSource(doc);
@@ -78,14 +90,14 @@ export class SelectionJobs {
   tick(now = performance.now()) {
     if (now - this.latestCheck < 500) return;
     this.latestCheck = now;
-    for (const session of this.sessions.values()) if (session.jobId) this.jobs.revalidate(session.jobId);
+    for (const job of this.jobs.list()) if (!JOB_TERMINAL.has(job.state)) this.jobs.revalidate(job.id);
     this.render();
   }
   render() {
     if (!this.el) return;
     const latest = new Map();
-    for (const job of this.jobs.list()) latest.set(job.documentId, job);
-    for (const id of this.labels.keys()) if (!latest.has(id)) this.labels.delete(id);
+    for (const job of this.jobs.list()) latest.set(job.documentId + job.operation, job);
+    for (const id of this.labels.keys()) if (![...latest.values()].some((job) => job.documentId === id)) this.labels.delete(id);
     const live = [...latest.values()].filter((job) => !JOB_TERMINAL.has(job.state));
     const recent = [...latest.values()].filter((job) => JOB_TERMINAL.has(job.state));
     const remaining = 3 - live.length;
@@ -100,9 +112,9 @@ export class SelectionJobs {
       Object.assign(row.style, { display: "flex", alignItems: "center", gap: "8px", minHeight: "28px" });
       const label = document.createElement("span");
       label.setAttribute("role", "status");
-      const states = { queued: "Queued", preparing: "Preparing", running: job.progress.stage, preview: "Ready to preview — paint to refine", committed: "Accepted", discarded: "Discarded", cancelled: job.stopping ? "Cancelled — waiting for workload to stop" : "Cancelled", stale: "Source changed — rerun", failed: job.error?.message || "Failed" };
+      const states = { queued: "Queued", preparing: "Preparing", running: job.progress.stage, preview: job.operation === "ai-remove" ? "Ready — review result" : "Ready to preview — paint to refine", committed: "Accepted", discarded: "Discarded", cancelled: job.stopping ? "Cancelled — waiting for workload to stop" : "Cancelled", stale: "Source changed — rerun", failed: job.error?.message || "Failed" };
       const numeric = job.progress.kind === "numeric" && job.state === "running" ? ` (${job.progress.completed}/${job.progress.total})` : "";
-      label.textContent = `Quick Select · ${this.labels.get(job.documentId) || "Document"} · ${states[job.state]}${numeric}`;
+      label.textContent = `${job.operation === "ai-remove" ? "AI Remove" : "Quick Select"} · ${this.labels.get(job.documentId) || "Document"} · ${states[job.state]}${numeric}`;
       if (job.error) label.title = job.error.message;
       row.appendChild(label);
       const button = (text, action) => {

@@ -73,6 +73,22 @@ function drawActiveMaskOverlays(panel, PluginToolPanel, pluginDocument) {
     channelSum = docView.channelVisibility[0] + docView.channelVisibility[1] + docView.channelVisibility[2],
     activeMasks = collectActiveMaskChannels(pluginDocument);
   let drewOverlay = false;
+  const rasterPreview = pluginDocument.toolOverlayState.jobRasterPreview;
+  if (rasterPreview) {
+    if (!rasterPreview.canvas) {
+      const canvas = rasterPreview.canvas = document.createElement("canvas");
+      canvas.width = rasterPreview.rect.width; canvas.height = rasterPreview.rect.height;
+      canvas.getContext("2d").putImageData(new ImageData(new Uint8ClampedArray(rasterPreview.bytes), canvas.width, canvas.height), 0, 0);
+    }
+    const transform = docView.getViewMatrix(true); transform.invert();
+    const ctx = panel.mainCanvasCtx;
+    ctx.save();
+    ctx.setTransform(transform.a, transform.b, transform.c, transform.d, transform.tx, transform.ty);
+    ctx.beginPath(); ctx.rect(0, 0, pluginDocument.width, pluginDocument.height); ctx.clip();
+    ctx.drawImage(rasterPreview.canvas, rasterPreview.rect.x, rasterPreview.rect.y);
+    ctx.restore();
+    drewOverlay = true;
+  }
   for (let maskIdx = 0; maskIdx < activeMasks.length; maskIdx++) {
     const maskChannel = activeMasks[maskIdx];
     panel.drawChannelMaskOverlay(maskChannel, docView, activeMasks.length == 1 && channelSum == 0 ? 2 : 1, maskChannel.color, maskChannel.overlayTintRgb);

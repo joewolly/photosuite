@@ -4,6 +4,7 @@
 
 import { Locale } from "./i18n/locale.js";
 import { snapshotEditorParamsFromPrefs } from "./editor-preferences.js";
+import { getInpaintConfig, setInpaintConfig, validateInpaintConfig } from "../features/modernization/inpaint-config.js";
 
 /** Persisted under app_data_dir; see tauri-plugin-store. */
 export const APP_SETTINGS_FILE = "settings.json";
@@ -39,6 +40,7 @@ async function readEnvironmentFieldsFromStore(store) {
   const theme = await store.get("theme");
   const panels = await store.get("panels");
   const eparams = await store.get("eparams");
+  setInpaintConfig(await store.get("localInpainting"));
 
   if (lang != null) state.lang = lang;
   if (theme != null) state.theme = theme;
@@ -46,6 +48,20 @@ async function readEnvironmentFieldsFromStore(store) {
   if (eparams != null) state.eparams = eparams;
 
   return Object.keys(state).length !== 0 ? state : null;
+}
+
+/** Configuration reads never probe the local service. */
+export async function loadLocalInpaintConfig() {
+  const store = await openSettingsStore();
+  return store ? setInpaintConfig(await store.get("localInpainting")) : getInpaintConfig();
+}
+export async function saveLocalInpaintConfig(config) {
+  if (config.enabled) validateInpaintConfig(config);
+  const store = await openSettingsStore();
+  if (!store) throw new Error("Local AI Remove settings require the PhotoSuite desktop application.");
+  await store.set("localInpainting", { enabled: config.enabled === true, endpoint: config.endpoint, checkpoint: config.checkpoint });
+  await store.save();
+  return setInpaintConfig(config);
 }
 
 /**
