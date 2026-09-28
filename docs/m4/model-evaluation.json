@@ -1,0 +1,79 @@
+{
+  "status": "Selected for M4: locally reconstructed official SAM 2.1 Hiera Tiny; native WASM image path verified",
+  "model": "SAM 2.1 Hiera Tiny, image-only, 1024x1024",
+  "upstream": "https://github.com/facebookresearch/sam2",
+  "codeRevision": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+  "weightsRepository": "https://huggingface.co/facebook/sam2.1-hiera-tiny",
+  "weightsRevision": "de431c4043854a71d8101e17995dfe596bf101a5",
+  "checkpoint": "sam2.1_hiera_tiny.pt",
+  "checkpointBytes": 156008466,
+  "checkpointSha256": "7402e0d864fa82708a20fbd15bc84245c2f26dff0eb43a4b5b93452deb34be69",
+  "codeLicense": "Apache-2.0",
+  "weightLicense": "Apache-2.0; explicitly declared on official model card and upstream checkpoint license statement",
+  "redistribution": "Approved for bundled M4 image inference under checkpoint-specific Apache-2.0 license, retained license/model card/NOTICE and modification attribution",
+  "notices": [
+    "SAM2 Apache-2.0 LICENSE and upstream README attribution",
+    "Microsoft ONNX Runtime MIT license for exporter/runtime",
+    "ORT third-party notices (already retained by M3)"
+  ],
+  "conversionSource": "https://github.com/microsoft/onnxruntime/tree/84cf511aee6506aec6380997af32d12e2252231d/onnxruntime/python/tools/transformers/models/sam2",
+  "conversionSourceSha256": {
+    "sam2_utils.py": "0fcd9919c85215e79cdaf848c7cd6e7e19fd326ab594ff63202e8979315ae4d0",
+    "convert_to_onnx.py": "6a97706cd7fb5d9dcf1f7c3fa9055dd59be7463b922137df6832f6036cca6256",
+    "sam2_demo.py": "7d7dabf89b34b63711363ddd04b2f22a1f3a112c37e2fb7ed4d4309b070bf000",
+    "__init__.py": "07046f69491f612ac655dcf64fa8c28be707f2047d503deadc6aed32d9092fcc",
+    "benchmark_sam2.py": "c1cf83427914ae608f985834db531fc5f308fa782510fbb114a8fcb1d05e5c37",
+    "sam2_image_onnx_predictor.py": "7feb0499bf8375ac3f1144fbce6338cdb7f750c36eb35685835db257e66c9687",
+    "image_decoder.py": "f033fc76a3a8d3f16110847c6b9a4c2d0ac23c4171ca2b11dd848880a82dea6e",
+    "image_encoder.py": "b2afe88df30f0d4f956ed8be0dc854f0621e7156fd1ad57653ed54ca6206402d",
+    "prompt_encoder.py": "faf0fc4baad1f41f997dd32f9cbc8f611444656f2e8a65e9d375173921dd6ad9",
+    "nvtx_helper.py": "31d76e7c6599a47f4320c2740deca6b96ee73e623fce9190c434a86234b42a1d",
+    "mask_decoder.py": "d380e7195c0991c7fdd43b3daf546bbe79e1d77eeac8feeb62df1ad973f15641"
+  },
+  "conversionRecipe": "scripts/m4/export-sam2.py: pinned Microsoft wrappers, PyTorch 2.5.1 opset17, batch1, dynamic point count. Weight initializers stored FP16 and explicitly cast back to FP32; graph computations and IO remain FP32. ORT graphOptimizationLevel disabled.",
+  "tools": {
+    "python": "3.12.14",
+    "torch": "2.5.1",
+    "torchvision": "0.20.1",
+    "onnx": "1.17.0",
+    "onnxruntime": "1.22.0",
+    "onnxruntime-web": "existing M3 1.22.0"
+  },
+  "artifactSha256": {
+    "encoder": "d1a57be72fc8cbbe25ea6dc1aac74432552eb1aaabaca13d6e3290f339d718f4",
+    "decoder": "40433699e5555adb18401d1f69ad12d58ec93e2209f41873c4077609a363f25f"
+  },
+  "artifactStatus": "Final four-token artifacts verified in actual packaged macOS Tauri app and request-denied production worker; Windows/Linux untested",
+  "input": "Encoder float32 normalized RGB [1,3,1024,1024], square resize per official image predictor. Decoder projected high-resolution features plus image embedding; float32 points in 1024 coordinates and int32 labels 1 positive/0 negative/2 top-left/3 bottom-right/-1 padding; optional low-res input mask disabled initially.",
+  "output": "Four 256x256 float32 mask logits and predicted IoUs. Single click selects highest-IoU token 1..3, ties first. Box or multiple points use token0 with official stability fallback (delta0.05, threshold0.98) to best token1..3. Resize logits then sigmoid to coverage8, constrained by source alpha.",
+  "embeddingBytesFloat32": 16777216,
+  "artifacts": {
+    "encoder": {
+      "bytes": 55015529,
+      "sha256": "d1a57be72fc8cbbe25ea6dc1aac74432552eb1aaabaca13d6e3290f339d718f4"
+    },
+    "decoder": {
+      "bytes": 8681263,
+      "sha256": "40433699e5555adb18401d1f69ad12d58ec93e2209f41873c4077609a363f25f"
+    }
+  },
+  "float32Conversion": {
+    "encoder": {
+      "bytes": 109471963,
+      "sha256": "4fa20aa4c83e144761c1215e438ec77214aa089ad70c6acfa189d3449d0c56b9",
+      "maxAbsError": [
+        1.0132789611816406e-06,
+        2.3990869522094727e-06,
+        2.0977109670639038e-05
+      ]
+    },
+    "decoder": {
+      "bytes": 16779189,
+      "sha256": "16e0feb6babe239cd43379b0c67d6697981efb0a85bf30806677fabd896cd08d",
+      "maxAbsError": [
+        6.580352783203125e-05,
+        1.0728836059570312e-06
+      ]
+    }
+  }
+}

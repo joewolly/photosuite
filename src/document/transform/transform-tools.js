@@ -14,6 +14,7 @@ import { buildRectSelectionAction } from "../tools/selection-actions.js";
 import { quickSelectSession, syncQuickSelectOverlay } from "../tools/quick-select-session.js";
 import { CROSSHAIR_INSET_RATIO } from "../tools/quick-select-session.js";
 import { SelectTool } from "../tools/selection-tools.js";
+import { beginPromptedGesture, movePromptedGesture, finishPromptedGesture } from "../tools/prompted-selection-gesture.js";
 import { allocBuffer, extractChannel, extractChannelByte } from "../../engine/compositing/buffer-utils.js";
 import { copyPixels, trimChannelToContent } from "../../engine/compositing/pixel-ops.js";
 import { boundsFromCoordPairs } from "../../engine/compositing/anti-alias.js";
@@ -279,6 +280,27 @@ export function ObjectSelectTool() {
 }
 
 function installObjectSelectToolPrototype() {
+  ObjectSelectTool.prototype.applyAction = function (action, controller, doc) {
+    if (doc && (action.objectSelectionAI === false || action.newObjectSelection)) controller.getSelectionJobs().resetPrompted(doc);
+    SelectTool.prototype.applyAction.call(this, action);
+    this.toolOptions.objectSelectionAI = action.objectSelectionAI === true;
+    this.toolOptions.objectPromptKind = action.objectPromptKind === "negative" ? "negative" : "positive";
+  };
+  ObjectSelectTool.prototype.onMouseDown = function (doc, controller, appData, keyboard, pointer) {
+    if (!this.toolOptions.objectSelectionAI) return SelectTool.prototype.onMouseDown.call(this, doc, controller, appData, keyboard, pointer);
+    beginPromptedGesture(this, doc, keyboard, pointer);
+  };
+  ObjectSelectTool.prototype.onMouseMove = function (doc, controller, appData, keyboard, pointer) {
+    if (!this.toolOptions.objectSelectionAI) return SelectTool.prototype.onMouseMove.call(this, doc, controller, appData, keyboard, pointer);
+    movePromptedGesture(this, doc, pointer);
+  };
+  ObjectSelectTool.prototype.onMouseUp = function (doc, controller, appData, keyboard, pointer) {
+    if (!this.toolOptions.objectSelectionAI) return SelectTool.prototype.onMouseUp.call(this, doc, controller, appData, keyboard, pointer);
+    finishPromptedGesture(this, doc, controller, pointer);
+  };
+  ObjectSelectTool.prototype.disable = function (doc) {
+    if (this.promptedGesture) { this.promptedGesture.doc.toolOverlayState.overlayTransform = null; this.promptedGesture.doc.dirty = true; this.promptedGesture = null; }
+  };
   ObjectSelectTool.prototype.onDragStart = function (doc, appData, keyboard, pointerState) {
     if (Math.random() < 1 / (1 + this.crosshairHintAlertCount)) {
       alert("The cross should be fully inside the object.", 3500);
@@ -363,4 +385,3 @@ installObjectSelectToolPrototype();
 
 installPuppetWarpTool();
 installSliceTools();
-

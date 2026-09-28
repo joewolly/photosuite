@@ -105,6 +105,24 @@ function drawActiveMaskOverlays(panel, PluginToolPanel, pluginDocument) {
     panel.drawChannelMaskOverlay(pluginDocument.selectionMask, docView, 0, 0, null);
     drewOverlay = true;
   }
+  const prompts = pluginDocument.toolOverlayState.objectSelectionPrompts;
+  if (prompts) {
+    const matrix = docView.getViewMatrix(true); matrix.invert();
+    const ctx = panel.mainCanvasCtx, radius = 5 * getDevicePixelRatio();
+    const position = (x, y) => [matrix.a * x + matrix.c * y + matrix.tx, matrix.b * x + matrix.d * y + matrix.ty];
+    ctx.save(); ctx.lineWidth = 1.5 * getDevicePixelRatio(); ctx.strokeStyle = "white";
+    if (prompts.box) {
+      const b = prompts.box, corners = [[b.x, b.y], [b.x + b.width, b.y], [b.x + b.width, b.y + b.height], [b.x, b.y + b.height]];
+      ctx.beginPath(); corners.forEach(([x, y], i) => { const p = position(x, y); if (i) ctx.lineTo(...p); else ctx.moveTo(...p); }); ctx.closePath(); ctx.stroke();
+    }
+    for (const p of prompts.points) {
+      const [x, y] = position(p.x, p.y); ctx.fillStyle = p.kind === "positive" ? "#087c49" : "#c73434";
+      ctx.beginPath(); ctx.arc(x, y, radius, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x - radius * .5, y); ctx.lineTo(x + radius * .5, y);
+      if (p.kind === "positive") { ctx.moveTo(x, y - radius * .5); ctx.lineTo(x, y + radius * .5); } ctx.stroke();
+    }
+    ctx.restore(); drewOverlay = true;
+  }
   return drewOverlay;
 }
 

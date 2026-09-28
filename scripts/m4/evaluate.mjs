@@ -1,0 +1,15 @@
+/** Opt-in actual-model WASM corpus runner; never part of ordinary unit tests. */
+import fs from 'node:fs';import path from 'node:path';import {performance} from 'node:perf_hooks';
+import * as ort from '../../src/vendor/onnxruntime/ort.wasm.min.mjs';
+import {PROMPTED_MODEL,PROMPTED_SETTINGS,preparePromptedImage,preparePromptTensors,reconstructPromptedMask} from '../../src/features/modernization/prompted-workload.js';
+const [source,out]=process.argv.slice(2);if(!source||!out)throw Error('Provide decoded corpus and output directories');fs.mkdirSync(out,{recursive:true});
+ort.env.wasm.numThreads=1;ort.env.wasm.proxy=false;ort.env.wasm.wasmPaths=new URL('../../src/vendor/onnxruntime/',import.meta.url).href;
+let t=performance.now();const load=async name=>ort.InferenceSession.create(new Uint8Array(fs.readFileSync(new URL('../../src/vendor/prompted-model/'+name+'.onnx',import.meta.url))),{executionProviders:['wasm'],graphOptimizationLevel:'disabled'});const encoder=await load('encoder'),decoder=await load('decoder'),loadMs=performance.now()-t,records=[];
+for(const item of JSON.parse(fs.readFileSync(path.join(source,'manifest.json'))).cases){
+ const {width,height}=item;const base={rect:{x:0,y:0,width,height},documentWidth:width,documentHeight:height,rgba:new Uint8Array(fs.readFileSync(path.join(source,item.id+'.bin'))),color:'srgb8',alpha:'straight',model:{...PROMPTED_MODEL},settings:{...PROMPTED_SETTINGS},sessionId:item.id};
+ t=performance.now();const image=new ort.Tensor('float32',preparePromptedImage({...base,...item.sequences[0]}),[1,3,1024,1024]),preprocessMs=performance.now()-t;
+ t=performance.now();const features=await encoder.run({image}),encoderMs=performance.now()-t;const sequences=[];
+ for(const sequence of item.sequences){const input={...base,...sequence},p=preparePromptTensors(input),point_coords=new ort.Tensor('float32',p.coords,[1,p.labels.length,2]),point_labels=new ort.Tensor('int32',p.labels,[1,p.labels.length]);t=performance.now();const outputs=await decoder.run({...features,point_coords,point_labels}),decoderMs=performance.now()-t;t=performance.now();const result=reconstructPromptedMask(input,outputs.low_res_masks.data,outputs.iou_predictions.data),reconstructMs=performance.now()-t;fs.writeFileSync(path.join(out,item.id+'-'+sequence.name+'.bin'),result.bytes);sequences.push({name:sequence.name,decoderMs,reconstructMs,candidate:result.candidate,scores:result.scores});Object.values(outputs).forEach(v=>v.dispose());point_coords.dispose();point_labels.dispose();}
+ records.push({id:item.id,width,height,preprocessMs,encoderMs,embeddingBytes:Object.values(features).reduce((n,v)=>n+v.data.byteLength,0),rssBytes:process.memoryUsage().rss,sequences});console.log(JSON.stringify(records.at(-1)));image.dispose();Object.values(features).forEach(v=>v.dispose());
+}
+await encoder.release();await decoder.release();fs.writeFileSync(path.join(out,'measurements.json'),JSON.stringify({runtime:'Node ORT Web 1.22.0 single-thread WASM; not native acceptance',loadMs,records},null,2)+'\n');

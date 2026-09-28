@@ -786,3 +786,17 @@ ONNX Runtime Web 1.22.0: Microsoft Corporation, MIT. PhotoSuite distributes only
 its WASM execution path. The matching JavaScript, loader and WASM were obtained
 from the pinned official npm package. Full runtime license and upstream notices
 are in `src/vendor/onnxruntime/LICENSE` and `src/vendor/onnxruntime/ThirdPartyNotices.txt`.
+
+## M4 prompted object selection
+
+SAM 2.1 Hiera Tiny code and official checkpoint: Meta Platforms, Inc. and
+ affiliates, Apache-2.0. Official weights repository `facebook/sam2.1-hiera-tiny`,
+pinned revision `de431c4043854a71d8101e17995dfe596bf101a5`, explicitly declares
+Apache-2.0 on the retained model card. The Apache license, attribution and
+modification notice are in `src/vendor/prompted-model/`. PhotoSuite exports the
+image encoder and four-token mask decoder and stores FP16 weights with FP32
+computation. See `docs/m4/model-evaluation.json` and `scripts/m4/export-sam2.py`.
+
+The developer-only conversion uses Microsoft ONNX Runtime's MIT-licensed SAM2
+wrappers at `84cf511aee6506aec6380997af32d12e2252231d`. M4 shares M3's exact ORT
+Web 1.22.0 binary assets and notices; no second inference runtime is bundled.
