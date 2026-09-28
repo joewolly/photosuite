@@ -1,0 +1,171 @@
+{
+  "runtime": "Node WASM, not native Tauri",
+  "loadMs": 1102.337125,
+  "records": [
+    {
+      "id": "person",
+      "width": 512,
+      "height": 512,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 14.33075000000008,
+      "inferenceMs": 3855.606291,
+      "reconstructMs": 8.114416999999776,
+      "quickTimings": {
+        "analysisMs": 34.18041699999958,
+        "refineMs": 4.206708000000617
+      },
+      "rssBytes": 1149034440
+    },
+    {
+      "id": "people",
+      "width": 768,
+      "height": 512,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 12.250500000000102,
+      "inferenceMs": 3865.7291670000004,
+      "reconstructMs": 11.638542000000598,
+      "quickTimings": {
+        "analysisMs": 37.418125000000146,
+        "refineMs": 4.42608300000029
+      },
+      "rssBytes": 1175072240
+    },
+    {
+      "id": "object",
+      "width": 600,
+      "height": 400,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 5.973125000000437,
+      "inferenceMs": 3742.0223750000005,
+      "reconstructMs": 2.72545799999898,
+      "quickTimings": {
+        "analysisMs": 20.75616699999955,
+        "refineMs": 1.3711249999996653
+      },
+      "rssBytes": 1175580288
+    },
+    {
+      "id": "fur",
+      "width": 451,
+      "height": 300,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 10.073749999999563,
+      "inferenceMs": 3882.475083000001,
+      "reconstructMs": 4.288583999998082,
+      "quickTimings": {
+        "analysisMs": 12.2087500000016,
+        "refineMs": 1.0448749999995925
+      },
+      "rssBytes": 1175645824
+    },
+    {
+      "id": "hair",
+      "width": 195,
+      "height": 195,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 16.289583999998285,
+      "inferenceMs": 3760.011624999999,
+      "reconstructMs": 2.2437910000007832,
+      "quickTimings": {
+        "analysisMs": 3.98662499999773,
+        "refineMs": 0.8365000000012515
+      },
+      "rssBytes": 1167879352
+    },
+    {
+      "id": "clutter",
+      "width": 590,
+      "height": 395,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 5.472708000001148,
+      "inferenceMs": 3756.4480000000003,
+      "reconstructMs": 2.7180829999997513,
+      "quickTimings": {
+        "analysisMs": 20.339833000001818,
+        "refineMs": 2.099291999998968
+      },
+      "rssBytes": 1171222336
+    },
+    {
+      "id": "low-contrast",
+      "width": 600,
+      "height": 400,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 6.365125000000262,
+      "inferenceMs": 3753.9502079999984,
+      "reconstructMs": 2.5939589999979944,
+      "quickTimings": {
+        "analysisMs": 21.0548340000023,
+        "refineMs": 1.1233749999992142
+      },
+      "rssBytes": 1215137480
+    },
+    {
+      "id": "dark",
+      "width": 451,
+      "height": 300,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 6.018874999997934,
+      "inferenceMs": 3753.139374999999,
+      "reconstructMs": 2.170291999998881,
+      "quickTimings": {
+        "analysisMs": 11.194875000001048,
+        "refineMs": 0.6948749999974098
+      },
+      "rssBytes": 1212319504
+    },
+    {
+      "id": "bright",
+      "width": 600,
+      "height": 400,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 5.866750000001048,
+      "inferenceMs": 3756.030542000004,
+      "reconstructMs": 2.603499999997439,
+      "quickTimings": {
+        "analysisMs": 19.195584000000963,
+        "refineMs": 1.0412080000023707
+      },
+      "rssBytes": 1220954832
+    },
+    {
+      "id": "product",
+      "width": 257,
+      "height": 321,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 6.53799999999319,
+      "inferenceMs": 5346.747500000005,
+      "reconstructMs": 2.262040999994497,
+      "quickTimings": {
+        "analysisMs": 5.279709000002185,
+        "refineMs": 0.44845799999893643
+      },
+      "rssBytes": 1212565888
+    },
+    {
+      "id": "transparent",
+      "width": 257,
+      "height": 321,
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "preprocessMs": 12.798457999997481,
+      "inferenceMs": 4092.0213749999966,
+      "reconstructMs": 1.655957999995735,
+      "quickTimings": {
+        "analysisMs": 4.872541999997338,
+        "refineMs": 0.4693330000009155
+      },
+      "rssBytes": 1213418000
+    }
+  ]
+}

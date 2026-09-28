@@ -1,0 +1,48 @@
+
+> verify
+> npm run verify:imports && npm run verify:bindings && npm run verify:cycles && npm run verify:statics && npm run verify:shadows && npm run verify:prototypes && npm run verify:formats && npm run verify:bootstrap
+
+
+> verify:imports
+> node scripts/check-imports-resolve.mjs
+
+import-resolution: OK (all relative imports resolve)
+
+> verify:bindings
+> node scripts/check-import-bindings.mjs
+
+imports resolve, none are assigned to, and no free function is called as a method
+
+> verify:cycles
+> node scripts/find-import-cycles.mjs --check
+
+Scanned 3623 files; 3623 nodes in graph.
+Found 0 SCCs of size > 1 (import cycles).
+
+Non-vendor cycles: 0 (largest SCC 0 files).
+import cycles: OK (none outside vendor/).
+
+> verify:statics
+> node scripts/verify-static-members.mjs
+
+static members: OK (every call has an assignment)
+
+> verify:shadows
+> node scripts/verify-shadowed-bindings.mjs
+
+shadowed bindings: OK (no local hides a module-scope function)
+
+> verify:prototypes
+> node scripts/verify-prototype-chains.mjs
+
+prototype chains: OK (no prototype is a constructed instance)
+
+> verify:formats
+> node scripts/verify-format-wiring.mjs
+
+format wiring: OK (14 loaders, all installed, exported, and reachable for the formats that need them)
+
+> verify:bootstrap
+> node scripts/verify-bootstrap.mjs
+
+bootstrap verify: OK

@@ -1,0 +1,53 @@
+{
+  "note": "Exact synthetic geometric labels only; these are not independent natural-image benchmark scores. Boundary F uses 2px Chebyshev tolerance. No aggregate marketing score.",
+  "cases": [
+    {
+      "id": "product",
+      "noSelectionIoU": 0,
+      "model": {
+        "iou": 0.9996759209247056,
+        "boundaryF2px": 1.0,
+        "coverageMAE": 0.0016886650899010707
+      },
+      "quick": {
+        "iou": 0.04803328290468986,
+        "boundaryF2px": 0.0,
+        "coverageMAE": 0.21408274620562556
+      },
+      "quick-wide": {
+        "iou": 0.27550248541171385,
+        "boundaryF2px": 0.0,
+        "coverageMAE": 0.1624907572396572
+      },
+      "border": {
+        "iou": 0.7242813918305597,
+        "boundaryF2px": 0.821078431372549,
+        "coverageMAE": 0.06185679479253791
+      }
+    },
+    {
+      "id": "transparent",
+      "noSelectionIoU": 0,
+      "model": {
+        "iou": 0.9951372379511563,
+        "boundaryF2px": 1.0,
+        "coverageMAE": 0.00018320333454787595
+      },
+      "quick": {
+        "iou": 0.04803328290468986,
+        "boundaryF2px": 0.0,
+        "coverageMAE": 0.12160337618931835
+      },
+      "quick-wide": {
+        "iou": 0.27550248541171385,
+        "boundaryF2px": 0.0,
+        "coverageMAE": 0.11480037182576101
+      },
+      "border": {
+        "iou": 0.7242813918305597,
+        "boundaryF2px": 0.821078431372549,
+        "coverageMAE": 0.033960593219432574
+      }
+    }
+  ]
+}

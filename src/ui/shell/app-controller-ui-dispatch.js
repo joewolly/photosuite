@@ -325,6 +325,14 @@ export function applyUiDispatchHandlers(AppController) {
  * module load: startup fills them after this module evaluates.
  */
 const UI_COMMAND_HANDLERS = {
+  selectSubject(controller) {
+    try { controller.getSelectionJobs().submitSubject(controller.getCurrentDoc()); }
+    catch (error) { showToast(error.message); }
+  },
+  removeBackgroundAutomatically(controller) {
+    try { controller.getSelectionJobs().submitSubject(controller.getCurrentDoc(), true); }
+    catch (error) { showToast(error.message); }
+  },
   aiRemove(controller) {
     const doc = controller.getCurrentDoc();
     void loadLocalInpaintConfig().then((config) => {

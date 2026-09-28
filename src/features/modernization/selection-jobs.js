@@ -8,13 +8,17 @@ import { createComfyProvider } from "./comfy-provider.js";
 import { prepareInpaintInput } from "./inpaint-workload.js";
 import { requireInpaintSource, createInpaintAdapter } from "./inpaint-target.js";
 
+import { createSubjectProvider } from "./subject-provider.js";
+import { requireSubjectSource, subjectInput, createSubjectAdapter } from "./subject-target.js";
+
 function plainRect(rect) { return { x: rect.x, y: rect.y, width: rect.width, height: rect.height }; }
 export class SelectionJobs {
-  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider()) {
+  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider(), subjectProvider = createSubjectProvider()) {
     this.controller = controller;
-    this.jobs = new ModernizationJobs({ "quick-select": provider, "ai-remove": inpaintProvider });
+    this.jobs = new ModernizationJobs({ "quick-select": provider, "ai-remove": inpaintProvider, "segment.subject": subjectProvider });
     this.sessions = new Map();
     this.labels = new Map();
+    this.subjectModes = new Map();
     this.latestCheck = 0;
     this.replacing = false;
     this.jobs.subscribe((job) => {
@@ -40,10 +44,27 @@ export class SelectionJobs {
     this.render();
     return id;
   }
+  submitSubject(doc, remove = false) {
+    const layer = requireSubjectSource(doc, remove), start = performance.now();
+    const prior = this.sessions.get(doc), session = { kind: "subject", layer, token: prior?.token || this.jobs.createSession(), jobId: null };
+    this.replacing = true;
+    try {
+      session.jobId = this.jobs.submit({ operation: "segment.subject", input: subjectInput(doc, layer), session: session.token,
+        adapter: createSubjectAdapter(this.controller, doc, layer, remove, (metrics) => {
+          this.lastSubjectMetrics = { ...this.lastSubjectMetrics, ...metrics, jobId: session.jobId };
+        }) });
+      this.sessions.set(doc, session);
+      this.subjectModes.set(session.jobId, remove);
+      this.labels.set(this.jobs.get(session.jobId).documentId, doc.name || "Untitled");
+      this.lastSubjectMetrics = { jobId: session.jobId, inputPreparationMs: performance.now() - start };
+      this.render();
+      return session.jobId;
+    } finally { this.replacing = false; }
+  }
   begin(doc, mode) {
     const layer = requireQuickSelectSource(doc);
     let session = this.sessions.get(doc);
-    if (session && (session.layer !== layer || mode === 0 || session.jobId && !this.jobs.revalidate(session.jobId))) {
+    if (session && (session.kind === "subject" || session.layer !== layer || mode === 0 || session.jobId && !this.jobs.revalidate(session.jobId))) {
       if (session.jobId) this.jobs.cancel(session.jobId);
       this.sessions.delete(doc); session = null;
     }
@@ -96,6 +117,7 @@ export class SelectionJobs {
   render() {
     if (!this.el) return;
     const latest = new Map();
+    for (const id of this.subjectModes.keys()) if (!this.jobs.get(id)) this.subjectModes.delete(id);
     for (const job of this.jobs.list()) latest.set(job.documentId + job.operation, job);
     for (const id of this.labels.keys()) if (![...latest.values()].some((job) => job.documentId === id)) this.labels.delete(id);
     const live = [...latest.values()].filter((job) => !JOB_TERMINAL.has(job.state));
@@ -112,9 +134,9 @@ export class SelectionJobs {
       Object.assign(row.style, { display: "flex", alignItems: "center", gap: "8px", minHeight: "28px" });
       const label = document.createElement("span");
       label.setAttribute("role", "status");
-      const states = { queued: "Queued", preparing: "Preparing", running: job.progress.stage, preview: job.operation === "ai-remove" ? "Ready — review result" : "Ready to preview — paint to refine", committed: "Accepted", discarded: "Discarded", cancelled: job.stopping ? "Cancelled — waiting for workload to stop" : "Cancelled", stale: "Source changed — rerun", failed: job.error?.message || "Failed" };
+      const states = { queued: "Queued", preparing: "Preparing", running: job.progress.stage, preview: job.operation === "quick-select" ? "Ready to preview — paint to refine" : "Ready — review result", committed: "Accepted", discarded: "Discarded", cancelled: job.stopping ? "Cancelled — waiting for workload to stop" : "Cancelled", stale: "Source changed — rerun", failed: job.error?.message || "Failed" };
       const numeric = job.progress.kind === "numeric" && job.state === "running" ? ` (${job.progress.completed}/${job.progress.total})` : "";
-      label.textContent = `${job.operation === "ai-remove" ? "AI Remove" : "Quick Select"} · ${this.labels.get(job.documentId) || "Document"} · ${states[job.state]}${numeric}`;
+      label.textContent = `${job.operation === "ai-remove" ? "AI Remove" : job.operation === "segment.subject" ? (this.subjectModes.get(job.id) ? "Remove Background" : "Select Subject") : "Quick Select"} · ${this.labels.get(job.documentId) || "Document"} · ${states[job.state]}${numeric}`;
       if (job.error) label.title = job.error.message;
       row.appendChild(label);
       const button = (text, action) => {

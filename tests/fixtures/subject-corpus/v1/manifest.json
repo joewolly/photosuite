@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "notes": "Four independent photographs plus seven correlated crops/photometric or synthetic stress cases. No masks produced by inference are used as labels. Synthetic labels alone support quantitative scores. Real-photo quality requires visual review. Sources are resized only for the bounded evaluation.",
+  "cases": [
+    {
+      "id": "person",
+      "category": "single person",
+      "file": "person.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "13d1ab55885c4544bfe5b4ab4c3a89b260fb2fc5f31d5fe7b08154bdc77ae92b",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/astronaut.png",
+      "license": "Public domain NASA",
+      "quickSelectSeed": [
+        220,
+        300
+      ],
+      "derived": null,
+      "groundTruth": null
+    },
+    {
+      "id": "people",
+      "category": "multiple people",
+      "file": "people.png",
+      "width": 768,
+      "height": 512,
+      "sha256": "6134a38eabbece6441106dc4f8179d85d9794959338c6838d7452e2beafc3eff",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/6/66/Barack_Obama_and_Joe_Biden_running_in_the_Colonnade_of_the_White_House%2C_February_2014_%2813898117298%29.jpg",
+      "license": "Public domain US government; Pete Souza / White House. Evaluation only; no endorsement.",
+      "quickSelectSeed": [
+        250,
+        300
+      ],
+      "derived": null,
+      "groundTruth": null
+    },
+    {
+      "id": "object",
+      "category": "non-human object",
+      "file": "object.png",
+      "width": 600,
+      "height": 400,
+      "sha256": "32ed1fd123151984b3e6e0b9cab9e63c8cdaf44462f29380c24d0d9ebff850b1",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/coffee.png",
+      "license": "CC0; Rachel Michetti / scikit-image",
+      "quickSelectSeed": [
+        280,
+        220
+      ],
+      "derived": null,
+      "groundTruth": null
+    },
+    {
+      "id": "fur",
+      "category": "pet/fur",
+      "file": "fur.png",
+      "width": 451,
+      "height": 300,
+      "sha256": "ba55f739dac772b7fa485be79b7a0267dfc2643a4354241b7365f8f3581b865d",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/chelsea.png",
+      "license": "CC0; Stefan van der Walt / scikit-image",
+      "quickSelectSeed": [
+        220,
+        150
+      ],
+      "derived": null,
+      "groundTruth": null
+    },
+    {
+      "id": "hair",
+      "category": "hair",
+      "file": "hair.png",
+      "width": 195,
+      "height": 195,
+      "sha256": "4c4d9075f6812c9a90be5a939b55b3f1eec26d30226f19e418b3f337e90478ff",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/astronaut.png",
+      "license": "Public domain NASA",
+      "quickSelectSeed": [
+        100,
+        85
+      ],
+      "derived": "crop of person; correlated stress case",
+      "groundTruth": null
+    },
+    {
+      "id": "clutter",
+      "category": "object on cluttered background",
+      "file": "clutter.png",
+      "width": 590,
+      "height": 395,
+      "sha256": "232d649cd5d791c5c300c2bdfa0d1b0cec4b28f8d0672da3496bc412d06b6c74",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/coffee.png",
+      "license": "CC0; Rachel Michetti / scikit-image",
+      "quickSelectSeed": [
+        280,
+        220
+      ],
+      "derived": "odd-dimension coffee crop; correlated stress case",
+      "groundTruth": null
+    },
+    {
+      "id": "low-contrast",
+      "category": "low contrast foreground",
+      "file": "low-contrast.png",
+      "width": 600,
+      "height": 400,
+      "sha256": "e8e3fe9114c02df8ea34b927bef4cc5b5c379c2e66367c185e13fa06dc1b7a8c",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/coffee.png",
+      "license": "CC0; Rachel Michetti / scikit-image",
+      "quickSelectSeed": [
+        280,
+        220
+      ],
+      "derived": "18 percent contrast against neutral gray",
+      "groundTruth": null
+    },
+    {
+      "id": "dark",
+      "category": "dark foreground/dark background",
+      "file": "dark.png",
+      "width": 451,
+      "height": 300,
+      "sha256": "90f7e584c493cb4ed016bd2a0e146f8d53e00cc6de53a1b145e172d69407e794",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/chelsea.png",
+      "license": "CC0; Stefan van der Walt / scikit-image",
+      "quickSelectSeed": [
+        220,
+        150
+      ],
+      "derived": "22 percent brightness cat",
+      "groundTruth": null
+    },
+    {
+      "id": "bright",
+      "category": "bright foreground/bright background",
+      "file": "bright.png",
+      "width": 600,
+      "height": 400,
+      "sha256": "094848860f848b92323af2a44240488189a202aee1fc84a96f0b3b9ebe1999a9",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/coffee.png",
+      "license": "CC0; Rachel Michetti / scikit-image",
+      "quickSelectSeed": [
+        280,
+        220
+      ],
+      "derived": "18 percent image against white",
+      "groundTruth": null
+    },
+    {
+      "id": "product",
+      "category": "product on plain background",
+      "file": "product.png",
+      "width": 257,
+      "height": 321,
+      "sha256": "204c6eeed7eb668beb8bf33127b21a05512fbdd442fe961fd0e8ce0c478129e9",
+      "source": "generated by create-corpus.py",
+      "license": "CC0",
+      "quickSelectSeed": [
+        128,
+        178
+      ],
+      "derived": null,
+      "groundTruth": "product-label.png"
+    },
+    {
+      "id": "transparent",
+      "category": "partially transparent object",
+      "file": "transparent.png",
+      "width": 257,
+      "height": 321,
+      "sha256": "b86926a7577dc5a58c9ffd33f91155ea47a121f0912d70ba8dae2576b4a2b87e",
+      "source": "generated by create-corpus.py",
+      "license": "CC0",
+      "quickSelectSeed": [
+        128,
+        178
+      ],
+      "derived": "55 percent alpha bottle; tests source transparency, not optical glass matting",
+      "groundTruth": "transparent-label.png"
+    }
+  ]
+}

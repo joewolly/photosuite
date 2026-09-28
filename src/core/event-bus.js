@@ -92,6 +92,8 @@ export const UiCommand = Object.freeze({
 
   removeBackgroundFromSelection: "removeBackgroundFromSelection",
   aiRemove: "aiRemove",
+  selectSubject: "selectSubject",
+  removeBackgroundAutomatically: "removeBackgroundAutomatically",
 
   // Editing the active document
   applyDocumentMutationAndCloseExtra: "applyDocumentMutationAndCloseExtra",

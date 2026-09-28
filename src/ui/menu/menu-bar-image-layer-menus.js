@@ -414,6 +414,9 @@ export function buildLayerMenu() {
       resolveRowState: menuWhenDocOpen,
       sub: LayerStyleDialog.buildAdjustmentLayerMenuItems()
     }, {
+      name: "Remove Background Automatically",
+      resolveRowState: menuWhenDocOpen
+    }, {
       name: "layer.removeBackground",
       resolveRowState: menuWhenHasSelection
     }, {
@@ -693,6 +696,9 @@ export function buildLayerMenu() {
       }]
     }, {
       sub: LayerStyleDialog.buildAdjustmentLayerMenuActions()
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: { dispatchKind: UiCommand.removeBackgroundAutomatically }
     }, {
       appEventType: EventType.uiDispatch,
       payload: { dispatchKind: UiCommand.removeBackgroundFromSelection }
