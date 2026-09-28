@@ -92,6 +92,7 @@ export const UiCommand = Object.freeze({
 
   removeBackgroundFromSelection: "removeBackgroundFromSelection",
   aiRemove: "aiRemove",
+  aiUpscale: "aiUpscale",
   selectSubject: "selectSubject",
   removeBackgroundAutomatically: "removeBackgroundAutomatically",
 

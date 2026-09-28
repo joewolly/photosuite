@@ -206,6 +206,9 @@ export function buildImageMenu() {
         }
       },
       opensDialog: true
+    }, {
+      name: "AI Upscale",
+      resolveRowState: doc => ({ enabled: !!doc, labelOverride: "AI Upscale…" })
     }],
     menuActions: [{
       sub: function() {
@@ -337,6 +340,9 @@ export function buildImageMenu() {
         actionKind: "start",
         adjustmentKey: "aply"
       }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: { dispatchKind: UiCommand.aiUpscale }
     }]
   };
 }

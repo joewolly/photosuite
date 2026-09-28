@@ -1,3 +1,4 @@
+import { showUpscaleDialog } from "../dialogs/upscale-dialog.js";
 import { removeBackgroundFromSelection } from "../../features/trackers/exact-result-tracker.js";
 /**
  * `App.Dispatch` UI action router mixed onto `AppController`: dialogs, panels,
@@ -332,6 +333,9 @@ const UI_COMMAND_HANDLERS = {
   removeBackgroundAutomatically(controller) {
     try { controller.getSelectionJobs().submitSubject(controller.getCurrentDoc(), true); }
     catch (error) { showToast(error.message); }
+  },
+  aiUpscale(controller) {
+    void showUpscaleDialog(controller, controller.getCurrentDoc()).catch(error => showToast(error.message));
   },
   aiRemove(controller) {
     const doc = controller.getCurrentDoc();

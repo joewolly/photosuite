@@ -5,19 +5,19 @@ use std::{
     thread,
 };
 
-struct Request {
-    path: String,
-    method: String,
-    body: Vec<u8>,
+pub(super) struct Request {
+    pub(super) path: String,
+    pub(super) method: String,
+    pub(super) body: Vec<u8>,
 }
-struct Reply {
-    status: u16,
-    body: Vec<u8>,
-    kind: &'static str,
-    extra: String,
+pub(super) struct Reply {
+    pub(super) status: u16,
+    pub(super) body: Vec<u8>,
+    pub(super) kind: &'static str,
+    pub(super) extra: String,
 }
 impl Reply {
-    fn json(value: Value) -> Self {
+    pub(super) fn json(value: Value) -> Self {
         Self {
             status: 200,
             body: serde_json::to_vec(&value).unwrap(),
@@ -26,13 +26,13 @@ impl Reply {
         }
     }
 }
-struct Server {
-    endpoint: String,
+pub(super) struct Server {
+    pub(super) endpoint: String,
     stop: Arc<AtomicBool>,
     thread: Option<thread::JoinHandle<()>>,
 }
 impl Server {
-    fn new(mut handler: impl FnMut(Request) -> Reply + Send + 'static) -> Self {
+    pub(super) fn new(mut handler: impl FnMut(Request) -> Reply + Send + 'static) -> Self {
         let listener = TcpListener::bind("127.0.0.1:0").unwrap();
         let address = listener.local_addr().unwrap();
         let stop = Arc::new(AtomicBool::new(false));
@@ -120,7 +120,7 @@ fn capabilities() -> Value {
         "SaveImage":{"output":["IMAGE"],"output_node":true,"input":{"required":{"images":["IMAGE"],"filename_prefix":["STRING"]}}}
     })
 }
-fn preflight_reply(path: &str, info: &Value, version: &str) -> Option<Reply> {
+pub(super) fn preflight_reply(path: &str, info: &Value, version: &str) -> Option<Reply> {
     if path == "/system_stats" {
         return Some(Reply::json(json!({"system":{"comfyui_version":version}})));
     }

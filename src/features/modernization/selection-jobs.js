@@ -1,3 +1,5 @@
+import { createUpscaleProvider } from "./upscale-provider.js";
+import { prepareUpscaleSource, createUpscaleAdapter } from "./upscale-target.js";
 /** Application-owned Quick Select sessions; providers never see this module. */
 import { ModernizationJobs, JOB_TERMINAL, JobError } from "./job-service.js";
 import { createQuickSelectProvider } from "./quick-select-provider.js";
@@ -16,13 +18,14 @@ import { generateUuid } from "../../core/uid.js";
 
 function plainRect(rect) { return { x: rect.x, y: rect.y, width: rect.width, height: rect.height }; }
 export class SelectionJobs {
-  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider(), subjectProvider = createSubjectProvider(), promptedProvider = createPromptedProvider()) {
+  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider(), subjectProvider = createSubjectProvider(), promptedProvider = createPromptedProvider(), upscaleProvider = createUpscaleProvider()) {
     this.controller = controller;
     this.promptedProvider = promptedProvider;
-    this.jobs = new ModernizationJobs({ "quick-select": provider, "ai-remove": inpaintProvider, "segment.subject": subjectProvider, "segment.prompted": promptedProvider });
+    this.jobs = new ModernizationJobs({ "enhance.upscale": upscaleProvider, "quick-select": provider, "ai-remove": inpaintProvider, "segment.subject": subjectProvider, "segment.prompted": promptedProvider });
     this.sessions = new Map();
     this.labels = new Map();
     this.subjectModes = new Map();
+    this.upscalePreviews = new Map();
     this.latestCheck = 0;
     this.replacing = false;
     this.jobs.subscribe((job) => {
@@ -41,6 +44,16 @@ export class SelectionJobs {
       controller.mainColumn.appendChild(this.el);
       this.render();
     }
+  }
+  submitUpscale(doc, config) {
+    if (this.jobs.list().some(job => job.operation === "enhance.upscale" && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Upscale result first.");
+    const { input, sourceCaptureMs } = prepareUpscaleSource(this.controller, doc, config);
+    let jobId;
+    jobId = this.jobs.submit({ operation: "enhance.upscale", input, adapter: createUpscaleAdapter(this.controller, doc, input,
+      (thumbnail, id, width, height) => { if (thumbnail) this.upscalePreviews.set(id, { thumbnail, width, height }); else this.upscalePreviews.delete(jobId); },
+      metrics => { this.lastUpscaleMetrics = { ...this.lastUpscaleMetrics, ...metrics, jobId }; }) });
+    this.lastUpscaleMetrics = { jobId, sourceCaptureMs };
+    this.labels.set(this.jobs.get(jobId).documentId, doc.name || "Untitled"); this.render(); return jobId;
   }
   submitAI(doc, config) {
     if (this.jobs.list().some((job) => job.operation === "ai-remove" && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Remove result first.");
@@ -184,7 +197,7 @@ export class SelectionJobs {
       label.setAttribute("role", "status");
       const states = { queued: "Queued", preparing: "Preparing", running: job.progress.stage, preview: job.operation === "quick-select" ? "Ready to preview — paint to refine" : "Ready — review result", committed: "Accepted", discarded: "Discarded", cancelled: job.stopping ? "Cancelled — waiting for workload to stop" : "Cancelled", stale: "Source changed — rerun", failed: job.error?.message || "Failed" };
       const numeric = job.progress.kind === "numeric" && job.state === "running" ? ` (${job.progress.completed}/${job.progress.total})` : "";
-      label.textContent = `${job.operation === "ai-remove" ? "AI Remove" : job.operation === "segment.prompted" ? "Object Selection" : job.operation === "segment.subject" ? (this.subjectModes.get(job.id) ? "Remove Background" : "Select Subject") : "Quick Select"} · ${this.labels.get(job.documentId) || "Document"} · ${states[job.state]}${numeric}`;
+      label.textContent = `${job.operation === "enhance.upscale" ? "AI Upscale 4×" : job.operation === "ai-remove" ? "AI Remove" : job.operation === "segment.prompted" ? "Object Selection" : job.operation === "segment.subject" ? (this.subjectModes.get(job.id) ? "Remove Background" : "Select Subject") : "Quick Select"} · ${this.labels.get(job.documentId) || "Document"} · ${states[job.state]}${numeric}`;
       if (job.error) label.title = job.error.message;
       row.appendChild(label);
       const button = (text, action) => {
@@ -195,6 +208,16 @@ export class SelectionJobs {
       if (job.state === "preview") { button("Accept", () => this.jobs.accept(job.id)); button("Discard", () => this.jobs.discard(job.id)); }
       else if (!JOB_TERMINAL.has(job.state)) button("Cancel", () => this.jobs.cancel(job.id));
       this.el.appendChild(row);
+      const preview = this.upscalePreviews.get(job.id);
+      if (preview && job.state === "preview") {
+        const canvas = document.createElement("canvas"), { thumbnail } = preview;
+        canvas.width = thumbnail.width; canvas.height = thumbnail.height;
+        canvas.style.background = "repeating-conic-gradient(#777 0% 25%, #bbb 0% 50%) 0 / 16px 16px";
+        canvas.setAttribute("aria-label", `AI Upscale preview; full result ${preview.width} × ${preview.height}`);
+        canvas.getContext("2d").putImageData(new ImageData(thumbnail.rgba, thumbnail.width, thumbnail.height), 0, 0);
+        this.el.appendChild(canvas);
+        const size = document.createElement("div"); size.textContent = `${preview.width} × ${preview.height} · Accept opens new document`; this.el.appendChild(size);
+      }
     }
   }
 }

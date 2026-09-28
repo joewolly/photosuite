@@ -11,6 +11,8 @@ use std::{
     time::{Duration, Instant},
 };
 
+pub mod upscale;
+
 pub const VERSION: &str = "0.37.4";
 const SUPPORTED_VERSIONS: &[&str] = &["0.37.0", VERSION];
 pub const WORKFLOW: &str = "photosuite-remove-v1";
@@ -50,7 +52,7 @@ struct Active {
 impl Active {
     fn check(&self) -> Result<(), String> {
         if self.cancel.load(Ordering::SeqCst) {
-            Err("AI Remove cancelled.".into())
+            Err("Local enhancement cancelled.".into())
         } else {
             Ok(())
         }
@@ -77,7 +79,7 @@ impl ComfyState {
     fn acquire(&self, id: &str) -> Result<Lease, String> {
         let mut slot = self.0.lock().unwrap();
         if slot.is_some() {
-            return Err("Another AI Remove request is still running or stopping.".into());
+            return Err("Another local enhancement request is still running or stopping.".into());
         }
         let active = Arc::new(Active {
             id: id.into(),
@@ -163,9 +165,9 @@ fn client() -> Result<Client, String> {
 }
 fn network_error(error: reqwest::Error) -> String {
     if error.is_timeout() {
-        "Local AI Remove service timed out. Check the service and try again.".into()
+        "Local ComfyUI service timed out. Check the service and try again.".into()
     } else {
-        "Could not reach the local AI Remove service. Start ComfyUI and check Preferences.".into()
+        "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences.".into()
     }
 }
 fn bounded(response: Response, limit: usize) -> Result<Vec<u8>, String> {
@@ -226,7 +228,15 @@ fn check_schema(info: &Value, graph: &Value, checkpoint: &str) -> Result<(), Str
         ("VAEDecode", vec!["IMAGE"]),
         ("SaveImage", vec!["IMAGE"]),
     ];
-    for (class, expected) in outputs {
+    check_graph_schema(info, graph, checkpoint, &outputs)
+}
+fn check_graph_schema(
+    info: &Value,
+    graph: &Value,
+    checkpoint: &str,
+    outputs: &[(&str, Vec<&str>)],
+) -> Result<(), String> {
+    for &(class, ref expected) in outputs {
         let node = &info[class];
         if node["output"] != json!(expected) {
             return Err(format!(
@@ -266,11 +276,17 @@ fn check_schema(info: &Value, graph: &Value, checkpoint: &str) -> Result<(), Str
                             "Incompatible workflow connection at {class}.{name}."
                         ));
                     }
-                } else if let Some(choices) = kind.as_array() {
+                } else if let Some(choices) = kind.as_array().or_else(|| {
+                    if kind == "COMBO" {
+                        spec[1]["options"].as_array()
+                    } else {
+                        None
+                    }
+                }) {
                     // Upload inputs enumerate existing files; newly owned files do not exist at preflight.
                     if name != "image" && !choices.contains(value) {
-                        return Err(if name == "ckpt_name" {
-                            format!("Configured checkpoint '{checkpoint}' is not available. Install it yourself in ComfyUI or correct its identifier.")
+                        return Err(if name == "ckpt_name" || name == "model_name" {
+                            format!("Configured model '{checkpoint}' is not available. Install it yourself in ComfyUI or correct its identifier.")
                         } else {
                             format!("Unsupported {class}.{name} workflow setting.")
                         });
@@ -401,14 +417,23 @@ fn encode_inputs(input: &Input, bytes: &[u8]) -> Result<(Vec<u8>, Vec<u8>), Stri
         png_rgb(input.width, input.height, &mask)?,
     ))
 }
+#[cfg(test)]
 fn decode_output(bytes: &[u8], width: u32, height: u32) -> Result<Vec<u8>, String> {
-    if bytes.len() > MAX_PNG {
+    decode_output_bounded(bytes, width, height, MAX_PNG)
+}
+fn decode_output_bounded(
+    bytes: &[u8],
+    width: u32,
+    height: u32,
+    limit: usize,
+) -> Result<Vec<u8>, String> {
+    if bytes.len() > limit {
         return Err("Result PNG exceeds the size limit.".into());
     }
-    let decoder = png::Decoder::new_with_limits(Cursor::new(bytes), png::Limits { bytes: MAX_PNG });
+    let decoder = png::Decoder::new_with_limits(Cursor::new(bytes), png::Limits { bytes: limit });
     let mut reader = decoder
         .read_info()
-        .map_err(|_| "AI Remove returned a malformed PNG image.")?;
+        .map_err(|_| "Local enhancement returned a malformed PNG image.")?;
     let info = reader.info();
     if info.width != width
         || info.height != height
@@ -416,12 +441,12 @@ fn decode_output(bytes: &[u8], width: u32, height: u32) -> Result<Vec<u8>, Strin
         || !matches!(info.color_type, png::ColorType::Rgb | png::ColorType::Rgba)
         || info.animation_control.is_some()
     {
-        return Err("AI Remove returned unsupported image dimensions or format.".into());
+        return Err("Local enhancement returned unsupported image dimensions or format.".into());
     }
     let mut decoded = vec![0; reader.output_buffer_size()];
     let frame = reader
         .next_frame(&mut decoded)
-        .map_err(|_| "AI Remove returned an incomplete PNG image.")?;
+        .map_err(|_| "Local enhancement returned an incomplete PNG image.")?;
     let channels = if frame.color_type == png::ColorType::Rgb {
         3
     } else {
@@ -486,16 +511,40 @@ fn run(input: &Input, bytes: &[u8], active: &Active) -> Result<Vec<u8>, String> 
         mask,
     )?;
     active.check()?;
+    execute_graph(
+        &client,
+        &base,
+        &input.request_id,
+        workflow(input),
+        WORKFLOW,
+        input.width,
+        input.height,
+        MAX_PNG,
+        active,
+    )
+}
+// Shared M2 transport: owned submission, targeted cancellation, bounded polling and decoding.
+#[allow(clippy::too_many_arguments)]
+fn execute_graph(
+    client: &Client,
+    base: &str,
+    request_id: &str,
+    graph: Value,
+    workflow_id: &str,
+    width: u32,
+    height: u32,
+    max_png: usize,
+    active: &Active,
+) -> Result<Vec<u8>, String> {
     // Once submission is attempted, even a lost acknowledgement may have queued it.
     // Never retry submission. Cancel the known, unique owned ID on every error path.
     let outcome = (|| {
-        let graph = workflow(input);
         let submitted = read_json(client.post(format!("{base}/prompt")).json(&json!({
-            "prompt_id":input.request_id,"client_id":format!("photosuite-{}",input.request_id),
-            "extra_data":{"photosuite_request_id":input.request_id,"photosuite_workflow":WORKFLOW},
+            "prompt_id":request_id,"client_id":format!("photosuite-{}",request_id),
+            "extra_data":{"photosuite_request_id":request_id,"photosuite_workflow":workflow_id},
             "prompt":graph
         })).send())?;
-        if submitted["prompt_id"] != input.request_id
+        if submitted["prompt_id"] != request_id
             || !submitted["number"].is_number()
             || submitted["node_errors"]
                 .as_object()
@@ -509,39 +558,77 @@ fn run(input: &Input, bytes: &[u8], active: &Active) -> Result<Vec<u8>, String> 
         loop {
             active.check()?;
             if started.elapsed() > JOB_TIMEOUT {
-                return Err("AI Remove exceeded its 15 minute queue/generation limit.".into());
+                return Err(
+                    "Local enhancement exceeded its 15 minute queue/generation limit.".into(),
+                );
             }
-            let job = get(&client, &format!("{base}/api/jobs/{}", input.request_id))?;
-            if job["id"] != input.request_id {
+            let job = get(&client, &format!("{base}/api/jobs/{}", request_id))?;
+            if job["id"] != request_id {
                 return Err("Local service returned the wrong job identity.".into());
             }
             match job["status"].as_str() {
                 Some("pending") => active.stage("Queued"),
                 Some("in_progress") => active.stage("Generating"),
-                Some("failed") => return Err("Local inpainting failed. Check the configured SD 1.5 checkpoint, its CLIP/VAE, and service logs.".into()),
-                Some("cancelled") => return Err("The local inpainting job was cancelled.".into()),
+                Some("failed") => {
+                    return Err(
+                        "Local enhancement failed. Check the configured model and service logs."
+                            .into(),
+                    )
+                }
+                Some("cancelled") => return Err("The local enhancement job was cancelled.".into()),
                 Some("completed") => {
                     active.check()?;
-                    if job["workflow"]["extra_data"]["photosuite_request_id"] != input.request_id
-                        || job["workflow"]["extra_data"]["photosuite_workflow"] != WORKFLOW
+                    if job["workflow"]["extra_data"]["photosuite_request_id"] != request_id
+                        || job["workflow"]["extra_data"]["photosuite_workflow"] != workflow_id
                         || !same_workflow(&job["workflow"]["prompt"], &graph)
-                    { return Err("The completed workflow does not belong to this AI Remove request.".into()); }
-                    let images = job["outputs"]["9"]["images"].as_array().ok_or("AI Remove completed without its output image.")?;
-                    if images.len() != 1 { return Err("AI Remove returned an unexpected number of images.".into()); }
-                    let image = &images[0];
-                    let filename = image["filename"].as_str().ok_or("Missing result filename.")?;
-                    let prefix = format!("photosuite-{}_", input.request_id);
-                    if !filename.starts_with(&prefix) || !filename.ends_with(".png")
-                        || filename.contains(['/', '\\']) || image["subfolder"] != "" || image["type"] != "output"
-                    { return Err("Local service returned an unowned result path.".into()); }
-                    active.stage("Receiving result");
-                    let response = client.get(format!("{base}/view")).query(&[("filename", filename), ("type", "output"), ("subfolder", "")]).send().map_err(network_error)?;
-                    if response.headers().get(reqwest::header::CONTENT_TYPE).and_then(|v| v.to_str().ok()).map(|v| v.split(';').next()) != Some(Some("image/png")) {
-                        return Err("AI Remove returned an unexpected output content type.".into());
+                    {
+                        return Err("The completed workflow does not belong to this Local enhancement request.".into());
                     }
-                    let data = bounded(response, MAX_PNG)?;
+                    let images = job["outputs"]["9"]["images"]
+                        .as_array()
+                        .ok_or("Local enhancement completed without its output image.")?;
+                    if images.len() != 1 {
+                        return Err(
+                            "Local enhancement returned an unexpected number of images.".into()
+                        );
+                    }
+                    let image = &images[0];
+                    let filename = image["filename"]
+                        .as_str()
+                        .ok_or("Missing result filename.")?;
+                    let prefix = format!("photosuite-{}_", request_id);
+                    if !filename.starts_with(&prefix)
+                        || !filename.ends_with(".png")
+                        || filename.contains(['/', '\\'])
+                        || image["subfolder"] != ""
+                        || image["type"] != "output"
+                    {
+                        return Err("Local service returned an unowned result path.".into());
+                    }
+                    active.stage("Receiving result");
+                    let response = client
+                        .get(format!("{base}/view"))
+                        .query(&[
+                            ("filename", filename),
+                            ("type", "output"),
+                            ("subfolder", ""),
+                        ])
+                        .send()
+                        .map_err(network_error)?;
+                    if response
+                        .headers()
+                        .get(reqwest::header::CONTENT_TYPE)
+                        .and_then(|v| v.to_str().ok())
+                        .map(|v| v.split(';').next())
+                        != Some(Some("image/png"))
+                    {
+                        return Err(
+                            "Local enhancement returned an unexpected output content type.".into(),
+                        );
+                    }
+                    let data = bounded(response, max_png)?;
                     active.check()?;
-                    let output = decode_output(&data, input.width, input.height)?;
+                    let output = decode_output_bounded(&data, width, height, max_png)?;
                     active.check()?;
                     return Ok(output);
                 }
@@ -551,7 +638,7 @@ fn run(input: &Input, bytes: &[u8], active: &Active) -> Result<Vec<u8>, String> 
         }
     })();
     if outcome.is_err() {
-        cancel_owned(&client, &base, &input.request_id);
+        cancel_owned(&client, &base, &request_id);
     }
     outcome
 }

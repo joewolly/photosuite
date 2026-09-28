@@ -195,3 +195,9 @@ All third-party libraries live in [`src/vendor/`](src/vendor/README.md) as pinne
 * **Core Libraries**: [pako](https://github.com/nodeca/pako) (zlib, MIT), [Paper.js](https://github.com/paperjs/paper.js) (vector geometry, MIT), [omggif](https://github.com/deanm/omggif) (GIF, MIT), [js-sha1](https://github.com/emn178/js-sha1) (MIT), [acorn](https://github.com/acornjs/acorn) (JS parser, MIT), [linear-solve](https://github.com/lovasoa/linear-solve) (MIT), [parse-exr](https://github.com/dmnsgn/parse-exr) (OpenEXR, MIT), [pdf.js](https://github.com/mozilla/pdf.js) (JPEG/JPX/JBIG2 codecs, Apache-2.0), [PDFI.js](https://github.com/eolix/PDFI.js) (PDF/PS/EMF/WMF, MIT).
 * **WebAssembly Modules**: [HarfBuzz](https://github.com/harfbuzz/harfbuzz) (text shaping, MIT), [FriBidi](https://github.com/fribidi/fribidi) (bidirectional text, LGPL-2.1+), [libwebp](https://github.com/webmproject/libwebp) (BSD-3), [zstd](https://github.com/facebook/zstd) (BSD-3), [stb_image](https://github.com/nothings/stb) (Public domain / MIT), [libheif](https://github.com/strukturag/libheif) (LGPL-3.0+).
 * **Data & Assets**: [Lensfun](https://github.com/lensfun/lensfun) for camera and lens profile data (LGPL / CC), and [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT).
+
+### Bounded AI Upscale
+
+[AI Upscale setup and limits](docs/m5b/README.md) describes the optional local
+4× rendered-composite → new raster document workflow, model provenance,
+[quality caveats](docs/m5b/quality.md), and [native acceptance](docs/m5b/acceptance.md).

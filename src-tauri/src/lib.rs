@@ -561,6 +561,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             comfy::comfy_preflight,
             comfy::comfy_inpaint,
+            comfy::upscale::comfy_upscale,
+            comfy::upscale::comfy_upscale_preflight,
             comfy::comfy_status,
             comfy::comfy_cancel,
             open_files,

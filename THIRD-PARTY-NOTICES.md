@@ -800,3 +800,18 @@ computation. See `docs/m4/model-evaluation.json` and `scripts/m4/export-sam2.py`
 The developer-only conversion uses Microsoft ONNX Runtime's MIT-licensed SAM2
 wrappers at `84cf511aee6506aec6380997af32d12e2252231d`. M4 shares M3's exact ORT
 Web 1.22.0 binary assets and notices; no second inference runtime is bundled.
+
+## M5b external Real-ESRGAN upscaler (not distributed)
+
+PhotoSuite's optional AI Upscale integrates with user-managed ComfyUI (GPL-3.0)
+and the official Real-ESRGAN `realesr-general-x4v3.pth` (BSD-3-Clause). Neither
+ComfyUI nor these weights are bundled or downloaded by PhotoSuite. Exact source,
+artifact SHA-256, retained upstream license, node/version review and scope are in
+[docs/m5b/README.md](docs/m5b/README.md). There is no conversion or custom-node
+requirement. PhotoSuite remains GPLv3. This review does not cover arbitrary
+community checkpoints substituted under the same filename.
+
+The M5b evaluation corpus reuses the documented public-domain/CC0 M3 sources and
+original CC0 synthetic fixtures; per-file provenance/hashes are in
+`tests/fixtures/upscale-corpus/v1/manifest.json`. Derived comparison sheets are
+for evaluation, without endorsement by depicted people or source organizations.
