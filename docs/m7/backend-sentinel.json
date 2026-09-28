@@ -1,0 +1,8 @@
+{
+  "endpoint": "http://127.0.0.1:8188",
+  "backendUnavailable": true,
+  "sentinel": "HTTP server returning 503 and logging every request",
+  "requests": 0,
+  "scope": "Final rebuilt native bundle: ten PSD/PSB reopen variants, Generative Info and privacy controls; no readiness probe invoked",
+  "nativeBackendCommands": 0
+}

@@ -1,4 +1,5 @@
 /** Bounded recipe/candidate coordination over M1 jobs; never a second job state machine. */
+import { captureRecipeSource, createGenerationRecipe } from "../../document/formats/metadata/generation-recipes.js";
 import { JOB_TERMINAL, JobError } from "./job-service.js";
 import { requireInpaintSource, createInpaintAdapter } from "./inpaint-target.js";
 import { prepareGenerativeInput, GENERATIVE_WORKFLOW } from "./generative-workload.js";
@@ -7,14 +8,20 @@ export class GenerativeSession {
   constructor(bridge) { this.bridge = bridge; this.current = null; this.notice = ""; }
   get jobs() { return this.bridge.jobs; }
   ready(session = this.current) {
-    return !!session && session.ids.length === session.settings.count && session.ids.every(id => this.jobs.get(id)?.state === "preview");
+    return !!session && !session.provenancePending && session.ids.length === session.settings.count && session.ids.every(id => this.jobs.get(id)?.state === "preview");
   }
   start(doc, config, options) {
     if (this.current || this.jobs.list().some(j => ["ai-remove", "generate.fill"].includes(j.operation) && (!JOB_TERMINAL.has(j.state) || j.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current masked generation first.");
     const started = performance.now(), layer = requireInpaintSource(doc, "Generative Fill");
     const prepared = prepareGenerativeInput(layer, doc.selectionMask, doc.width, doc.height, config, options);
-    const session = { doc, layer, ...prepared, ids: [], selected: 0, seeds: [], workflow: GENERATIVE_WORKFLOW };
+    const session = { doc, layer, ...prepared, ids: [], selected: 0, seeds: [], completedAt: [], provenancePending: true, workflow: GENERATIVE_WORKFLOW };
     this.current = session; this.notice = "";
+    session.provenanceReady = captureRecipeSource(doc, layer).then(value => {
+      if (this.current === session) session.provenance = value;
+    }).catch(() => { session.provenanceFailed = true; }).finally(() => {
+      session.provenancePending = false;
+      if (this.current === session) this.bridge.render();
+    });
     this.metrics = { preparationMs: performance.now() - started, candidates: [] };
     try { this.next(session); } catch (error) { this.release(error.message); throw error; }
     return session.ids[0];
@@ -28,11 +35,12 @@ export class GenerativeSession {
     const adapter = { ...base,
       preview: (context, result, id) => {
         const start = performance.now(); base.preview(context, result, id);
+        session.completedAt[index] ??= new Date().toISOString();
         this.metrics.candidates[index] = { seed, bytes: result.byteLength, previewMs: performance.now() - start };
       },
       commit: (context, result) => {
         if (this.current !== session || !this.ready(session) || session.selected !== index) throw new JobError("invalid-transition", "Only the chosen completed variation can be accepted.");
-        const start = performance.now(); base.commit(context, result); this.metrics.acceptMs = performance.now() - start;
+        const start = performance.now(); base.commit(context, result, createGenerationRecipe(session, index)); session.provenanceFailed ||= !!context.provenanceFailed; this.metrics.acceptMs = performance.now() - start;
       },
     };
     const id = this.jobs.submit({ operation: "generate.fill", input: { ...session.input, seed }, adapter });
@@ -44,7 +52,7 @@ export class GenerativeSession {
     const session = this.current;
     if (!session || !session.ids.includes(job.id)) return;
     if (JOB_TERMINAL.has(job.state)) {
-      const message = job.state === "committed" ? "Accepted. Regenerate session ended." : job.state === "stale" ? "Source or selection changed. Regenerate unavailable; make a new selection and run again." : job.error?.message || "Discarded. Regenerate session ended.";
+      const message = job.state === "committed" ? (session.provenanceFailed ? "Pixels accepted. Generation provenance could not be attached; it will not be saved." : "Accepted with generation provenance. Regenerate session ended.") : job.state === "stale" ? "Source or selection changed. Regenerate unavailable; make a new selection and run again." : job.error?.message || "Discarded. Regenerate session ended.";
       this.release(message); return;
     }
     if (job.state === "preview" && job.id === session.ids.at(-1) && session.ids.length < session.settings.count && !session.scheduled) {
@@ -84,7 +92,7 @@ export class GenerativeSession {
         if (this.jobs.get(id)?.state === "preview") this.jobs.discard(id);
         else this.jobs.cancel(id);
       }
-      session.input = session.coverage = session.doc = session.layer = session.settings = null;
+      session.input = session.coverage = session.doc = session.layer = session.settings = session.provenance = null;
       session.seeds.length = 0;
     }
     this.bridge.render();

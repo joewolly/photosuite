@@ -53,6 +53,18 @@ describe("document/formats/psd/psd-resource-parser.js", () => {
     assert.equal(layerAdd.lyid, 42);
   });
 
+  it("does not manufacture recipe-capable IDs from malformed or repeated lyid blocks", () => {
+    for (const length of [0, 1, 2, 3, 5, 8]) {
+      const bytes = wrapLayerInfoTag("lyid", new Uint8Array(length).fill(42)), add = {};
+      PSDResourceParser.parseAdditionalLayerInfo(bytes, 0, bytes.length, add, false, layerContext);
+      assert.equal(add.lyid, null);
+    }
+    const block = wrapLayerInfoTag("lyid", new Uint8Array([0, 0, 0, 42]));
+    const twice = new Uint8Array(block.length * 2); twice.set(block); twice.set(block, block.length);
+    const add = {}; PSDResourceParser.parseAdditionalLayerInfo(twice, 0, twice.length, add, false, layerContext);
+    assert.equal(add.lyid, null);
+  });
+
   it("reads iOpa fill opacity byte", () => {
     const data = wrapLayerInfoTag("iOpa", new Uint8Array([200, 0, 0, 0]));
     const layerAdd = {};

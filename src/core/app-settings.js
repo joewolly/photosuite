@@ -1,3 +1,4 @@
+import { setRecipePrivacy } from "../document/formats/metadata/generation-recipes.js";
 import { GENERATIVE_MODEL, validateGenerativeConfig } from "../features/modernization/generative-workload.js";
 /**
  * Tauri plugin-store persistence for application settings and editor prefs sync.
@@ -42,6 +43,7 @@ async function readEnvironmentFieldsFromStore(store) {
   const panels = await store.get("panels");
   const eparams = await store.get("eparams");
   setInpaintConfig(await store.get("localInpainting"));
+  setRecipePrivacy(await store.get("generationPrivacy"));
 
   if (lang != null) state.lang = lang;
   if (theme != null) state.theme = theme;
@@ -125,4 +127,13 @@ export async function saveGenerativeCheckpoint(checkpoint) {
   const store = await openSettingsStore();
   if (!store) throw new Error("Generative Fill settings require the PhotoSuite desktop application.");
   await store.set("generativeCheckpoint", checkpoint); await store.save();
+}
+
+/** Only privacy booleans enter settings; never a prompt or recipe. */
+export async function saveRecipePrivacy(value) {
+  const next = { saveRecipes: value?.saveRecipes !== false, savePrompts: value?.savePrompts === true };
+  const store = await openSettingsStore();
+  if (!store) throw new Error("Generation privacy settings require the PhotoSuite desktop application.");
+  await store.set("generationPrivacy", next); await store.save();
+  return setRecipePrivacy(next);
 }

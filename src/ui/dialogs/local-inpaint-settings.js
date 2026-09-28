@@ -1,4 +1,5 @@
-import { loadLocalInpaintConfig, saveLocalInpaintConfig } from "../../core/app-settings.js";
+import { getRecipePrivacy } from "../../document/formats/metadata/generation-recipes.js";
+import { loadLocalInpaintConfig, saveLocalInpaintConfig, saveRecipePrivacy } from "../../core/app-settings.js";
 import { testInpaintConnection } from "../../features/modernization/comfy-provider.js";
 import { loadGenerativeConfig, saveGenerativeCheckpoint } from "../../core/app-settings.js";
 
@@ -32,12 +33,32 @@ export function mountLocalInpaintSettings(pane) {
   generation.setAttribute("aria-label", "Generative Fill checkpoint"); generation.setAttribute("data-inpaint-field", "true"); generation.maxLength = 240; generation.style.width = "100%";
   generationLabel.appendChild(generation); pane.appendChild(generationLabel);
   const generationHelp = document.createElement("p");
-  generationHelp.textContent = "Generative Fill requires ComfyUI 0.37.4 and the reviewed sd-v1-5-inpainting.ckpt. Check readiness in Edit → Generative Fill. Its prompt and variation settings are session-only.";
+  generationHelp.textContent = "Generative Fill requires ComfyUI 0.37.4 and the reviewed sd-v1-5-inpainting.ckpt. Check readiness in Edit → Generative Fill. Accepted results can save optional provenance in PSD/PSB metadata. Saved recipes do not support Regenerate in v1.";
   pane.appendChild(generationHelp);
   generationSave.textContent = "Save generation checkpoint"; pane.appendChild(generationSave);
   generationSave.addEventListener("click", async () => {
     try { await saveGenerativeCheckpoint(generation.value.trim()); status.textContent = "Generation checkpoint saved. Generative Fill uses the shared endpoint and its own model setting."; }
     catch (error) { status.textContent = error.message; }
+  });
+  const metadataTitle = document.createElement("h3"); metadataTitle.textContent = "Generation metadata"; pane.appendChild(metadataTitle);
+  const privacyFields = {};
+  for (const [key, title] of [["saveRecipes", "Save generation recipes in PSD/PSB metadata"], ["savePrompts", "Save generative prompts in PSD metadata"]]) {
+    const label = document.createElement("label"), input = document.createElement("input");
+    label.style.display = "block"; label.style.margin = "12px 0"; input.type = "checkbox";
+    input.setAttribute("aria-label", title); label.appendChild(input); label.appendChild(document.createTextNode(" " + title));
+    pane.appendChild(label); privacyFields[key] = input;
+  }
+  const privacyHelp = document.createElement("p"), privacySave = document.createElement("button");
+  privacyHelp.textContent = "Prompts are excluded by default. Turn off recipes to omit all PhotoSuite generation metadata. These options apply to every PSD/PSB save, including reopened files. Use Save As to create a stripped copy; raster layers stay intact. Existing files and your external backend history are unchanged.";
+  pane.appendChild(privacyHelp); privacySave.textContent = "Save generation privacy"; pane.appendChild(privacySave);
+  privacyFields.saveRecipes.addEventListener("change", () => { privacyFields.savePrompts.disabled = !privacyFields.saveRecipes.checked; });
+  privacySave.addEventListener("click", async () => {
+    privacySave.disabled = true;
+    try {
+      await saveRecipePrivacy({ saveRecipes: privacyFields.saveRecipes.checked, savePrompts: privacyFields.savePrompts.checked });
+      status.textContent = "Generation privacy saved. Use Save As to write a PSD/PSB with these privacy settings.";
+    } catch (error) { status.textContent = error.message; }
+    finally { privacySave.disabled = false; }
   });
   let revision = 0;
   const config = () => ({ enabled: fields.enabled.checked, endpoint: fields.endpoint.value.trim(), checkpoint: fields.checkpoint.value.trim() });
@@ -65,6 +86,9 @@ export function mountLocalInpaintSettings(pane) {
         if (own !== revision) return;
         fields.enabled.checked = value.enabled; fields.endpoint.value = value.endpoint; fields.checkpoint.value = value.checkpoint;
         generation.value = generative.checkpoint;
+        const savedPrivacy = getRecipePrivacy();
+        privacyFields.saveRecipes.checked = savedPrivacy.saveRecipes; privacyFields.savePrompts.checked = savedPrivacy.savePrompts;
+        privacyFields.savePrompts.disabled = !savedPrivacy.saveRecipes;
         status.textContent = value.enabled ? "Configured. Connection has not been checked." : "Disabled. No service connection is made during normal editing.";
       } catch (error) { if (own === revision) status.textContent = error.message; }
     },

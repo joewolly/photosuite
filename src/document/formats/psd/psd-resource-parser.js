@@ -146,7 +146,7 @@ function readLayerTag_lyid(ctx) {
   const { data, pos, targetAdd, context } = ctx;
   let { chunkSize } = ctx;
   const tag = ctx.tag;
-  targetAdd[tag] = BinaryUtils.readUint32BE(data, pos);
+  targetAdd[tag] = chunkSize === 4 && !Object.hasOwn(targetAdd, tag) ? BinaryUtils.readUint32BE(data, pos) : null;
 }
 
 function readLayerTag_lsct(ctx) {

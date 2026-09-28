@@ -4,7 +4,9 @@ import { installBrowserGlobals } from "../../helpers/stub-browser-globals.js";
 import { flushJobs, fakeProvider } from "./fake-provider.js";
 import { validatePrompt } from "../../../src/features/modernization/generative-workload.js";
 import { createGenerativeProvider } from "../../../src/features/modernization/comfy-provider.js";
-installBrowserGlobals();
+import { installXmlDom } from "../../helpers/xml-dom.js";
+import { getLayerRecipe, collectDocumentRecipes } from "../../../src/document/formats/metadata/generation-recipes.js";
+installBrowserGlobals(); installXmlDom();
 let Document, Rect, TrackerRegistry, SelectionJobs, LayerSystem;
 before(async () => {
   ({ Document } = await import("../../../src/document/model/document.js"));
@@ -46,6 +48,7 @@ function fixture() {
 function generated(call) { return Uint8Array.from({ length: call.meta.input.width * call.meta.input.height * 4 }, (_, i) => [201,74,32,255][i % 4]); }
 async function preview(f) {
   const id = f.submit(); await flushJobs(); f.calls.at(-1).resolve(generated(f.calls.at(-1)).buffer); await flushJobs();
+  await f.bridge.generative.current.provenanceReady;
   assert.equal(f.bridge.jobs.get(id).state, "preview"); return id;
 }
 
@@ -75,16 +78,21 @@ it("three variations are sequential; switching is transient; Accept commits exac
     for(let k=0;k<raw.length;k+=4) raw[k]=80+i*30;
     f.calls[i].resolve(raw); await flushJobs();
   }
+  await session.provenanceReady;
   assert.equal(f.calls.length,3); assert.equal(f.doc.history.length,1); assert.equal(f.doc.layers.length,1);
   assert.equal(f.bridge.generative.ready(),true); f.bridge.generative.select(0); const a=f.doc.toolOverlayState.jobRasterPreview.bytes.slice();
   f.bridge.generative.select(1); const b=f.doc.toolOverlayState.jobRasterPreview.bytes.slice(); assert.notDeepEqual(a,b);
   assert.equal(f.bridge.generative.accept(),true); assert.equal(f.doc.history.length,2); assert.equal(f.doc.layers.length,2);
+  assert.equal(getLayerRecipe(f.doc,f.doc.layers[1]).seed,43);
+  assert.equal(getLayerRecipe(f.doc,f.doc.layers[1]).prompt,"ceramic cup");
+  assert.equal(collectDocumentRecipes(f.doc).records.length,1);
+  const acceptedRecipe=getLayerRecipe(f.doc,f.doc.layers[1]);
   assert.deepEqual(f.doc.layers[1].buffer,b); assert.deepEqual(f.layer.buffer,source); assert.equal(f.doc.layers[1].name,"Generative Fill");
   assert.equal(f.bridge.jobs.get(id).state,"discarded"); assert.equal(f.bridge.generative.current,null);
   assert.equal(session.input,null); assert.equal(session.settings,null); assert.equal(session.coverage,null);
   assert.ok(f.bridge.jobs.list().every(j=>!j.hasResult&&!j.hasInput));
-  f.history.stepHistoryBackward(f.doc); assert.equal(f.doc.layers.length,1); assert.deepEqual(f.layer.buffer,source);
-  f.history.stepHistoryForward(f.doc); assert.deepEqual(f.doc.layers[1].buffer,b); assert.equal(f.calls.length,3);
+  f.history.stepHistoryBackward(f.doc); assert.equal(collectDocumentRecipes(f.doc),null); assert.equal(f.doc.layers.length,1); assert.deepEqual(f.layer.buffer,source);
+  f.history.stepHistoryForward(f.doc); assert.deepEqual(getLayerRecipe(f.doc,f.doc.layers[1]),acceptedRecipe); assert.deepEqual(f.doc.layers[1].buffer,b); assert.equal(f.calls.length,3);
 });
 for(const transparent of [false,true]) it("malicious context is contained byte-exactly, soft coverage authoritative; transparent="+transparent, async()=>{
   const f=fixture(); if(transparent) for(let i=3;i<f.layer.buffer.length;i+=4) f.layer.buffer[i]=i%3===0?0:100;
@@ -118,7 +126,7 @@ for(const action of ["cancel","discard","close","source","selection","failure","
 it("Regenerate releases old candidates and reuses exact recipe only on a valid source",async()=>{
  const f=fixture();const old=await preview(f);const session=f.bridge.generative.current;
  const next=f.bridge.generative.regenerate(true);await flushJobs();assert.notEqual(next,old);assert.equal(f.calls[1].meta.input.seed,42);assert.equal(f.calls[1].meta.prompt,"ceramic cup");assert.equal(session.input,null);
- f.calls[1].resolve(generated(f.calls[1]));await flushJobs();f.doc.selectionMask.channel[0]=255;
+ f.calls[1].resolve(generated(f.calls[1]));await flushJobs();await f.bridge.generative.current.provenanceReady;f.doc.selectionMask.channel[0]=255;
  assert.throws(()=>f.bridge.generative.regenerate(),/changed/);assert.equal(f.calls.length,2);assert.equal(f.bridge.generative.current,null);
 });
 it("tab switching never redirects accept",async()=>{
@@ -136,6 +144,8 @@ it("accepted raster survives real PSD serialization/reopen without backend",asyn
   const reopened=new Document("offline.psd");PSDParser.parse(buffer.data.slice(0,length).buffer,reopened);
   assert.equal(reopened.layers.length,2);assert.deepEqual(reopened.layers[0].buffer,source);
   assert.deepEqual(reopened.layers[1].buffer,pixels);assert.deepEqual(reopened.layers[1].rect,f.doc.layers[1].rect);
+  assert.equal(getLayerRecipe(reopened,reopened.layers[1]).seed,42);
+  assert.equal(getLayerRecipe(reopened,reopened.layers[1]).prompt,undefined);
   assert.deepEqual(reopened.buffer,composite);assert.equal(f.calls.length,1);
   assert.equal(new TextDecoder().decode(buffer.data.slice(0,length)).includes("ceramic cup"),false);
   assert.equal(f.bridge.jobs.get(id).state,"committed");
@@ -156,4 +166,10 @@ it("new random regenerate gets a fresh recipe seed; expired session refuses",asy
  const f=fixture();await preview(f);f.bridge.generative.regenerate();await flushJobs();assert.equal(f.calls.length,2);
  assert.ok(Number.isInteger(f.calls[1].meta.input.seed));f.bridge.generative.release();f.calls[1].resolve(generated(f.calls[1]));await flushJobs();
  assert.throws(()=>f.bridge.generative.regenerate(),/still-valid/);
+});
+
+it("metadata hashing failure preserves one exact pixel transaction with precise provenance notice",async()=>{
+ const previous=globalThis.crypto;
+ Object.defineProperty(globalThis,"crypto",{value:{subtle:{digest:()=>Promise.reject(new Error("Unavailable"))},randomUUID:()=>previous.randomUUID(),getRandomValues:value=>previous.getRandomValues(value)},configurable:true});
+ try {const f=fixture();await preview(f);assert.equal(f.bridge.generative.accept(),true);assert.equal(f.doc.layers.length,2);assert.equal(f.doc.history.length,2);assert.equal(getLayerRecipe(f.doc,f.doc.layers[1]),null);assert.match(f.bridge.generative.notice,/Pixels accepted.*could not be attached/);}finally{Object.defineProperty(globalThis,"crypto",{value:previous,configurable:true});}
 });

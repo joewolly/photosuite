@@ -64,8 +64,9 @@ export function createInpaintAdapter(controller, doc, layer, roi, coverage, name
       context.doc.toolOverlayState.jobRasterPreview = context.overlay;
       context.doc.dirty = true;
     },
-    commit(context, result) {
-      const receipt = commitExactResult(controller, prepareExactResult(controller, context.target, result, name));
+    commit(context, result, recipe = null) {
+      const receipt = commitExactResult(controller, prepareExactResult(controller, context.target, result, name, recipe));
+      context.provenanceFailed = recipe !== null && !receipt.provenanceAttached;
       if (receipt.documentId !== context.documentId || receipt.operation !== "insertRaster") throw new Error(`Unexpected ${name} commit receipt`);
     },
     dispose(context) {

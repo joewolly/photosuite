@@ -1,0 +1,77 @@
+[
+  {
+    "file": "m7-retained.psd",
+    "version": 1,
+    "reader": "psd-tools",
+    "name": "Generative Fill",
+    "kind": "pixel",
+    "mode": "RGBA",
+    "size": [
+      393,
+      384
+    ],
+    "resultSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "expectedSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "exact": true
+  },
+  {
+    "file": "m7-retained.psb",
+    "version": 2,
+    "reader": "psd-tools",
+    "name": "Generative Fill",
+    "kind": "pixel",
+    "mode": "RGBA",
+    "size": [
+      393,
+      384
+    ],
+    "resultSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "expectedSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "exact": true
+  },
+  {
+    "file": "m7-resource-stripped.psd",
+    "version": 1,
+    "reader": "psd-tools",
+    "name": "Generative Fill",
+    "kind": "pixel",
+    "mode": "RGBA",
+    "size": [
+      393,
+      384
+    ],
+    "resultSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "expectedSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "exact": true
+  },
+  {
+    "file": "m7-unknown-schema.psd",
+    "version": 1,
+    "reader": "psd-tools",
+    "name": "Generative Fill",
+    "kind": "pixel",
+    "mode": "RGBA",
+    "size": [
+      393,
+      384
+    ],
+    "resultSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "expectedSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "exact": true
+  },
+  {
+    "file": "m7-malformed-xml.psd",
+    "version": 1,
+    "reader": "psd-tools",
+    "name": "Generative Fill",
+    "kind": "pixel",
+    "mode": "RGBA",
+    "size": [
+      393,
+      384
+    ],
+    "resultSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "expectedSHA256": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc",
+    "exact": true
+  }
+]

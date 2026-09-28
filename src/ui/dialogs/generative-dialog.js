@@ -2,7 +2,7 @@ import { loadGenerativeConfig } from "../../core/app-settings.js";
 import { testGenerativeConnection } from "../../features/modernization/comfy-provider.js";
 import { requireInpaintSource } from "../../features/modernization/inpaint-target.js";
 import { removalROI } from "../../features/modernization/inpaint-workload.js";
-/** Opening this dialog uploads nothing and retains no prompt after the session ends. */
+/** Opening this dialog uploads nothing. Durable provenance obeys save privacy preferences. */
 export async function showGenerativeDialog(controller, doc) {
   requireInpaintSource(doc, "Generative Fill"); removalROI(doc.selectionMask, doc.width, doc.height);
   const config = await loadGenerativeConfig();
@@ -15,7 +15,7 @@ export async function showGenerativeDialog(controller, doc) {
   const prompt = field("Prompt (optional)", "textarea"); prompt.rows = 3; prompt.maxLength = 1024; prompt.style.width = "100%"; prompt.placeholder = "Describe the replacement, or leave empty for contextual fill";
   const count = field("Variations", "select"); for (const n of [1, 2, 3]) { const option = document.createElement("option"); option.value = String(n); option.textContent = String(n); count.appendChild(option); }
   const seed = field("Seed (blank for random)", "input"); seed.type = "text"; seed.inputMode = "numeric"; seed.maxLength = 10;
-  text("p", "Prompts and selected image context go to your local ComfyUI. Its files and history may retain them. PhotoSuite keeps the recipe only until Accept, Discard or a source change.");
+  text("p", "Prompts and selected image context go to your local ComfyUI. Its files and history may retain them. Accepted results retain optional PhotoSuite provenance. Prompts are excluded from PSD/PSB saves by default. Change this in Preferences → AI Remove → Generation metadata. Saved recipes do not support Regenerate in v1.");
   const status = text("p", "Check the local backend before generating."); status.setAttribute("role", "status");
   const button = (label, action) => { const el = text("button", label); el.style.marginRight = "8px"; el.addEventListener("click", action); return el; };
   const check = button("Check backend", async () => {

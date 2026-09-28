@@ -391,6 +391,9 @@ export function buildEditMenu() {
       name: "Generative Fill",
       resolveRowState: doc => ({ enabled: !!doc?.selectionMask, labelOverride: "Generative Fill…" })
     }, {
+      name: "Generative Info",
+      resolveRowState: doc => ({ enabled: !!doc && doc.selectedLayerIndices.length === 1, labelOverride: "Generative Info…" })
+    }, {
       name: "AI Remove",
       resolveRowState: function(doc) {
         return { enabled: !!doc?.selectionMask, labelOverride: "AI Remove (local service)…" };
@@ -564,6 +567,11 @@ export function buildEditMenu() {
       appEventType: EventType.uiDispatch,
       payload: {
         dispatchKind: UiCommand.generativeFill
+      }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: {
+        dispatchKind: UiCommand.generativeInfo
       }
     }, {
       appEventType: EventType.uiDispatch,

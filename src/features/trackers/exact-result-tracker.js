@@ -1,4 +1,5 @@
 /** Three bounded M0 commits. Prepared results and history bytes never alias live state. */
+import { normalizeRecipe, setLayerRecipe } from "../../document/formats/metadata/generation-recipes.js";
 import { BinaryUtils } from "../../core/binary/binary-utils.js";
 import { HistoryEntry } from "../../document/model/document.js";
 import { Layer, LayerSectionType } from "../../document/model/layer.js";
@@ -61,7 +62,7 @@ function nextLayerId(doc) {
   return id + 1;
 }
 
-export function prepareExactResult(controller, target, payload, historyLabel) {
+export function prepareExactResult(controller, target, payload, historyLabel, generationRecipe = null) {
   const { doc, layer } = validateResultTarget(controller, target);
   const kind = target.operation;
   let state;
@@ -78,7 +79,7 @@ export function prepareExactResult(controller, target, payload, historyLabel) {
     result.setName(name);
     const anchor = doc.layers.indexOf(layer);
     const insertIndex = anchor + (layer.add.lsct === LayerSectionType.OpenGroup ? 0 : 1);
-    state = { kind, target, doc, layer, result, insertIndex, selectedBefore: doc.selectedLayerIndices.slice(), pathsBefore: doc.selectedLayerPaths == null ? null : JSON.parse(JSON.stringify(doc.selectedLayerPaths)), liveResult: null };
+    state = { kind, target, doc, layer, result, recipe: generationRecipe ? normalizeRecipe({ ...generationRecipe, layerId: result.add.lyid }) : null, insertIndex, selectedBefore: doc.selectedLayerIndices.slice(), pathsBefore: doc.selectedLayerPaths == null ? null : JSON.parse(JSON.stringify(doc.selectedLayerPaths)), liveResult: null };
   } else if (kind === "setSelection") {
     const { rect, view } = validateResultPayload(payload, "coverage8");
     const entry = prepareSelectionHistoryEntry(copyCoverage(doc.selectionMask), {
@@ -194,7 +195,10 @@ class ExactResultTracker {
       return sameMask(state.layer.getMask(), forward ? state.after : state.before);
     });
     if (state.kind === "applyRasterMask" && disposePrevious) retireCache(previousCache);
-    if (state.kind === "insertRaster" && forward) state.liveResult = result;
+    if (state.kind === "insertRaster" && forward) {
+      state.liveResult = result;
+      if (state.recipe) setLayerRecipe(result, state.recipe);
+    }
     if (state.kind === "applyRasterMask") state.surface = null;
   }
 }
@@ -218,7 +222,7 @@ export function commitExactResult(controller, prepared) {
   if (state.kind === "applyRasterMask") retireCache(previousCache);
   const documentId = state.target.documentId;
   state.target = null; // Release freshness snapshots; history retains only replay data.
-  return { documentId, operation: state.kind };
+  return { documentId, operation: state.kind, ...(state.kind === "insertRaster" ? { provenanceAttached: !!state.recipe } : {}) };
 }
 
 export function removeBackgroundFromSelection(controller) {
