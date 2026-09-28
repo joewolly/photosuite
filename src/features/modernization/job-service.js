@@ -202,4 +202,12 @@ export class ModernizationJobs {
       return true;
     } catch (error) { this.#transition(job, "failed", errorInfo(error)); return false; }
   }
+  /** Re-publish an owned preview (candidate navigation); never creates history. */
+  showPreview(id) {
+    const job = this.#jobs.get(id);
+    if (!job || job.state !== "preview") throw new JobError("invalid-transition", "Only a current preview can be shown.");
+    if (!this.#fresh(job)) return false;
+    try { job.adapter.preview?.(job.context, job.result, job.id); this.#emit(job); return true; }
+    catch (error) { this.#transition(job, "failed", errorInfo(error)); return false; }
+  }
 }

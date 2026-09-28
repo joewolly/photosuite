@@ -1,5 +1,6 @@
 import { loadLocalInpaintConfig, saveLocalInpaintConfig } from "../../core/app-settings.js";
 import { testInpaintConnection } from "../../features/modernization/comfy-provider.js";
+import { loadGenerativeConfig, saveGenerativeCheckpoint } from "../../core/app-settings.js";
 
 /** Explicit settings actions only; displaying this pane does not use the network. */
 export function mountLocalInpaintSettings(pane) {
@@ -24,8 +25,20 @@ export function mountLocalInpaintSettings(pane) {
   test.style.marginLeft = "10px"; status.setAttribute("role", "status"); status.style.whiteSpace = "normal";
   pane.appendChild(save); pane.appendChild(test); pane.appendChild(status);
   const privacy = document.createElement("p");
-  privacy.textContent = "Only numeric loopback endpoints are supported. Images are sent only when you invoke AI Remove. Your external service may retain uploaded crops, masks and results, and may have its own network behavior.";
+  privacy.textContent = "Only numeric loopback endpoints are supported. Images are sent when you invoke AI Remove or Generative Fill. Your external service may retain uploaded crops, masks, prompts and results, and may have its own network behavior.";
   pane.appendChild(privacy);
+  const generationLabel = document.createElement("label"), generation = document.createElement("input"), generationSave = document.createElement("button");
+  generationLabel.textContent = "Generative Fill checkpoint (separate from AI Remove) "; generationLabel.style.display = "block";
+  generation.setAttribute("aria-label", "Generative Fill checkpoint"); generation.setAttribute("data-inpaint-field", "true"); generation.maxLength = 240; generation.style.width = "100%";
+  generationLabel.appendChild(generation); pane.appendChild(generationLabel);
+  const generationHelp = document.createElement("p");
+  generationHelp.textContent = "Generative Fill requires ComfyUI 0.37.4 and the reviewed sd-v1-5-inpainting.ckpt. Check readiness in Edit → Generative Fill. Its prompt and variation settings are session-only.";
+  pane.appendChild(generationHelp);
+  generationSave.textContent = "Save generation checkpoint"; pane.appendChild(generationSave);
+  generationSave.addEventListener("click", async () => {
+    try { await saveGenerativeCheckpoint(generation.value.trim()); status.textContent = "Generation checkpoint saved. Generative Fill uses the shared endpoint and its own model setting."; }
+    catch (error) { status.textContent = error.message; }
+  });
   let revision = 0;
   const config = () => ({ enabled: fields.enabled.checked, endpoint: fields.endpoint.value.trim(), checkpoint: fields.checkpoint.value.trim() });
   for (const field of Object.values(fields)) field.addEventListener("input", () => { revision++; status.textContent = "Unsaved changes. Connection has not been checked for these settings."; });
@@ -48,8 +61,10 @@ export function mountLocalInpaintSettings(pane) {
       const own = ++revision;
       try {
         const value = await loadLocalInpaintConfig();
+        const generative = await loadGenerativeConfig();
         if (own !== revision) return;
         fields.enabled.checked = value.enabled; fields.endpoint.value = value.endpoint; fields.checkpoint.value = value.checkpoint;
+        generation.value = generative.checkpoint;
         status.textContent = value.enabled ? "Configured. Connection has not been checked." : "Disabled. No service connection is made during normal editing.";
       } catch (error) { if (own === revision) status.textContent = error.message; }
     },

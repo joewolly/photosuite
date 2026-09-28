@@ -1,3 +1,4 @@
+import { showGenerativeDialog } from "../dialogs/generative-dialog.js";
 import { showUpscaleDialog } from "../dialogs/upscale-dialog.js";
 import { removeBackgroundFromSelection } from "../../features/trackers/exact-result-tracker.js";
 /**
@@ -336,6 +337,9 @@ const UI_COMMAND_HANDLERS = {
   },
   aiUpscale(controller) {
     void showUpscaleDialog(controller, controller.getCurrentDoc()).catch(error => showToast(error.message));
+  },
+  generativeFill(controller) {
+    void showGenerativeDialog(controller, controller.getCurrentDoc()).catch(error => showToast(error.message));
   },
   aiRemove(controller) {
     const doc = controller.getCurrentDoc();

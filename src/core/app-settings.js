@@ -1,3 +1,4 @@
+import { GENERATIVE_MODEL, validateGenerativeConfig } from "../features/modernization/generative-workload.js";
 /**
  * Tauri plugin-store persistence for application settings and editor prefs sync.
  */
@@ -112,4 +113,16 @@ export async function applyStoredSettingsOnStartup(appController) {
   } catch (err) {
     console.warn("PhotoSuite: failed to load app settings", err);
   }
+}
+
+/** M6 stores only model configuration. Prompts and recipes never enter this store. */
+export async function loadGenerativeConfig() {
+  const settings = await loadLocalInpaintConfig(), store = await openSettingsStore();
+  return { enabled: true, endpoint: settings.endpoint, checkpoint: (store && await store.get("generativeCheckpoint")) ?? GENERATIVE_MODEL };
+}
+export async function saveGenerativeCheckpoint(checkpoint) {
+  const config = await loadGenerativeConfig(); validateGenerativeConfig({ ...config, checkpoint });
+  const store = await openSettingsStore();
+  if (!store) throw new Error("Generative Fill settings require the PhotoSuite desktop application.");
+  await store.set("generativeCheckpoint", checkpoint); await store.save();
 }

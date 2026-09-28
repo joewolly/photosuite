@@ -815,3 +815,18 @@ The M5b evaluation corpus reuses the documented public-domain/CC0 M3 sources and
 original CC0 synthetic fixtures; per-file provenance/hashes are in
 `tests/fixtures/upscale-corpus/v1/manifest.json`. Derived comparison sheets are
 for evaluation, without endorsement by depicted people or source organizations.
+
+## M6 external Stable Diffusion inpainting (not distributed)
+
+Optional Generative Fill uses external ComfyUI (GPLv3) and the reviewed
+`sd-v1-5-inpainting.ckpt` under CreativeML OpenRAIL-M, separately from PhotoSuite's
+GPLv3 license. The checkpoint is not bundled, converted or downloaded by PhotoSuite.
+The exact mirror repository/revision, artifact SHA-256, upstream license, fixed
+built-in-node workflow and availability limits are in [docs/m6/README.md](docs/m6/README.md).
+The model license is not inferred from ComfyUI or PyTorch's license; renamed or
+arbitrary community checkpoints are not covered by this review.
+
+M6 fixtures reuse documented public-domain/CC0 M3 photographs and original CC0
+synthetic scenes/selections. Sources and hashes are in
+`tests/fixtures/generative-corpus/v1/manifest.json`; derived evaluation comparisons
+are in `docs/m6/comparisons/`, without endorsement by depicted people.

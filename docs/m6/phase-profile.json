@@ -1,0 +1,292 @@
+[
+  {
+    "name": "replace-cup",
+    "temperature": "cold-process",
+    "encodeMs": 30.36979099852033,
+    "uploadMs": 2.989083994179964,
+    "downloadMs": 2.4020409982767887,
+    "decodeMs": 18.3995000043069,
+    "pngBytes": 357948,
+    "rgbaBytes": 1048576,
+    "events": [
+      {
+        "type": "execution_start",
+        "node": null,
+        "ms": 2.1181670017540455,
+        "data": {
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8",
+          "timestamp": 1790635586511
+        }
+      },
+      {
+        "type": "execution_cached",
+        "node": null,
+        "ms": 3.9651670012972318,
+        "data": {
+          "nodes": [],
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8",
+          "timestamp": 1790635586513
+        }
+      },
+      {
+        "type": "executing",
+        "node": "1",
+        "ms": 4.06370800192235,
+        "data": {
+          "node": "1",
+          "display_node": "1",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "3",
+        "ms": 2604.1738749991055,
+        "data": {
+          "node": "3",
+          "display_node": "3",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "2",
+        "ms": 2607.405832997756,
+        "data": {
+          "node": "2",
+          "display_node": "2",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "5",
+        "ms": 2611.96654199739,
+        "data": {
+          "node": "5",
+          "display_node": "5",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "4",
+        "ms": 2648.792833002517,
+        "data": {
+          "node": "4",
+          "display_node": "4",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "6",
+        "ms": 2678.2670419997885,
+        "data": {
+          "node": "6",
+          "display_node": "6",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "7",
+        "ms": 3536.724666999362,
+        "data": {
+          "node": "7",
+          "display_node": "7",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "8",
+        "ms": 16629.987791995518,
+        "data": {
+          "node": "8",
+          "display_node": "8",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "9",
+        "ms": 17593.12866700202,
+        "data": {
+          "node": "9",
+          "display_node": "9",
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "executed",
+        "node": "9",
+        "ms": 17762.292999999772,
+        "data": {
+          "node": "9",
+          "display_node": "9",
+          "output": {
+            "images": [
+              {
+                "filename": "photosuite-profile-9e251438-4165-4f8b-9dbb-1363d5891d73_00001_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8"
+        }
+      },
+      {
+        "type": "execution_success",
+        "node": null,
+        "ms": 17768.335832995945,
+        "data": {
+          "prompt_id": "b07eb412-f360-4c15-80d3-5f6af23ce8d8",
+          "timestamp": 1790635604258
+        }
+      }
+    ]
+  },
+  {
+    "name": "replace-cup",
+    "temperature": "warm",
+    "encodeMs": 45.748667005682364,
+    "uploadMs": 9.696332999737933,
+    "downloadMs": 0.702165998518467,
+    "decodeMs": 3.2151659979717806,
+    "pngBytes": 357832,
+    "rgbaBytes": 1048576,
+    "events": [
+      {
+        "type": "execution_start",
+        "node": null,
+        "ms": 4.341209001722746,
+        "data": {
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a",
+          "timestamp": 1790635606268
+        }
+      },
+      {
+        "type": "execution_cached",
+        "node": null,
+        "ms": 5.4275419970508665,
+        "data": {
+          "nodes": [
+            "1"
+          ],
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a",
+          "timestamp": 1790635606269
+        }
+      },
+      {
+        "type": "executing",
+        "node": "3",
+        "ms": 5.724208996980451,
+        "data": {
+          "node": "3",
+          "display_node": "3",
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "2",
+        "ms": 44.27716699865414,
+        "data": {
+          "node": "2",
+          "display_node": "2",
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "5",
+        "ms": 56.37429199850885,
+        "data": {
+          "node": "5",
+          "display_node": "5",
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "4",
+        "ms": 210.40595899830805,
+        "data": {
+          "node": "4",
+          "display_node": "4",
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "6",
+        "ms": 246.13762499939185,
+        "data": {
+          "node": "6",
+          "display_node": "6",
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "7",
+        "ms": 1089.9868749984307,
+        "data": {
+          "node": "7",
+          "display_node": "7",
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "8",
+        "ms": 12955.05662499636,
+        "data": {
+          "node": "8",
+          "display_node": "8",
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "executing",
+        "node": "9",
+        "ms": 13494.927917003224,
+        "data": {
+          "node": "9",
+          "display_node": "9",
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "executed",
+        "node": "9",
+        "ms": 13511.739250003302,
+        "data": {
+          "node": "9",
+          "display_node": "9",
+          "output": {
+            "images": [
+              {
+                "filename": "photosuite-profile-692d96d2-c34d-4022-9ae8-895ecb109ea1_00001_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a"
+        }
+      },
+      {
+        "type": "execution_success",
+        "node": null,
+        "ms": 13511.779708998802,
+        "data": {
+          "prompt_id": "65512880-20e2-4e62-8bd5-86133665dd3a",
+          "timestamp": 1790635619775
+        }
+      }
+    ]
+  }
+]

@@ -2,6 +2,7 @@ import { JobError } from "./job-service.js";
 import { generateUuid } from "../../core/uid.js";
 import { validateInpaintConfig } from "./inpaint-config.js";
 import { validateInpaintInput, cropInpaintResult, copyInpaintResult } from "./inpaint-workload.js";
+import { validateGenerativeConfig, validateGenerativeInput, copyGenerativeResult, GENERATIVE_WORKFLOW } from "./generative-workload.js";
 function nativeInvoke(command, args, options) {
   const invoke = globalThis.window?.__TAURI__?.core?.invoke;
   if (!invoke) return Promise.reject(new JobError("backend-unavailable", "Local AI Remove requires the PhotoSuite desktop application."));
@@ -17,8 +18,23 @@ export async function testInpaintConnection(config, invoke = nativeInvoke) {
   } catch (error) { throw errorFor(error); }
 }
 export function createComfyProvider(invoke = nativeInvoke) {
+  return createMaskedProvider(invoke, false);
+}
+export async function testGenerativeConnection(config, invoke = nativeInvoke) {
+  config = validateGenerativeConfig(config);
+  try {
+    const result = await invoke("comfy_generative_preflight", { config });
+    if (result?.ready !== true || result.version !== "0.37.4" || result.workflow !== GENERATIVE_WORKFLOW || result.model !== config.checkpoint) throw new Error("Local generative capability response was incompatible.");
+    return result;
+  } catch (error) { throw errorFor(error); }
+}
+export function createGenerativeProvider(invoke = nativeInvoke) {
+  return createMaskedProvider(invoke, true);
+}
+function createMaskedProvider(invoke, generative) {
   return {
-    validateInput: validateInpaintInput, copyResult: copyInpaintResult,
+    validateInput: generative ? validateGenerativeInput : validateInpaintInput,
+    copyResult: generative ? copyGenerativeResult : copyInpaintResult,
     start(input, callbacks) {
       const requestId = generateUuid();
       let settled = false, timer, cancelling = callbacks.signal.aborted;
@@ -47,7 +63,9 @@ export function createComfyProvider(invoke = nativeInvoke) {
           raw.set(input.rgba); raw.set(input.mask, input.rgba.length);
           const metadata = { requestId, config: input.config, width: input.modelWidth, height: input.modelHeight, seed: input.seed };
           callbacks.progress({ kind: "stage", stage: "Preparing" });
-          const promise = invoke("comfy_inpaint", raw, { headers: { "x-photosuite-inpaint": encodeURIComponent(JSON.stringify(metadata)) } });
+          const command = generative ? "comfy_generative" : "comfy_inpaint";
+          const body = generative ? { input: metadata, prompt: input.prompt } : metadata;
+          const promise = invoke(command, raw, { headers: { "x-photosuite-inpaint": encodeURIComponent(JSON.stringify(body)) } });
           timer = setTimeout(poll, 0);
           const bytes = await promise;
           if (cancelling) throw new JobError("cancellation", "AI Remove cancelled.");

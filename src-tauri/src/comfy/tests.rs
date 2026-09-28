@@ -108,7 +108,7 @@ fn active(input: &Input) -> Arc<Active> {
     })
 }
 // Reviewed v0.37.0 built-in signatures, independent of graph construction.
-fn capabilities() -> Value {
+pub(super) fn capabilities() -> Value {
     json!({
         "CheckpointLoaderSimple":{"output":["MODEL","CLIP","VAE"],"input":{"required":{"ckpt_name":[["acceptance.safetensors"]]}}},
         "LoadImage":{"output":["IMAGE","MASK"],"input":{"required":{"image":[[],{"image_upload":true}]}}},

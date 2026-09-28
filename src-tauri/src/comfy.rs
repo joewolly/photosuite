@@ -11,6 +11,7 @@ use std::{
     time::{Duration, Instant},
 };
 
+pub mod generative;
 pub mod upscale;
 
 pub const VERSION: &str = "0.37.4";
@@ -345,11 +346,25 @@ fn preflight(
     config: &Config,
     active: Option<&Active>,
 ) -> Result<Capability, String> {
+    preflight_masked(client, config, active, None)
+}
+fn preflight_masked(
+    client: &Client,
+    config: &Config,
+    active: Option<&Active>,
+    prompt: Option<&str>,
+) -> Result<Capability, String> {
     let base = validate_config(config)?;
+    if prompt.is_some() {
+        generative::validate_model(config)?;
+    }
     let stats = get(client, &format!("{base}/system_stats"))?;
     let version = stats["system"]["comfyui_version"].as_str().unwrap_or("");
     if !SUPPORTED_VERSIONS.contains(&version) {
         return Err("AI Remove supports ComfyUI 0.37.0 or 0.37.4; this service reports a different or missing version.".into());
+    }
+    if prompt.is_some() && version != VERSION {
+        return Err("Generative Fill requires reviewed ComfyUI 0.37.4.".into());
     }
     let mut info = serde_json::Map::new();
     for class in [
@@ -375,11 +390,19 @@ fn preflight(
         height: 512,
         seed: 0,
     };
-    check_schema(&Value::Object(info), &workflow(&input), &config.checkpoint)?;
+    check_schema(
+        &Value::Object(info),
+        &masked_workflow(&input, prompt),
+        &config.checkpoint,
+    )?;
     Ok(Capability {
         ready: true,
         version: version.into(),
-        workflow: WORKFLOW,
+        workflow: if prompt.is_some() {
+            generative::WORKFLOW
+        } else {
+            WORKFLOW
+        },
         model: config.checkpoint.clone(),
     })
 }
@@ -489,11 +512,31 @@ fn cancel_owned(client: &Client, base: &str, id: &str) {
     );
 }
 fn run(input: &Input, bytes: &[u8], active: &Active) -> Result<Vec<u8>, String> {
+    run_masked(input, bytes, active, None)
+}
+fn masked_workflow(input: &Input, prompt: Option<&str>) -> Value {
+    let mut graph = workflow(input);
+    if let Some(text) = prompt {
+        graph["4"]["inputs"]["text"] = json!(text);
+        graph["5"]["inputs"]["text"] = json!("");
+    }
+    graph
+}
+fn run_masked(
+    input: &Input,
+    bytes: &[u8],
+    active: &Active,
+    prompt: Option<&str>,
+) -> Result<Vec<u8>, String> {
+    if let Some(text) = prompt {
+        generative::validate_prompt(text)?;
+        generative::validate_model(&input.config)?;
+    }
     validate_input(input, bytes.len())?;
     let client = client()?;
     let base = validate_config(&input.config)?;
     active.check()?;
-    preflight(&client, &input.config, Some(active))?;
+    preflight_masked(&client, &input.config, Some(active), prompt)?;
     active.check()?;
     let (source, mask) = encode_inputs(input, bytes)?;
     active.stage("Uploading");
@@ -515,8 +558,12 @@ fn run(input: &Input, bytes: &[u8], active: &Active) -> Result<Vec<u8>, String> 
         &client,
         &base,
         &input.request_id,
-        workflow(input),
-        WORKFLOW,
+        masked_workflow(input, prompt),
+        if prompt.is_some() {
+            generative::WORKFLOW
+        } else {
+            WORKFLOW
+        },
         input.width,
         input.height,
         MAX_PNG,

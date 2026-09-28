@@ -1,3 +1,5 @@
+import { GenerativeSession } from "./generative-session.js";
+import { createGenerativeProvider } from "./comfy-provider.js";
 import { createUpscaleProvider } from "./upscale-provider.js";
 import { prepareUpscaleSource, createUpscaleAdapter } from "./upscale-target.js";
 /** Application-owned Quick Select sessions; providers never see this module. */
@@ -18,17 +20,19 @@ import { generateUuid } from "../../core/uid.js";
 
 function plainRect(rect) { return { x: rect.x, y: rect.y, width: rect.width, height: rect.height }; }
 export class SelectionJobs {
-  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider(), subjectProvider = createSubjectProvider(), promptedProvider = createPromptedProvider(), upscaleProvider = createUpscaleProvider()) {
+  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider(), subjectProvider = createSubjectProvider(), promptedProvider = createPromptedProvider(), upscaleProvider = createUpscaleProvider(), generativeProvider = createGenerativeProvider()) {
     this.controller = controller;
     this.promptedProvider = promptedProvider;
-    this.jobs = new ModernizationJobs({ "enhance.upscale": upscaleProvider, "quick-select": provider, "ai-remove": inpaintProvider, "segment.subject": subjectProvider, "segment.prompted": promptedProvider });
+    this.jobs = new ModernizationJobs({ "generate.fill": generativeProvider, "enhance.upscale": upscaleProvider, "quick-select": provider, "ai-remove": inpaintProvider, "segment.subject": subjectProvider, "segment.prompted": promptedProvider });
     this.sessions = new Map();
     this.labels = new Map();
     this.subjectModes = new Map();
     this.upscalePreviews = new Map();
     this.latestCheck = 0;
     this.replacing = false;
+    this.generative = new GenerativeSession(this);
     this.jobs.subscribe((job) => {
+      this.generative.observe(job);
       if (JOB_TERMINAL.has(job.state) && !this.replacing) {
         for (const [doc, session] of this.sessions) if (session.jobId === job.id) {
           if (session.kind === "prompted") this.releasePrompted(doc, session);
@@ -39,7 +43,7 @@ export class SelectionJobs {
     });
     if (mount) {
       this.el = document.createElement("div");
-      this.el.setAttribute("aria-label", "Selection and AI Remove jobs");
+      this.el.setAttribute("aria-label", "Selection and image jobs");
       Object.assign(this.el.style, { position: "absolute", bottom: "20px", left: "64px", zIndex: "20", padding: "8px", background: "#292929", color: "#eee", border: "1px solid #666", borderRadius: "5px", maxWidth: "640px" });
       controller.mainColumn.appendChild(this.el);
       this.render();
@@ -55,8 +59,9 @@ export class SelectionJobs {
     this.lastUpscaleMetrics = { jobId, sourceCaptureMs };
     this.labels.set(this.jobs.get(jobId).documentId, doc.name || "Untitled"); this.render(); return jobId;
   }
+  submitGenerative(doc, config, options) { return this.generative.start(doc, config, options); }
   submitAI(doc, config) {
-    if (this.jobs.list().some((job) => job.operation === "ai-remove" && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Remove result first.");
+    if (this.jobs.list().some((job) => ["ai-remove", "generate.fill"].includes(job.operation) && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Remove result first.");
     const layer = requireInpaintSource(doc);
     const { input, coverage } = prepareInpaintInput(layer, doc.selectionMask, doc.width, doc.height, config);
     const id = this.jobs.submit({ operation: "ai-remove", input, adapter: createInpaintAdapter(this.controller, doc, layer, input.rect, coverage) });
@@ -179,17 +184,19 @@ export class SelectionJobs {
     if (!this.el) return;
     const latest = new Map();
     for (const id of this.subjectModes.keys()) if (!this.jobs.get(id)) this.subjectModes.delete(id);
-    for (const job of this.jobs.list()) latest.set(job.documentId + job.operation, job);
+    for (const job of this.jobs.list()) if (job.operation !== "generate.fill") latest.set(job.documentId + job.operation, job);
     for (const id of this.labels.keys()) if (![...latest.values()].some((job) => job.documentId === id)) this.labels.delete(id);
     const live = [...latest.values()].filter((job) => !JOB_TERMINAL.has(job.state));
     const recent = [...latest.values()].filter((job) => JOB_TERMINAL.has(job.state));
     const remaining = 3 - live.length;
     const rows = [...live, ...(remaining ? recent.slice(-remaining) : [])];
-    const signature = JSON.stringify(rows);
+    const gen = this.generative.current;
+    const signature = JSON.stringify([rows, gen && [gen.ids.map(id => this.jobs.get(id)), gen.selected], this.generative.notice]);
     if (signature === this.rendered) return;
     this.rendered = signature;
     this.el.replaceChildren();
-    this.el.hidden = !rows.length;
+    this.el.hidden = !rows.length && !gen && !this.generative.notice;
+    this.renderGenerative();
     for (const job of rows) {
       const row = document.createElement("div");
       Object.assign(row.style, { display: "flex", alignItems: "center", gap: "8px", minHeight: "28px" });
@@ -220,4 +227,22 @@ export class SelectionJobs {
       }
     }
   }
+  renderGenerative() {
+    const session = this.generative.current, row = document.createElement("div");
+    Object.assign(row.style, { display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center", maxWidth: "620px" });
+    const status = document.createElement("span"); status.setAttribute("role", "status"); row.appendChild(status);
+    if (!session) { status.textContent = this.generative.notice; if (this.generative.notice) this.el.appendChild(row); return; }
+    const ready = this.generative.ready(), active = this.jobs.get(session.ids.at(-1));
+    status.textContent = `Generative Fill · ${session.doc.name || "Untitled"} · ${ready ? `Variation ${session.selected + 1}/${session.ids.length} · Seed ${session.seeds[session.selected]}` : `${active?.progress.stage || "Preparing"} · ${session.ids.length}/${session.settings.count}`}`;
+    const button = (label, fn) => { const el = document.createElement("button"); el.textContent = label; el.addEventListener("click", () => { try { fn(); } catch (error) { showToast(error.message); } }); row.appendChild(el); };
+    if (ready) {
+      for (let index = 0; index < session.ids.length; index++) button(String.fromCharCode(65 + index), () => this.generative.select(index));
+      button("Accept", () => this.generative.accept());
+      button("Discard", () => this.generative.release());
+      button("Regenerate", () => this.generative.regenerate());
+      button("Reuse seeds", () => this.generative.regenerate(true));
+    } else button("Cancel", () => this.generative.release("Cancelled. Regenerate session ended."));
+    this.el.appendChild(row);
+  }
+
 }

@@ -388,6 +388,9 @@ export function buildEditMenu() {
       name: "file.resourceManager",
       opensDialog: true
     }, {
+      name: "Generative Fill",
+      resolveRowState: doc => ({ enabled: !!doc?.selectionMask, labelOverride: "Generative Fill…" })
+    }, {
       name: "AI Remove",
       resolveRowState: function(doc) {
         return { enabled: !!doc?.selectionMask, labelOverride: "AI Remove (local service)…" };
@@ -556,6 +559,11 @@ export function buildEditMenu() {
       payload: {
         dispatchKind: UiCommand.dispatchAppDialogRouter,
         dialogRouteId: "resmgr"
+      }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: {
+        dispatchKind: UiCommand.generativeFill
       }
     }, {
       appEventType: EventType.uiDispatch,

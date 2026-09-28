@@ -201,3 +201,10 @@ All third-party libraries live in [`src/vendor/`](src/vendor/README.md) as pinne
 [AI Upscale setup and limits](docs/m5b/README.md) describes the optional local
 4× rendered-composite → new raster document workflow, model provenance,
 [quality caveats](docs/m5b/quality.md), and [native acceptance](docs/m5b/acceptance.md).
+
+### Selected-region Generative Fill
+
+[Generative Fill setup and limits](docs/m6/README.md) describes optional prompt-driven
+local editing with up to three sequential previews and session-only Regenerate.
+Accept adds one ordinary raster layer; pixels outside the selection remain exact.
+See [model quality limitations](docs/m6/quality.md) and [native acceptance](docs/m6/acceptance.md).
