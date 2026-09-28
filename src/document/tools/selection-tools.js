@@ -1,3 +1,4 @@
+import { beginQuickSelectGesture, moveQuickSelectGesture, finishQuickSelectGesture } from "./quick-select-gesture.js";
 // Marquee / wand / quick-select tools and the SelectTool base every selection
 // tool extends. Selection commits flow through action descriptors (see
 // selection-actions.js) so scripting, history, and direct tool use share one
@@ -816,38 +817,30 @@ export function QuickSelectTool() {
 function installQuickSelectToolPrototype() {
 
 QuickSelectTool.prototype.onMouseDown = function(doc, dispatcher, appData, keyboard, pointerState) {
-  if (doc.selectedLayerIndices.length == 0) {
-    showToast("Select a layer first.");
-    return;
-  }
-  // The stroke needs the segmentation in this same tick, so the analysis runs
-  // inline here rather than on the deferred path the hover uses.
-  syncQuickSelectOverlay(doc, quickSelectSession, dispatcher, true);
-  // The first stroke replaces the selection, and every stroke after it adds to
-  // what that one claimed: `qsmode` moves to add on mouse-up.
-  if (this.toolOptions.qsmode == 0) {
-    resetQuickSelectSelection(quickSelectSession);
-  } else if (hasDocumentSelectionDiverged(quickSelectSession, doc.selectionMask)) {
-    // The document's selection came from somewhere else — a step through
-    // history, a marquee, a deselect — so the scribbles this session is
-    // holding describe a selection the document has since replaced. This
-    // stroke starts over from what the document holds now.
-    adoptDocumentSelection(quickSelectSession, doc.selectionMask);
-    this.strokeData = null;
-  }
-  this.beginStroke(doc, appData, keyboard, pointerState, 1);
-  if (this.strokeData == null) return;
-  this.applyStroke(doc);
+  beginQuickSelectGesture(this, doc, dispatcher, appData, keyboard, pointerState);
 };
 QuickSelectTool.prototype.onMouseMove = function(doc, dispatcher, appData, keyboard, pointerState) {
   this.syncBrushScaleToZoom(doc, dispatcher, appData);
-  syncQuickSelectOverlay(doc, quickSelectSession, dispatcher);
   if (this.rightDragAnchor) this.updateBrushSizeFromRightDrag(doc, appData, pointerState);
-  if (this.strokeData == null) return;
-  if (!pointerState.isDown) return;
-  const strokeStatus = this.continueStroke(doc, appData, keyboard, pointerState);
-  if (strokeStatus != 1) this.applyStroke(doc);
+  moveQuickSelectGesture(this, doc, keyboard, pointerState);
 };
+QuickSelectTool.prototype.onMouseUp = function(doc, dispatcher) {
+  finishQuickSelectGesture(this, doc, dispatcher);
+};
+QuickSelectTool.prototype.onDocumentStateChange = function() {
+  // A transient preview is deliberately not doc.selectionMask. Keep add/subtract
+  // mode while the session awaits acceptance.
+};
+QuickSelectTool.prototype.disable = function(doc, dispatcher) {
+  this.selectionGesture = null;
+  dispatcher.modernizationSelections?.abandonGesture(doc);
+};
+QuickSelectTool.prototype.onKeyEvent = function(doc, dispatcher, appData, keyboard) {
+  const returnToAdd = this.usePenPressure && !keyboard.isPressed(KeyboardHandler.Alt) && this.toolOptions.qsmode === 2;
+  PaintTool.prototype.onKeyEvent.call(this, doc, dispatcher, appData, keyboard);
+  if (returnToAdd && dispatcher.modernizationSelections?.sessions.has(doc)) this.dispatchToolOptionUpdate({ qsmode: 1 }, dispatcher);
+};
+
 
 
 
@@ -946,4 +939,3 @@ RectSelectTool.prototype = Object.create(SelectTool.prototype);
 installRectSelectToolPrototype();
 EllipseSelectTool.prototype = Object.create(SelectTool.prototype);
 installEllipseSelectToolPrototype();
-

@@ -1,3 +1,4 @@
+import { SelectionJobs } from "../../features/modernization/selection-jobs.js";
 import { closeResultDocumentSession } from "../../features/results/result-targets.js";
 /**
  * Application shell controller — the top-level object that wires the whole editor
@@ -539,6 +540,7 @@ AppController.prototype.onDocumentTabClose = function(closeEvent) {
     docIndex = this.openDocs.indexOf(closeEvent.target.pluginDocument);
   }
   if (docIndex < 0) return;
+  this.modernizationSelections?.close(this.openDocs[docIndex]);
   closeResultDocumentSession(this.openDocs[docIndex]);
   this.openDocs.splice(docIndex, 1);
   if (this.openDocs.length == 0) {
@@ -605,7 +607,12 @@ AppController.prototype.onPointerEvent = function(pointerEvent) {
 
 // Per-frame hook driven by AppWindow's rAF loop: apply edge auto-pan while
 // dragging near the viewport edge, then run the update/composite pass.
+AppController.prototype.getSelectionJobs = function() {
+  return this.modernizationSelections ??= new SelectionJobs(this);
+};
+
 AppController.prototype.onAnimationFrame = function() {
+  this.modernizationSelections?.tick();
   maybeEdgeAutoPanDocument(this);
   this.update();
 };

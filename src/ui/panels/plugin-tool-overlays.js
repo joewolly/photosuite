@@ -80,6 +80,11 @@ function drawActiveMaskOverlays(panel, PluginToolPanel, pluginDocument) {
   }
   const appData = panel.appData;
   drewOverlay = panel.drawGuideAndOverlayGraphics(pluginDocument, panel.mainCanvasCtx, docView) || drewOverlay;
+  const jobPreview = pluginDocument.toolOverlayState.jobSelectionPreview;
+  if (jobPreview) {
+    panel.drawChannelMaskOverlay(jobPreview, docView, 1, 0, null);
+    drewOverlay = true;
+  }
   if (pluginDocument.selectionMask && appData.extras && appData.prefs.showSelectionEdges) {
     panel.drawChannelMaskOverlay(pluginDocument.selectionMask, docView, 0, 0, null);
     drewOverlay = true;
