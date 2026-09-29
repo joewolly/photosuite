@@ -1,0 +1,626 @@
+[
+  {
+    "id": "landscape-left",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 96,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "newWidth": 417,
+      "newHeight": 257,
+      "exteriorPixels": 24672,
+      "byteLength": 428676
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "originalCompositeSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "acceptedCompositeSha256": "e563e6ad3b93c01f372fbf53da5d241aa1f8078a2af9eb93aa0fb8ab7c2a383f",
+    "exteriorLayerSha256": "5753ef10e276f8fc7c9fae5e7473b8a3ef74a8f3f6760293d74aa7e5b8f5cce0",
+    "historyEntries": 2,
+    "geometrySha256": "763e3e88c4e126eed76d19b3c1e933491bc0672c544ff0d6ecafd88fa71aecae",
+    "files": [
+      {
+        "name": "landscape-left.psd",
+        "bytes": 65280
+      },
+      {
+        "name": "landscape-left.psb",
+        "bytes": 70974
+      }
+    ],
+    "timings": {
+      "preparationMs": 10.943292,
+      "cropContainmentMs": 2.3119999999999976,
+      "acceptMs": 20.060290999999992,
+      "undoMs": 2.4747090000000185,
+      "redoMs": 4.68195799999998
+    }
+  },
+  {
+    "id": "landscape-right",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 0,
+      "top": 0,
+      "right": 96,
+      "bottom": 0,
+      "newWidth": 417,
+      "newHeight": 257,
+      "exteriorPixels": 24672,
+      "byteLength": 428676
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "originalCompositeSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "acceptedCompositeSha256": "f512ee33d8279314ad1f59824d596709d3628f2356947876c7cccc6aec737f63",
+    "exteriorLayerSha256": "00f4a0e06db3a89e6ec9a2606b5892f9d14190dfc5ab6bfc07eecc6d601b09d8",
+    "historyEntries": 2,
+    "geometrySha256": "64128a9ca8b1c247a386d4588e6bebec98b645673c5e38da18c047af3bcdf370",
+    "files": [
+      {
+        "name": "landscape-right.psd",
+        "bytes": 57183
+      },
+      {
+        "name": "landscape-right.psb",
+        "bytes": 62877
+      }
+    ],
+    "timings": {
+      "preparationMs": 12.014332999999993,
+      "cropContainmentMs": 1.6258339999999976,
+      "acceptMs": 16.872916999999973,
+      "undoMs": 1.9008750000000134,
+      "redoMs": 7.888708000000008
+    }
+  },
+  {
+    "id": "sky-top",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 0,
+      "top": 96,
+      "right": 0,
+      "bottom": 0,
+      "newWidth": 321,
+      "newHeight": 353,
+      "exteriorPixels": 30816,
+      "byteLength": 453252
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "originalCompositeSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "acceptedCompositeSha256": "886bfb6cb9d4c9413bae539c163d66f48cd53343c6172979563021a3c9155ce6",
+    "exteriorLayerSha256": "f59ea6020668ec4e87a14521f01f76d223dc67599bebb8c0817a080bec10b204",
+    "historyEntries": 2,
+    "geometrySha256": "eca07037066981295b02f4f427687617dc5ebb2c6323bf778c10c17cc88608cb",
+    "files": [
+      {
+        "name": "sky-top.psd",
+        "bytes": 58040
+      },
+      {
+        "name": "sky-top.psb",
+        "bytes": 65078
+      }
+    ],
+    "timings": {
+      "preparationMs": 13.627499999999998,
+      "cropContainmentMs": 5.623540999999989,
+      "acceptMs": 17.46754200000001,
+      "undoMs": 1.9347080000000005,
+      "redoMs": 4.139165999999989
+    }
+  },
+  {
+    "id": "ground-bottom",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 96,
+      "newWidth": 321,
+      "newHeight": 353,
+      "exteriorPixels": 30816,
+      "byteLength": 453252
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "originalCompositeSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "acceptedCompositeSha256": "3a57a73bb070857a837277a88ee2a54be5b1f9d447d12309ab95b3e0aac63a3f",
+    "exteriorLayerSha256": "e4e9a8330a6b6d35309c4043630f0fda123e53f217918ba82fa5c220932871c8",
+    "historyEntries": 2,
+    "geometrySha256": "1c04c344932e4e4bf75759d3ac9462e31906a19873d4c4f6499848b308c430d2",
+    "files": [
+      {
+        "name": "ground-bottom.psd",
+        "bytes": 44256
+      },
+      {
+        "name": "ground-bottom.psb",
+        "bytes": 51294
+      }
+    ],
+    "timings": {
+      "preparationMs": 11.514167000000043,
+      "cropContainmentMs": 1.8191249999999854,
+      "acceptMs": 15.459292000000005,
+      "undoMs": 1.8849579999999833,
+      "redoMs": 4.4591669999999795
+    }
+  },
+  {
+    "id": "portrait-headroom",
+    "geometry": {
+      "width": 320,
+      "height": 320,
+      "left": 0,
+      "top": 80,
+      "right": 0,
+      "bottom": 0,
+      "newWidth": 320,
+      "newHeight": 400,
+      "exteriorPixels": 25600,
+      "byteLength": 512000
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "f14fb66d993375d1c7b26a8e8ba08428f1536d8b190edeb973a0495db1846b05",
+    "originalCompositeSha256": "f14fb66d993375d1c7b26a8e8ba08428f1536d8b190edeb973a0495db1846b05",
+    "acceptedCompositeSha256": "76364a4b01707677b8aa2caeac84bd86659415b9ba5fd59b8b34a9b41b678ac2",
+    "exteriorLayerSha256": "4bb4b62f53e58cf3c255d24abdbe82117917ce47ea4e00670e6b8c3fe3a6b15e",
+    "historyEntries": 2,
+    "geometrySha256": "29549798647d0b1ff783b544d187d4076f9da654912243eb2903a9295fd10947",
+    "files": [
+      {
+        "name": "portrait-headroom.psd",
+        "bytes": 716388
+      },
+      {
+        "name": "portrait-headroom.psb",
+        "bytes": 724588
+      }
+    ],
+    "timings": {
+      "preparationMs": 13.182583000000022,
+      "cropContainmentMs": 1.9015420000000063,
+      "acceptMs": 24.777499999999975,
+      "undoMs": 4.891458999999998,
+      "redoMs": 4.869958999999994
+    }
+  },
+  {
+    "id": "full-body-surroundings",
+    "geometry": {
+      "width": 384,
+      "height": 256,
+      "left": 64,
+      "top": 0,
+      "right": 64,
+      "bottom": 48,
+      "newWidth": 512,
+      "newHeight": 304,
+      "exteriorPixels": 57344,
+      "byteLength": 622592
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "215da0c45ead52b533e2b16a0509528c17649f19da2aba5718955bd8605031e8",
+    "originalCompositeSha256": "215da0c45ead52b533e2b16a0509528c17649f19da2aba5718955bd8605031e8",
+    "acceptedCompositeSha256": "de7548b8cd850e71444b4778b5cbd6adf93a63ce79bace201c4900e4a46817f1",
+    "exteriorLayerSha256": "65610ee68c89cf0303a12f4661ecd9afceab8a1afddc9bb9899db53cfad54030",
+    "historyEntries": 2,
+    "geometrySha256": "bf18753088a17a9d1d4d358064d13996e40775dbd7ecde936159c8d748680b4b",
+    "files": [
+      {
+        "name": "full-body-surroundings.psd",
+        "bytes": 905958
+      },
+      {
+        "name": "full-body-surroundings.psb",
+        "bytes": 912302
+      }
+    ],
+    "timings": {
+      "preparationMs": 14.375374999999963,
+      "cropContainmentMs": 2.010500000000036,
+      "acceptMs": 29.04516600000005,
+      "undoMs": 2.8761670000000095,
+      "redoMs": 6.064707999999996
+    }
+  },
+  {
+    "id": "architecture",
+    "geometry": {
+      "width": 384,
+      "height": 256,
+      "left": 0,
+      "top": 0,
+      "right": 96,
+      "bottom": 0,
+      "newWidth": 480,
+      "newHeight": 256,
+      "exteriorPixels": 24576,
+      "byteLength": 491520
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "215da0c45ead52b533e2b16a0509528c17649f19da2aba5718955bd8605031e8",
+    "originalCompositeSha256": "215da0c45ead52b533e2b16a0509528c17649f19da2aba5718955bd8605031e8",
+    "acceptedCompositeSha256": "073efbf96a936aa77ad37af87ea735ad71b99353949c59cdd303f45eead2da0b",
+    "exteriorLayerSha256": "63aef6fdfa1cbf96b86227c5137b24cc5054288596450e42dcf6014d02cea34b",
+    "historyEntries": 2,
+    "geometrySha256": "c68f5fce906722c24c23ed975fc50227c194cca479ffab254ca38ae871ae274c",
+    "files": [
+      {
+        "name": "architecture.psd",
+        "bytes": 737370
+      },
+      {
+        "name": "architecture.psb",
+        "bytes": 743042
+      }
+    ],
+    "timings": {
+      "preparationMs": 13.906582999999955,
+      "cropContainmentMs": 2.020999999999958,
+      "acceptMs": 21.905834000000027,
+      "undoMs": 2.2657090000000153,
+      "redoMs": 8.257916000000023
+    }
+  },
+  {
+    "id": "repeated-texture",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 96,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "newWidth": 417,
+      "newHeight": 257,
+      "exteriorPixels": 24672,
+      "byteLength": 428676
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "d846845dab1d65f70e8c9585ae3f2010448e7468c3efadfa83698bf892c3f173",
+    "originalCompositeSha256": "d846845dab1d65f70e8c9585ae3f2010448e7468c3efadfa83698bf892c3f173",
+    "acceptedCompositeSha256": "a82c758909d30a13a0495b2a2ab7f978ac9fea3b07a9e1b3de1a1f296c7446e0",
+    "exteriorLayerSha256": "713eb38be6a07b57e4c56a173a449aeb1b82bec0b5d52b8710c6e089bd4915d0",
+    "historyEntries": 2,
+    "geometrySha256": "763e3e88c4e126eed76d19b3c1e933491bc0672c544ff0d6ecafd88fa71aecae",
+    "files": [
+      {
+        "name": "repeated-texture.psd",
+        "bytes": 124847
+      },
+      {
+        "name": "repeated-texture.psb",
+        "bytes": 130541
+      }
+    ],
+    "timings": {
+      "preparationMs": 11.004166000000055,
+      "cropContainmentMs": 1.7398330000000897,
+      "acceptMs": 15.081833999999958,
+      "undoMs": 1.9003339999999298,
+      "redoMs": 5.859916000000112
+    }
+  },
+  {
+    "id": "flat-background",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 0,
+      "top": 0,
+      "right": 96,
+      "bottom": 0,
+      "newWidth": 417,
+      "newHeight": 257,
+      "exteriorPixels": 24672,
+      "byteLength": 428676
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+    "originalCompositeSha256": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+    "acceptedCompositeSha256": "bc3ac98e7f1b708bc9ffc425109b3ef7e007fe79544ff49403bc34c80676029e",
+    "exteriorLayerSha256": "1a526a1beab86c61ae8a05bb03c3942555636f199da873d69ba6aadcd7c10ab7",
+    "historyEntries": 2,
+    "geometrySha256": "64128a9ca8b1c247a386d4588e6bebec98b645673c5e38da18c047af3bcdf370",
+    "files": [
+      {
+        "name": "flat-background.psd",
+        "bytes": 38469
+      },
+      {
+        "name": "flat-background.psb",
+        "bytes": 44163
+      }
+    ],
+    "timings": {
+      "preparationMs": 11.450791999999979,
+      "cropContainmentMs": 1.6670420000000377,
+      "acceptMs": 13.33883400000002,
+      "undoMs": 1.8680839999999534,
+      "redoMs": 4.796374999999898
+    }
+  },
+  {
+    "id": "perspective-lines",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 96,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "newWidth": 417,
+      "newHeight": 257,
+      "exteriorPixels": 24672,
+      "byteLength": 428676
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "c7873a3dc42f243d7fd7044fa560d6a4118039b6051e5eab44fee52ca0c896bf",
+    "originalCompositeSha256": "c7873a3dc42f243d7fd7044fa560d6a4118039b6051e5eab44fee52ca0c896bf",
+    "acceptedCompositeSha256": "0a40f12145d5a391eca3a9f01559b24c307214c1cee38e93e82e3a2d0b660e4d",
+    "exteriorLayerSha256": "436d43afe5689dba022932445a9105740a1998ecf32805f167aa7910476dda06",
+    "historyEntries": 2,
+    "geometrySha256": "763e3e88c4e126eed76d19b3c1e933491bc0672c544ff0d6ecafd88fa71aecae",
+    "files": [
+      {
+        "name": "perspective-lines.psd",
+        "bytes": 113606
+      },
+      {
+        "name": "perspective-lines.psb",
+        "bytes": 119300
+      }
+    ],
+    "timings": {
+      "preparationMs": 8.72950000000003,
+      "cropContainmentMs": 1.6361249999999927,
+      "acceptMs": 17.702540999999997,
+      "undoMs": 5.1869159999999965,
+      "redoMs": 9.176624999999945
+    }
+  },
+  {
+    "id": "edge-subject",
+    "geometry": {
+      "width": 384,
+      "height": 255,
+      "left": 0,
+      "top": 0,
+      "right": 96,
+      "bottom": 0,
+      "newWidth": 480,
+      "newHeight": 255,
+      "exteriorPixels": 24480,
+      "byteLength": 489600
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "ff9080e7c479d1e3f08b99cd7f97556f3adc79da71506fb2b00ac83417c230b7",
+    "originalCompositeSha256": "ff9080e7c479d1e3f08b99cd7f97556f3adc79da71506fb2b00ac83417c230b7",
+    "acceptedCompositeSha256": "5dad121066e0ef75dfdf1fd25e1bcccadce99cba596a1347c8c3c6507cfa5007",
+    "exteriorLayerSha256": "73c0c4fa5bdaa7772cdb8310581ad009f9bfa7459fe1f66eb7834ab5a13cfbcf",
+    "historyEntries": 2,
+    "geometrySha256": "2c8cd00b79ca4167fda198e9411095529022fe030c5abae4ad5424844705ea91",
+    "files": [
+      {
+        "name": "edge-subject.psd",
+        "bytes": 656852
+      },
+      {
+        "name": "edge-subject.psb",
+        "bytes": 662502
+      }
+    ],
+    "timings": {
+      "preparationMs": 8.51150000000007,
+      "cropContainmentMs": 2.015333000000055,
+      "acceptMs": 16.14933300000007,
+      "undoMs": 2.3190419999999676,
+      "redoMs": 4.757542000000058
+    }
+  },
+  {
+    "id": "transparent",
+    "geometry": {
+      "width": 256,
+      "height": 320,
+      "left": 0,
+      "top": 0,
+      "right": 96,
+      "bottom": 0,
+      "newWidth": 352,
+      "newHeight": 320,
+      "exteriorPixels": 30720,
+      "byteLength": 450560
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "574f6c6df99d25070f3b77855adb6b54b0309ebebc5eec00b3cc1ea1fc990c1a",
+    "originalCompositeSha256": "e38845ee7949d5c2f81ed9a88fd6958420ef3ada88f7d9b4c990fcef40940892",
+    "acceptedCompositeSha256": "b9df11c6bc5aad9417fa520282b4836b4a1afa4e3a2a12d7961f4ed2e588a3b7",
+    "exteriorLayerSha256": "c1213a7e763485daff4e8e684d2d020f056517257214ecf47e6d9363f98a5139",
+    "historyEntries": 2,
+    "geometrySha256": "650a62283972f8a60a4a8d05107715cc34d0d1adc2b44b12fdb8b3599feec81f",
+    "files": [
+      {
+        "name": "transparent.psd",
+        "bytes": 59309
+      },
+      {
+        "name": "transparent.psb",
+        "bytes": 67029
+      }
+    ],
+    "timings": {
+      "preparationMs": 8.80483300000003,
+      "cropContainmentMs": 1.6469159999999192,
+      "acceptMs": 13.598124999999982,
+      "undoMs": 1.8257919999999785,
+      "redoMs": 4.305167000000097
+    }
+  },
+  {
+    "id": "two-side",
+    "geometry": {
+      "width": 384,
+      "height": 256,
+      "left": 64,
+      "top": 0,
+      "right": 64,
+      "bottom": 0,
+      "newWidth": 512,
+      "newHeight": 256,
+      "exteriorPixels": 32768,
+      "byteLength": 524288
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+    "originalCompositeSha256": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+    "acceptedCompositeSha256": "cf5ce6747828a84a9e7558a2335423af39cf1f654063988dcfa79ea3fc08297e",
+    "exteriorLayerSha256": "fcbc6f74a59a15044bec1793f2eb6319cc923464e72db28015a86f87c0f54f59",
+    "historyEntries": 2,
+    "geometrySha256": "22b6ee86e067aa38ed46e56eb4e9d04fb322ce1548899cdba6459d501395b055",
+    "files": [
+      {
+        "name": "two-side.psd",
+        "bytes": 789301
+      },
+      {
+        "name": "two-side.psb",
+        "bytes": 794973
+      }
+    ],
+    "timings": {
+      "preparationMs": 9.426207999999974,
+      "cropContainmentMs": 1.5185000000000173,
+      "acceptMs": 15.713082999999983,
+      "undoMs": 2.348124999999982,
+      "redoMs": 4.671040999999946
+    }
+  },
+  {
+    "id": "four-side",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 48,
+      "top": 48,
+      "right": 48,
+      "bottom": 48,
+      "newWidth": 417,
+      "newHeight": 353,
+      "exteriorPixels": 64704,
+      "byteLength": 588804
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "originalCompositeSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "acceptedCompositeSha256": "6a64e7d6f3ffc8ec140f6e6512131266bb215644d91ff17a344e3a199092c26c",
+    "exteriorLayerSha256": "a01be88bf49082bda3b287399c3a456581c8e6aa9938091bbe4d573b87c38e3a",
+    "historyEntries": 2,
+    "geometrySha256": "85a1f1f0863d97f700b6c93fc3ba01b8dc9b33e7dce3859b01c07f6a850c5234",
+    "files": [
+      {
+        "name": "four-side.psd",
+        "bytes": 98172
+      },
+      {
+        "name": "four-side.psb",
+        "bytes": 105210
+      }
+    ],
+    "timings": {
+      "preparationMs": 9.302000000000021,
+      "cropContainmentMs": 1.379583000000025,
+      "acceptMs": 14.213083000000097,
+      "undoMs": 1.7970830000000433,
+      "redoMs": 5.016417000000047
+    }
+  },
+  {
+    "id": "empty-prompt",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 0,
+      "top": 0,
+      "right": 96,
+      "bottom": 0,
+      "newWidth": 417,
+      "newHeight": 257,
+      "exteriorPixels": 24672,
+      "byteLength": 428676
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "originalCompositeSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "acceptedCompositeSha256": "df6b307b7796e4e05fc250e04ce3eb1813d81c0da377d53f9e00f039aa102b15",
+    "exteriorLayerSha256": "3d0f8a38863b4dc8583179e351ab10ef02bba5b10a8082059439fa4daf11c86e",
+    "historyEntries": 2,
+    "geometrySha256": "64128a9ca8b1c247a386d4588e6bebec98b645673c5e38da18c047af3bcdf370",
+    "files": [
+      {
+        "name": "empty-prompt.psd",
+        "bytes": 56321
+      },
+      {
+        "name": "empty-prompt.psb",
+        "bytes": 62015
+      }
+    ],
+    "timings": {
+      "preparationMs": 9.584875000000011,
+      "cropContainmentMs": 1.308999999999969,
+      "acceptMs": 12.891457999999943,
+      "undoMs": 1.8867909999999029,
+      "redoMs": 3.9939580000000205
+    }
+  },
+  {
+    "id": "explicit-prompt",
+    "geometry": {
+      "width": 321,
+      "height": 257,
+      "left": 0,
+      "top": 96,
+      "right": 0,
+      "bottom": 0,
+      "newWidth": 321,
+      "newHeight": 353,
+      "exteriorPixels": 30816,
+      "byteLength": 453252
+    },
+    "originalChangedBytes": 0,
+    "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "originalCompositeSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+    "acceptedCompositeSha256": "1cfcbdb76202830c648f76eac893e51c156502cc8e99fb552847a58f658ca9da",
+    "exteriorLayerSha256": "5d02a82462198ec4dca0239705fb2e8afb31680c1e7c4fdddd7d368f35ad6624",
+    "historyEntries": 2,
+    "geometrySha256": "eca07037066981295b02f4f427687617dc5ebb2c6323bf778c10c17cc88608cb",
+    "files": [
+      {
+        "name": "explicit-prompt.psd",
+        "bytes": 60284
+      },
+      {
+        "name": "explicit-prompt.psb",
+        "bytes": 67322
+      }
+    ],
+    "timings": {
+      "preparationMs": 7.973999999999933,
+      "cropContainmentMs": 1.2650409999999965,
+      "acceptMs": 12.884416999999985,
+      "undoMs": 2.0191670000000386,
+      "redoMs": 4.092624999999998
+    }
+  }
+]

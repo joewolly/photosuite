@@ -198,3 +198,11 @@ Install plugins the way you would run any script on your own machine.
 
 [`examples/plugins/hello-panel/`](../examples/plugins/hello-panel/) — manifest,
 themed icon, host messaging, and a button that adds a text layer.
+
+## Exact editing transactions (M0)
+
+The additive version 1 API provides capability discovery, runtime document/layer
+identities, exact RGBA8 insertion, selection replacement and raster-mask
+creation/intersection. Read [Exact result transactions](EXACT-RESULT-TRANSACTIONS.md)
+for negotiation, limits, stale-target behavior and payload examples. The Hello
+World example retains its script button and adds an exact 3×5 insertion button.

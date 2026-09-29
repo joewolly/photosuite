@@ -146,7 +146,7 @@ function readLayerTag_lyid(ctx) {
   const { data, pos, targetAdd, context } = ctx;
   let { chunkSize } = ctx;
   const tag = ctx.tag;
-  targetAdd[tag] = BinaryUtils.readUint32BE(data, pos);
+  targetAdd[tag] = chunkSize === 4 && !Object.hasOwn(targetAdd, tag) ? BinaryUtils.readUint32BE(data, pos) : null;
 }
 
 function readLayerTag_lsct(ctx) {
@@ -577,7 +577,8 @@ function readLayerTag_Patt(ctx) {
 function readLayerTag_SoLd(ctx) {
   const { data, pos, targetAdd, context } = ctx;
   let { chunkSize } = ctx;
-  const tag = ctx.tag;
+  // The PSD tag is SoLd; editor operations use the descriptive placedData key.
+  const tag = "placedData";
   var soLdSig = BinaryUtils.readString(data, pos, 4),
     soLdReadSize = BinaryUtils.readUint32BE(data, pos + 4),
     soLdReserved = BinaryUtils.readUint32BE(data, pos + 8);
@@ -738,10 +739,16 @@ function readLayerTag_FEid(ctx) {
   }
 }
 
+/**
+ * `Lr16` / `Lr32`: where a 16- or 32-bit document keeps its layers.
+ *
+ * Those files leave the ordinary Layer Info section empty and put the same
+ * structure — layer count, then the records — in this block instead. Handling
+ * only `Lr16` meant a 32-bit file parsed as having no layers at all, and the
+ * reader fell back to synthesising one Background from the composite image.
+ */
 function readLayerTag_Lr16(ctx) {
-  const { data, pos, targetAdd, context } = ctx;
-  let { chunkSize } = ctx;
-  const tag = ctx.tag;
+  const { data, pos, context } = ctx;
   PSDResourceParser.layerRecordHandler(context, data, pos);
 }
 
@@ -807,6 +814,7 @@ const READ_LAYER_TAG_HANDLERS = {
   "lnk3__": readLayerTag_lnk2_lnkDx_lnk3x,
   "FEid": readLayerTag_FEid,
   "Lr16": readLayerTag_Lr16,
+  "Lr32": readLayerTag_Lr16,
 };
 
 function readLayerInfoTag(ctx) {
@@ -815,9 +823,7 @@ function readLayerInfoTag(ctx) {
     handler(ctx);
     return;
   }
-  if (ctx.tag === "Lr16") {
-    PSDResourceParser.layerRecordHandler(ctx.context, ctx.data, ctx.pos);
-  }
+
 }
 
 // ---------------------------------------------------------------------------
@@ -1371,7 +1377,7 @@ function writeLayerTag_SoLd(ctx) {
   BinaryUtils.writeAscii(buf, pos, "soLD");
   BinaryUtils.writeSize(buf, pos + 4, 4);
   BinaryUtils.writeSize(buf, pos + 8, 16);
-  writtenSize = DescriptorCodec.writeDescriptor(buf, sourceAdd[tag], pos + 12) + 12;
+  writtenSize = DescriptorCodec.writeDescriptor(buf, sourceAdd.placedData ?? sourceAdd[tag], pos + 12) + 12;
   return writtenSize;
 }
 
@@ -1651,7 +1657,8 @@ function writeAdditionalLayerInfo(buf, pos, sourceAdd, isPSB, context) {
       delete sourceAdd[tag];
     }
   }
-  for (const tag in sourceAdd) {
+  for (const sourceTag in sourceAdd) {
+    const tag = sourceTag === "placedData" ? "SoLd" : sourceTag;
     const usesExtendedSize = usesPsbExtendedSize(tag, isPSB);
     BinaryUtils.writeAscii(buf, pos, usesExtendedSize ? "8B64" : "8BIM");
     pos += 4;

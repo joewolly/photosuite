@@ -45,6 +45,7 @@ export function buildSelectMenu(includeFreeTransformShortcut) {
         },
         separatorAfter: true
       },
+        { name: "Select Subject", resolveRowState: (doc) => ({ enabled: !!doc }) },
         // Edge refinement, AI cutout, and colour-range dialogs.
         {
         name: "select.refineEdge",
@@ -139,6 +140,9 @@ export function buildSelectMenu(includeFreeTransformShortcut) {
         payload: {
           uf: "inverse"
         }
+      }, {
+        appEventType: EventType.uiDispatch,
+        payload: { dispatchKind: UiCommand.selectSubject }
       }, {
         appEventType: EventType.uiDispatch,
         payload: {

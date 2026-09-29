@@ -1,0 +1,30 @@
+{
+  "appBytes": 279362427,
+  "resources": {
+    "LICENSE": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b",
+    "THIRD-PARTY-NOTICES.md": "b36e9c79f9e14389d6196cd7cf7c73adc430b3bdaeadc29cc6d895f7a6e978d9"
+  },
+  "frontendDist": "../src",
+  "outsideFrontendNotBundled": [
+    "docs",
+    "tests",
+    "scripts"
+  ],
+  "models": [
+    "src/vendor/subject-model/birefnet-lite-512-fp16.onnx",
+    "src/vendor/prompted-model/decoder.onnx",
+    "src/vendor/prompted-model/encoder.onnx"
+  ],
+  "distinctModelHashes": 3,
+  "ortRuntimes": [
+    "src/vendor/onnxruntime/ort-wasm-simd-threaded.wasm",
+    "src/vendor/onnxruntime/ort.wasm.min.mjs",
+    "src/vendor/onnxruntime/ort-wasm-simd-threaded.mjs"
+  ],
+  "signing": {
+    "signature": "adhoc, linker-signed",
+    "teamIdentifier": null,
+    "sealedResources": false,
+    "developerIdOrNotarization": false
+  }
+}

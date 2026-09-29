@@ -1,0 +1,11 @@
+{
+  "baselineM7": {
+    "path": "/tmp/photosuite-m7-target/debug/bundle/macos/PhotoSuite.app",
+    "bytes": 279299878
+  },
+  "m8": {
+    "path": "/tmp/photosuite-m8-target/debug/bundle/macos/PhotoSuite.app",
+    "bytes": 279322454
+  },
+  "deltaBytes": 22576
+}

@@ -1,0 +1,453 @@
+{
+  "parser": "psd-tools 1.21.0",
+  "files": [
+    {
+      "file": "direct-right.psd",
+      "canvas": [
+        417,
+        257
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        257
+      ],
+      "rgbaSha256": "00f4a0e06db3a89e6ec9a2606b5892f9d14190dfc5ab6bfc07eecc6d601b09d8",
+      "exact": true
+    },
+    {
+      "file": "direct-right.psb",
+      "canvas": [
+        417,
+        257
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        257
+      ],
+      "rgbaSha256": "00f4a0e06db3a89e6ec9a2606b5892f9d14190dfc5ab6bfc07eecc6d601b09d8",
+      "exact": true
+    },
+    {
+      "file": "landscape-left.psd",
+      "canvas": [
+        417,
+        257
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        257
+      ],
+      "rgbaSha256": "5753ef10e276f8fc7c9fae5e7473b8a3ef74a8f3f6760293d74aa7e5b8f5cce0",
+      "exact": true
+    },
+    {
+      "file": "landscape-left.psb",
+      "canvas": [
+        417,
+        257
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        257
+      ],
+      "rgbaSha256": "5753ef10e276f8fc7c9fae5e7473b8a3ef74a8f3f6760293d74aa7e5b8f5cce0",
+      "exact": true
+    },
+    {
+      "file": "sky-top.psd",
+      "canvas": [
+        321,
+        353
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        321,
+        353
+      ],
+      "rgbaSha256": "f59ea6020668ec4e87a14521f01f76d223dc67599bebb8c0817a080bec10b204",
+      "exact": true
+    },
+    {
+      "file": "sky-top.psb",
+      "canvas": [
+        321,
+        353
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        321,
+        353
+      ],
+      "rgbaSha256": "f59ea6020668ec4e87a14521f01f76d223dc67599bebb8c0817a080bec10b204",
+      "exact": true
+    },
+    {
+      "file": "ground-bottom.psd",
+      "canvas": [
+        321,
+        353
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        321,
+        353
+      ],
+      "rgbaSha256": "e4e9a8330a6b6d35309c4043630f0fda123e53f217918ba82fa5c220932871c8",
+      "exact": true
+    },
+    {
+      "file": "ground-bottom.psb",
+      "canvas": [
+        321,
+        353
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        321,
+        353
+      ],
+      "rgbaSha256": "e4e9a8330a6b6d35309c4043630f0fda123e53f217918ba82fa5c220932871c8",
+      "exact": true
+    },
+    {
+      "file": "two-side.psd",
+      "canvas": [
+        512,
+        256
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        512,
+        256
+      ],
+      "rgbaSha256": "014fc190106dacca8f57380c4716786b711a8e621c19721db873cdacb64b460e",
+      "exact": true
+    },
+    {
+      "file": "two-side.psb",
+      "canvas": [
+        512,
+        256
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        512,
+        256
+      ],
+      "rgbaSha256": "014fc190106dacca8f57380c4716786b711a8e621c19721db873cdacb64b460e",
+      "exact": true
+    },
+    {
+      "file": "four-side.psd",
+      "canvas": [
+        417,
+        353
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        353
+      ],
+      "rgbaSha256": "a01be88bf49082bda3b287399c3a456581c8e6aa9938091bbe4d573b87c38e3a",
+      "exact": true
+    },
+    {
+      "file": "four-side.psb",
+      "canvas": [
+        417,
+        353
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        353
+      ],
+      "rgbaSha256": "a01be88bf49082bda3b287399c3a456581c8e6aa9938091bbe4d573b87c38e3a",
+      "exact": true
+    },
+    {
+      "file": "transparent.psd",
+      "canvas": [
+        352,
+        320
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        352,
+        320
+      ],
+      "rgbaSha256": "c1213a7e763485daff4e8e684d2d020f056517257214ecf47e6d9363f98a5139",
+      "exact": true
+    },
+    {
+      "file": "transparent.psb",
+      "canvas": [
+        352,
+        320
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        352,
+        320
+      ],
+      "rgbaSha256": "c1213a7e763485daff4e8e684d2d020f056517257214ecf47e6d9363f98a5139",
+      "exact": true
+    },
+    {
+      "file": "empty-prompt.psd",
+      "canvas": [
+        417,
+        257
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        257
+      ],
+      "rgbaSha256": "3d0f8a38863b4dc8583179e351ab10ef02bba5b10a8082059439fa4daf11c86e",
+      "exact": true
+    },
+    {
+      "file": "empty-prompt.psb",
+      "canvas": [
+        417,
+        257
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        257
+      ],
+      "rgbaSha256": "3d0f8a38863b4dc8583179e351ab10ef02bba5b10a8082059439fa4daf11c86e",
+      "exact": true
+    },
+    {
+      "file": "group-mask-guides.psd",
+      "canvas": [
+        369,
+        289
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        369,
+        289
+      ],
+      "rgbaSha256": "4d0752c1d1ecedb71ef63942592e2a00c0df2fbb3939e9599bde4a49e3d871a6",
+      "exact": true
+    },
+    {
+      "file": "group-mask-guides.psb",
+      "canvas": [
+        369,
+        289
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        369,
+        289
+      ],
+      "rgbaSha256": "4d0752c1d1ecedb71ef63942592e2a00c0df2fbb3939e9599bde4a49e3d871a6",
+      "exact": true
+    },
+    {
+      "file": "tab-source.psd",
+      "canvas": [
+        417,
+        257
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        257
+      ],
+      "rgbaSha256": "6bfd3baeb378d9e5dd18967418d214d92028eed6d2a8cae0c78c954ee27ce8c3",
+      "exact": true
+    },
+    {
+      "file": "tab-source.psb",
+      "canvas": [
+        417,
+        257
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        417,
+        257
+      ],
+      "rgbaSha256": "6bfd3baeb378d9e5dd18967418d214d92028eed6d2a8cae0c78c954ee27ce8c3",
+      "exact": true
+    },
+    {
+      "file": "generate-fill.psd",
+      "canvas": [
+        384,
+        256
+      ],
+      "kind": "pixel",
+      "bounds": [
+        86,
+        36,
+        278,
+        212
+      ],
+      "rgbaSha256": "1688391e9bc83419ebf61b3ee4cf7873750f89691f8f20e97f9860e5d3e146b4",
+      "exact": true
+    },
+    {
+      "file": "generate-fill.psb",
+      "canvas": [
+        384,
+        256
+      ],
+      "kind": "pixel",
+      "bounds": [
+        86,
+        36,
+        278,
+        212
+      ],
+      "rgbaSha256": "1688391e9bc83419ebf61b3ee4cf7873750f89691f8f20e97f9860e5d3e146b4",
+      "exact": true
+    },
+    {
+      "file": "ai-remove.psd",
+      "canvas": [
+        384,
+        256
+      ],
+      "kind": "pixel",
+      "bounds": [
+        86,
+        36,
+        278,
+        212
+      ],
+      "rgbaSha256": "f308100002fe3d9d79ab64966bf9d190583514dfd888873c155d7b79a48dc4e9",
+      "exact": true
+    },
+    {
+      "file": "ai-remove.psb",
+      "canvas": [
+        384,
+        256
+      ],
+      "kind": "pixel",
+      "bounds": [
+        86,
+        36,
+        278,
+        212
+      ],
+      "rgbaSha256": "f308100002fe3d9d79ab64966bf9d190583514dfd888873c155d7b79a48dc4e9",
+      "exact": true
+    },
+    {
+      "file": "limit.psd",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        1024,
+        1024
+      ],
+      "rgbaSha256": "d00e7639a892ae5978b35fde775aa216e3e79d1c1033cc3a345cd9e308379655",
+      "exact": true
+    },
+    {
+      "file": "limit.psb",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        1024,
+        1024
+      ],
+      "rgbaSha256": "d00e7639a892ae5978b35fde775aa216e3e79d1c1033cc3a345cd9e308379655",
+      "exact": true
+    },
+    {
+      "file": "final-reopened-group.psd",
+      "canvas": [
+        385,
+        305
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        385,
+        305
+      ],
+      "rgbaSha256": "791d502fab176441927c3fb99db33b836d2d80c4289331282f4f66115b0f0b7e",
+      "exact": true
+    },
+    {
+      "file": "final-reopened-group.psb",
+      "canvas": [
+        385,
+        305
+      ],
+      "kind": "pixel",
+      "bounds": [
+        0,
+        0,
+        385,
+        305
+      ],
+      "rgbaSha256": "791d502fab176441927c3fb99db33b836d2d80c4289331282f4f66115b0f0b7e",
+      "exact": true
+    }
+  ]
+}

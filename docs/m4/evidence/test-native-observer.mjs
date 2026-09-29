@@ -1,0 +1,7 @@
+const {AppController}=await import('tauri://localhost/ui/shell/app-controller.js');
+const original=AppController.prototype.getCurrentDoc;
+AppController.prototype.getCurrentDoc=function(...args){window.m4App=this;AppController.prototype.getCurrentDoc=original;return original.apply(this,args);};
+window.m4Hash=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
+window.m4Record=async(label,extra={})=>{const c=window.m4App,d=c?.getCurrentDoc(),l=d?.layers[d.selectedLayerIndices[0]],bridge=c?.getSelectionJobs();const result={label,time:Date.now(),doc:d?.name,history:d?.history.length,index:d?.historyIndex,pixels:l?await m4Hash(l.buffer):null,selection:d?.selectionMask?await m4Hash(d.selectionMask.channel):null,mask:l?.getMask()?await m4Hash(l.getMask().channel):null,preview:d?.toolOverlayState.jobSelectionPreview?await m4Hash(d.toolOverlayState.jobSelectionPreview.channel):null,prompts:d?.toolOverlayState.objectSelectionPrompts,jobs:bridge?.jobs.list(),timings:bridge?.lastPromptedMetrics,...extra};console.log('M4 evidence',result);await fetch('http://127.0.0.1:8767/events',{method:'POST',body:JSON.stringify(result)});return result;};
+window.m4Wait=async id=>{const b=m4App.getSelectionJobs();for(let i=0;i<600;i++){const j=b.jobs.get(id);if(j.state==='preview')return j;if(['failed','cancelled','stale'].includes(j.state))throw Error(JSON.stringify(j));await new Promise(r=>setTimeout(r,50));}throw Error('Timed out');};
+console.log('M4 observer installed');

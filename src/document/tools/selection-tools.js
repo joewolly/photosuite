@@ -1,3 +1,4 @@
+import { beginQuickSelectGesture, moveQuickSelectGesture, finishQuickSelectGesture } from "./quick-select-gesture.js";
 // Marquee / wand / quick-select tools and the SelectTool base every selection
 // tool extends. Selection commits flow through action descriptors (see
 // selection-actions.js) so scripting, history, and direct tool use share one
@@ -146,6 +147,29 @@ SelectTool.dispatchSelectionPrefPopups = function(dispatcher, appData) {
   if (!appData.prefs.showSelectionEdges) dispatcher.dispatch(uiEvent);
 };
 
+/** Prepare the existing set-selection history action without mutating a document. */
+export function prepareSelectionHistoryEntry(selectionMaskBefore, outcome, tracker) {
+  let newSelection = outcome.selection;
+  let historyLabel = outcome.label;
+  if (newSelection != null && isBufferUniform(newSelection.channel, 0)) {
+    newSelection = null;
+    historyLabel = "select.deselect";
+  }
+  if (newSelection) trimChannelToContent(newSelection);
+  const historyEntry = new HistoryEntry(historyLabel, tracker);
+  historyEntry.data = {
+    actionKind: "changesel",
+    selectionMaskBefore,
+    selectionMaskAfter: newSelection,
+    isQuickMaskToggle: outcome.isQuickMaskToggle || false,
+    quickMaskBefore: outcome.quickMaskBefore,
+    quickMaskAfter: outcome.quickMaskNew,
+    pathSelectionsBefore: outcome.pathSelectionsBefore,
+    pathSelectionsAfter: outcome.pathSelectionsAfter,
+  };
+  return historyEntry;
+}
+
 function installSelectToolPrototype() {
 
 SelectTool.prototype.getCursorStyle = function() {
@@ -198,24 +222,7 @@ SelectTool.prototype.handleInput = function(event, dispatcher, doc, keyboard, ap
     outcome = this.selectionFromSource(eventKind, event, doc);
   }
   if (outcome == null) return;
-  let newSelection = outcome.selection;
-  let historyLabel = outcome.label;
-  if (newSelection != null && isBufferUniform(newSelection.channel, 0)) {
-    newSelection = null;
-    historyLabel = "select.deselect";
-  }
-  if (newSelection) trimChannelToContent(newSelection);
-  const historyEntry = new HistoryEntry(historyLabel, this);
-  historyEntry.data = {
-    actionKind: "changesel",
-    selectionMaskBefore: doc.selectionMask,
-    selectionMaskAfter: newSelection,
-    isQuickMaskToggle: outcome.isQuickMaskToggle || false,
-    quickMaskBefore: outcome.quickMaskBefore,
-    quickMaskAfter: outcome.quickMaskNew,
-    pathSelectionsBefore: outcome.pathSelectionsBefore,
-    pathSelectionsAfter: outcome.pathSelectionsAfter,
-  };
+  const historyEntry = prepareSelectionHistoryEntry(doc.selectionMask, outcome, this);
   doc.pushHistory(historyEntry);
   this.redo(historyEntry.data, doc);
 };
@@ -810,38 +817,30 @@ export function QuickSelectTool() {
 function installQuickSelectToolPrototype() {
 
 QuickSelectTool.prototype.onMouseDown = function(doc, dispatcher, appData, keyboard, pointerState) {
-  if (doc.selectedLayerIndices.length == 0) {
-    showToast("Select a layer first.");
-    return;
-  }
-  // The stroke needs the segmentation in this same tick, so the analysis runs
-  // inline here rather than on the deferred path the hover uses.
-  syncQuickSelectOverlay(doc, quickSelectSession, dispatcher, true);
-  // The first stroke replaces the selection, and every stroke after it adds to
-  // what that one claimed: `qsmode` moves to add on mouse-up.
-  if (this.toolOptions.qsmode == 0) {
-    resetQuickSelectSelection(quickSelectSession);
-  } else if (hasDocumentSelectionDiverged(quickSelectSession, doc.selectionMask)) {
-    // The document's selection came from somewhere else — a step through
-    // history, a marquee, a deselect — so the scribbles this session is
-    // holding describe a selection the document has since replaced. This
-    // stroke starts over from what the document holds now.
-    adoptDocumentSelection(quickSelectSession, doc.selectionMask);
-    this.strokeData = null;
-  }
-  this.beginStroke(doc, appData, keyboard, pointerState, 1);
-  if (this.strokeData == null) return;
-  this.applyStroke(doc);
+  beginQuickSelectGesture(this, doc, dispatcher, appData, keyboard, pointerState);
 };
 QuickSelectTool.prototype.onMouseMove = function(doc, dispatcher, appData, keyboard, pointerState) {
   this.syncBrushScaleToZoom(doc, dispatcher, appData);
-  syncQuickSelectOverlay(doc, quickSelectSession, dispatcher);
   if (this.rightDragAnchor) this.updateBrushSizeFromRightDrag(doc, appData, pointerState);
-  if (this.strokeData == null) return;
-  if (!pointerState.isDown) return;
-  const strokeStatus = this.continueStroke(doc, appData, keyboard, pointerState);
-  if (strokeStatus != 1) this.applyStroke(doc);
+  moveQuickSelectGesture(this, doc, keyboard, pointerState);
 };
+QuickSelectTool.prototype.onMouseUp = function(doc, dispatcher) {
+  finishQuickSelectGesture(this, doc, dispatcher);
+};
+QuickSelectTool.prototype.onDocumentStateChange = function() {
+  // A transient preview is deliberately not doc.selectionMask. Keep add/subtract
+  // mode while the session awaits acceptance.
+};
+QuickSelectTool.prototype.disable = function(doc, dispatcher) {
+  this.selectionGesture = null;
+  dispatcher.modernizationSelections?.abandonGesture(doc);
+};
+QuickSelectTool.prototype.onKeyEvent = function(doc, dispatcher, appData, keyboard) {
+  const returnToAdd = this.usePenPressure && !keyboard.isPressed(KeyboardHandler.Alt) && this.toolOptions.qsmode === 2;
+  PaintTool.prototype.onKeyEvent.call(this, doc, dispatcher, appData, keyboard);
+  if (returnToAdd && dispatcher.modernizationSelections?.sessions.has(doc)) this.dispatchToolOptionUpdate({ qsmode: 1 }, dispatcher);
+};
+
 
 
 
@@ -940,4 +939,3 @@ RectSelectTool.prototype = Object.create(SelectTool.prototype);
 installRectSelectToolPrototype();
 EllipseSelectTool.prototype = Object.create(SelectTool.prototype);
 installEllipseSelectToolPrototype();
-

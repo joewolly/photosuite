@@ -1,0 +1,16 @@
+SAM 2.1 Hiera Tiny (image-only derivative)
+Copyright (c) Meta Platforms, Inc. and affiliates.
+Upstream: https://github.com/facebookresearch/sam2
+Code revision: 2b90b9f5ceec907a1c18123530e92e794ad901a4
+Official checkpoint: facebook/sam2.1-hiera-tiny / sam2.1_hiera_tiny.pt
+Weight revision: de431c4043854a71d8101e17995dfe596bf101a5
+Licensed under Apache License 2.0; see LICENSE and UPSTREAM-MODEL-CARD.md.
+
+PhotoSuite changes: separate static 1024x1024 encoder and dynamic-point image
+decoder ONNX exports, four mask tokens, FP16 weight storage restored to FP32
+computation. Video/memory tracking and prior-mask feedback are not exported.
+See scripts/m4/export-sam2.py and docs/m4/model-evaluation.json for provenance.
+
+Developer conversion wrappers are from Microsoft ONNX Runtime, MIT licensed,
+revision 84cf511aee6506aec6380997af32d12e2252231d. The runtime and its MIT license
+and third-party notices are shared with M3 in ../onnxruntime/.

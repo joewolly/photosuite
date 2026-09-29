@@ -52,7 +52,7 @@
       "exceptionDomain": null,
       "frameworks": [],
       "providerShortName": null,
-      "signingIdentity": "Developer ID Application: Patrik Ohlson (W3H3H7D9ST)",
+      "signingIdentity": null,
       "dmg": {
         "windowSize": {
           "width": 660,

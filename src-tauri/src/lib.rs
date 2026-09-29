@@ -1,3 +1,4 @@
+mod comfy;
 mod native_menu;
 mod printing;
 mod sidebar_plugins;
@@ -524,6 +525,7 @@ fn take_pending_open_files(state: tauri::State<PendingOpenFiles>) -> Vec<String>
 pub fn run() {
     tauri::Builder::default()
         .manage(PendingOpenFiles::default())
+        .manage(comfy::ComfyState::default())
         .plugin(tauri_plugin_store::Builder::new().build())
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_fs::init())
@@ -557,6 +559,16 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
+            comfy::comfy_preflight,
+            comfy::comfy_inpaint,
+            comfy::expand::comfy_expand,
+            comfy::expand::comfy_expand_preflight,
+            comfy::generative::comfy_generative,
+            comfy::generative::comfy_generative_preflight,
+            comfy::upscale::comfy_upscale,
+            comfy::upscale::comfy_upscale_preflight,
+            comfy::comfy_status,
+            comfy::comfy_cancel,
             open_files,
             read_file_raw,
             get_app_version,

@@ -1,0 +1,84 @@
+{
+  "status": "accepted for M3 with documented quality, memory, platform and offline-test boundary notes; see acceptance.md",
+  "model": "BiRefNet-lite",
+  "upstream": "https://github.com/ZhengPeng7/BiRefNet",
+  "weightsRepository": "https://huggingface.co/ZhengPeng7/BiRefNet_lite",
+  "revision": "aa62cd87eafb9cc43056d08ef3615a14628b831d",
+  "checkpoint": "model.safetensors",
+  "checkpointSha256": "4417d89795250e698c3cb0ae8df15743810065f646f48a694fdfa7ca052d0815",
+  "checkpointBytes": 177634392,
+  "codeLicense": "MIT",
+  "weightLicense": "MIT; explicitly declared in official weight repository model card",
+  "redistribution": "MIT redistribution allowed with notice; bundle the derived static artifact and notices",
+  "converterReference": "https://huggingface.co/CoderViking/birefnet-lite-onnx/tree/dc06453148f01ef4131f17e9b791345e32e8ee78",
+  "converterLicense": "MIT",
+  "recipe": "scripts/m3/export-subject-model.py: fixed 512x512, GridSample deform-convolution decomposition, TorchScript opset17, onnxslim dedup, fp16 weights with float32 IO",
+  "tools": {
+    "python": "3.12.14",
+    "torch": "2.5.1",
+    "torchvision": "0.20.1",
+    "onnx": "1.17.0",
+    "onnxslim": "0.1.48",
+    "onnxconverter-common": "1.16.0",
+    "onnxruntime-web": "1.22.0"
+  },
+  "artifact": "src/vendor/subject-model/birefnet-lite-512-fp16.onnx",
+  "artifactBytes": 94377615,
+  "artifactSha256": "79bc52b86f15cf146646e2e82ee9a6589151e4d28db4c190c9dd98c3a3a7344c",
+  "input": {
+    "name": "input_image",
+    "shape": [
+      1,
+      3,
+      512,
+      512
+    ],
+    "type": "float32",
+    "color": "RGB sRGB8, straight alpha composited against neutral 128; bilinear aspect-preserving letterbox",
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "output": {
+    "name": "output_image",
+    "shape": [
+      1,
+      1,
+      512,
+      512
+    ],
+    "type": "float32 logits",
+    "postprocess": "sigmoid, explicit unletterbox bilinear projection, multiply original alpha; retain soft coverage8"
+  },
+  "runtime": "ONNX Runtime Web 1.22.0 WASM-only, one thread in a dedicated module worker",
+  "sourceFilesSha256": {
+    "model.safetensors": "4417d89795250e698c3cb0ae8df15743810065f646f48a694fdfa7ca052d0815",
+    "config.json": "9dc8614fccddd40c601aeadc69b9db6dd820598179b2a2198492e6ffa016a824",
+    "birefnet.py": "af8568b5be406bf4d2a68a7ed6d72e40f73b37a1fb6fc9ebd71b5b3cbcd069c9",
+    "README.md": "22fe432bdd706e8079ee1c53dcd6192962291d023c84d5416df3c983f6e665a2",
+    "BiRefNet_config.py": "e7b8c2a74f6cea6a59553d517f71d47f2c1d90e670a13416af17c25fe2f3dc52"
+  },
+  "runtimePackageIntegrity": "sha512-Ud/+EBo6mhuaQWt/OjaOk0iNWjXqJoeeMFr6xQEERZdIZH2OWpGzuujz7lfuOBjUa6TEE/sc4nb7Da5dNL34fg==",
+  "runtimeFilesSha256": {
+    "ThirdPartyNotices.txt": "e9e90971a8e75a9a8ac0c6412e29c1202d079998389915aa485f46c816c3b4cc",
+    "LICENSE": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+    "ort-wasm-simd-threaded.wasm": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4",
+    "ort.wasm.min.mjs": "6ef726f355b791129f7ddf3f62e7877a16b9b777abe87004b8ab306e6b9cf265",
+    "ort-wasm-simd-threaded.mjs": "6e2180c97c109434ba67f1b83454cc48c5f812e79990094ed0cc3cffeabe18b0"
+  },
+  "runtimeUpstreamFilesSha256": {
+    "ThirdPartyNotices.txt": "e9e90971a8e75a9a8ac0c6412e29c1202d079998389915aa485f46c816c3b4cc",
+    "LICENSE": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+    "ort-wasm-simd-threaded.wasm": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4",
+    "ort.wasm.min.mjs": "6ef726f355b791129f7ddf3f62e7877a16b9b777abe87004b8ab306e6b9cf265",
+    "ort-wasm-simd-threaded.mjs": "30dd851d9c00622940500f71ddd2ff8820c5cb65270816080175b958705385a8"
+  },
+  "vendoringTransform": "Trailing whitespace normalized in ort-wasm-simd-threaded.mjs and retained UPSTREAM-MODEL-CARD.md only; executable tokens and model artifact unchanged."
+}

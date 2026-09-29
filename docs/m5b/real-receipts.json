@@ -1,0 +1,98 @@
+[
+  {
+    "bytes": 3872064,
+    "height": 804,
+    "id": "photo",
+    "requestId": "30edc5c2-c556-4b82-a9f1-426cca8b6b5d",
+    "transportMs": 634,
+    "width": 1204
+  },
+  {
+    "bytes": 4194304,
+    "height": 1024,
+    "id": "portrait",
+    "requestId": "2fd1e09d-a43c-4705-a8d7-46acb4b05ad6",
+    "transportMs": 412,
+    "width": 1024
+  },
+  {
+    "bytes": 2160000,
+    "height": 600,
+    "id": "fur",
+    "requestId": "09aaaf0d-fa4f-46f2-a9df-f0081cf784d8",
+    "transportMs": 344,
+    "width": 900
+  },
+  {
+    "bytes": 6291456,
+    "height": 1024,
+    "id": "architecture",
+    "requestId": "039d8db4-4e21-441b-b2be-3add1afbdd10",
+    "transportMs": 457,
+    "width": 1536
+  },
+  {
+    "bytes": 3718464,
+    "height": 724,
+    "id": "text",
+    "requestId": "fca2acc4-32c8-48b0-a148-8beacf6b96aa",
+    "transportMs": 327,
+    "width": 1284
+  },
+  {
+    "bytes": 4129344,
+    "height": 804,
+    "id": "ui",
+    "requestId": "56104e24-f76f-49d1-b70b-7af9ea2308c3",
+    "transportMs": 339,
+    "width": 1284
+  },
+  {
+    "bytes": 3174464,
+    "height": 772,
+    "id": "line-art",
+    "requestId": "d359f782-282a-4b99-bae4-8b3878a75c36",
+    "transportMs": 309,
+    "width": 1028
+  },
+  {
+    "bytes": 3174464,
+    "height": 772,
+    "id": "illustration",
+    "requestId": "77e39b73-9278-424a-b005-64934ce5d715",
+    "transportMs": 328,
+    "width": 1028
+  },
+  {
+    "bytes": 976064,
+    "height": 404,
+    "id": "jpeg",
+    "requestId": "99715d6e-f050-4b5a-a8be-eae5589ac782",
+    "transportMs": 299,
+    "width": 604
+  },
+  {
+    "bytes": 3174464,
+    "height": 772,
+    "id": "sharp",
+    "requestId": "69b9191c-1c9c-4681-a851-0bae85c10e00",
+    "transportMs": 312,
+    "width": 1028
+  },
+  {
+    "bytes": 3174464,
+    "height": 772,
+    "id": "transparent",
+    "requestId": "6ed05079-8d88-4a61-97ad-469780d75363",
+    "transportMs": 328,
+    "width": 1028
+  },
+  {
+    "bytes": 33554432,
+    "height": 2048,
+    "id": "limit",
+    "requestId": "f57e0160-0a01-4aa2-b8d7-c3b3a15cc8bf",
+    "transportMs": 2141,
+    "width": 4096
+  }
+]

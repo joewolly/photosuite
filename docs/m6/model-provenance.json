@@ -1,0 +1,22 @@
+{
+  "repository": "stable-diffusion-v1-5/stable-diffusion-inpainting",
+  "revision": "8a4288a76071f7280aedbdb3253bdb9e9d5d84bb",
+  "file": {
+    "rfilename": "sd-v1-5-inpainting.ckpt",
+    "blobId": "477945c30dcad9c3d629470f7f52ceb86acd4cd7",
+    "size": 4265437280,
+    "lfs": {
+      "sha256": "c6bbc15e3224e6973459ba78de4998b80b50112b0ae5b5c67113d56b4e366b19",
+      "size": 4265437280,
+      "pointerSize": 135
+    }
+  },
+  "license": "creativeml-openrail-m",
+  "installedPath": "/Users/joe/ComfyUI-Shared/models/checkpoints/sd-v1-5-inpainting.ckpt",
+  "verifiedSha256": "c6bbc15e3224e6973459ba78de4998b80b50112b0ae5b5c67113d56b4e366b19",
+  "downloadSeconds": 77.91,
+  "licenseSource": "https://huggingface.co/spaces/CompVis/stable-diffusion-license",
+  "licenseRevision": "14d42d09bffd871b1666a084fc954a50cff72ac0",
+  "licenseFile": "license.txt",
+  "licenseSha256": "be351ebe7ac01bcdbb018639aadcfd38f136b7dc3f2a3d4d3a24db51d1b210ef"
+}

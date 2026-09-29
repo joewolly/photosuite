@@ -137,14 +137,32 @@ export {
 function handleMenuActionPayload(payload, getMenuData, dispatchTarget) {
   if (!payload) return;
   if (isMenuActionDescriptor(payload.action)) {
+    if (routeInpaintTextMenu(payload.action)) return;
     dispatchMenuActionDescriptor(dispatchTarget, payload.action);
     return;
   }
   if (payload.path != null) {
     const node = resolveMenuBarAction(getMenuData(), payload.path);
     if (!node) return;
+    if (routeInpaintTextMenu(node)) return;
     dispatchMenuActionDescriptor(dispatchTarget, node);
   }
+}
+
+/** Native accelerators otherwise bypass DOM keyboard text-field guards. */
+export function routeInpaintTextMenu(action, element = globalThis.document?.activeElement, exec = (command) => document.execCommand(command)) {
+  if (element?.getAttribute?.("data-inpaint-field") !== "true") return false;
+  const data = action.payload;
+  if (data?.uf === "set" && data.actionDescriptor?.T?.v?.Ordn === "Al") { element.select(); return true; }
+  const command = {
+    [UiCommand.cutPathsOrClearSelection]: "cut",
+    [UiCommand.clipboardCopyLayers]: "copy",
+    [UiCommand.clipboardPasteLayers]: "paste",
+    h_undoredo: "undo", h_stepbck: "undo", h_stepfwd: "redo", delete: "delete",
+  }[data?.dispatchKind || data?.actionKind || data?.uf];
+  if (!command) return false;
+  exec(command);
+  return true;
 }
 
 function applyChromePayload(payload) {

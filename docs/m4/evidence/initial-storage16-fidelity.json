@@ -1,0 +1,62 @@
+[
+  {
+    "image": "person",
+    "prompts": 1,
+    "fp16_vs_fp32_iou": 0.9976580796252927
+  },
+  {
+    "image": "person",
+    "prompts": 2,
+    "fp16_vs_fp32_iou": 1.0
+  },
+  {
+    "image": "person",
+    "prompts": 3,
+    "fp16_vs_fp32_iou": 0.9997984548202888
+  },
+  {
+    "image": "people",
+    "prompts": 1,
+    "fp16_vs_fp32_iou": 1.0
+  },
+  {
+    "image": "people",
+    "prompts": 2,
+    "fp16_vs_fp32_iou": 1.0
+  },
+  {
+    "image": "people",
+    "prompts": 3,
+    "fp16_vs_fp32_iou": 0.9997627520759194
+  },
+  {
+    "image": "object",
+    "prompts": 1,
+    "fp16_vs_fp32_iou": 0.9993580999759287
+  },
+  {
+    "image": "object",
+    "prompts": 2,
+    "fp16_vs_fp32_iou": 0.9990188383045526
+  },
+  {
+    "image": "object",
+    "prompts": 3,
+    "fp16_vs_fp32_iou": 0.9987282954267547
+  },
+  {
+    "image": "fur",
+    "prompts": 1,
+    "fp16_vs_fp32_iou": 0.9998720132318628
+  },
+  {
+    "image": "fur",
+    "prompts": 2,
+    "fp16_vs_fp32_iou": 0.9998491294770828
+  },
+  {
+    "image": "fur",
+    "prompts": 3,
+    "fp16_vs_fp32_iou": 0.9998790651737934
+  }
+]

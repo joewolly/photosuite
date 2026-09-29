@@ -4,6 +4,7 @@
  *
  * When pluginDef is null, constructs a bare BaseTool (prototype seed only).
  */
+import { registerPluginResultFrame } from "../../features/plugins/plugin-result-ipc.js";
 import { BaseTool } from "../widgets/base-tool.js";
 import { PLUGIN_FRAME_ATTRIBUTE } from "../../features/plugins/plugin-host-ipc.js";
 import { isInDOM, makeElement } from "../../core/dom.js";
@@ -39,6 +40,7 @@ function buildIframeSizeStyle(pluginDef) {
 
 function installPluginIframe(panelBody, pluginDef) {
   const iframe = makeElement("iframe", "padded");
+  registerPluginResultFrame(iframe);
   // Marks this frame as a plugin panel. The host answers IPC requests only from
   // frames carrying it, which is the only workable identity check: a sandboxed
   // plugin has an opaque origin, so `event.origin` cannot tell one frame from

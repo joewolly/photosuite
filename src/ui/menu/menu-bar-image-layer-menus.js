@@ -206,6 +206,12 @@ export function buildImageMenu() {
         }
       },
       opensDialog: true
+    }, {
+      name: "Generative Expand",
+      resolveRowState: doc => ({ enabled: !!doc, labelOverride: "Generative Expand…" })
+    }, {
+      name: "AI Upscale",
+      resolveRowState: doc => ({ enabled: !!doc, labelOverride: "AI Upscale…" })
     }],
     menuActions: [{
       sub: function() {
@@ -337,6 +343,12 @@ export function buildImageMenu() {
         actionKind: "start",
         adjustmentKey: "aply"
       }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: { dispatchKind: UiCommand.generativeExpand }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: { dispatchKind: UiCommand.aiUpscale }
     }]
   };
 }
@@ -413,6 +425,12 @@ export function buildLayerMenu() {
       separatorAfter: true,
       resolveRowState: menuWhenDocOpen,
       sub: LayerStyleDialog.buildAdjustmentLayerMenuItems()
+    }, {
+      name: "Remove Background Automatically",
+      resolveRowState: menuWhenDocOpen
+    }, {
+      name: "layer.removeBackground",
+      resolveRowState: menuWhenHasSelection
     }, {
       // Masking: raster mask, vector mask, and clipping mask.
       name: "layer.rasterMask",
@@ -690,6 +708,12 @@ export function buildLayerMenu() {
       }]
     }, {
       sub: LayerStyleDialog.buildAdjustmentLayerMenuActions()
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: { dispatchKind: UiCommand.removeBackgroundAutomatically }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: { dispatchKind: UiCommand.removeBackgroundFromSelection }
     }, {
       sub: [{
         appEventType: EventType.documentAction,

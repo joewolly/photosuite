@@ -90,6 +90,15 @@ export const UiCommand = Object.freeze({
   exportPopupResourceBundle: "exportPopupResourceBundle",
   confirmPersistStartupResource: "confirmPersistStartupResource",
 
+  removeBackgroundFromSelection: "removeBackgroundFromSelection",
+  generativeExpand: "generativeExpand",
+  generativeFill: "generativeFill",
+  generativeInfo: "generativeInfo",
+  aiRemove: "aiRemove",
+  aiUpscale: "aiUpscale",
+  selectSubject: "selectSubject",
+  removeBackgroundAutomatically: "removeBackgroundAutomatically",
+
   // Editing the active document
   applyDocumentMutationAndCloseExtra: "applyDocumentMutationAndCloseExtra",
   applyDocumentToolAction: "applyDocumentToolAction",

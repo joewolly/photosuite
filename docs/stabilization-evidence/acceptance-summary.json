@@ -1,0 +1,1291 @@
+{
+  "productionCommit": "dd249e0c64451f629afd03513ecfd6496e7856c4",
+  "nativeFinal": {
+    "label": "final-acceptance-pass",
+    "time": 1790651251752,
+    "files": [
+      "/tmp/photosuite-stability-audit/final-after-classic.psd",
+      "/tmp/photosuite-stability-audit/final-after-classic.psb"
+    ],
+    "snapshot": {
+      "width": 288,
+      "height": 224,
+      "composite": "a38c3cc25f5c5bdda2784b7a9f8fc3c56f12074c011d90932177ad58caaa3523",
+      "guides": [
+        [
+          36
+        ],
+        [
+          46
+        ]
+      ],
+      "layers": [
+        {
+          "name": "AI Remove",
+          "id": 2,
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 220,
+            "height": 179
+          },
+          "hash": "bfa730bf5365c37fdb0abdec453c778556c7b733f691bb438f12cbe49eea0304",
+          "mask": null,
+          "recipe": null
+        },
+        {
+          "name": "Background",
+          "id": 1,
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 256,
+            "height": 192
+          },
+          "hash": "4717f8aafedff2e701196834cf6e619be6e357ecd79eca1645626163e9053361",
+          "mask": null,
+          "recipe": null
+        },
+        {
+          "name": "Renamed generated result",
+          "id": 3,
+          "rect": {
+            "x": 76,
+            "y": 61,
+            "width": 151,
+            "height": 155
+          },
+          "hash": "87511db937763f9a37b619db86932c5fc75dd3b70796c635688f8a858c2febe5",
+          "mask": null,
+          "recipe": {
+            "recipeVersion": 1,
+            "layerId": 3,
+            "operation": "generate.fill",
+            "workflow": "photosuite-generative-fill-v1",
+            "backend": "comfyui",
+            "checkpoint": "sd-v1-5-inpainting.ckpt",
+            "seed": 45,
+            "createdAt": "2026-09-29T02:59:28.831Z",
+            "settings": {
+              "steps": 20,
+              "cfg": 7,
+              "sampler": "euler",
+              "scheduler": "normal",
+              "denoise": 1,
+              "maskGrowth": 0,
+              "roi": {
+                "x": 0,
+                "y": 0,
+                "width": 220,
+                "height": 179
+              },
+              "modelWidth": 512,
+              "modelHeight": 512
+            },
+            "source": {
+              "layerId": 2,
+              "sha256": "bfa730bf5365c37fdb0abdec453c778556c7b733f691bb438f12cbe49eea0304",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 220,
+                "height": 179
+              },
+              "documentWidth": 256,
+              "documentHeight": 192
+            },
+            "selection": {
+              "sha256": "4f04ba822d0b539aaaf4726758348b0628cd4009616fe45988120ba86a02ca73",
+              "rect": {
+                "x": 60,
+                "y": 45,
+                "width": 96,
+                "height": 70
+              }
+            },
+            "selectionPersistence": "none"
+          }
+        },
+        {
+          "name": "Generative Expand",
+          "id": 4,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 288,
+            "height": 224
+          },
+          "hash": "285927f2b759625ee6f76a27eb3a944265f24939e898c17edf944674c211527e",
+          "mask": null,
+          "recipe": null
+        }
+      ],
+      "selection": null,
+      "history": 4,
+      "index": 3
+    },
+    "aiWorkers": [],
+    "sessions": 0,
+    "expandPreviews": 0,
+    "upscalePreviews": 0,
+    "generative": null
+  },
+  "nativeOfflineFinal": {
+    "label": "offline-reopen-pass",
+    "time": 1790651009455,
+    "integrated": 2,
+    "legacy": 28,
+    "backendCalls": 0,
+    "snapshot": {
+      "width": 288,
+      "height": 224,
+      "composite": "9caba85b99cfc642953776d5075d0709906f44512fcefe0a5d93e3146a4c3c11",
+      "guides": [
+        [
+          36
+        ],
+        [
+          46
+        ]
+      ],
+      "layers": [
+        {
+          "name": "AI Remove",
+          "id": 2,
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 220,
+            "height": 179
+          },
+          "hash": "bfa730bf5365c37fdb0abdec453c778556c7b733f691bb438f12cbe49eea0304",
+          "mask": null,
+          "recipe": null
+        },
+        {
+          "name": "Background",
+          "id": 1,
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 256,
+            "height": 192
+          },
+          "hash": "4717f8aafedff2e701196834cf6e619be6e357ecd79eca1645626163e9053361",
+          "mask": null,
+          "recipe": null
+        },
+        {
+          "name": "Renamed generated result",
+          "id": 3,
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 220,
+            "height": 179
+          },
+          "hash": "332130d86a77315b9389d27997f57bb4e00b9ab732e5a362cbf637a52fcffbc0",
+          "mask": null,
+          "recipe": {
+            "recipeVersion": 1,
+            "layerId": 3,
+            "operation": "generate.fill",
+            "workflow": "photosuite-generative-fill-v1",
+            "backend": "comfyui",
+            "checkpoint": "sd-v1-5-inpainting.ckpt",
+            "seed": 45,
+            "createdAt": "2026-09-29T02:59:28.831Z",
+            "settings": {
+              "steps": 20,
+              "cfg": 7,
+              "sampler": "euler",
+              "scheduler": "normal",
+              "denoise": 1,
+              "maskGrowth": 0,
+              "roi": {
+                "x": 0,
+                "y": 0,
+                "width": 220,
+                "height": 179
+              },
+              "modelWidth": 512,
+              "modelHeight": 512
+            },
+            "source": {
+              "layerId": 2,
+              "sha256": "bfa730bf5365c37fdb0abdec453c778556c7b733f691bb438f12cbe49eea0304",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 220,
+                "height": 179
+              },
+              "documentWidth": 256,
+              "documentHeight": 192
+            },
+            "selection": {
+              "sha256": "4f04ba822d0b539aaaf4726758348b0628cd4009616fe45988120ba86a02ca73",
+              "rect": {
+                "x": 60,
+                "y": 45,
+                "width": 96,
+                "height": 70
+              }
+            },
+            "selectionPersistence": "none"
+          }
+        },
+        {
+          "name": "Generative Expand",
+          "id": 4,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 288,
+            "height": 224
+          },
+          "hash": "285927f2b759625ee6f76a27eb3a944265f24939e898c17edf944674c211527e",
+          "mask": null,
+          "recipe": null
+        }
+      ],
+      "selection": null,
+      "history": 1,
+      "index": 0
+    }
+  },
+  "nativeClassicFixed": [
+    {
+      "label": "classic-fixed-reopen",
+      "time": 1790650540416,
+      "path": "/tmp/photosuite-stability-audit/classic-fixed.psd",
+      "before": {
+        "width": 260,
+        "height": 190,
+        "composite": "3a54836585f101825ed498db4a1621c862379549fbbde01ce76dabb5bc509ebf",
+        "guides": [
+          [
+            23
+          ],
+          [
+            33
+          ]
+        ],
+        "layers": [
+          {
+            "name": "AI Remove",
+            "id": 2,
+            "rect": {
+              "x": 3,
+              "y": 3,
+              "width": 220,
+              "height": 179
+            },
+            "hash": "72c4b641f6edbdb2ce1a06323e4b243876bb9df289151d94cea9e588d0499a5f",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Background",
+            "id": 7,
+            "rect": {
+              "x": 8,
+              "y": 0,
+              "width": 260,
+              "height": 195
+            },
+            "hash": "5cd9a6d6477784e1d5b2e64401bd37dcac330468c8af25509c804a9089da8d26",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Brightness/Contrast 1",
+            "id": 8,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mask": {
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "recipe": null
+          },
+          {
+            "name": "Renamed generated result",
+            "id": 3,
+            "rect": {
+              "x": 62,
+              "y": 48,
+              "width": 143,
+              "height": 110
+            },
+            "hash": "bd1c97686cf4537e6436806463d0249dd8bcf92bbd1823260c203b4669008b3b",
+            "mask": null,
+            "recipe": {
+              "recipeVersion": 1,
+              "layerId": 3,
+              "operation": "generate.fill",
+              "workflow": "photosuite-generative-fill-v1",
+              "backend": "comfyui",
+              "checkpoint": "sd-v1-5-inpainting.ckpt",
+              "seed": 45,
+              "createdAt": "2026-09-29T02:40:17.985Z",
+              "settings": {
+                "steps": 20,
+                "cfg": 7,
+                "sampler": "euler",
+                "scheduler": "normal",
+                "denoise": 1,
+                "maskGrowth": 0,
+                "roi": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 179
+                },
+                "modelWidth": 512,
+                "modelHeight": 512
+              },
+              "source": {
+                "layerId": 2,
+                "sha256": "72c4b641f6edbdb2ce1a06323e4b243876bb9df289151d94cea9e588d0499a5f",
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 179
+                },
+                "documentWidth": 256,
+                "documentHeight": 192
+              },
+              "selection": {
+                "sha256": "4f04ba822d0b539aaaf4726758348b0628cd4009616fe45988120ba86a02ca73",
+                "rect": {
+                  "x": 60,
+                  "y": 45,
+                  "width": 96,
+                  "height": 70
+                }
+              },
+              "selectionPersistence": "none"
+            }
+          },
+          {
+            "name": "Shape 1",
+            "id": 5,
+            "rect": {
+              "x": 109,
+              "y": 190,
+              "width": 71,
+              "height": 30
+            },
+            "hash": "b1a97bb847a9d3499017ee9664b7a1c0965ebdd36c74f27728e3ba5b64ddd1eb",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Audit ",
+            "id": 6,
+            "rect": {
+              "x": 130,
+              "y": 151,
+              "width": 63,
+              "height": 20
+            },
+            "hash": "cf10c687c523f3b79da98ed576bc2c28fb87e1ba849c8979d11403951fa65bc2",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Generative Expand",
+            "id": 4,
+            "rect": {
+              "x": -13,
+              "y": -13,
+              "width": 288,
+              "height": 224
+            },
+            "hash": "85ac0a88e10f1f5833dbef6e4c22ffad9d0c132e54725b11e162d461312c2300",
+            "mask": null,
+            "recipe": null
+          }
+        ],
+        "selection": null,
+        "history": 1,
+        "index": 0
+      },
+      "actual": {
+        "width": 260,
+        "height": 190,
+        "composite": "3a54836585f101825ed498db4a1621c862379549fbbde01ce76dabb5bc509ebf",
+        "guides": [
+          [
+            23
+          ],
+          [
+            33
+          ]
+        ],
+        "layers": [
+          {
+            "name": "AI Remove",
+            "id": 2,
+            "rect": {
+              "x": 3,
+              "y": 3,
+              "width": 220,
+              "height": 179
+            },
+            "hash": "72c4b641f6edbdb2ce1a06323e4b243876bb9df289151d94cea9e588d0499a5f",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Background",
+            "id": 7,
+            "rect": {
+              "x": 8,
+              "y": 0,
+              "width": 260,
+              "height": 195
+            },
+            "hash": "5cd9a6d6477784e1d5b2e64401bd37dcac330468c8af25509c804a9089da8d26",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Brightness/Contrast 1",
+            "id": 8,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mask": {
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "recipe": null
+          },
+          {
+            "name": "Renamed generated result",
+            "id": 3,
+            "rect": {
+              "x": 62,
+              "y": 48,
+              "width": 143,
+              "height": 110
+            },
+            "hash": "bd1c97686cf4537e6436806463d0249dd8bcf92bbd1823260c203b4669008b3b",
+            "mask": null,
+            "recipe": {
+              "recipeVersion": 1,
+              "layerId": 3,
+              "operation": "generate.fill",
+              "workflow": "photosuite-generative-fill-v1",
+              "backend": "comfyui",
+              "checkpoint": "sd-v1-5-inpainting.ckpt",
+              "seed": 45,
+              "createdAt": "2026-09-29T02:40:17.985Z",
+              "settings": {
+                "steps": 20,
+                "cfg": 7,
+                "sampler": "euler",
+                "scheduler": "normal",
+                "denoise": 1,
+                "maskGrowth": 0,
+                "roi": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 179
+                },
+                "modelWidth": 512,
+                "modelHeight": 512
+              },
+              "source": {
+                "layerId": 2,
+                "sha256": "72c4b641f6edbdb2ce1a06323e4b243876bb9df289151d94cea9e588d0499a5f",
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 179
+                },
+                "documentWidth": 256,
+                "documentHeight": 192
+              },
+              "selection": {
+                "sha256": "4f04ba822d0b539aaaf4726758348b0628cd4009616fe45988120ba86a02ca73",
+                "rect": {
+                  "x": 60,
+                  "y": 45,
+                  "width": 96,
+                  "height": 70
+                }
+              },
+              "selectionPersistence": "none"
+            }
+          },
+          {
+            "name": "Shape 1",
+            "id": 5,
+            "rect": {
+              "x": 109,
+              "y": 190,
+              "width": 71,
+              "height": 30
+            },
+            "hash": "b1a97bb847a9d3499017ee9664b7a1c0965ebdd36c74f27728e3ba5b64ddd1eb",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Audit ",
+            "id": 6,
+            "rect": {
+              "x": 130,
+              "y": 151,
+              "width": 63,
+              "height": 20
+            },
+            "hash": "cf10c687c523f3b79da98ed576bc2c28fb87e1ba849c8979d11403951fa65bc2",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Generative Expand",
+            "id": 4,
+            "rect": {
+              "x": -13,
+              "y": -13,
+              "width": 288,
+              "height": 224
+            },
+            "hash": "85ac0a88e10f1f5833dbef6e4c22ffad9d0c132e54725b11e162d461312c2300",
+            "mask": null,
+            "recipe": null
+          }
+        ],
+        "selection": null,
+        "history": 1,
+        "index": 0
+      },
+      "keys": [
+        {
+          "name": "AI Remove",
+          "keys": [
+            "luni",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "lyid",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Background",
+          "keys": [
+            "luni",
+            "lyid",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "shmd",
+            "placedData"
+          ]
+        },
+        {
+          "name": "Brightness/Contrast 1",
+          "keys": [
+            "luni",
+            "lyid",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "brit",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Renamed generated result",
+          "keys": [
+            "luni",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "lyid",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Shape 1",
+          "keys": [
+            "luni",
+            "lyid",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "vmsk",
+            "vstk",
+            "vogk",
+            "SoCo",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Audit ",
+          "keys": [
+            "luni",
+            "lyid",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "lnsr",
+            "TySh",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Generative Expand",
+          "keys": [
+            "luni",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "lyid",
+            "shmd"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "classic-fixed-reopen",
+      "time": 1790650540509,
+      "path": "/tmp/photosuite-stability-audit/classic-fixed.psb",
+      "before": {
+        "width": 260,
+        "height": 190,
+        "composite": "3a54836585f101825ed498db4a1621c862379549fbbde01ce76dabb5bc509ebf",
+        "guides": [
+          [
+            23
+          ],
+          [
+            33
+          ]
+        ],
+        "layers": [
+          {
+            "name": "AI Remove",
+            "id": 2,
+            "rect": {
+              "x": 3,
+              "y": 3,
+              "width": 220,
+              "height": 179
+            },
+            "hash": "72c4b641f6edbdb2ce1a06323e4b243876bb9df289151d94cea9e588d0499a5f",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Background",
+            "id": 7,
+            "rect": {
+              "x": 8,
+              "y": 0,
+              "width": 260,
+              "height": 195
+            },
+            "hash": "5cd9a6d6477784e1d5b2e64401bd37dcac330468c8af25509c804a9089da8d26",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Brightness/Contrast 1",
+            "id": 8,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mask": {
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "recipe": null
+          },
+          {
+            "name": "Renamed generated result",
+            "id": 3,
+            "rect": {
+              "x": 62,
+              "y": 48,
+              "width": 143,
+              "height": 110
+            },
+            "hash": "bd1c97686cf4537e6436806463d0249dd8bcf92bbd1823260c203b4669008b3b",
+            "mask": null,
+            "recipe": {
+              "recipeVersion": 1,
+              "layerId": 3,
+              "operation": "generate.fill",
+              "workflow": "photosuite-generative-fill-v1",
+              "backend": "comfyui",
+              "checkpoint": "sd-v1-5-inpainting.ckpt",
+              "seed": 45,
+              "createdAt": "2026-09-29T02:40:17.985Z",
+              "settings": {
+                "steps": 20,
+                "cfg": 7,
+                "sampler": "euler",
+                "scheduler": "normal",
+                "denoise": 1,
+                "maskGrowth": 0,
+                "roi": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 179
+                },
+                "modelWidth": 512,
+                "modelHeight": 512
+              },
+              "source": {
+                "layerId": 2,
+                "sha256": "72c4b641f6edbdb2ce1a06323e4b243876bb9df289151d94cea9e588d0499a5f",
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 179
+                },
+                "documentWidth": 256,
+                "documentHeight": 192
+              },
+              "selection": {
+                "sha256": "4f04ba822d0b539aaaf4726758348b0628cd4009616fe45988120ba86a02ca73",
+                "rect": {
+                  "x": 60,
+                  "y": 45,
+                  "width": 96,
+                  "height": 70
+                }
+              },
+              "selectionPersistence": "none"
+            }
+          },
+          {
+            "name": "Shape 1",
+            "id": 5,
+            "rect": {
+              "x": 109,
+              "y": 190,
+              "width": 71,
+              "height": 30
+            },
+            "hash": "b1a97bb847a9d3499017ee9664b7a1c0965ebdd36c74f27728e3ba5b64ddd1eb",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Audit ",
+            "id": 6,
+            "rect": {
+              "x": 130,
+              "y": 151,
+              "width": 63,
+              "height": 20
+            },
+            "hash": "cf10c687c523f3b79da98ed576bc2c28fb87e1ba849c8979d11403951fa65bc2",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Generative Expand",
+            "id": 4,
+            "rect": {
+              "x": -13,
+              "y": -13,
+              "width": 288,
+              "height": 224
+            },
+            "hash": "85ac0a88e10f1f5833dbef6e4c22ffad9d0c132e54725b11e162d461312c2300",
+            "mask": null,
+            "recipe": null
+          }
+        ],
+        "selection": null,
+        "history": 1,
+        "index": 0
+      },
+      "actual": {
+        "width": 260,
+        "height": 190,
+        "composite": "3a54836585f101825ed498db4a1621c862379549fbbde01ce76dabb5bc509ebf",
+        "guides": [
+          [
+            23
+          ],
+          [
+            33
+          ]
+        ],
+        "layers": [
+          {
+            "name": "AI Remove",
+            "id": 2,
+            "rect": {
+              "x": 3,
+              "y": 3,
+              "width": 220,
+              "height": 179
+            },
+            "hash": "72c4b641f6edbdb2ce1a06323e4b243876bb9df289151d94cea9e588d0499a5f",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Background",
+            "id": 7,
+            "rect": {
+              "x": 8,
+              "y": 0,
+              "width": 260,
+              "height": 195
+            },
+            "hash": "5cd9a6d6477784e1d5b2e64401bd37dcac330468c8af25509c804a9089da8d26",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Brightness/Contrast 1",
+            "id": 8,
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mask": {
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "recipe": null
+          },
+          {
+            "name": "Renamed generated result",
+            "id": 3,
+            "rect": {
+              "x": 62,
+              "y": 48,
+              "width": 143,
+              "height": 110
+            },
+            "hash": "bd1c97686cf4537e6436806463d0249dd8bcf92bbd1823260c203b4669008b3b",
+            "mask": null,
+            "recipe": {
+              "recipeVersion": 1,
+              "layerId": 3,
+              "operation": "generate.fill",
+              "workflow": "photosuite-generative-fill-v1",
+              "backend": "comfyui",
+              "checkpoint": "sd-v1-5-inpainting.ckpt",
+              "seed": 45,
+              "createdAt": "2026-09-29T02:40:17.985Z",
+              "settings": {
+                "steps": 20,
+                "cfg": 7,
+                "sampler": "euler",
+                "scheduler": "normal",
+                "denoise": 1,
+                "maskGrowth": 0,
+                "roi": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 179
+                },
+                "modelWidth": 512,
+                "modelHeight": 512
+              },
+              "source": {
+                "layerId": 2,
+                "sha256": "72c4b641f6edbdb2ce1a06323e4b243876bb9df289151d94cea9e588d0499a5f",
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 179
+                },
+                "documentWidth": 256,
+                "documentHeight": 192
+              },
+              "selection": {
+                "sha256": "4f04ba822d0b539aaaf4726758348b0628cd4009616fe45988120ba86a02ca73",
+                "rect": {
+                  "x": 60,
+                  "y": 45,
+                  "width": 96,
+                  "height": 70
+                }
+              },
+              "selectionPersistence": "none"
+            }
+          },
+          {
+            "name": "Shape 1",
+            "id": 5,
+            "rect": {
+              "x": 109,
+              "y": 190,
+              "width": 71,
+              "height": 30
+            },
+            "hash": "b1a97bb847a9d3499017ee9664b7a1c0965ebdd36c74f27728e3ba5b64ddd1eb",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Audit ",
+            "id": 6,
+            "rect": {
+              "x": 130,
+              "y": 151,
+              "width": 63,
+              "height": 20
+            },
+            "hash": "cf10c687c523f3b79da98ed576bc2c28fb87e1ba849c8979d11403951fa65bc2",
+            "mask": null,
+            "recipe": null
+          },
+          {
+            "name": "Generative Expand",
+            "id": 4,
+            "rect": {
+              "x": -13,
+              "y": -13,
+              "width": 288,
+              "height": 224
+            },
+            "hash": "85ac0a88e10f1f5833dbef6e4c22ffad9d0c132e54725b11e162d461312c2300",
+            "mask": null,
+            "recipe": null
+          }
+        ],
+        "selection": null,
+        "history": 1,
+        "index": 0
+      },
+      "keys": [
+        {
+          "name": "AI Remove",
+          "keys": [
+            "luni",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "lyid",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Background",
+          "keys": [
+            "luni",
+            "lyid",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "shmd",
+            "placedData"
+          ]
+        },
+        {
+          "name": "Brightness/Contrast 1",
+          "keys": [
+            "luni",
+            "lyid",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "brit",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Renamed generated result",
+          "keys": [
+            "luni",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "lyid",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Shape 1",
+          "keys": [
+            "luni",
+            "lyid",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "vmsk",
+            "vstk",
+            "vogk",
+            "SoCo",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Audit ",
+          "keys": [
+            "luni",
+            "lyid",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "lnsr",
+            "TySh",
+            "shmd"
+          ]
+        },
+        {
+          "name": "Generative Expand",
+          "keys": [
+            "luni",
+            "lsct",
+            "lclr",
+            "fxrp",
+            "lyid",
+            "shmd"
+          ]
+        }
+      ]
+    }
+  ],
+  "hostileMetadataFiles": [
+    "/tmp/photosuite-stability-audit/hostile-dtd.psd",
+    "/tmp/photosuite-stability-audit/hostile-entity.psd",
+    "/tmp/photosuite-stability-audit/hostile-malformed.psd",
+    "/tmp/photosuite-stability-audit/hostile-unknown-schema.psd",
+    "/tmp/photosuite-stability-audit/hostile-oversized.psd"
+  ],
+  "sentinelHTTPRequests": 0,
+  "finalExpand": {
+    "label": "expand-sequence-pass",
+    "time": 1790650805136,
+    "snapshot": {
+      "width": 288,
+      "height": 224,
+      "composite": "9caba85b99cfc642953776d5075d0709906f44512fcefe0a5d93e3146a4c3c11",
+      "guides": [
+        [
+          36
+        ],
+        [
+          46
+        ]
+      ],
+      "layers": [
+        {
+          "name": "AI Remove",
+          "id": 2,
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 220,
+            "height": 179
+          },
+          "hash": "bfa730bf5365c37fdb0abdec453c778556c7b733f691bb438f12cbe49eea0304",
+          "mask": null,
+          "recipe": null
+        },
+        {
+          "name": "Background",
+          "id": 1,
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 256,
+            "height": 192
+          },
+          "hash": "4717f8aafedff2e701196834cf6e619be6e357ecd79eca1645626163e9053361",
+          "mask": null,
+          "recipe": null
+        },
+        {
+          "name": "Renamed generated result",
+          "id": 3,
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 220,
+            "height": 179
+          },
+          "hash": "332130d86a77315b9389d27997f57bb4e00b9ab732e5a362cbf637a52fcffbc0",
+          "mask": null,
+          "recipe": {
+            "recipeVersion": 1,
+            "layerId": 3,
+            "operation": "generate.fill",
+            "workflow": "photosuite-generative-fill-v1",
+            "backend": "comfyui",
+            "checkpoint": "sd-v1-5-inpainting.ckpt",
+            "seed": 45,
+            "createdAt": "2026-09-29T02:59:28.831Z",
+            "prompt": "PRIVATE_AUDIT brass surface",
+            "settings": {
+              "steps": 20,
+              "cfg": 7,
+              "sampler": "euler",
+              "scheduler": "normal",
+              "denoise": 1,
+              "maskGrowth": 0,
+              "roi": {
+                "x": 0,
+                "y": 0,
+                "width": 220,
+                "height": 179
+              },
+              "modelWidth": 512,
+              "modelHeight": 512
+            },
+            "source": {
+              "layerId": 2,
+              "sha256": "bfa730bf5365c37fdb0abdec453c778556c7b733f691bb438f12cbe49eea0304",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 220,
+                "height": 179
+              },
+              "documentWidth": 256,
+              "documentHeight": 192
+            },
+            "selection": {
+              "sha256": "4f04ba822d0b539aaaf4726758348b0628cd4009616fe45988120ba86a02ca73",
+              "rect": {
+                "x": 60,
+                "y": 45,
+                "width": 96,
+                "height": 70
+              }
+            },
+            "selectionPersistence": "none"
+          }
+        },
+        {
+          "name": "Generative Expand",
+          "id": 4,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 288,
+            "height": 224
+          },
+          "hash": "285927f2b759625ee6f76a27eb3a944265f24939e898c17edf944674c211527e",
+          "mask": null,
+          "recipe": null
+        }
+      ],
+      "selection": null,
+      "history": 8,
+      "index": 7
+    },
+    "metrics": {
+      "preparationMs": 30,
+      "geometry": {
+        "width": 256,
+        "height": 192,
+        "left": 16,
+        "top": 16,
+        "right": 16,
+        "bottom": 16,
+        "newWidth": 288,
+        "newHeight": 224,
+        "exteriorPixels": 15360,
+        "byteLength": 258048
+      },
+      "seed": 42,
+      "previewMs": 2,
+      "acceptMs": 58
+    },
+    "undoMs": 16,
+    "redoMs": 23
+  },
+  "finalUpscale": {
+    "label": "upscale-pass",
+    "time": 1790650769911,
+    "width": 1024,
+    "height": 768,
+    "metrics": {
+      "jobId": "m1-13",
+      "sourceCaptureMs": 1,
+      "rgbPreparationMs": 6,
+      "transportMs": 611,
+      "alphaMs": 119,
+      "previewMs": 4,
+      "newDocumentMs": 43
+    }
+  },
+  "finalCleanup": {
+    "label": "audit-native-cleanup",
+    "time": 1790651286727,
+    "openDocs": 0
+  },
+  "cloneHistoryNote": "First comparison failed without retained differing snapshot; retry and captured new stroke were equal. Cause unverified.",
+  "cloneRepeatEqual": true,
+  "validation": {
+    "javascript": {
+      "tests": 2126,
+      "suites": 424,
+      "pass": 2126,
+      "fail": 0,
+      "skip": 0
+    },
+    "rust": {
+      "pass": 25,
+      "ignored": 3,
+      "fail": 0
+    },
+    "lint": "pass",
+    "verifyChecks": 8,
+    "cargoCheck": "pass",
+    "nativeBuild": "pass debug macOS app",
+    "hosted": "unavailable: zero workflows; dispatch HTTP 404",
+    "windowsLinuxRuntime": "unverified"
+  }
+}

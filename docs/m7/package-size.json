@@ -1,0 +1,6 @@
+{
+  "baselineBytes": 279319974,
+  "m7Bytes": 279299878,
+  "deltaBytes": -20096,
+  "note": "Unsigned local debug app bundles; compiler/build paths can affect binary size. No added runtime/model assets."
+}

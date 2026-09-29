@@ -15,9 +15,7 @@
 name: PhotoSuite
 
 on:
-  # Every branch is checked on push. Pull requests are checked too, but only
-  # from forks — a branch in this repository has already run on its own push,
-  # and running both would double every job.
+  # Check every branch push and PR merge result, including same-repository PRs.
   push:
     branches: ['**']
     tags: ['v*']
@@ -38,9 +36,6 @@ jobs:
   check-js:
     name: Lint and test (JavaScript)
     runs-on: ubuntu-latest
-    if: >-
-      github.event_name != 'pull_request' ||
-      github.event.pull_request.head.repo.full_name != github.repository
     steps:
       # The suite imports modules that load vendor scripts from the submodules.
       - uses: actions/checkout@v4
@@ -51,16 +46,43 @@ jobs:
           node-version: 25
           cache: npm
       - run: npm ci
-      - run: npm run lint
       - run: npm run vendor:fixlinks
+      - run: npm run lint
       - run: npm run verify
       - run: npm test
+
+  check-rust:
+    name: Check and test (Rust)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install native dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+            libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev \
+            libxdo-dev libssl-dev libcups2-dev build-essential pkg-config
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+          key: check-rust
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 25
+      - run: npm run vendor:fixlinks
+      - run: cargo check --locked --manifest-path src-tauri/Cargo.toml
+      # Real ComfyUI/model tests remain ignored and explicitly opt-in.
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: node scripts/gen-crate-notices.mjs --check
 
   # Installers are built only for a release tag or a run started by hand.
   # A push to main (or any other branch) gets the checks above and stops there.
   build:
     name: Build (${{ matrix.label }})
-    needs: check-js
+    needs: [check-js, check-rust]
     if: >-
       startsWith(github.ref, 'refs/tags/v') ||
       github.event_name == 'workflow_dispatch'
@@ -89,7 +111,10 @@ jobs:
             os: ubuntu-24.04
             artifact: PhotoSuite-linux
             rust_targets: ''
-            tauri_args: ''
+            # The large embedded models make rpm-rs's default gzip bundling
+            # extremely slow. Keep the override scoped to hosted packaging.
+            tauri_args: >-
+              --config '{"bundle":{"linux":{"rpm":{"compression":{"type":"zstd","level":3}}}}}'
             bundle_paths: |
               src-tauri/target/release/bundle/deb/*.deb
               src-tauri/target/release/bundle/rpm/*.rpm

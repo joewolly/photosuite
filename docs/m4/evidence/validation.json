@@ -1,0 +1,85 @@
+{
+  "tests": 1989,
+  "suites": 422,
+  "failures": 0,
+  "skipped": 0,
+  "logs": {
+    "test-final.log": {
+      "sha256": "cd36c7dcb99d94b68f573001329338309636f540150add678001121aae9e1dd1",
+      "lastLines": [
+        "  \u2714 isFolderNode / isFolderOpen (0.06125ms)",
+        "  \u2714 computeRowSelection shift / ctrl / replace (0.111375ms)",
+        "  \u2714 statics remain on PresetTreeList (0.042833ms)",
+        "\u2714 ui/widgets/preset-tree-list.js (67.674542ms)",
+        "\u2139 tests 1989",
+        "\u2139 suites 422",
+        "\u2139 pass 1989",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 9894.112541"
+      ]
+    },
+    "lint-final.log": {
+      "sha256": "2e040670702036008919039628fc7a1061045344aa5cae71c387c6d707a1c4da",
+      "lastLines": [
+        "",
+        "> lint",
+        "> eslint src",
+        ""
+      ]
+    },
+    "verify-final.log": {
+      "sha256": "085138a1bb90edc5ed2a4318d6d9e4db8eb5f244cc43de067b05ec9c0a3e053d",
+      "lastLines": [
+        "",
+        "prototype chains: OK (no prototype is a constructed instance)",
+        "",
+        "> verify:formats",
+        "> node scripts/verify-format-wiring.mjs",
+        "",
+        "format wiring: OK (14 loaders, all installed, exported, and reachable for the formats that need them)",
+        "",
+        "> verify:bootstrap",
+        "> node scripts/verify-bootstrap.mjs",
+        "",
+        "bootstrap verify: OK"
+      ]
+    },
+    "native-build-final.log": {
+      "sha256": "8b2ea3fb0e75530563b7ad782391888ca20da8ef4d6707aa102c41d402464db1",
+      "lastLines": [
+        "> node scripts/repair-vendor-symlinks.mjs",
+        "",
+        "        Warn --no-sign flag detected: Signing will be skipped.",
+        "        Info Looking up installed tauri packages to check mismatched versions...",
+        "   Compiling photosuite v0.9.14 (/Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri)",
+        "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 33.23s",
+        "       Built application at: /Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/photosuite",
+        "    Bundling PhotoSuite.app (/Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/bundle/macos/PhotoSuite.app)",
+        "        Warn Skipping signing due to --no-sign flag.",
+        "    Finished 1 bundle at:",
+        "        /Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/bundle/macos/PhotoSuite.app (265.64 MiB)",
+        ""
+      ]
+    },
+    "offline-build.log": {
+      "sha256": "95f1815ddaf79e8d59ce61011f0517ab262b43412dabaa2d8ab8095de083e402",
+      "lastLines": [
+        "> node scripts/repair-vendor-symlinks.mjs",
+        "",
+        "        Warn --no-sign flag detected: Signing will be skipped.",
+        "        Info Looking up installed tauri packages to check mismatched versions...",
+        "   Compiling photosuite v0.9.14 (/Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri)",
+        "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 36.66s",
+        "       Built application at: /Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/photosuite",
+        "    Bundling PhotoSuiteOffline.app (/Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/bundle/macos/PhotoSuiteOffline.app)",
+        "        Warn Skipping signing due to --no-sign flag.",
+        "    Finished 1 bundle at:",
+        "        /Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/bundle/macos/PhotoSuiteOffline.app (265.67 MiB)",
+        ""
+      ]
+    }
+  }
+}

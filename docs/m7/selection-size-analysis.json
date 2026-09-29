@@ -1,0 +1,94 @@
+{
+  "actualSelections": [
+    {
+      "name": "add-object-selection.bin",
+      "rawBytes": 197505,
+      "zlibBytes": 1243
+    },
+    {
+      "name": "architecture-selection.bin",
+      "rawBytes": 393216,
+      "zlibBytes": 2650
+    },
+    {
+      "name": "canvas-edge-selection.bin",
+      "rawBytes": 135300,
+      "zlibBytes": 931
+    },
+    {
+      "name": "clothing-selection.bin",
+      "rawBytes": 262144,
+      "zlibBytes": 1440
+    },
+    {
+      "name": "context-free-selection.bin",
+      "rawBytes": 240000,
+      "zlibBytes": 1729
+    },
+    {
+      "name": "flat-remove-selection.bin",
+      "rawBytes": 197505,
+      "zlibBytes": 441
+    },
+    {
+      "name": "fur-adjacent-selection.bin",
+      "rawBytes": 135300,
+      "zlibBytes": 572
+    },
+    {
+      "name": "large-selection.bin",
+      "rawBytes": 240000,
+      "zlibBytes": 890
+    },
+    {
+      "name": "material-selection.bin",
+      "rawBytes": 82497,
+      "zlibBytes": 343
+    },
+    {
+      "name": "replace-cup-b-selection.bin",
+      "rawBytes": 240000,
+      "zlibBytes": 1729
+    },
+    {
+      "name": "replace-cup-c-selection.bin",
+      "rawBytes": 240000,
+      "zlibBytes": 1729
+    },
+    {
+      "name": "replace-cup-selection.bin",
+      "rawBytes": 240000,
+      "zlibBytes": 1729
+    },
+    {
+      "name": "small-selection.bin",
+      "rawBytes": 240000,
+      "zlibBytes": 313
+    },
+    {
+      "name": "soft-selection.bin",
+      "rawBytes": 240000,
+      "zlibBytes": 1184
+    },
+    {
+      "name": "text-logo-selection.bin",
+      "rawBytes": 197505,
+      "zlibBytes": 1243
+    },
+    {
+      "name": "textured-selection.bin",
+      "rawBytes": 240000,
+      "zlibBytes": 532
+    },
+    {
+      "name": "transparent-selection.bin",
+      "rawBytes": 82497,
+      "zlibBytes": 392
+    }
+  ],
+  "roiHighEntropy": {
+    "rawBytes": 1048576,
+    "zlibBytes": 1048902
+  },
+  "decision": "No coverage bytes in v1: favorable corpus compression is not a bound on arbitrary soft coverage."
+}

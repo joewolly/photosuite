@@ -1,0 +1,1524 @@
+[
+  {
+    "label": "native-offline-start",
+    "time": 1790634169227,
+    "baseline": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "selectionBytes": 240000,
+    "containsGenerative": true
+  },
+  {
+    "label": "offline-ui-rejected",
+    "time": 1790634584266,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "baseline": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    }
+  },
+  {
+    "label": "native-cancel-direct",
+    "time": 1790634645384,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "current": null
+  },
+  {
+    "label": "native-preview-before-discard",
+    "time": 1790634659085,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    }
+  },
+  {
+    "label": "native-discard-direct",
+    "time": 1790634678003,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "baseline": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "current": null
+  },
+  {
+    "label": "native-three-ready",
+    "time": 1790634717712,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "metrics": {
+      "preparationMs": 21,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 603648,
+          "previewMs": 4
+        },
+        {
+          "seed": 43,
+          "bytes": 603648,
+          "previewMs": 2
+        },
+        {
+          "seed": 44,
+          "bytes": 603648,
+          "previewMs": 1
+        }
+      ]
+    }
+  },
+  {
+    "label": "native-candidates-final",
+    "time": 1790634767943,
+    "candidates": [
+      {
+        "seed": 42,
+        "rect": {
+          "x": 91,
+          "y": 0,
+          "width": 393,
+          "height": 384
+        },
+        "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+      },
+      {
+        "seed": 43,
+        "rect": {
+          "x": 91,
+          "y": 0,
+          "width": 393,
+          "height": 384
+        },
+        "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+      },
+      {
+        "seed": 44,
+        "rect": {
+          "x": 91,
+          "y": 0,
+          "width": 393,
+          "height": 384
+        },
+        "hash": "e3ca708063c2c4c685f175d9e73f1c204eec4191e64e882052a4692bc7af54a7"
+      }
+    ],
+    "before": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "metrics": {
+      "preparationMs": 21,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 603648,
+          "previewMs": 2
+        },
+        {
+          "seed": 43,
+          "bytes": 603648,
+          "previewMs": 2
+        },
+        {
+          "seed": 44,
+          "bytes": 603648,
+          "previewMs": 3
+        }
+      ],
+      "switchMs": 5
+    }
+  },
+  {
+    "label": "native-accept-direct",
+    "time": 1790634793947,
+    "changedOutside": 0,
+    "sourceExact": true,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+        }
+      ],
+      "composite": "a0cc7f9d04428b70f71eec209ede94be9a82e25454d256c683fc451e47c6bceb"
+    },
+    "metrics": {
+      "preparationMs": 21,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 603648,
+          "previewMs": 2
+        },
+        {
+          "seed": 43,
+          "bytes": 603648,
+          "previewMs": 2
+        },
+        {
+          "seed": 44,
+          "bytes": 603648,
+          "previewMs": 3
+        }
+      ],
+      "switchMs": 5,
+      "acceptMs": 9
+    }
+  },
+  {
+    "label": "native-accept-assertions",
+    "time": 1790634793952,
+    "oneTransaction": true,
+    "chosenExact": true,
+    "placement": true,
+    "released": true
+  },
+  {
+    "label": "native-undo-direct",
+    "time": 1790634811348,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "exact": true
+  },
+  {
+    "label": "native-redo-offline-direct",
+    "time": 1790634848556,
+    "exact": true,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+        }
+      ],
+      "composite": "a0cc7f9d04428b70f71eec209ede94be9a82e25454d256c683fc451e47c6bceb"
+    }
+  },
+  {
+    "label": "saved-PSD",
+    "time": 1790634848724,
+    "name": "m6-ui-accepted",
+    "bytes": 1664491,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+        }
+      ],
+      "composite": "a0cc7f9d04428b70f71eec209ede94be9a82e25454d256c683fc451e47c6bceb"
+    },
+    "promptAbsent": true
+  },
+  {
+    "label": "native-PSD-offline-reopen",
+    "time": 1790634848904,
+    "exact": true,
+    "after": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+        }
+      ],
+      "composite": "a0cc7f9d04428b70f71eec209ede94be9a82e25454d256c683fc451e47c6bceb"
+    },
+    "sessionGone": true
+  },
+  {
+    "label": "native-special-context-free",
+    "time": 1790634928867,
+    "changedOutside": 0,
+    "sourceExact": true,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0af9703065db6b38b18b44e4bb64644349dea62a30f10992bed95256b93da3c4"
+        }
+      ],
+      "composite": "144354453e74fa340f520dd3ea74d00e14f58fc3967e7397ca02d473c4c19466"
+    },
+    "metrics": {
+      "preparationMs": 19,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 603648,
+          "previewMs": 2
+        }
+      ],
+      "acceptMs": 4
+    }
+  },
+  {
+    "label": "saved-PSD",
+    "time": 1790634928887,
+    "name": "m6-context-free",
+    "bytes": 1661648,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0af9703065db6b38b18b44e4bb64644349dea62a30f10992bed95256b93da3c4"
+        }
+      ],
+      "composite": "144354453e74fa340f520dd3ea74d00e14f58fc3967e7397ca02d473c4c19466"
+    },
+    "promptAbsent": true
+  },
+  {
+    "label": "native-special-transparent",
+    "time": 1790634942072,
+    "changedOutside": 0,
+    "sourceExact": true,
+    "snapshot": {
+      "width": 321,
+      "height": 257,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 60,
+            "y": 30,
+            "width": 191,
+            "height": 201
+          },
+          "hash": "d1cc15e64a6e52aeb34bc503cc50cbb8e9d0c37b0308219ddc2c85caf15cd24c"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 6,
+            "width": 284,
+            "height": 251
+          },
+          "hash": "9201e30888d35c2a94a881193006b6e4f182e4803c1c1c2a4e9f18c32ce3cc0f"
+        }
+      ],
+      "composite": "8ed9dfdec76877b2fcdbc6f0febc1c704ac2da386b509bc03750f6bd8ea4e776"
+    },
+    "metrics": {
+      "preparationMs": 5,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 285136,
+          "previewMs": 1
+        }
+      ],
+      "acceptMs": 1
+    }
+  },
+  {
+    "label": "saved-PSD",
+    "time": 1790634942079,
+    "name": "m6-transparent",
+    "bytes": 149739,
+    "snapshot": {
+      "width": 321,
+      "height": 257,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 60,
+            "y": 30,
+            "width": 191,
+            "height": 201
+          },
+          "hash": "d1cc15e64a6e52aeb34bc503cc50cbb8e9d0c37b0308219ddc2c85caf15cd24c"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 6,
+            "width": 284,
+            "height": 251
+          },
+          "hash": "9201e30888d35c2a94a881193006b6e4f182e4803c1c1c2a4e9f18c32ce3cc0f"
+        }
+      ],
+      "composite": "8ed9dfdec76877b2fcdbc6f0febc1c704ac2da386b509bc03750f6bd8ea4e776"
+    },
+    "promptAbsent": true
+  },
+  {
+    "label": "native-special-canvas-edge",
+    "time": 1790634955311,
+    "changedOutside": 0,
+    "sourceExact": true,
+    "snapshot": {
+      "width": 451,
+      "height": 300,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 451,
+            "height": 300
+          },
+          "hash": "64fe24103e06b43e8610a29557ae4ffb479e8ed4d420c82d7a144f4c688270f7"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 204,
+            "height": 214
+          },
+          "hash": "a4c075c043b605470f6497e414b7d1913b4af23e560d839495f2bd623926a9fb"
+        }
+      ],
+      "composite": "11c4228ea945ff6c3106f0017a8850c7318ef7feea3419164dacf1f0c19f4c72"
+    },
+    "metrics": {
+      "preparationMs": 8,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 174624,
+          "previewMs": 1
+        }
+      ],
+      "acceptMs": 1
+    }
+  },
+  {
+    "label": "saved-PSD",
+    "time": 1790634955320,
+    "name": "m6-canvas-edge",
+    "bytes": 880214,
+    "snapshot": {
+      "width": 451,
+      "height": 300,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 451,
+            "height": 300
+          },
+          "hash": "64fe24103e06b43e8610a29557ae4ffb479e8ed4d420c82d7a144f4c688270f7"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 204,
+            "height": 214
+          },
+          "hash": "a4c075c043b605470f6497e414b7d1913b4af23e560d839495f2bd623926a9fb"
+        }
+      ],
+      "composite": "11c4228ea945ff6c3106f0017a8850c7318ef7feea3419164dacf1f0c19f4c72"
+    },
+    "promptAbsent": true
+  },
+  {
+    "label": "native-special-soft",
+    "time": 1790634968532,
+    "changedOutside": 0,
+    "sourceExact": true,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "adf740c6218c4021993bcada549a2be15a7efcb7afcbdffca890d077e8dbf5dc"
+        }
+      ],
+      "composite": "8c1fca2738bb6a619bc7351fee0e0c06f067f1c2d307977b1bbf39b27459fa85"
+    },
+    "metrics": {
+      "preparationMs": 7,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 603648,
+          "previewMs": 1
+        }
+      ],
+      "acceptMs": 3
+    }
+  },
+  {
+    "label": "saved-PSD",
+    "time": 1790634968549,
+    "name": "m6-soft",
+    "bytes": 1669821,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "adf740c6218c4021993bcada549a2be15a7efcb7afcbdffca890d077e8dbf5dc"
+        }
+      ],
+      "composite": "8c1fca2738bb6a619bc7351fee0e0c06f067f1c2d307977b1bbf39b27459fa85"
+    },
+    "promptAbsent": true
+  },
+  {
+    "label": "native-source-during-generation",
+    "time": 1790634969615,
+    "state": "stale",
+    "after": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "1bd5a6763f3bb24aa7c52fe2d5e02b5746b60d5d737a9d63690ef93c268084e7"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "postEdit": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "1bd5a6763f3bb24aa7c52fe2d5e02b5746b60d5d737a9d63690ef93c268084e7"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "closed": false,
+    "noCandidate": true
+  },
+  {
+    "label": "native-selection-during-generation",
+    "time": 1790634970670,
+    "state": "stale",
+    "after": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "postEdit": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "closed": false,
+    "noCandidate": true
+  },
+  {
+    "label": "native-close-during-generation",
+    "time": 1790634971398,
+    "state": "cancelled",
+    "after": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "postEdit": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    },
+    "closed": true,
+    "noCandidate": true
+  },
+  {
+    "label": "native-tab-switch",
+    "time": 1790634984842,
+    "sourcePreview": true,
+    "otherUntouched": true
+  },
+  {
+    "label": "native-regenerate-valid",
+    "time": 1790634997950,
+    "oldIds": [
+      "m1-13"
+    ],
+    "newIds": [
+      "m1-14"
+    ],
+    "seeds": [
+      51
+    ],
+    "sourceUnchanged": true
+  },
+  {
+    "label": "native-regenerate-stale",
+    "time": 1790634997954,
+    "refused": true,
+    "notice": "Source or selection changed. Regenerate unavailable; make a new selection and run again."
+  },
+  {
+    "label": "native-M2-regression",
+    "time": 1790635011212,
+    "changedOutside": 0,
+    "sourceExact": true,
+    "snapshot": {
+      "width": 513,
+      "height": 385,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 513,
+            "height": 385
+          },
+          "hash": "4b714d374a8017cb7af1b8561a415a5400ff96665e79f76880fa74bf40902c64"
+        },
+        {
+          "name": "AI Remove",
+          "rect": {
+            "x": 136,
+            "y": 56,
+            "width": 239,
+            "height": 244
+          },
+          "hash": "1f5d12089f9ef4d5e03b131d127014675f6a7fdbd6858ac6263b46a0db8a99bf"
+        }
+      ],
+      "composite": "e3654234c6e23704f64e9966c61a42b0afd9e0aa2e4c9722cb5190432c00cb6b"
+    },
+    "metrics": {
+      "preparationMs": 9,
+      "candidates": [
+        {
+          "seed": 51,
+          "bytes": 603648,
+          "previewMs": 1
+        }
+      ]
+    }
+  },
+  {
+    "label": "native-M5b-regression",
+    "time": 1790635012994,
+    "sourceUnchanged": true,
+    "output": {
+      "width": 2400,
+      "height": 1600,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "AI Upscale 4x",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 2400,
+            "height": 1600
+          },
+          "hash": "48f0d9e661644b82afbcb91ba4609ff67770442e14bef1f46a2cdaa234937e70"
+        }
+      ],
+      "composite": "48f0d9e661644b82afbcb91ba4609ff67770442e14bef1f46a2cdaa234937e70"
+    },
+    "metrics": {
+      "jobId": "m1-16",
+      "sourceCaptureMs": 7,
+      "rgbPreparationMs": 12,
+      "transportMs": 1243,
+      "alphaMs": 324,
+      "previewMs": 4,
+      "newDocumentMs": 8
+    }
+  },
+  {
+    "label": "native-suite-pass",
+    "time": 1790635013000
+  },
+  {
+    "label": "native-limit-start",
+    "time": 1790635071384
+  },
+  {
+    "label": "native-limit-three-ready",
+    "time": 1790635532580,
+    "metrics": {
+      "preparationMs": 103,
+      "candidates": [
+        {
+          "seed": 72,
+          "bytes": 4194304,
+          "previewMs": 5
+        },
+        {
+          "seed": 73,
+          "bytes": 4194304,
+          "previewMs": 13
+        },
+        {
+          "seed": 74,
+          "bytes": 4194304,
+          "previewMs": 4
+        }
+      ]
+    },
+    "seeds": [
+      72,
+      73,
+      74
+    ],
+    "overlayBytes": 4194304
+  },
+  {
+    "label": "native-limit-accepted",
+    "time": 1790635532734,
+    "changedOutside": 0,
+    "sourceExact": true,
+    "snapshot": {
+      "width": 1024,
+      "height": 1024,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 1024
+          },
+          "hash": "8bb310efc67c6e374eaf533c0cfcc9d8ddcda0ab4b439bf00808d7cbff57be67"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 1024
+          },
+          "hash": "6e5793e8b0887a47904f6fa95009e5a252b2ef0c2252cc16302b36e970caeccc"
+        }
+      ],
+      "composite": "24839974d69579039820aa349e0cb6e8e4d8afc50d2db94cb71f9498650e8abb"
+    },
+    "metrics": {
+      "preparationMs": 103,
+      "candidates": [
+        {
+          "seed": 72,
+          "bytes": 4194304,
+          "previewMs": 5
+        },
+        {
+          "seed": 73,
+          "bytes": 4194304,
+          "previewMs": 3
+        },
+        {
+          "seed": 74,
+          "bytes": 4194304,
+          "previewMs": 4
+        }
+      ],
+      "switchMs": 6,
+      "acceptMs": 35
+    }
+  },
+  {
+    "label": "saved-PSD",
+    "time": 1790635532781,
+    "name": "m6-limit",
+    "bytes": 2219473,
+    "snapshot": {
+      "width": 1024,
+      "height": 1024,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 1024
+          },
+          "hash": "8bb310efc67c6e374eaf533c0cfcc9d8ddcda0ab4b439bf00808d7cbff57be67"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 1024
+          },
+          "hash": "6e5793e8b0887a47904f6fa95009e5a252b2ef0c2252cc16302b36e970caeccc"
+        }
+      ],
+      "composite": "24839974d69579039820aa349e0cb6e8e4d8afc50d2db94cb71f9498650e8abb"
+    },
+    "promptAbsent": true
+  },
+  {
+    "label": "native-limit-pass",
+    "time": 1790635532792
+  },
+  {
+    "label": "final-build-native-start",
+    "time": 1790635757249,
+    "jobStrip": "Selection and image jobs"
+  },
+  {
+    "label": "final-build-native-accept",
+    "time": 1790635771371,
+    "changedOutside": 0,
+    "sourceExact": true,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+        }
+      ],
+      "composite": "a0cc7f9d04428b70f71eec209ede94be9a82e25454d256c683fc451e47c6bceb"
+    },
+    "metrics": {
+      "preparationMs": 19,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 603648,
+          "previewMs": 1
+        }
+      ],
+      "acceptMs": 4
+    }
+  },
+  {
+    "label": "saved-PSD",
+    "time": 1790635771391,
+    "name": "m6-final-build",
+    "bytes": 1664491,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+        }
+      ],
+      "composite": "a0cc7f9d04428b70f71eec209ede94be9a82e25454d256c683fc451e47c6bceb"
+    },
+    "promptAbsent": true
+  },
+  {
+    "label": "final-build-native-pass",
+    "time": 1790635771394
+  },
+  {
+    "label": "final-build-offline-history",
+    "time": 1790635845952,
+    "exact": true
+  },
+  {
+    "label": "final-build-offline-reopen",
+    "time": 1790635846128,
+    "name": "m6-ui-accepted",
+    "exact": true,
+    "actual": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+        }
+      ],
+      "composite": "a0cc7f9d04428b70f71eec209ede94be9a82e25454d256c683fc451e47c6bceb"
+    }
+  },
+  {
+    "label": "final-build-offline-reopen",
+    "time": 1790635846184,
+    "name": "m6-context-free",
+    "exact": true,
+    "actual": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0af9703065db6b38b18b44e4bb64644349dea62a30f10992bed95256b93da3c4"
+        }
+      ],
+      "composite": "144354453e74fa340f520dd3ea74d00e14f58fc3967e7397ca02d473c4c19466"
+    }
+  },
+  {
+    "label": "final-build-offline-reopen",
+    "time": 1790635846230,
+    "name": "m6-transparent",
+    "exact": true,
+    "actual": {
+      "width": 321,
+      "height": 257,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 60,
+            "y": 30,
+            "width": 191,
+            "height": 201
+          },
+          "hash": "d1cc15e64a6e52aeb34bc503cc50cbb8e9d0c37b0308219ddc2c85caf15cd24c"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 6,
+            "width": 284,
+            "height": 251
+          },
+          "hash": "9201e30888d35c2a94a881193006b6e4f182e4803c1c1c2a4e9f18c32ce3cc0f"
+        }
+      ],
+      "composite": "8ed9dfdec76877b2fcdbc6f0febc1c704ac2da386b509bc03750f6bd8ea4e776"
+    }
+  },
+  {
+    "label": "final-build-offline-reopen",
+    "time": 1790635846284,
+    "name": "m6-canvas-edge",
+    "exact": true,
+    "actual": {
+      "width": 451,
+      "height": 300,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 451,
+            "height": 300
+          },
+          "hash": "64fe24103e06b43e8610a29557ae4ffb479e8ed4d420c82d7a144f4c688270f7"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 204,
+            "height": 214
+          },
+          "hash": "a4c075c043b605470f6497e414b7d1913b4af23e560d839495f2bd623926a9fb"
+        }
+      ],
+      "composite": "11c4228ea945ff6c3106f0017a8850c7318ef7feea3419164dacf1f0c19f4c72"
+    }
+  },
+  {
+    "label": "final-build-offline-reopen",
+    "time": 1790635846346,
+    "name": "m6-soft",
+    "exact": true,
+    "actual": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "adf740c6218c4021993bcada549a2be15a7efcb7afcbdffca890d077e8dbf5dc"
+        }
+      ],
+      "composite": "8c1fca2738bb6a619bc7351fee0e0c06f067f1c2d307977b1bbf39b27459fa85"
+    }
+  },
+  {
+    "label": "final-build-offline-reopen",
+    "time": 1790635846474,
+    "name": "m6-limit",
+    "exact": true,
+    "actual": {
+      "width": 1024,
+      "height": 1024,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 1024
+          },
+          "hash": "8bb310efc67c6e374eaf533c0cfcc9d8ddcda0ab4b439bf00808d7cbff57be67"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 1024
+          },
+          "hash": "6e5793e8b0887a47904f6fa95009e5a252b2ef0c2252cc16302b36e970caeccc"
+        }
+      ],
+      "composite": "24839974d69579039820aa349e0cb6e8e4d8afc50d2db94cb71f9498650e8abb"
+    }
+  },
+  {
+    "label": "final-build-offline-reopen",
+    "time": 1790635846540,
+    "name": "m6-final-build",
+    "exact": true,
+    "actual": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "8097aaae5dd0db429a97a7503c91e7c60aa1b20cac5d33163198955d115e9938"
+        }
+      ],
+      "composite": "a0cc7f9d04428b70f71eec209ede94be9a82e25454d256c683fc451e47c6bceb"
+    }
+  },
+  {
+    "label": "final-build-offline-pass",
+    "time": 1790635846549
+  }
+]

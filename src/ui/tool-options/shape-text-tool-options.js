@@ -396,9 +396,33 @@ function CustomShapeOption() {
 CustomShapeOption.prototype = Object.create(ShapeOptionBase.prototype);
 
 function FillOptionD() {
-  FillOptionBase.call(this)
+  FillOptionBase.call(this);
+  this.aiMode = new Checkbox("AI point / box"); this.aiMode.setValue(false);
+  this.body.insertBefore(this.aiMode.el, this.body.firstChild);
+  this.aiMode.on(EventType.widgetSelect, this.onInput, this);
+  this.promptKind = new Dropdown("Click", ["Include (+)", "Exclude (−)"]);
+  this.promptKind.setValue(0); this.promptKind.on(EventType.widgetSelect, this.onInput, this);
+  this.body.appendChild(this.promptKind.el);
+  this.newObject = new Button("New object", false, null, true);
+  this.newObject.on("click", () => { this.data.newObjectSelection = true; this.onInput(); delete this.data.newObjectSelection; }, this);
+  this.body.appendChild(this.newObject.el);
+  this.promptHint = makeElement("span"); this.promptHint.textContent = "Click to include · Option/Alt-click to exclude · Drag a box";
+  this.body.appendChild(this.promptHint);
 }
 FillOptionD.prototype = Object.create(FillOptionBase.prototype);
+FillOptionD.prototype.syncWidgets = function() {
+  FillOptionBase.prototype.syncWidgets.call(this);
+  this.aiMode.buildUI(); this.promptKind.buildUI(); this.newObject.buildUI(); this.updateModeVisibility();
+};
+FillOptionD.prototype.updateModeVisibility = function() {
+  const ai = this.aiMode.getValue();
+  this.combineDropdown.el.style.display = ai ? "none" : ""; this.featherSlider.el.style.display = ai ? "none" : "";
+  this.promptKind.el.style.display = ai ? "" : "none"; this.newObject.el.style.display = ai ? "" : "none"; this.promptHint.hidden = !ai;
+};
+FillOptionD.prototype.onInput = function() {
+  this.data.objectSelectionAI = this.aiMode.getValue(); this.data.objectPromptKind = this.promptKind.getValue() === 1 ? "negative" : "positive";
+  this.updateModeVisibility(); FillOptionBase.prototype.onInput.call(this);
+};
 
 function QuickSelectOption() {
   BrushOptionBase.call(this, ["brush", "qsmode", "redge"])
@@ -521,7 +545,7 @@ TextFontOptionBase.prototype.onToolEvent = function(toolEvent) {
     transformInputs.refPointAngle.setValue(toolEvent.freeTransform.refPointIndex);
     transformInputs.xInput.setValue(toolEvent.freeTransform.refPoint.x);
     transformInputs.yInput.setValue(toolEvent.freeTransform.refPoint.y);
-    transformInputs.widthInput.setValue(decomposedMatrix.w * (transformInputs.widthInput.getDisplaySuffix() == "%" ? 100 : layerBounds.width));
+    transformInputs.widthInput.setValue(decomposedMatrix.a * (transformInputs.widthInput.getDisplaySuffix() == "%" ? 100 : layerBounds.width));
     transformInputs.heightInput.setValue(decomposedMatrix.d * (transformInputs.heightInput.getDisplaySuffix() == "%" ? 100 : layerBounds.height));
     transformInputs.rotationInput.setValue(-rotationRad * 180 / Math.PI);
     transformInputs.hSkewInput.setValue(0 * 180 / Math.PI);

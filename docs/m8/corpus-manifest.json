@@ -1,0 +1,550 @@
+{
+  "version": 1,
+  "notes": "16 correlated bounded probes. Landscape, lines, brick and flat/alpha cases are synthetic, not photographic benchmark evidence. Four inherited public-domain/CC0 photos.",
+  "cases": [
+    {
+      "id": "landscape-left",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 96,
+        "top": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "prompt": "continue the mountain landscape",
+      "seed": 42,
+      "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 96,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "newWidth": 417,
+        "newHeight": 257,
+        "exteriorPixels": 24672,
+        "byteLength": 428676
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "landscape-right",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0
+      },
+      "prompt": "continue the mountain landscape",
+      "seed": 42,
+      "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0,
+        "newWidth": 417,
+        "newHeight": 257,
+        "exteriorPixels": 24672,
+        "byteLength": 428676
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "sky-top",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 0,
+        "top": 96,
+        "right": 0,
+        "bottom": 0
+      },
+      "prompt": "blue sky with soft clouds",
+      "seed": 42,
+      "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 0,
+        "top": 96,
+        "right": 0,
+        "bottom": 0,
+        "newWidth": 321,
+        "newHeight": 353,
+        "exteriorPixels": 30816,
+        "byteLength": 453252
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "ground-bottom",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 96
+      },
+      "prompt": "continue the grass and ground",
+      "seed": 42,
+      "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 96,
+        "newWidth": 321,
+        "newHeight": 353,
+        "exteriorPixels": 30816,
+        "byteLength": 453252
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "portrait-headroom",
+      "width": 320,
+      "height": 320,
+      "expansion": {
+        "left": 0,
+        "top": 80,
+        "right": 0,
+        "bottom": 0
+      },
+      "prompt": "",
+      "seed": 42,
+      "sourceSha256": "f14fb66d993375d1c7b26a8e8ba08428f1536d8b190edeb973a0495db1846b05",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/astronaut.png",
+      "license": "Public domain NASA",
+      "geometry": {
+        "width": 320,
+        "height": 320,
+        "left": 0,
+        "top": 80,
+        "right": 0,
+        "bottom": 0,
+        "newWidth": 320,
+        "newHeight": 400,
+        "exteriorPixels": 25600,
+        "byteLength": 512000
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "full-body-surroundings",
+      "width": 384,
+      "height": 256,
+      "expansion": {
+        "left": 64,
+        "top": 0,
+        "right": 64,
+        "bottom": 48
+      },
+      "prompt": "continue the courtyard surroundings",
+      "seed": 42,
+      "sourceSha256": "215da0c45ead52b533e2b16a0509528c17649f19da2aba5718955bd8605031e8",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/6/66/Barack_Obama_and_Joe_Biden_running_in_the_Colonnade_of_the_White_House%2C_February_2014_%2813898117298%29.jpg",
+      "license": "Public domain US government; Pete Souza / White House. Evaluation only; no endorsement.",
+      "geometry": {
+        "width": 384,
+        "height": 256,
+        "left": 64,
+        "top": 0,
+        "right": 64,
+        "bottom": 48,
+        "newWidth": 512,
+        "newHeight": 304,
+        "exteriorPixels": 57344,
+        "byteLength": 622592
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "architecture",
+      "width": 384,
+      "height": 256,
+      "expansion": {
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0
+      },
+      "prompt": "continue the white colonnade",
+      "seed": 42,
+      "sourceSha256": "215da0c45ead52b533e2b16a0509528c17649f19da2aba5718955bd8605031e8",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/6/66/Barack_Obama_and_Joe_Biden_running_in_the_Colonnade_of_the_White_House%2C_February_2014_%2813898117298%29.jpg",
+      "license": "Public domain US government; Pete Souza / White House. Evaluation only; no endorsement.",
+      "geometry": {
+        "width": 384,
+        "height": 256,
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0,
+        "newWidth": 480,
+        "newHeight": 256,
+        "exteriorPixels": 24576,
+        "byteLength": 491520
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "repeated-texture",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 96,
+        "top": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "prompt": "continue the brick wall",
+      "seed": 42,
+      "sourceSha256": "d846845dab1d65f70e8c9585ae3f2010448e7468c3efadfa83698bf892c3f173",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 96,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "newWidth": 417,
+        "newHeight": 257,
+        "exteriorPixels": 24672,
+        "byteLength": 428676
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "flat-background",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0
+      },
+      "prompt": "",
+      "seed": 42,
+      "sourceSha256": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0,
+        "newWidth": 417,
+        "newHeight": 257,
+        "exteriorPixels": 24672,
+        "byteLength": 428676
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "perspective-lines",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 96,
+        "top": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "prompt": "continue the tiled floor",
+      "seed": 42,
+      "sourceSha256": "c7873a3dc42f243d7fd7044fa560d6a4118039b6051e5eab44fee52ca0c896bf",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 96,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "newWidth": 417,
+        "newHeight": 257,
+        "exteriorPixels": 24672,
+        "byteLength": 428676
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "edge-subject",
+      "width": 384,
+      "height": 255,
+      "expansion": {
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0
+      },
+      "prompt": "",
+      "seed": 42,
+      "sourceSha256": "ff9080e7c479d1e3f08b99cd7f97556f3adc79da71506fb2b00ac83417c230b7",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/chelsea.png",
+      "license": "CC0; Stefan van der Walt / scikit-image",
+      "geometry": {
+        "width": 384,
+        "height": 255,
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0,
+        "newWidth": 480,
+        "newHeight": 255,
+        "exteriorPixels": 24480,
+        "byteLength": 489600
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "transparent",
+      "width": 256,
+      "height": 320,
+      "expansion": {
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0
+      },
+      "prompt": "a soft blue background",
+      "seed": 42,
+      "sourceSha256": "574f6c6df99d25070f3b77855adb6b54b0309ebebc5eec00b3cc1ea1fc990c1a",
+      "source": "generated by create-corpus.py",
+      "license": "CC0",
+      "geometry": {
+        "width": 256,
+        "height": 320,
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0,
+        "newWidth": 352,
+        "newHeight": 320,
+        "exteriorPixels": 30720,
+        "byteLength": 450560
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "two-side",
+      "width": 384,
+      "height": 256,
+      "expansion": {
+        "left": 64,
+        "top": 0,
+        "right": 64,
+        "bottom": 0
+      },
+      "prompt": "wooden table",
+      "seed": 42,
+      "sourceSha256": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+      "source": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.24.0/skimage/data/coffee.png",
+      "license": "CC0; Rachel Michetti / scikit-image",
+      "geometry": {
+        "width": 384,
+        "height": 256,
+        "left": 64,
+        "top": 0,
+        "right": 64,
+        "bottom": 0,
+        "newWidth": 512,
+        "newHeight": 256,
+        "exteriorPixels": 32768,
+        "byteLength": 524288
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "four-side",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 48,
+        "top": 48,
+        "right": 48,
+        "bottom": 48
+      },
+      "prompt": "continue the mountain landscape",
+      "seed": 42,
+      "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 48,
+        "top": 48,
+        "right": 48,
+        "bottom": 48,
+        "newWidth": 417,
+        "newHeight": 353,
+        "exteriorPixels": 64704,
+        "byteLength": 588804
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "empty-prompt",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0
+      },
+      "prompt": "",
+      "seed": 42,
+      "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 0,
+        "top": 0,
+        "right": 96,
+        "bottom": 0,
+        "newWidth": 417,
+        "newHeight": 257,
+        "exteriorPixels": 24672,
+        "byteLength": 428676
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "explicit-prompt",
+      "width": 321,
+      "height": 257,
+      "expansion": {
+        "left": 0,
+        "top": 96,
+        "right": 0,
+        "bottom": 0
+      },
+      "prompt": "blue sky with white fluffy clouds",
+      "seed": 42,
+      "sourceSha256": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+      "source": "Synthetic CC0 probe from scripts/m8/create-corpus.py",
+      "license": "CC0-1.0",
+      "geometry": {
+        "width": 321,
+        "height": 257,
+        "left": 0,
+        "top": 96,
+        "right": 0,
+        "bottom": 0,
+        "newWidth": 321,
+        "newHeight": 353,
+        "exteriorPixels": 30816,
+        "byteLength": 453252
+      },
+      "modelWidth": 512,
+      "modelHeight": 512,
+      "modelOffset": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 // keyed by XMP property names ("dc:Title", "exif:FNumber", …). This module reads
 // that dictionary out of, and writes it into, the three containers the codecs
 // deal with: TIFF/EXIF IFDs, PSD image-resource blocks, and XMP packet XML.
+import { RECIPE_FIELD, RECIPE_NAMESPACE, RECIPE_LIMITS, normalizeRecipes } from "./generation-recipes.js";
 import { BinaryUtils } from "../../../core/binary/binary-utils.js";
 
 function XMPData() {}
@@ -203,7 +204,16 @@ XMPData.writePsdResources = function(fields) {
 
 XMPData.readXmpXml = function(xml, fields) {
   if (fields == null) fields = {};
-  var description = new DOMParser().parseFromString(xml, "image/svg+xml").getElementsByTagName("rdf:Description")[0];
+  // Optional metadata cannot make otherwise readable pixels fail to load.
+  let parsed;
+  try {
+    if (typeof xml !== "string" || xml.length > RECIPE_LIMITS.xmpBytes || new TextEncoder().encode(xml).length > RECIPE_LIMITS.xmpBytes || /<!DOCTYPE|<!ENTITY/i.test(xml)) return fields;
+    parsed = new DOMParser().parseFromString(xml, "application/xml");
+    if (parsed.getElementsByTagName("parsererror").length) return fields;
+  } catch { return fields; }
+  const recipe = readGenerationXmp(parsed);
+  if (recipe) fields[RECIPE_FIELD] = recipe;
+  var description = parsed.getElementsByTagName("rdf:Description")[0];
   if (description == null) return fields;
   var fieldMap = XMPData.FIELD_MAP;
   for (var xmpKey in fieldMap) {
@@ -240,11 +250,44 @@ XMPData.writeXmpXml = function(fields) {
     if (dcElement == "dc:subject") containerType = "Bag";
     lines.push("\t<" + dcElement + "><rdf:" + containerType + ">");
     var values = dcElement == "dc:subject" ? value.split(";").join(",").split(",") : [value];
-    for (var i = 0; i < values.length; i++) lines.push("\t\t<rdf:li" + langAttr + ">" + values[i].trim() + "</rdf:li>");
+    for (var i = 0; i < values.length; i++) lines.push("\t\t<rdf:li" + langAttr + ">" + escapeXmp(values[i].trim()) + "</rdf:li>");
     lines.push("\t</rdf:" + containerType + "></" + dcElement + ">");
   }
-  lines.push("</rdf:Description>", "</rdf:RDF>", "</x:xmpmeta>", "<?xpacket end=\"w\"?>");
+  lines.push("</rdf:Description>", writeGenerationXmp(fields[RECIPE_FIELD]), "</rdf:RDF>", "</x:xmpmeta>", "<?xpacket end=\"w\"?>");
   return lines.join("\n");
 };
 
+const children = node => Array.from(node.childNodes).filter(child => child.nodeType === 1);
+const RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+function escapeXmp(value) {
+  return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&apos;").replace(/\r/g, "&#13;");
+}
+function readGenerationXmp(parsed) {
+  try {
+    const versions = parsed.getElementsByTagNameNS(RECIPE_NAMESPACE, "schemaVersion");
+    const arrays = parsed.getElementsByTagNameNS(RECIPE_NAMESPACE, "recipes");
+    if (versions.length !== 1 || arrays.length !== 1 || versions[0].textContent !== "1"
+      || children(versions[0]).length || versions[0].parentNode !== arrays[0].parentNode
+      || arrays[0].parentNode.namespaceURI !== RDF || arrays[0].parentNode.localName !== "Description") return null;
+    const array = arrays[0], seq = children(array)[0];
+    if (children(array).length !== 1 || seq.namespaceURI !== RDF || seq.localName !== "Seq"
+      || children(seq).length > RECIPE_LIMITS.records || new TextEncoder().encode(new XMLSerializer().serializeToString(array)).length > RECIPE_LIMITS.metadataBytes) return null;
+    const records = [];
+    for (const item of children(seq)) {
+      if (item.namespaceURI !== RDF || item.localName !== "li" || children(item).length || item.attributes.length
+        || item.textContent.length > RECIPE_LIMITS.recordBytes || new TextEncoder().encode(item.textContent).length > RECIPE_LIMITS.recordBytes) return null;
+      records.push(JSON.parse(item.textContent));
+    }
+    return normalizeRecipes({ schemaVersion: 1, records });
+  } catch { return null; }
+}
+function writeGenerationXmp(value) {
+  const recipe = normalizeRecipes(value);
+  if (!recipe) return "";
+  const xml = `<rdf:Description rdf:about="" xmlns:photosuite="${RECIPE_NAMESPACE}">\n<photosuite:schemaVersion>1</photosuite:schemaVersion>\n<photosuite:recipes><rdf:Seq>\n`
+    + recipe.records.map(record => `<rdf:li>${escapeXmp(JSON.stringify(record))}</rdf:li>`).join("\n")
+    + "\n</rdf:Seq></photosuite:recipes>\n</rdf:Description>";
+  return new TextEncoder().encode(xml).length <= RECIPE_LIMITS.metadataBytes ? xml : "";
+}
 export { XMPData };

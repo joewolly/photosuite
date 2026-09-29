@@ -1,0 +1,338 @@
+[
+  {
+    "id": "isolated",
+    "groundTruth": "isolated-label.png",
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 5101,
+        "iou": 0.27561054679057706,
+        "boundaryF2px": 0.0
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 5103,
+        "iou": 0.2757186081694402,
+        "boundaryF2px": 0.0
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 18490,
+        "iou": 0.9990274475902312,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 18508,
+        "iou": 0.9993518418494113,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 18419,
+        "iou": 0.9951912686405878,
+        "boundaryF2px": 0.9366306027820711
+      }
+    ]
+  },
+  {
+    "id": "neighbors",
+    "groundTruth": "neighbors-label.png",
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 5101,
+        "iou": 0.27561054679057706,
+        "boundaryF2px": 0.0
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 5100,
+        "iou": 0.27555651610114545,
+        "boundaryF2px": 0.0
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 18489,
+        "iou": 0.9989734169007997,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 18468,
+        "iou": 0.9978387724227361,
+        "boundaryF2px": 0.9528301886792453
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 18423,
+        "iou": 0.9954073913983142,
+        "boundaryF2px": 0.9902439024390245
+      }
+    ]
+  },
+  {
+    "id": "people",
+    "groundTruth": null,
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 12625
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 6339
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 12740
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 12854
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 12734
+      }
+    ]
+  },
+  {
+    "id": "occluded-person",
+    "groundTruth": null,
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 50879
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 50366
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 84300
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 86398
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 82941
+      }
+    ]
+  },
+  {
+    "id": "table",
+    "groundTruth": null,
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 12396
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 10061
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 25862
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 30402
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 34047
+      }
+    ]
+  },
+  {
+    "id": "hole",
+    "groundTruth": "hole-label.png",
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 22374,
+        "iou": 0.9959492543957267,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 22299,
+        "iou": 0.9926107277987981,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 22328,
+        "iou": 0.9939016247496105,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 22304,
+        "iou": 0.9928332962385934,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 22260,
+        "iou": 0.9908746939683953,
+        "boundaryF2px": 1.0
+      }
+    ]
+  },
+  {
+    "id": "fur",
+    "groundTruth": null,
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 101630
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 93142
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 114132
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 121992
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 106568
+      }
+    ]
+  },
+  {
+    "id": "thin",
+    "groundTruth": "thin-label.png",
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 24645,
+        "iou": 0.998054868906269,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 24172,
+        "iou": 0.9801711203925226,
+        "boundaryF2px": 0.9883189663083578
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 24593,
+        "iou": 0.9969996756406098,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 24635,
+        "iou": 0.9984594802772936,
+        "boundaryF2px": 1.0
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 24615,
+        "iou": 0.9979726716133479,
+        "boundaryF2px": 1.0
+      }
+    ]
+  },
+  {
+    "id": "low-contrast",
+    "groundTruth": null,
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 34547
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 35213
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 30931
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 30560
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 31984
+      }
+    ]
+  },
+  {
+    "id": "boundary",
+    "groundTruth": null,
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 67675
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 63324
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 81723
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 78445
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 68027
+      }
+    ]
+  },
+  {
+    "id": "occluded-object",
+    "groundTruth": "occluded-object-label.png",
+    "results": [
+      {
+        "sequence": "point",
+        "foregroundPixels": 2960,
+        "iou": 0.22492401215805471,
+        "boundaryF2px": 0.1610576923076923
+      },
+      {
+        "sequence": "point-negative",
+        "foregroundPixels": 2960,
+        "iou": 0.22492401215805471,
+        "boundaryF2px": 0.16042955357628746
+      },
+      {
+        "sequence": "box",
+        "foregroundPixels": 10250,
+        "iou": 0.7788753799392097,
+        "boundaryF2px": 0.8302481828302011
+      },
+      {
+        "sequence": "box-correction",
+        "foregroundPixels": 10194,
+        "iou": 0.7746200607902736,
+        "boundaryF2px": 0.8424504093519611
+      },
+      {
+        "sequence": "multiple-corrections",
+        "foregroundPixels": 13032,
+        "iou": 0.990273556231003,
+        "boundaryF2px": 0.8995633187772926
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "nativeTestAppStopped": true,
+  "comfyStopped": true,
+  "testServersStopped": true,
+  "privacyRestored": {
+    "saveRecipes": true,
+    "savePrompts": false
+  },
+  "reason": "Final native acceptance complete"
+}

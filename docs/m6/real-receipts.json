@@ -1,0 +1,155 @@
+[
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "context-free",
+    "requestId": "ccb51187-dcd8-4bdc-ac69-73d05309a60b",
+    "seed": 42,
+    "transportMs": 16847,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "replace-cup",
+    "requestId": "85f44bd7-2d72-43c4-86b3-48ed0dc69b9b",
+    "seed": 42,
+    "transportMs": 13353,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "replace-cup-b",
+    "requestId": "20f3ebcd-b773-4bdb-882b-940363bea3e6",
+    "seed": 43,
+    "transportMs": 14185,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "replace-cup-c",
+    "requestId": "4edc09bf-d0de-4884-8d4b-05bf7f83f54f",
+    "seed": 44,
+    "transportMs": 18618,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "material",
+    "requestId": "6c520057-b43b-49bd-8b0e-bdbbc0d86541",
+    "seed": 42,
+    "transportMs": 13582,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "add-object",
+    "requestId": "dd07ad80-f1a4-4017-a1b6-5d0e1f3673a7",
+    "seed": 42,
+    "transportMs": 13401,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "clothing",
+    "requestId": "b2fce154-7476-4471-80ec-04fec78ca973",
+    "seed": 42,
+    "transportMs": 13611,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "fur-adjacent",
+    "requestId": "0a2daf53-b22b-4e62-816b-16024a9c6e5c",
+    "seed": 42,
+    "transportMs": 13690,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "architecture",
+    "requestId": "162e0710-c375-4a79-a557-4de0f92cfcb3",
+    "seed": 42,
+    "transportMs": 13590,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "textured",
+    "requestId": "24bb0f83-1e03-4f1c-b12a-5be993367935",
+    "seed": 42,
+    "transportMs": 14527,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "flat-remove",
+    "requestId": "87939b75-49bb-4273-a6de-3728d6a89b1f",
+    "seed": 42,
+    "transportMs": 14150,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "small",
+    "requestId": "e2c8a991-9e9d-4e92-84dc-4fbb899912a5",
+    "seed": 42,
+    "transportMs": 22795,
+    "width": 512
+  },
+  {
+    "bytes": 1228800,
+    "height": 512,
+    "id": "large",
+    "requestId": "45eb0812-7fc9-45d8-8f6e-f4ec962d95fb",
+    "seed": 42,
+    "transportMs": 25845,
+    "width": 600
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "canvas-edge",
+    "requestId": "92cf3929-5144-49d5-aa71-bb91063d807f",
+    "seed": 42,
+    "transportMs": 14093,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "transparent",
+    "requestId": "3edff8a0-017b-44b2-bc8e-7555a0da1115",
+    "seed": 42,
+    "transportMs": 14346,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "soft",
+    "requestId": "5eabaaa2-c7a9-4fe7-b3a9-6e02689fcec1",
+    "seed": 42,
+    "transportMs": 13649,
+    "width": 512
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "text-logo",
+    "requestId": "026feb25-8eee-4ab4-80ea-5c3fd1cc08ee",
+    "seed": 42,
+    "transportMs": 13388,
+    "width": 512
+  }
+]

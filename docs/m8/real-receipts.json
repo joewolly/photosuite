@@ -1,0 +1,178 @@
+[
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "landscape-left",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "1360fe9d-0b54-476a-a3cd-6ac19268ecb5",
+    "seed": 42,
+    "transportMs": 16541,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "landscape-right",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "3fce44b6-e6b7-4ac6-903d-e5273037fd11",
+    "seed": 42,
+    "transportMs": 13324,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "sky-top",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "314e4cc1-0531-4239-a94d-9f5c5d46d61c",
+    "seed": 42,
+    "transportMs": 13049,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "ground-bottom",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "2f1bd856-46dd-432e-948d-7225cddb4ae0",
+    "seed": 42,
+    "transportMs": 13047,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "portrait-headroom",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "694db32a-cb06-4ce9-b7a0-4c20b95442cb",
+    "seed": 42,
+    "transportMs": 13079,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "full-body-surroundings",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "c78e01f2-60d3-4301-8f0a-7287599fa773",
+    "seed": 42,
+    "transportMs": 13080,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "architecture",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "80d18306-6a88-4053-9c7d-8b72160cc847",
+    "seed": 42,
+    "transportMs": 13363,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "repeated-texture",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "9d69d1b8-91a1-40cf-a770-efbe6140149b",
+    "seed": 42,
+    "transportMs": 13121,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "flat-background",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "11e815b1-8348-462a-92b1-aed7fdac41d2",
+    "seed": 42,
+    "transportMs": 16281,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "perspective-lines",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "84c6038e-093a-4621-8c1b-67ca16362439",
+    "seed": 42,
+    "transportMs": 13867,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "edge-subject",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "73defaab-357e-42d3-b6da-40ac73d61534",
+    "seed": 42,
+    "transportMs": 13665,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "transparent",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "d935be8f-4a42-4d6c-9329-4bfb5047b277",
+    "seed": 42,
+    "transportMs": 13818,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "two-side",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "f5511e28-e624-4f42-a4e2-eb0bd3ae7b57",
+    "seed": 42,
+    "transportMs": 18115,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "four-side",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "9a597526-063e-4ad5-9328-d2d8090c585c",
+    "seed": 42,
+    "transportMs": 13550,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "empty-prompt",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "07425712-4dca-4370-8cb9-f13557a3752c",
+    "seed": 42,
+    "transportMs": 13112,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  },
+  {
+    "bytes": 1048576,
+    "height": 512,
+    "id": "explicit-prompt",
+    "model": "sd-v1-5-inpainting.ckpt",
+    "requestId": "a5edb2fd-5cfa-42d6-b437-70ef0e06cad9",
+    "seed": 42,
+    "transportMs": 13271,
+    "width": 512,
+    "workflow": "photosuite-generative-expand-v1"
+  }
+]

@@ -1,0 +1,444 @@
+[
+  {
+    "size": 512,
+    "baseline": {
+      "rss": 46896816,
+      "heapTotal": 28196864,
+      "heapUsed": 12552960,
+      "external": 6711135,
+      "arrayBuffers": 2461859
+    },
+    "entries": [
+      {
+        "before": {
+          "layers": 1048576,
+          "composite": 1048576
+        },
+        "after": {
+          "layers": 2099200,
+          "composite": 1050624
+        },
+        "generatedBytes": 1050624,
+        "snapshotBytes": 5246976,
+        "acceptMs": 40.95500000000001,
+        "memory": {
+          "rss": 62969568,
+          "heapTotal": 28196864,
+          "heapUsed": 12983200,
+          "external": 22413738,
+          "arrayBuffers": 9812143
+        }
+      },
+      {
+        "before": {
+          "layers": 2099200,
+          "composite": 1050624
+        },
+        "after": {
+          "layers": 3151872,
+          "composite": 1052672
+        },
+        "generatedBytes": 1052672,
+        "snapshotBytes": 7354368,
+        "acceptMs": 59.63262500000002,
+        "memory": {
+          "rss": 77059880,
+          "heapTotal": 28196864,
+          "heapUsed": 12814088,
+          "external": 22430086,
+          "arrayBuffers": 18223287
+        }
+      },
+      {
+        "before": {
+          "layers": 3151872,
+          "composite": 1052672
+        },
+        "after": {
+          "layers": 4206592,
+          "composite": 1054720
+        },
+        "generatedBytes": 1054720,
+        "snapshotBytes": 9465856,
+        "acceptMs": 82.20762500000001,
+        "memory": {
+          "rss": 96738000,
+          "heapTotal": 33177600,
+          "heapUsed": 12914432,
+          "external": 38214034,
+          "arrayBuffers": 28747967
+        }
+      },
+      {
+        "before": {
+          "layers": 4206592,
+          "composite": 1054720
+        },
+        "after": {
+          "layers": 5263360,
+          "composite": 1056768
+        },
+        "generatedBytes": 1056768,
+        "snapshotBytes": 11581440,
+        "acceptMs": 100.58570900000007,
+        "memory": {
+          "rss": 112827112,
+          "heapTotal": 33177600,
+          "heapUsed": 12954952,
+          "external": 52969882,
+          "arrayBuffers": 41390279
+        }
+      },
+      {
+        "before": {
+          "layers": 5263360,
+          "composite": 1056768
+        },
+        "after": {
+          "layers": 6322176,
+          "composite": 1058816
+        },
+        "generatedBytes": 1058816,
+        "snapshotBytes": 13701120,
+        "acceptMs": 121.16658299999995,
+        "memory": {
+          "rss": 131046144,
+          "heapTotal": 33177600,
+          "heapUsed": 13002632,
+          "external": 67740066,
+          "arrayBuffers": 56154319
+        }
+      },
+      {
+        "before": {
+          "layers": 6322176,
+          "composite": 1058816
+        },
+        "after": {
+          "layers": 7383040,
+          "composite": 1060864
+        },
+        "generatedBytes": 1060864,
+        "snapshotBytes": 15824896,
+        "acceptMs": 140.17991700000005,
+        "memory": {
+          "rss": 151608064,
+          "heapTotal": 33177600,
+          "heapUsed": 13055456,
+          "external": 101517742,
+          "arrayBuffers": 73044183
+        }
+      },
+      {
+        "before": {
+          "layers": 7383040,
+          "composite": 1060864
+        },
+        "after": {
+          "layers": 8445952,
+          "composite": 1062912
+        },
+        "generatedBytes": 1062912,
+        "snapshotBytes": 17952768,
+        "acceptMs": 159.70862499999998,
+        "memory": {
+          "rss": 172661480,
+          "heapTotal": 32653312,
+          "heapUsed": 11542224,
+          "external": 123720870,
+          "arrayBuffers": 92063967
+        }
+      },
+      {
+        "before": {
+          "layers": 8445952,
+          "composite": 1062912
+        },
+        "after": {
+          "layers": 9510912,
+          "composite": 1064960
+        },
+        "generatedBytes": 1064960,
+        "snapshotBytes": 20084736,
+        "acceptMs": 190.51133300000004,
+        "memory": {
+          "rss": 197303040,
+          "heapTotal": 32653312,
+          "heapUsed": 11614096,
+          "external": 148073642,
+          "arrayBuffers": 113217767
+        }
+      },
+      {
+        "before": {
+          "layers": 9510912,
+          "composite": 1064960
+        },
+        "after": {
+          "layers": 10577920,
+          "composite": 1067008
+        },
+        "generatedBytes": 1067008,
+        "snapshotBytes": 22220800,
+        "acceptMs": 214.2627080000002,
+        "memory": {
+          "rss": 225286936,
+          "heapTotal": 32653312,
+          "heapUsed": 11664496,
+          "external": 175635654,
+          "arrayBuffers": 136509679
+        }
+      },
+      {
+        "before": {
+          "layers": 10577920,
+          "composite": 1067008
+        },
+        "after": {
+          "layers": 11646976,
+          "composite": 1069056
+        },
+        "generatedBytes": 1069056,
+        "snapshotBytes": 24360960,
+        "acceptMs": 229.4005420000001,
+        "memory": {
+          "rss": 253319984,
+          "heapTotal": 32653312,
+          "heapUsed": 11725776,
+          "external": 203216058,
+          "arrayBuffers": 161943799
+        }
+      },
+      {
+        "before": {
+          "layers": 11646976,
+          "composite": 1069056
+        },
+        "after": {
+          "layers": 12718080,
+          "composite": 1071104
+        },
+        "generatedBytes": 1071104,
+        "snapshotBytes": 26505216,
+        "acceptMs": 241.24741599999993,
+        "memory": {
+          "rss": 285727584,
+          "heapTotal": 32653312,
+          "heapUsed": 11771240,
+          "external": 234013890,
+          "arrayBuffers": 189524223
+        }
+      },
+      {
+        "before": {
+          "layers": 12718080,
+          "composite": 1071104
+        },
+        "after": {
+          "layers": 13791232,
+          "composite": 1073152
+        },
+        "generatedBytes": 1073152,
+        "snapshotBytes": 28653568,
+        "acceptMs": 261.55700000000024,
+        "memory": {
+          "rss": 318102392,
+          "heapTotal": 32653312,
+          "heapUsed": 11828120,
+          "external": 266968266,
+          "arrayBuffers": 219255047
+        }
+      },
+      {
+        "before": {
+          "layers": 13791232,
+          "composite": 1073152
+        },
+        "after": {
+          "layers": 14866432,
+          "composite": 1075200
+        },
+        "generatedBytes": 1075200,
+        "snapshotBytes": 30806016,
+        "acceptMs": 289.0977499999999,
+        "memory": {
+          "rss": 353672080,
+          "heapTotal": 32653312,
+          "heapUsed": 11879184,
+          "external": 302083282,
+          "arrayBuffers": 251140367
+        }
+      },
+      {
+        "before": {
+          "layers": 14866432,
+          "composite": 1075200
+        },
+        "after": {
+          "layers": 15943680,
+          "composite": 1077248
+        },
+        "generatedBytes": 1077248,
+        "snapshotBytes": 32962560,
+        "acceptMs": 307.530166,
+        "memory": {
+          "rss": 391535552,
+          "heapTotal": 32653312,
+          "heapUsed": 11949880,
+          "external": 321293526,
+          "arrayBuffers": 285184279
+        }
+      },
+      {
+        "before": {
+          "layers": 15943680,
+          "composite": 1077248
+        },
+        "after": {
+          "layers": 17022976,
+          "composite": 1079296
+        },
+        "generatedBytes": 1079296,
+        "snapshotBytes": 35123200,
+        "acceptMs": 324.10470799999985,
+        "memory": {
+          "rss": 433675224,
+          "heapTotal": 32653312,
+          "heapUsed": 12014208,
+          "external": 325588186,
+          "arrayBuffers": 321390879
+        }
+      }
+    ],
+    "gate": "Generative Expand v1: raster and mask buffers exceed 16 MiB.",
+    "retained": {
+      "rss": 517610528,
+      "heapTotal": 32653312,
+      "heapUsed": 12107120,
+      "external": 343719769,
+      "arrayBuffers": 321390879
+    },
+    "afterTrim": {
+      "rss": 517626912,
+      "heapTotal": 32653312,
+      "heapUsed": 11681112,
+      "external": 23774941,
+      "arrayBuffers": 19546279
+    },
+    "undoMs": 577.4262919999996,
+    "redoMs": 688.0173340000001,
+    "exactUndoRedo": true,
+    "retainedSnapshotBytes": 301844480
+  },
+  {
+    "size": 1000,
+    "baseline": {
+      "rss": 527080480,
+      "heapTotal": 32653312,
+      "heapUsed": 11687064,
+      "external": 31774941,
+      "arrayBuffers": 26466983
+    },
+    "entries": [
+      {
+        "before": {
+          "layers": 4000000,
+          "composite": 4000000
+        },
+        "after": {
+          "layers": 8004000,
+          "composite": 4004000
+        },
+        "generatedBytes": 4004000,
+        "snapshotBytes": 20008000,
+        "acceptMs": 154.16062500000044,
+        "memory": {
+          "rss": 589897216,
+          "heapTotal": 32915456,
+          "heapUsed": 11681344,
+          "external": 90727665,
+          "arrayBuffers": 54486995
+        }
+      },
+      {
+        "before": {
+          "layers": 8004000,
+          "composite": 4004000
+        },
+        "after": {
+          "layers": 12012000,
+          "composite": 4008000
+        },
+        "generatedBytes": 4008000,
+        "snapshotBytes": 28028000,
+        "acceptMs": 238.24233399999957,
+        "memory": {
+          "rss": 634281496,
+          "heapTotal": 32915456,
+          "heapUsed": 11708264,
+          "external": 102771665,
+          "arrayBuffers": 86531003
+        }
+      },
+      {
+        "before": {
+          "layers": 12012000,
+          "composite": 4008000
+        },
+        "after": {
+          "layers": 16024000,
+          "composite": 4012000
+        },
+        "generatedBytes": 4012000,
+        "snapshotBytes": 36056000,
+        "acceptMs": 294.4817499999999,
+        "memory": {
+          "rss": 686710344,
+          "heapTotal": 32915456,
+          "heapUsed": 11724176,
+          "external": 186923685,
+          "arrayBuffers": 126607011
+        }
+      },
+      {
+        "before": {
+          "layers": 16024000,
+          "composite": 4012000
+        },
+        "after": {
+          "layers": 20040000,
+          "composite": 4016000
+        },
+        "generatedBytes": 4016000,
+        "snapshotBytes": 44092000,
+        "acceptMs": 371.2107500000002,
+        "memory": {
+          "rss": 747331192,
+          "heapTotal": 32915456,
+          "heapUsed": 11729632,
+          "external": 203003685,
+          "arrayBuffers": 174723019
+        }
+      }
+    ],
+    "gate": "Generative Expand v1: raster and mask buffers exceed 16 MiB.",
+    "retained": {
+      "rss": 787701392,
+      "heapTotal": 17186816,
+      "heapUsed": 11738976,
+      "external": 287095709,
+      "arrayBuffers": 174723019
+    },
+    "afterTrim": {
+      "rss": 787701392,
+      "heapTotal": 17448960,
+      "heapUsed": 11656104,
+      "external": 32665373,
+      "arrayBuffers": 28436711
+    },
+    "undoMs": 180.23058300000048,
+    "redoMs": 254.5000829999999,
+    "exactUndoRedo": true,
+    "retainedSnapshotBytes": 128184000
+  }
+]

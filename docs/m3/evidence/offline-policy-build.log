@@ -1,0 +1,17 @@
+
+> build
+> npm run vendor:fixlinks && tauri build --debug --bundles app --no-sign --config /tmp/photosuite-m3-evaluation/offline-tauri.json
+
+
+> vendor:fixlinks
+> node scripts/repair-vendor-symlinks.mjs
+
+        Warn --no-sign flag detected: Signing will be skipped.
+        Info Looking up installed tauri packages to check mismatched versions...
+   Compiling photosuite v0.9.14 (/Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 33.03s
+       Built application at: /Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/photosuite
+    Bundling PhotoSuiteOffline.app (/Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/bundle/macos/PhotoSuiteOffline.app)
+        Warn Skipping signing due to --no-sign flag.
+    Finished 1 bundle at:
+        /Users/joe/Documents/CodexProjects/PhotoSuite/src-tauri/target/debug/bundle/macos/PhotoSuiteOffline.app (209.97 MiB)

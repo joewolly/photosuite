@@ -1,0 +1,44 @@
+{
+  "pidAttribution": {
+    "host": "4687",
+    "editorWebContent": "4700",
+    "inspector": "4702"
+  },
+  "idleSamples": [
+    {
+      "cycle": 0,
+      "time": 1790649416039,
+      "workers": 0,
+      "rssMiB": {
+        "host": 414.5,
+        "editorWebContent": 3250.71875,
+        "inspector": 138.484375
+      }
+    },
+    {
+      "cycle": 1,
+      "time": 1790649463838,
+      "workers": 0,
+      "rssMiB": {
+        "host": 289.03125,
+        "editorWebContent": 2018.390625,
+        "inspector": 103.3125
+      }
+    },
+    {
+      "cycle": 2,
+      "time": 1790649511665,
+      "workers": 0,
+      "rssMiB": {
+        "host": 254.5625,
+        "editorWebContent": 1181.203125,
+        "inspector": 99.546875
+      }
+    }
+  ],
+  "peakMiB": {
+    "host": 444.328125,
+    "editorWebContent": 3331.265625,
+    "inspector": 329.828125
+  }
+}

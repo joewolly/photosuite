@@ -194,4 +194,18 @@ All third-party libraries live in [`src/vendor/`](src/vendor/README.md) as pinne
 * **From the Photopea Author**: [UPNG.js](https://github.com/photopea/UPNG.js) (PNG/APNG), [UTIF.js](https://github.com/photopea/UTIF.js) (TIFF), [UZIP.js](https://github.com/photopea/UZIP.js) (ZIP/deflate), [Typr.js](https://github.com/photopea/Typr.js) (font parsing & shaping), [UTEX.js](https://github.com/photopea/UTEX.js) (TeX typesetting). *All MIT*.
 * **Core Libraries**: [pako](https://github.com/nodeca/pako) (zlib, MIT), [Paper.js](https://github.com/paperjs/paper.js) (vector geometry, MIT), [omggif](https://github.com/deanm/omggif) (GIF, MIT), [js-sha1](https://github.com/emn178/js-sha1) (MIT), [acorn](https://github.com/acornjs/acorn) (JS parser, MIT), [linear-solve](https://github.com/lovasoa/linear-solve) (MIT), [parse-exr](https://github.com/dmnsgn/parse-exr) (OpenEXR, MIT), [pdf.js](https://github.com/mozilla/pdf.js) (JPEG/JPX/JBIG2 codecs, Apache-2.0), [PDFI.js](https://github.com/eolix/PDFI.js) (PDF/PS/EMF/WMF, MIT).
 * **WebAssembly Modules**: [HarfBuzz](https://github.com/harfbuzz/harfbuzz) (text shaping, MIT), [FriBidi](https://github.com/fribidi/fribidi) (bidirectional text, LGPL-2.1+), [libwebp](https://github.com/webmproject/libwebp) (BSD-3), [zstd](https://github.com/facebook/zstd) (BSD-3), [stb_image](https://github.com/nothings/stb) (Public domain / MIT), [libheif](https://github.com/strukturag/libheif) (LGPL-3.0+).
-* **Data & Assets**: [Lensfun](https://github.com/lensfun/lensfun) for camera and lens profile data (LGPL / CC), and [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT).
+* **Data & Assets**: [Lensfun](https://github.com/lensfun/lensfun) for camera and lens profile data (LGPL / CC), [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT), [Font Awesome Free](https://github.com/FortAwesome/Font-Awesome) for the Shape tool's icon library (CC BY 4.0), [uiGradients](https://github.com/ghosh/uiGradients) for the Gradient tool's extra library (MIT), [Subtle Patterns](https://github.com/atlemo/SubtlePatterns) for pattern presets (CC BY-SA 3.0), individual [Brusheezy](https://www.brusheezy.com) artists for the extra brush libraries (CC BY-ND / CC BY-SA), [Fresh LUTs](https://freshluts.com) for Colour Lookup presets (CC0), and the DejaVu, Droid Sans Fallback, and Noto font families for script-fallback text rendering (Bitstream Vera + Arev / Apache-2.0 / SIL OFL 1.1).
+
+
+### Bounded AI Upscale
+
+[AI Upscale setup and limits](docs/m5b/README.md) describes the optional local
+4× rendered-composite → new raster document workflow, model provenance,
+[quality caveats](docs/m5b/quality.md), and [native acceptance](docs/m5b/acceptance.md).
+
+### Selected-region Generative Fill
+
+[Generative Fill setup and limits](docs/m6/README.md) describes optional prompt-driven
+local editing with up to three sequential previews and session-only Regenerate.
+Accept adds one ordinary raster layer; pixels outside the selection remain exact.
+See [model quality limitations](docs/m6/quality.md) and [native acceptance](docs/m6/acceptance.md).

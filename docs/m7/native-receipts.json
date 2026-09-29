@@ -1,0 +1,1223 @@
+[
+  {
+    "label": "M7-fixture-ready",
+    "time": 1790637678681,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 2,
+      "index": 1,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+    }
+  },
+  {
+    "label": "accepted-candidate-B",
+    "time": 1790637940551,
+    "recipe": {
+      "recipeVersion": 1,
+      "layerId": 2,
+      "operation": "generate.fill",
+      "workflow": "photosuite-generative-fill-v1",
+      "backend": "comfyui",
+      "checkpoint": "sd-v1-5-inpainting.ckpt",
+      "seed": 43,
+      "createdAt": "2026-09-28T23:22:24.206Z",
+      "prompt": "a small blue ceramic coffee mug on a table",
+      "settings": {
+        "steps": 20,
+        "cfg": 7,
+        "sampler": "euler",
+        "scheduler": "normal",
+        "denoise": 1,
+        "maskGrowth": 0,
+        "roi": {
+          "x": 91,
+          "y": 0,
+          "width": 393,
+          "height": 384
+        },
+        "modelWidth": 512,
+        "modelHeight": 512
+      },
+      "source": {
+        "layerId": 1,
+        "sha256": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 600,
+          "height": 400
+        },
+        "documentWidth": 600,
+        "documentHeight": 400
+      },
+      "selection": {
+        "sha256": "5529115c8933ea95213d595dfb16ac8c25ef376a9fb83e1d58327645b886844a",
+        "rect": {
+          "x": 155,
+          "y": 35,
+          "width": 265,
+          "height": 285
+        }
+      },
+      "selectionPersistence": "none"
+    },
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "metrics": {
+      "preparationMs": 21,
+      "candidates": [
+        {
+          "seed": 42,
+          "bytes": 603648,
+          "previewMs": 1
+        },
+        {
+          "seed": 43,
+          "bytes": 603648,
+          "previewMs": 2
+        },
+        {
+          "seed": 44,
+          "bytes": 603648,
+          "previewMs": 2
+        }
+      ],
+      "switchMs": 4,
+      "acceptMs": 7
+    }
+  },
+  {
+    "label": "native-history-pass",
+    "time": 1790637940821,
+    "items": 3,
+    "index": 2
+  },
+  {
+    "label": "native-saved",
+    "time": 1790637940855,
+    "name": "m7-retained",
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-retained.psd",
+    "bytes": 1671910,
+    "serializeMs": 21,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "records": {
+      "schemaVersion": 1,
+      "records": [
+        {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-28T23:22:24.206Z",
+          "prompt": "a small blue ceramic coffee mug on a table",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 91,
+              "y": 0,
+              "width": 393,
+              "height": 384
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 400
+            },
+            "documentWidth": 600,
+            "documentHeight": 400
+          },
+          "selection": {
+            "sha256": "5529115c8933ea95213d595dfb16ac8c25ef376a9fb83e1d58327645b886844a",
+            "rect": {
+              "x": 155,
+              "y": 35,
+              "width": 265,
+              "height": 285
+            }
+          },
+          "selectionPersistence": "none"
+        }
+      ]
+    }
+  },
+  {
+    "label": "native-saved",
+    "time": 1790637940877,
+    "name": "m7-retained",
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-retained.psb",
+    "bytes": 1680622,
+    "serializeMs": 9,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 3,
+      "index": 2,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "records": {
+      "schemaVersion": 1,
+      "records": [
+        {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-28T23:22:24.206Z",
+          "prompt": "a small blue ceramic coffee mug on a table",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 91,
+              "y": 0,
+              "width": 393,
+              "height": 384
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 400
+            },
+            "documentWidth": 600,
+            "documentHeight": 400
+          },
+          "selection": {
+            "sha256": "5529115c8933ea95213d595dfb16ac8c25ef376a9fb83e1d58327645b886844a",
+            "rect": {
+              "x": 155,
+              "y": 35,
+              "width": 265,
+              "height": 285
+            }
+          },
+          "selectionPersistence": "none"
+        }
+      ]
+    }
+  },
+  {
+    "label": "native-save-pass",
+    "time": 1790637940881
+  },
+  {
+    "label": "native-offline-reopen",
+    "time": 1790637962849,
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-retained.psd",
+    "exact": true,
+    "recipeExact": true,
+    "openMs": 54,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    }
+  },
+  {
+    "label": "native-offline-reopen",
+    "time": 1790637962889,
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-retained.psb",
+    "exact": true,
+    "recipeExact": true,
+    "openMs": 34,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    }
+  },
+  {
+    "label": "native-regenerate-gated",
+    "time": 1790637962894,
+    "available": false,
+    "reason": "Source pixels match. Regenerate is unavailable: exact selection coverage is not saved in recipe v1. Make a new selection to start a new Generative Fill."
+  },
+  {
+    "label": "native-source-gates",
+    "time": 1790637962900,
+    "stale": {
+      "available": false,
+      "reason": "Original generation source no longer matches this recipe."
+    },
+    "missing": {
+      "available": false,
+      "reason": "Original generation source no longer matches this recipe."
+    }
+  },
+  {
+    "label": "native-saved",
+    "time": 1790637962925,
+    "name": "m7-renamed",
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-renamed.psd",
+    "bytes": 1671922,
+    "serializeMs": 11,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Renamed generated B",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "records": {
+      "schemaVersion": 1,
+      "records": [
+        {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-28T23:22:24.206Z",
+          "prompt": "a small blue ceramic coffee mug on a table",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 91,
+              "y": 0,
+              "width": 393,
+              "height": 384
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 400
+            },
+            "documentWidth": 600,
+            "documentHeight": 400
+          },
+          "selection": {
+            "sha256": "5529115c8933ea95213d595dfb16ac8c25ef376a9fb83e1d58327645b886844a",
+            "rect": {
+              "x": 155,
+              "y": 35,
+              "width": 265,
+              "height": 285
+            }
+          },
+          "selectionPersistence": "none"
+        }
+      ]
+    }
+  },
+  {
+    "label": "native-saved",
+    "time": 1790637962953,
+    "name": "m7-reordered",
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-reordered.psd",
+    "bytes": 1671922,
+    "serializeMs": 10,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Renamed generated B",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        },
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "records": {
+      "schemaVersion": 1,
+      "records": [
+        {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-28T23:22:24.206Z",
+          "prompt": "a small blue ceramic coffee mug on a table",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 91,
+              "y": 0,
+              "width": 393,
+              "height": 384
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 400
+            },
+            "documentWidth": 600,
+            "documentHeight": 400
+          },
+          "selection": {
+            "sha256": "5529115c8933ea95213d595dfb16ac8c25ef376a9fb83e1d58327645b886844a",
+            "rect": {
+              "x": 155,
+              "y": 35,
+              "width": 265,
+              "height": 285
+            }
+          },
+          "selectionPersistence": "none"
+        }
+      ]
+    }
+  },
+  {
+    "label": "native-saved",
+    "time": 1790637962984,
+    "name": "m7-duplicate",
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-duplicate.psd",
+    "bytes": 1906956,
+    "serializeMs": 11,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Renamed generated B",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        },
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Renamed generated B copy",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "records": {
+      "schemaVersion": 1,
+      "records": [
+        {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-28T23:22:24.206Z",
+          "prompt": "a small blue ceramic coffee mug on a table",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 91,
+              "y": 0,
+              "width": 393,
+              "height": 384
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 400
+            },
+            "documentWidth": 600,
+            "documentHeight": 400
+          },
+          "selection": {
+            "sha256": "5529115c8933ea95213d595dfb16ac8c25ef376a9fb83e1d58327645b886844a",
+            "rect": {
+              "x": 155,
+              "y": 35,
+              "width": 265,
+              "height": 285
+            }
+          },
+          "selectionPersistence": "none"
+        }
+      ]
+    }
+  },
+  {
+    "label": "native-saved",
+    "time": 1790637963015,
+    "name": "m7-deleted",
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-deleted.psd",
+    "bytes": 1669808,
+    "serializeMs": 13,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Renamed generated B copy",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "records": null
+  },
+  {
+    "label": "native-association-pass",
+    "time": 1790637963025,
+    "rename": true,
+    "reorder": true,
+    "duplicateOmitted": true,
+    "orphanRemoved": true
+  },
+  {
+    "label": "native-saved",
+    "time": 1790637963047,
+    "name": "m7-prompt-stripped",
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-prompt-stripped.psd",
+    "bytes": 1671848,
+    "serializeMs": 10,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Renamed generated B",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "records": {
+      "schemaVersion": 1,
+      "records": [
+        {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-28T23:22:24.206Z",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 91,
+              "y": 0,
+              "width": 393,
+              "height": 384
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 400
+            },
+            "documentWidth": 600,
+            "documentHeight": 400
+          },
+          "selection": {
+            "sha256": "5529115c8933ea95213d595dfb16ac8c25ef376a9fb83e1d58327645b886844a",
+            "rect": {
+              "x": 155,
+              "y": 35,
+              "width": 265,
+              "height": 285
+            }
+          },
+          "selectionPersistence": "none"
+        }
+      ]
+    }
+  },
+  {
+    "label": "native-prompt-privacy",
+    "time": 1790637963061,
+    "absentInRawBytes": true,
+    "pixelsExact": true
+  },
+  {
+    "label": "native-saved",
+    "time": 1790637963082,
+    "name": "m7-all-stripped",
+    "path": "/Users/joe/Documents/Codex/2026-09-28/photosuite-m7-acceptance/m7-all-stripped.psd",
+    "bytes": 1669776,
+    "serializeMs": 10,
+    "snapshot": {
+      "width": 600,
+      "height": 400,
+      "history": 1,
+      "index": 0,
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 600,
+            "height": 400
+          },
+          "hash": "2c9022e5a85bd6baa1679a11f91fa94fd1d69ba879414f5da7c55066ea3b28fc"
+        },
+        {
+          "name": "Renamed generated B",
+          "rect": {
+            "x": 91,
+            "y": 0,
+            "width": 393,
+            "height": 384
+          },
+          "hash": "0527d8da3a88bf6aea9eeaf385641e4c873fe397bbf569172791648186a229bc"
+        }
+      ],
+      "composite": "b7bb1c48619407a1e6e1931f36aa6335a45fe952b66a1a894843357cf16cd313"
+    },
+    "records": null
+  },
+  {
+    "label": "native-full-stripping",
+    "time": 1790637963098,
+    "namespaceAbsent": true,
+    "promptAbsent": true,
+    "pixelsExact": true
+  },
+  {
+    "label": "native-offline-pass",
+    "time": 1790637963102,
+    "backendCalls": 0,
+    "backendHttp": 0
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244245,
+    "name": "retained.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeExact": true,
+    "recipeAbsent": false,
+    "promptAbsent": false,
+    "openMs": 73
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244286,
+    "name": "retained.psb",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeExact": true,
+    "recipeAbsent": false,
+    "promptAbsent": false,
+    "openMs": 31
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244343,
+    "name": "resource-stripped.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 35
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244401,
+    "name": "unknown-schema.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 33
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244452,
+    "name": "malformed-xml.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 32
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244509,
+    "name": "invalid-seed.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 32
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244583,
+    "name": "malformed-hash.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 36
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244646,
+    "name": "prompt-stripped.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": false,
+    "promptAbsent": true,
+    "openMs": 35
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790638244703,
+    "name": "all-stripped.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 33
+  },
+  {
+    "label": "final-privacy-startup",
+    "time": 1790638244710,
+    "policy": {
+      "saveRecipes": true,
+      "savePrompts": true
+    }
+  },
+  {
+    "label": "final-native-performance",
+    "time": 1790638245614,
+    "metadataBytes": 2134,
+    "normalize": {
+      "medianMs": 0,
+      "maxMs": 1,
+      "samples": 100
+    },
+    "encode": {
+      "medianMs": 0,
+      "maxMs": 1,
+      "samples": 100
+    },
+    "parse": {
+      "medianMs": 0,
+      "maxMs": 1,
+      "samples": 100
+    },
+    "saveWithRecipes": {
+      "medianMs": 9,
+      "maxMs": 15,
+      "samples": 30
+    },
+    "saveWithoutRecipes": {
+      "medianMs": 9,
+      "maxMs": 17,
+      "samples": 30
+    },
+    "openWithRecipes": {
+      "medianMs": 5,
+      "maxMs": 7,
+      "samples": 30
+    },
+    "openWithoutRecipes": {
+      "medianMs": 5,
+      "maxMs": 6,
+      "samples": 30
+    }
+  },
+  {
+    "label": "final-writer-failure-cleanup",
+    "time": 1790638245624,
+    "pass": true
+  },
+  {
+    "label": "final-native-pass",
+    "time": 1790638245629,
+    "backendCalls": 0,
+    "records": 1
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028085,
+    "name": "retained.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeExact": true,
+    "recipeAbsent": false,
+    "promptAbsent": false,
+    "openMs": 157
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028142,
+    "name": "retained.psb",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeExact": true,
+    "recipeAbsent": false,
+    "promptAbsent": false,
+    "openMs": 46
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028219,
+    "name": "resource-stripped.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 41
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028295,
+    "name": "unknown-schema.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 45
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028365,
+    "name": "malformed-xml.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 37
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028427,
+    "name": "invalid-seed.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 35
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028482,
+    "name": "malformed-hash.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 27
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028542,
+    "name": "oversized.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 27
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028606,
+    "name": "prompt-stripped.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": false,
+    "promptAbsent": true,
+    "openMs": 30
+  },
+  {
+    "label": "final-native-reopen",
+    "time": 1790639028663,
+    "name": "all-stripped.psd",
+    "sourceExact": true,
+    "resultExact": true,
+    "recipeAbsent": true,
+    "promptAbsent": true,
+    "openMs": 27
+  },
+  {
+    "label": "final-privacy-startup",
+    "time": 1790639028671,
+    "policy": {
+      "saveRecipes": true,
+      "savePrompts": false
+    }
+  },
+  {
+    "label": "final-native-performance",
+    "time": 1790639029562,
+    "metadataBytes": 2134,
+    "normalize": {
+      "medianMs": 0,
+      "maxMs": 1,
+      "samples": 100
+    },
+    "encode": {
+      "medianMs": 0,
+      "maxMs": 1,
+      "samples": 100
+    },
+    "parse": {
+      "medianMs": 0,
+      "maxMs": 1,
+      "samples": 100
+    },
+    "saveWithRecipes": {
+      "medianMs": 9,
+      "maxMs": 11,
+      "samples": 30
+    },
+    "saveWithoutRecipes": {
+      "medianMs": 9,
+      "maxMs": 12,
+      "samples": 30
+    },
+    "openWithRecipes": {
+      "medianMs": 5,
+      "maxMs": 6,
+      "samples": 30
+    },
+    "openWithoutRecipes": {
+      "medianMs": 5,
+      "maxMs": 7,
+      "samples": 30
+    }
+  },
+  {
+    "label": "final-writer-failure-cleanup",
+    "time": 1790639029569,
+    "pass": true
+  },
+  {
+    "label": "final-native-pass",
+    "time": 1790639029573,
+    "backendCalls": 0,
+    "records": 1
+  },
+  {
+    "label": "m7-ui-prompt-stripped",
+    "time": 1790639098379,
+    "policy": {
+      "saveRecipes": true,
+      "savePrompts": false
+    },
+    "resultExact": true,
+    "promptAbsent": true,
+    "recipeAbsent": false
+  },
+  {
+    "label": "m7-ui-all-stripped",
+    "time": 1790639124193,
+    "policy": {
+      "saveRecipes": false,
+      "savePrompts": false
+    },
+    "resultExact": true,
+    "promptAbsent": true,
+    "recipeAbsent": true
+  }
+]

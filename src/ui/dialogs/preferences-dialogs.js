@@ -3,6 +3,7 @@
  */
 
 import { KeyboardHandler } from "../../core/keyboard-handler.js";
+import { mountLocalInpaintSettings } from "./local-inpaint-settings.js";
 import { Locale } from "../../core/i18n/locale.js";
 import { PopupTypes } from "../config/popup-types.js";
 import { ThemeConfig } from "../config/theme-config.js";
@@ -120,6 +121,7 @@ const PREFERENCE_SECTIONS = [
       },
     ],
   },
+  { id: "ai-remove", labelKey: "dialogs.preferenceSections.aiRemove", groups: [{ rows: [{ control: "localInpainting" }] }] },
 ];
 
 /** Every row a section shows, flattened, `trailing` rows included. */
@@ -231,7 +233,9 @@ function PreferencesDialog() {
   this.languageDropdown = new Dropdown("topMenu.language", this.buildLanguagePickerLabels());
   this.languageDropdown.on(EventType.widgetSelect, this.onLanguagePicked, this);
   /** Controls a row can place by name, for what is not a preference. */
-  this.dialogOwnedWidgets = { theme: this.themeDropdown, language: this.languageDropdown };
+  const localInpaintPane = makeElement("div");
+  this.localInpaintSettings = mountLocalInpaintSettings(localInpaintPane);
+  this.dialogOwnedWidgets = { theme: this.themeDropdown, language: this.languageDropdown, localInpainting: { el: localInpaintPane } };
 
   addClass(this.body, "flexrow");
   const layoutEl = this.layoutEl = makeElement("div", "prefs-layout");
@@ -384,7 +388,9 @@ PreferencesDialog.prototype.getPreferredContentSize = function(maxW, maxH) {
 PreferencesDialog.prototype.resize = function(contentWidth, contentHeight) {
   this.body.style.width = contentWidth + "px";
 };
-PreferencesDialog.prototype.open = function(currentDoc, dialogPayload, openDocs) {};
+PreferencesDialog.prototype.open = function(currentDoc, dialogPayload, openDocs) {
+  void this.localInpaintSettings.refresh();
+};
 PreferencesDialog.prototype.onUpdate = function(appData, popupType) {
   this.doc = appData;
   applyPrefsToWidgets(this.widgetsByPrefKey, appData.prefs);

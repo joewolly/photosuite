@@ -16,6 +16,7 @@ import {
 import { TrackerRegistry } from "../../../features/trackers/tracker-registry.js";
 import { Document } from "../../model/document.js";
 import { Layer, LayerSectionType } from "../../model/layer.js";
+import { RECIPE_FIELD, RECIPE_LIMITS, bindDocumentRecipes, collectDocumentRecipes } from "../metadata/generation-recipes.js";
 import { XMPData } from "../metadata/xmp-metadata.js";
 import { LayerEffectDefs } from "./effect-defs.js";
 import { TextEngineData } from "../../../features/text/text-engine.js";
@@ -592,8 +593,12 @@ function applyXmpFromResources(doc) {
     delete doc.resources.r1058;
   }
   if (doc.resources.r1060) {
-    const xmpText = BinaryUtils.readUtf8(doc.resources.r1060);
-    XMPData.readXmpXml(xmpText, doc.xmpMetadata);
+    if (doc.resources.r1060.length <= RECIPE_LIMITS.xmpBytes) {
+      const xmpText = BinaryUtils.readUtf8(doc.resources.r1060);
+      XMPData.readXmpXml(xmpText, doc.xmpMetadata);
+      bindDocumentRecipes(doc, doc.xmpMetadata[RECIPE_FIELD]);
+    }
+    delete doc.xmpMetadata[RECIPE_FIELD];
     delete doc.resources.r1060;
   }
 }
@@ -1074,7 +1079,11 @@ function buildSelectionResource(doc) {
 function buildXmpResources(doc, options) {
   delete doc.resources.r1058;
   delete doc.resources.r1060;
-  if (Object.keys(doc.xmpMetadata).length === 0) return;
+  const fields = { ...doc.xmpMetadata };
+  delete fields[RECIPE_FIELD];
+  const generation = collectDocumentRecipes(doc);
+  if (generation) fields[RECIPE_FIELD] = generation;
+  if (Object.keys(fields).length === 0) return;
   const tiffIFDs = [
     {
       t274: [1],
@@ -1091,9 +1100,11 @@ function buildXmpResources(doc, options) {
       t514: [0],
     },
   ];
-  XMPData.writeExifMetadata(doc.xmpMetadata, tiffIFDs[0], options[0] && options[1]);
-  doc.resources.r1058 = new Uint8Array(UTIF.encode(tiffIFDs));
-  const xmpText = XMPData.writeXmpXml(doc.xmpMetadata);
+  if (Object.keys(doc.xmpMetadata).length) {
+    XMPData.writeExifMetadata(doc.xmpMetadata, tiffIFDs[0], options[0] && options[1]);
+    doc.resources.r1058 = new Uint8Array(UTIF.encode(tiffIFDs));
+  }
+  const xmpText = XMPData.writeXmpXml(fields);
   doc.resources.r1060 = BinaryUtils.encodeUtf8(xmpText);
 }
 
@@ -1305,18 +1316,23 @@ PSDParser.parse = function (rawBuffer, doc) {
 };
 
 PSDParser.serialize = function (doc, buf, options) {
-  const { savedLayerBounds, savedMeta, extraChannels, hasTransparency, writePos } =
-    beginPsdSerialize(doc, options);
-  let pos = writePos;
+  try {
+    const { savedLayerBounds, savedMeta, extraChannels, hasTransparency, writePos } =
+      beginPsdSerialize(doc, options);
+    let pos = writePos;
 
-  pos = PSDParser.writeHeader(doc, buf, pos, 3 + extraChannels.length);
-  pos = PSDParser.writeColorModeData(doc, buf, pos);
-  pos = PSDParser.writeImageResources(doc, buf, pos);
-  pos = PSDParser.writeLayerAndMaskInfo(doc, buf, pos, options, hasTransparency);
-  pos = PSDParser.writeImageData(doc, buf, pos, options[0], hasTransparency);
+    pos = PSDParser.writeHeader(doc, buf, pos, 3 + extraChannels.length);
+    pos = PSDParser.writeColorModeData(doc, buf, pos);
+    pos = PSDParser.writeImageResources(doc, buf, pos);
+    pos = PSDParser.writeLayerAndMaskInfo(doc, buf, pos, options, hasTransparency);
+    pos = PSDParser.writeImageData(doc, buf, pos, options[0], hasTransparency);
 
-  restoreAfterPsdSerialize(doc, options, savedLayerBounds, savedMeta);
-  return pos;
+    restoreAfterPsdSerialize(doc, options, savedLayerBounds, savedMeta);
+    return pos;
+  } finally {
+    // A failed writer must not leave private recipe bytes in generic resources.
+    delete doc.resources.r1060;
+  }
 };
 
 // Register readLayerList on PSDResourceParser so parseAdditionalLayerInfo can handle the

@@ -1,0 +1,2 @@
+# ONNX protobuf headers can look textual to Git; preserve exact artifact bytes.
+*.onnx binary

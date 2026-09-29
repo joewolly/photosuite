@@ -1,3 +1,8 @@
+import { showExpandDialog } from "../dialogs/expand-dialog.js";
+import { showGenerativeInfo } from "../dialogs/generative-info.js";
+import { showGenerativeDialog } from "../dialogs/generative-dialog.js";
+import { showUpscaleDialog } from "../dialogs/upscale-dialog.js";
+import { removeBackgroundFromSelection } from "../../features/trackers/exact-result-tracker.js";
 /**
  * `App.Dispatch` UI action router mixed onto `AppController`: dialogs, panels,
  * presets, placement, and document chrome updates from dispatched `AppEvent`s.
@@ -40,7 +45,7 @@ import {
 } from "../menu/menu-bar-predicates.js";
 import { AppWindow } from "./app-window.js";
 import { FileLoader, FileProcessor } from "./file-loader.js";
-import { persistAppSettings } from "../../core/app-settings.js";
+import { persistAppSettings, loadLocalInpaintConfig } from "../../core/app-settings.js";
 import { BrushPresetUtil } from "../../features/brush/brush-presets.js";
 import { EventType, UiCommand } from "../../core/event-bus.js";
 import { nativeWriteFile, openExternalUrl, pickSavePath } from "../../core/tauri-host.js";
@@ -324,6 +329,41 @@ export function applyUiDispatchHandlers(AppController) {
  * module load: startup fills them after this module evaluates.
  */
 const UI_COMMAND_HANDLERS = {
+  selectSubject(controller) {
+    try { controller.getSelectionJobs().submitSubject(controller.getCurrentDoc()); }
+    catch (error) { showToast(error.message); }
+  },
+  removeBackgroundAutomatically(controller) {
+    try { controller.getSelectionJobs().submitSubject(controller.getCurrentDoc(), true); }
+    catch (error) { showToast(error.message); }
+  },
+  aiUpscale(controller) {
+    void showUpscaleDialog(controller, controller.getCurrentDoc()).catch(error => showToast(error.message));
+  },
+  generativeExpand(controller) {
+    void showExpandDialog(controller, controller.getCurrentDoc()).catch(error => showToast(error.message));
+  },
+  generativeFill(controller) {
+    void showGenerativeDialog(controller, controller.getCurrentDoc()).catch(error => showToast(error.message));
+  },
+  generativeInfo(controller) {
+    showGenerativeInfo(controller, controller.getCurrentDoc());
+  },
+  aiRemove(controller) {
+    const doc = controller.getCurrentDoc();
+    void loadLocalInpaintConfig().then((config) => {
+      if (!controller.openDocs.includes(doc)) throw new Error("The source document was closed.");
+      controller.getSelectionJobs().submitAI(doc, config);
+    }).catch((error) => showToast(error.message));
+  },
+  removeBackgroundFromSelection(controller) {
+    try {
+      removeBackgroundFromSelection(controller);
+      controller.onComplete();
+    } catch (error) {
+      showToast(error.message);
+    }
+  },
   replayRecordedActionPair(controller, data) {
     ActionDescUtil.playActionSetSteps(
       controller.getCurrentDoc(),

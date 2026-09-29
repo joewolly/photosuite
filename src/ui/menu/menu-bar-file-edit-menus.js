@@ -387,6 +387,17 @@ export function buildEditMenu() {
     }, {
       name: "file.resourceManager",
       opensDialog: true
+    }, {
+      name: "Generative Fill",
+      resolveRowState: doc => ({ enabled: !!doc?.selectionMask, labelOverride: "Generative Fill…" })
+    }, {
+      name: "Generative Info",
+      resolveRowState: doc => ({ enabled: !!doc && doc.selectedLayerIndices.length === 1, labelOverride: "Generative Info…" })
+    }, {
+      name: "AI Remove",
+      resolveRowState: function(doc) {
+        return { enabled: !!doc?.selectionMask, labelOverride: "AI Remove (local service)…" };
+      }
     }],
     menuActions: [{
       appEventType: EventType.documentAction,
@@ -551,6 +562,21 @@ export function buildEditMenu() {
       payload: {
         dispatchKind: UiCommand.dispatchAppDialogRouter,
         dialogRouteId: "resmgr"
+      }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: {
+        dispatchKind: UiCommand.generativeFill
+      }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: {
+        dispatchKind: UiCommand.generativeInfo
+      }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: {
+        dispatchKind: UiCommand.aiRemove
       }
     }]
   };
