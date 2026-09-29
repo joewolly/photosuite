@@ -1,0 +1,285 @@
+{
+  "release": "0.10.1",
+  "verdict": "PASS",
+  "scope": "Package cleanliness and release preparation; not full native Windows/Linux runtime acceptance",
+  "source_commit": "2e61c7e727b320b8f8627f8233bfeb391f0031f4",
+  "workflow": {
+    "id": 36587910106,
+    "url": "https://github.com/joewolly/photosuite/actions/runs/36587910106",
+    "event": "workflow_dispatch",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "databaseId": 109473117499,
+        "name": "Check and test (Rust)",
+        "conclusion": "success",
+        "url": "https://github.com/joewolly/photosuite/actions/runs/36587910106/job/109473117499"
+      },
+      {
+        "databaseId": 109473117767,
+        "name": "Lint and test (JavaScript)",
+        "conclusion": "success",
+        "url": "https://github.com/joewolly/photosuite/actions/runs/36587910106/job/109473117767"
+      },
+      {
+        "databaseId": 109474819599,
+        "name": "Build (macOS universal)",
+        "conclusion": "success",
+        "url": "https://github.com/joewolly/photosuite/actions/runs/36587910106/job/109474819599"
+      },
+      {
+        "databaseId": 109474819629,
+        "name": "Build (Windows x64)",
+        "conclusion": "success",
+        "url": "https://github.com/joewolly/photosuite/actions/runs/36587910106/job/109474819629"
+      },
+      {
+        "databaseId": 109474819692,
+        "name": "Build (Linux x64)",
+        "conclusion": "success",
+        "url": "https://github.com/joewolly/photosuite/actions/runs/36587910106/job/109474819692"
+      },
+      {
+        "databaseId": 109480543632,
+        "name": "Draft release",
+        "conclusion": "skipped",
+        "url": "https://github.com/joewolly/photosuite/actions/runs/36587910106/job/109480543632"
+      }
+    ]
+  },
+  "frontend": {
+    "files": 711,
+    "bytes": 304575151,
+    "inventory_sha256": "8742b59fe5a4a62e71aacf07ae47f322051891b250e6f4cf9dd1f579491d7981",
+    "onnx": [
+      {
+        "path": "vendor/prompted-model/decoder.onnx",
+        "bytes": 8681263,
+        "sha256": "40433699e5555adb18401d1f69ad12d58ec93e2209f41873c4077609a363f25f"
+      },
+      {
+        "path": "vendor/prompted-model/encoder.onnx",
+        "bytes": 55015529,
+        "sha256": "d1a57be72fc8cbbe25ea6dc1aac74432552eb1aaabaca13d6e3290f339d718f4"
+      },
+      {
+        "path": "vendor/subject-model/birefnet-lite-512-fp16.onnx",
+        "bytes": 94377615,
+        "sha256": "79bc52b86f15cf146646e2e82ee9a6589151e4d28db4c190c9dd98c3a3a7344c"
+      }
+    ],
+    "wasm": [
+      "features/filters/wasm/blur.wasm",
+      "features/filters/wasm/median.wasm",
+      "vendor/onnxruntime/ort-wasm-simd-threaded.wasm",
+      "vendor/wasm/fribidi/fribidi.wasm",
+      "vendor/wasm/harfbuzz/hb.wasm",
+      "vendor/wasm/libheif/libheif.wasm",
+      "vendor/wasm/libwebp/webp.wasm",
+      "vendor/wasm/stb-image/jpg.wasm",
+      "vendor/wasm/zstd/zstd.wasm",
+      "wasm/webp-encode.wasm"
+    ],
+    "license_notice_files": 38
+  },
+  "packages": {
+    "macos": {
+      "file": "PhotoSuite_0.10.1_universal.dmg",
+      "bytes": 380370378,
+      "sha256": "34e1f40e909ead4575808ff496508bcaef624d5bca92f7123a1c040dd581f183",
+      "version": "0.10.1",
+      "architecture": [
+        "arm64",
+        "x86_64"
+      ],
+      "loose_notices_match": true,
+      "package_files": [
+        "Contents/Info.plist",
+        "Contents/MacOS/photosuite",
+        "Contents/Resources/LICENSE",
+        "Contents/Resources/THIRD-PARTY-NOTICES.md",
+        "Contents/Resources/icon.icns"
+      ],
+      "package_directories": [
+        "Contents",
+        "Contents/MacOS",
+        "Contents/Resources"
+      ],
+      "embedded_executables": [
+        {
+          "label": "macos-arm64",
+          "architecture": "CPU_TYPE.ARM64",
+          "binary_bytes": 200515480,
+          "binary_sha256": "249888d5f32a8eb774f061d4a18a140f4768cde8b0bf30364f94315b19055125",
+          "asset_count": 711,
+          "missing": [],
+          "extra": [],
+          "changed": [],
+          "index_html": "Decoded; all runtime links and original inline scripts match staged HTML"
+        },
+        {
+          "label": "macos-x86_64",
+          "architecture": "CPU_TYPE.X86_64",
+          "binary_bytes": 200113176,
+          "binary_sha256": "d7c800e120f4fe66400704db89d550bc007c6996daf3fedf2fb588c018242e85",
+          "asset_count": 711,
+          "missing": [],
+          "extra": [],
+          "changed": [],
+          "index_html": "Decoded; all runtime links and original inline scripts match staged HTML"
+        }
+      ],
+      "cleanliness": "PASS",
+      "identifier": "com.joewolly.photosuite",
+      "volume_entries": [
+        {
+          "path": "Applications",
+          "type": "symlink",
+          "target": "/Applications"
+        },
+        {
+          "path": "PhotoSuite.app",
+          "type": "directory"
+        },
+        {
+          "path": ".VolumeIcon.icns",
+          "type": "file"
+        }
+      ]
+    },
+    "windows": {
+      "file": "PhotoSuite_0.10.1_x64-setup.exe",
+      "bytes": 188456609,
+      "sha256": "56e3d72727858a52e2f6aa8c3dd85855c48463fb81fb88988898c23b03540976",
+      "version": "0.10.1",
+      "architecture": "x86_64",
+      "loose_notices_match": true,
+      "package_files": [
+        "$PLUGINSDIR/NSISdl.dll",
+        "$PLUGINSDIR/StartMenu.dll",
+        "$PLUGINSDIR/System.dll",
+        "$PLUGINSDIR/modern-wizard.bmp",
+        "$PLUGINSDIR/nsDialogs.dll",
+        "$PLUGINSDIR/nsis_tauri_utils.dll",
+        "LICENSE",
+        "THIRD-PARTY-NOTICES.md",
+        "photosuite.exe",
+        "uninstall.exe"
+      ],
+      "package_directories": [
+        "$PLUGINSDIR"
+      ],
+      "embedded_executables": [
+        {
+          "label": "windows",
+          "architecture": "MACHINE_TYPES.AMD64",
+          "binary_bytes": 192607744,
+          "binary_sha256": "d0f9f33b0b81293ec118d03642a9352ce5d9b4722f42ea5e5517ac14e0f22235",
+          "asset_count": 711,
+          "missing": [],
+          "extra": [],
+          "changed": [],
+          "index_html": "Decoded; all runtime links and original inline scripts match staged HTML"
+        }
+      ],
+      "cleanliness": "PASS"
+    },
+    "deb": {
+      "file": "PhotoSuite_0.10.1_amd64.deb",
+      "bytes": 189709228,
+      "sha256": "b2e20db9efc17aa64f5f70b407bd41f2162047a3dee4b6d64749426a9a035ed7",
+      "version": "0.10.1",
+      "architecture": "x86_64",
+      "loose_notices_match": true,
+      "package_files": [
+        "usr/bin/photosuite",
+        "usr/lib/PhotoSuite/LICENSE",
+        "usr/lib/PhotoSuite/THIRD-PARTY-NOTICES.md",
+        "usr/share/applications/PhotoSuite.desktop",
+        "usr/share/icons/hicolor/128x128/apps/photosuite.png",
+        "usr/share/icons/hicolor/256x256@2/apps/photosuite.png",
+        "usr/share/icons/hicolor/32x32/apps/photosuite.png"
+      ],
+      "package_directories": [
+        "usr",
+        "usr/bin",
+        "usr/lib",
+        "usr/lib/PhotoSuite",
+        "usr/share",
+        "usr/share/applications",
+        "usr/share/icons",
+        "usr/share/icons/hicolor",
+        "usr/share/icons/hicolor/128x128",
+        "usr/share/icons/hicolor/128x128/apps",
+        "usr/share/icons/hicolor/256x256@2",
+        "usr/share/icons/hicolor/256x256@2/apps",
+        "usr/share/icons/hicolor/32x32",
+        "usr/share/icons/hicolor/32x32/apps"
+      ],
+      "embedded_executables": [
+        {
+          "label": "deb",
+          "architecture": "ARCH.X86_64",
+          "binary_bytes": 205668904,
+          "binary_sha256": "59da2139d764a605519329e5fb0519a578b20bb61855c1ad8640e0459cde7ecb",
+          "asset_count": 711,
+          "missing": [],
+          "extra": [],
+          "changed": [],
+          "index_html": "Decoded; all runtime links and original inline scripts match staged HTML"
+        }
+      ],
+      "cleanliness": "PASS"
+    },
+    "rpm": {
+      "file": "PhotoSuite-0.10.1-1.x86_64.rpm",
+      "bytes": 189201968,
+      "sha256": "7e7cff6f5f459815819b7d61247f5aa4088b2a4786d4c1797235c47b01814500",
+      "version": "0.10.1",
+      "architecture": "x86_64",
+      "loose_notices_match": true,
+      "package_files": [
+        "usr/bin/photosuite",
+        "usr/lib/PhotoSuite/LICENSE",
+        "usr/lib/PhotoSuite/THIRD-PARTY-NOTICES.md",
+        "usr/share/applications/PhotoSuite.desktop",
+        "usr/share/icons/hicolor/128x128/apps/photosuite.png",
+        "usr/share/icons/hicolor/256x256@2/apps/photosuite.png",
+        "usr/share/icons/hicolor/32x32/apps/photosuite.png"
+      ],
+      "package_directories": [
+        "usr",
+        "usr/bin",
+        "usr/lib",
+        "usr/lib/PhotoSuite",
+        "usr/share",
+        "usr/share/applications",
+        "usr/share/icons",
+        "usr/share/icons/hicolor",
+        "usr/share/icons/hicolor/128x128",
+        "usr/share/icons/hicolor/128x128/apps",
+        "usr/share/icons/hicolor/256x256@2",
+        "usr/share/icons/hicolor/256x256@2/apps",
+        "usr/share/icons/hicolor/32x32",
+        "usr/share/icons/hicolor/32x32/apps"
+      ],
+      "embedded_executables": [
+        {
+          "label": "rpm",
+          "architecture": "ARCH.X86_64",
+          "binary_bytes": 205668904,
+          "binary_sha256": "4d845ff5a3cad4cd656a0d60c0cb79d664c05afb0b52224f98958ca2765664ce",
+          "asset_count": 711,
+          "missing": [],
+          "extra": [],
+          "changed": [],
+          "index_html": "Decoded; all runtime links and original inline scripts match staged HTML"
+        }
+      ],
+      "cleanliness": "PASS"
+    }
+  },
+  "signed_or_notarized": false,
+  "tag_created": false,
+  "release_published": false
+}
