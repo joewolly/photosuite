@@ -738,10 +738,16 @@ function readLayerTag_FEid(ctx) {
   }
 }
 
+/**
+ * `Lr16` / `Lr32`: where a 16- or 32-bit document keeps its layers.
+ *
+ * Those files leave the ordinary Layer Info section empty and put the same
+ * structure — layer count, then the records — in this block instead. Handling
+ * only `Lr16` meant a 32-bit file parsed as having no layers at all, and the
+ * reader fell back to synthesising one Background from the composite image.
+ */
 function readLayerTag_Lr16(ctx) {
-  const { data, pos, targetAdd, context } = ctx;
-  let { chunkSize } = ctx;
-  const tag = ctx.tag;
+  const { data, pos, context } = ctx;
   PSDResourceParser.layerRecordHandler(context, data, pos);
 }
 
@@ -807,6 +813,7 @@ const READ_LAYER_TAG_HANDLERS = {
   "lnk3__": readLayerTag_lnk2_lnkDx_lnk3x,
   "FEid": readLayerTag_FEid,
   "Lr16": readLayerTag_Lr16,
+  "Lr32": readLayerTag_Lr16,
 };
 
 function readLayerInfoTag(ctx) {
@@ -815,9 +822,7 @@ function readLayerInfoTag(ctx) {
     handler(ctx);
     return;
   }
-  if (ctx.tag === "Lr16") {
-    PSDResourceParser.layerRecordHandler(ctx.context, ctx.data, ctx.pos);
-  }
+
 }
 
 // ---------------------------------------------------------------------------

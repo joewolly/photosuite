@@ -121,4 +121,38 @@ describe("document/formats/psd/psd-resource-parser.js", () => {
     assert.equal(cloned.x, 1.5);
     assert.equal(cloned.y, 2.5);
   });
+
+  // A 16- or 32-bit document leaves the ordinary Layer Info section empty and
+  // keeps its layers in one of these blocks instead. Reading only `Lr16` left a
+  // 32-bit file looking like it had no layers, and the reader invented a single
+  // Background from the composite image.
+  describe("deep-colour layer blocks", () => {
+    function parseTagAndRecordHandoff(tag) {
+      const payload = new Uint8Array([0, 2]); // layer count, as the block starts
+      const block = new Uint8Array(12 + payload.length);
+      block.set([0x38, 0x42, 0x49, 0x4d], 0); // "8BIM"
+      block.set([...tag].map((ch) => ch.charCodeAt(0)), 4);
+      new DataView(block.buffer).setUint32(8, payload.length, false);
+      block.set(payload, 12);
+
+      const handled = [];
+      const restore = PSDResourceParser.layerRecordHandler;
+      PSDResourceParser.layerRecordHandler = (context, data, pos) => handled.push({ pos });
+      try {
+        PSDResourceParser.parseAdditionalLayerInfo(block, 0, block.length, {}, false, {});
+      } finally {
+        PSDResourceParser.layerRecordHandler = restore;
+      }
+      return handled;
+    }
+
+    it("reads the layer records out of Lr16 and Lr32 alike", () => {
+      assert.equal(parseTagAndRecordHandoff("Lr16").length, 1, "Lr16 did not hand over its records");
+      assert.equal(parseTagAndRecordHandoff("Lr32").length, 1, "Lr32 did not hand over its records");
+    });
+
+    it("hands the handler the position the layer count starts at", () => {
+      assert.deepEqual(parseTagAndRecordHandoff("Lr32"), [{ pos: 12 }]);
+    });
+  });
 });

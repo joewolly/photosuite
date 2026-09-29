@@ -161,6 +161,26 @@ it into the `.grd` format.
 
 ---
 
+## Script-fallback fonts in `src/fonts/script`
+
+These six font files are used unmodified as text-rendering fallbacks for
+scripts the UI's primary fonts don't cover (Devanagari, Thai, Khmer, Tibetan,
+and general Latin/Unicode coverage). Copyright and licence fields below are
+taken verbatim from each font's own embedded name-table records.
+
+| File | Licence | Copyright | Full text |
+|------|---------|-----------|-----------|
+| `DejaVuSans.ttf` | Bitstream Vera License + Arev Fonts License | (c) 2003 Bitstream, Inc.; (c) 2006 Tavmjong Bah; DejaVu changes are public domain | `LICENSE-dejavu.txt` |
+| `DroidSansFallback.ttf` | Apache-2.0 | Digitized data (c) 2006 Google Corporation; foundry Ascender Corporation | `LICENSE-droid-sans-fallback.txt` |
+| `NotoSansDevanagari.ttf`, `NotoSansThai.ttf`, `NotoSansKhmer.ttf`, `NotoSerifTibetan.ttf` | SIL OFL 1.1 | (c) 2022 The Noto Project Authors (per-script repos linked in the licence file) | `LICENSE-noto.txt` |
+
+No upstream repository could be located specifically for `DroidSansFallback.ttf`
+(an older Android/Ascender font); its copyright, licence and licence-URL fields
+were extracted directly from the font binary's own metadata rather than an
+external source.
+
+---
+
 ## Web libraries vendored in `src/vendor`
 
 Pinned upstream commits are recorded in the gitlinks and listed in

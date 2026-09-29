@@ -167,6 +167,7 @@ function decompressChannel(isPSB, bitDepth, data, width, height, pos, compressio
     var inflated = pako.inflateRaw(compressedSlice);
     if (compression == COMPRESS_ZIP_PREDICTION) {
       if (bitDepth == 8) unfilterPrediction8(inflated, width, height);
+      else if (bitDepth == 32) unfilterPrediction32(inflated, width, height);
       else unfilterPrediction16(inflated, width, height);
     }
     if (inflated.length == paddedByteCount) {
@@ -182,7 +183,32 @@ function decompressChannel(isPSB, bitDepth, data, width, height, pos, compressio
     for (var i = 0; i < rawByteCount; i += 2) buf16[i >>> 1] = output[i];
     output = buf16;
   }
+  if (bitDepth == 32) output = floatChannelToBytes(output, width * height);
   return output;
+}
+
+/**
+ * A 32-bit channel as one byte per sample.
+ *
+ * Samples are big-endian floats where 0..1 spans black to white, so the whole
+ * document is scaled to the 8-bit buffers the compositor works in. Values
+ * outside that range belong to a wider dynamic range than the compositor
+ * carries, and are clamped rather than wrapped.
+ *
+ * @param {Uint8Array} channelBytes Raw sample bytes.
+ * @param {number} sampleCount Samples to convert.
+ * @returns {Uint8Array} One byte per sample.
+ */
+function floatChannelToBytes(channelBytes, sampleCount) {
+  var samples = new DataView(channelBytes.buffer, channelBytes.byteOffset, sampleCount * 4);
+  var bytes = allocBuffer(sampleCount);
+  for (var i = 0; i < sampleCount; i++) {
+    var value = samples.getFloat32(i * 4, false);
+    if (!(value > 0)) bytes[i] = 0;
+    else if (value >= 1) bytes[i] = 255;
+    else bytes[i] = Math.round(value * 255);
+  }
+  return bytes;
 }
 
 /** Undo per-row delta prediction on an 8-bit inflated channel, in place. */
@@ -210,6 +236,32 @@ function unfilterPrediction16(inflated, width, height) {
       inflated[colOffset] = prevVal >>> 8;
       inflated[colOffset + 1] = prevVal & 255;
     }
+  }
+}
+
+/**
+ * Undo per-row delta prediction on a 32-bit inflated channel, in place.
+ *
+ * A float channel is predicted the way TIFF predicts floats: each row is
+ * de-interleaved into byte planes — every sample's first byte, then every
+ * sample's second byte, and so on — and the deltas run along the row of bytes.
+ * Undoing it is therefore the delta pass followed by re-interleaving, not the
+ * 16-bit routine, which would read the planes as samples.
+ */
+function unfilterPrediction32(inflated, width, height) {
+  var rowBytes = width * 4;
+  var rowScratch = allocBuffer(rowBytes);
+  for (var row = 0; row < height; row++) {
+    var rowStart = row * rowBytes;
+    for (var byteIdx = 1; byteIdx < rowBytes; byteIdx++) {
+      inflated[rowStart + byteIdx] = (inflated[rowStart + byteIdx] + inflated[rowStart + byteIdx - 1]) & 255;
+    }
+    for (var sample = 0; sample < width; sample++) {
+      for (var plane = 0; plane < 4; plane++) {
+        rowScratch[sample * 4 + plane] = inflated[rowStart + plane * width + sample];
+      }
+    }
+    for (var copyIdx = 0; copyIdx < rowBytes; copyIdx++) inflated[rowStart + copyIdx] = rowScratch[copyIdx];
   }
 }
 
