@@ -36,7 +36,7 @@ const MARKER_END = "<!-- END GENERATED CRATE LIST -->";
 function readCargoMetadata() {
   const raw = execFileSync(
     "cargo",
-    ["metadata", "--format-version", "1"],
+    ["metadata", "--locked", "--format-version", "1"],
     { cwd: path.join(repoRoot, "src-tauri"), encoding: "utf8", maxBuffer: 64 * 1024 * 1024 },
   );
   return JSON.parse(raw);
