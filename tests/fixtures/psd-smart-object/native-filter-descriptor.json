@@ -1,0 +1,355 @@
+{
+  "classID": "null",
+  "Idnt": {
+    "t": "TEXT",
+    "v": "619bc360-95ee-495a-b9ea-7e1d36b79e9a"
+  },
+  "Impr": {
+    "t": "Objc",
+    "v": {
+      "__name": "None",
+      "classID": "none"
+    }
+  },
+  "placed": {
+    "t": "TEXT",
+    "v": "0aeaaa19-4274-43b0-afc4-b64b46bc272f"
+  },
+  "PgNm": {
+    "t": "long",
+    "v": 1
+  },
+  "totalPages": {
+    "t": "long",
+    "v": 1
+  },
+  "frameStep": {
+    "t": "Objc",
+    "v": {
+      "classID": "null",
+      "numerator": {
+        "t": "long",
+        "v": 0
+      },
+      "denominator": {
+        "t": "long",
+        "v": 600
+      }
+    }
+  },
+  "duration": {
+    "t": "Objc",
+    "v": {
+      "classID": "null",
+      "numerator": {
+        "t": "long",
+        "v": 0
+      },
+      "denominator": {
+        "t": "long",
+        "v": 600
+      }
+    }
+  },
+  "frameCount": {
+    "t": "long",
+    "v": 1
+  },
+  "Annt": {
+    "t": "long",
+    "v": 16
+  },
+  "Type": {
+    "t": "long",
+    "v": 2
+  },
+  "Trnf": {
+    "t": "VlLs",
+    "v": [
+      {
+        "t": "doub",
+        "v": 12
+      },
+      {
+        "t": "doub",
+        "v": 3
+      },
+      {
+        "t": "doub",
+        "v": 268
+      },
+      {
+        "t": "doub",
+        "v": 3
+      },
+      {
+        "t": "doub",
+        "v": 268
+      },
+      {
+        "t": "doub",
+        "v": 195
+      },
+      {
+        "t": "doub",
+        "v": 12
+      },
+      {
+        "t": "doub",
+        "v": 195
+      }
+    ]
+  },
+  "nonAffineTransform": {
+    "t": "VlLs",
+    "v": [
+      {
+        "t": "doub",
+        "v": 12
+      },
+      {
+        "t": "doub",
+        "v": 3
+      },
+      {
+        "t": "doub",
+        "v": 268
+      },
+      {
+        "t": "doub",
+        "v": 3
+      },
+      {
+        "t": "doub",
+        "v": 268
+      },
+      {
+        "t": "doub",
+        "v": 195
+      },
+      {
+        "t": "doub",
+        "v": 12
+      },
+      {
+        "t": "doub",
+        "v": 195
+      }
+    ]
+  },
+  "warp": {
+    "t": "Objc",
+    "v": {
+      "classID": "warp",
+      "warpStyle": {
+        "t": "enum",
+        "v": {
+          "warpStyle": "warpNone"
+        }
+      },
+      "warpValue": {
+        "t": "doub",
+        "v": 0
+      },
+      "warpPerspective": {
+        "t": "doub",
+        "v": 0
+      },
+      "warpPerspectiveOther": {
+        "t": "doub",
+        "v": 0
+      },
+      "warpRotate": {
+        "t": "enum",
+        "v": {
+          "Ornt": "Hrzn"
+        }
+      },
+      "bounds": {
+        "t": "Objc",
+        "v": {
+          "classID": "Rctn",
+          "Top": {
+            "t": "UntF",
+            "v": {
+              "type": "#Pxl",
+              "val": 3
+            }
+          },
+          "Left": {
+            "t": "UntF",
+            "v": {
+              "type": "#Pxl",
+              "val": 12
+            }
+          },
+          "Btom": {
+            "t": "UntF",
+            "v": {
+              "type": "#Pxl",
+              "val": 195
+            }
+          },
+          "Rght": {
+            "t": "UntF",
+            "v": {
+              "type": "#Pxl",
+              "val": 268
+            }
+          }
+        }
+      },
+      "uOrder": {
+        "t": "long",
+        "v": 4
+      },
+      "vOrder": {
+        "t": "long",
+        "v": 4
+      }
+    }
+  },
+  "Sz": {
+    "t": "Objc",
+    "v": {
+      "classID": "Pnt",
+      "Wdth": {
+        "t": "doub",
+        "v": 256
+      },
+      "Hght": {
+        "t": "doub",
+        "v": 192
+      }
+    }
+  },
+  "Rslt": {
+    "t": "UntF",
+    "v": {
+      "type": "#Rsl",
+      "val": 72
+    }
+  },
+  "filterFX": {
+    "t": "Objc",
+    "v": {
+      "classID": "filterFXStyle",
+      "enab": {
+        "t": "bool",
+        "v": true
+      },
+      "validAtPosition": {
+        "t": "bool",
+        "v": true
+      },
+      "filterMaskEnable": {
+        "t": "bool",
+        "v": true
+      },
+      "filterMaskLinked": {
+        "t": "bool",
+        "v": true
+      },
+      "filterMaskExtendWithWhite": {
+        "t": "bool",
+        "v": true
+      },
+      "filterFXList": {
+        "t": "VlLs",
+        "v": [
+          {
+            "t": "Objc",
+            "v": {
+              "classID": "filterFX",
+              "Nm": {
+                "t": "TEXT",
+                "v": "Gaussian Blur"
+              },
+              "blendOptions": {
+                "t": "Objc",
+                "v": {
+                  "classID": "blendOptions",
+                  "Opct": {
+                    "t": "UntF",
+                    "v": {
+                      "type": "#Prc",
+                      "val": 100
+                    }
+                  },
+                  "Md": {
+                    "t": "enum",
+                    "v": {
+                      "blendMode": "Nrml"
+                    }
+                  }
+                }
+              },
+              "enab": {
+                "t": "bool",
+                "v": true
+              },
+              "hasoptions": {
+                "t": "bool",
+                "v": true
+              },
+              "FrgC": {
+                "t": "Objc",
+                "v": {
+                  "classID": "RGBC",
+                  "Rd": {
+                    "t": "doub",
+                    "v": 0
+                  },
+                  "Grn": {
+                    "t": "doub",
+                    "v": 0
+                  },
+                  "Bl": {
+                    "t": "doub",
+                    "v": 0
+                  }
+                }
+              },
+              "BckC": {
+                "t": "Objc",
+                "v": {
+                  "classID": "RGBC",
+                  "Rd": {
+                    "t": "doub",
+                    "v": 255
+                  },
+                  "Grn": {
+                    "t": "doub",
+                    "v": 255
+                  },
+                  "Bl": {
+                    "t": "doub",
+                    "v": 255
+                  }
+                }
+              },
+              "filterID": {
+                "t": "long",
+                "v": 1198747202
+              },
+              "Fltr": {
+                "t": "Objc",
+                "v": {
+                  "__name": "Gaussian Blur",
+                  "classID": "GsnB",
+                  "Rds": {
+                    "t": "UntF",
+                    "v": {
+                      "type": "#Pxl",
+                      "val": 2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

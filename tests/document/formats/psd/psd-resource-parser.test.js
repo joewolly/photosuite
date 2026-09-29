@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { describe, it, before, after } from "node:test";
+import { readFileSync } from "node:fs";
 
 import { BinaryUtils } from "../../../../src/core/binary/binary-utils.js";
+import { RenderBuffer } from "../../../../src/core/render-buffer.js";
 import { installBrowserGlobals } from "../../../helpers/stub-browser-globals.js";
 
 let PSDResourceParser;
@@ -37,6 +39,22 @@ after(() => {
 });
 
 describe("document/formats/psd/psd-resource-parser.js", () => {
+  for (const isPSB of [false, true]) {
+    it(`preserves native Smart Object and Smart Filter descriptors in ${isPSB ? "PSB" : "PSD"} SoLd blocks`, () => {
+      const descriptor = JSON.parse(readFileSync(new URL("../../../fixtures/psd-smart-object/native-filter-descriptor.json", import.meta.url), "utf8"));
+      const before = structuredClone(descriptor);
+      const buffer = new RenderBuffer();
+      const end = PSDResourceParser.writeAdditionalLayerInfo(buffer, 0, { placedData: descriptor }, isPSB, layerContext);
+      assert.ok(end > 12, "Smart Object descriptor must not be silently skipped");
+      assert.equal(BinaryUtils.readString(buffer.data, 4, 4), "SoLd");
+      const reopened = {};
+      PSDResourceParser.parseAdditionalLayerInfo(buffer.data, 0, end, reopened, isPSB, layerContext);
+      assert.deepEqual(reopened.placedData, before);
+      assert.equal(reopened.SoLd, undefined, "editor must receive its placedData key");
+      assert.deepEqual(descriptor, before, "serialization must not mutate the live descriptor");
+      assert.ok(reopened.placedData.filterFX.v.filterFXList.v.length > 0);
+    });
+  }
 
   it("reads lyid layer id", () => {
     const data = wrapLayerInfoTag("lyid", new Uint8Array([0, 0, 0, 42]));

@@ -6,6 +6,7 @@ import { describe, it, before } from "node:test";
 
 import { installBrowserGlobals } from "../../helpers/stub-browser-globals.js";
 import { UiCommand } from "../../../src/core/event-bus.js";
+import { Matrix2D } from "../../../src/core/math/matrix2d.js";
 
 installBrowserGlobals();
 
@@ -32,6 +33,39 @@ before(async () => {
 });
 
 describe("ui/tool-options split", () => {
+  it("free transform displays finite width and preserves it when editing height", () => {
+    // Stub only view widgets; exercise the production event/affine paths.
+    const widget = (suffix = "") => ({
+      value: 0, setValue(value) { this.value = value; },
+      getValue() { return this.value; }, getDisplaySuffix() { return suffix; }
+    });
+    const panel = Object.create(TextFontOptionBase.prototype);
+    panel.body = document.createElement("div");
+    panel.transformControlsSpan = document.createElement("span");
+    panel.confirmWidget = { el: document.createElement("span") };
+    panel.warpButton = { clearActive() {} };
+    panel.transformInputs = {
+      refPointAngle: widget(), xInput: widget(), yInput: widget(),
+      widthInput: widget("%"), keepAspectBtn: { isPressed: () => false },
+      heightInput: widget("%"), rotationInput: widget(),
+      hSkewInput: widget(), vSkewInput: widget(), interpolationDropdown: widget()
+    };
+    const matrix = new Matrix2D(1.5, 0, 0, 2, 0, 0);
+    panel.onToolEvent({ freeTransform: {
+      boundsRect: { width: 200, height: 100 }, decomposedMatrix: matrix,
+      refPointIndex: 4, refPoint: { x: 0, y: 0 }
+    } });
+    assert.equal(panel.transformInputs.widthInput.getValue(), 150);
+    assert.equal(panel.transformInputs.heightInput.getValue(), 200);
+    let action;
+    panel.dispatchAction = value => { action = value; };
+    panel.transformInputs.heightInput.setValue(125);
+    panel.onTransformInput({ target: panel.transformInputs.heightInput });
+    assert.equal(action.transformMatrix.a, 1.5);
+    assert.equal(action.transformMatrix.d, 1.25);
+    assert.ok(Object.values(action.transformMatrix).every(Number.isFinite));
+  });
+
   it("exports bases and concrete panels", () => {
     assert.equal(typeof ToolOptionBase, "function");
     assert.equal(typeof BrushOptionBase, "function");

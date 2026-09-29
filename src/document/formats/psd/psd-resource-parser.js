@@ -577,7 +577,8 @@ function readLayerTag_Patt(ctx) {
 function readLayerTag_SoLd(ctx) {
   const { data, pos, targetAdd, context } = ctx;
   let { chunkSize } = ctx;
-  const tag = ctx.tag;
+  // The PSD tag is SoLd; editor operations use the descriptive placedData key.
+  const tag = "placedData";
   var soLdSig = BinaryUtils.readString(data, pos, 4),
     soLdReadSize = BinaryUtils.readUint32BE(data, pos + 4),
     soLdReserved = BinaryUtils.readUint32BE(data, pos + 8);
@@ -1376,7 +1377,7 @@ function writeLayerTag_SoLd(ctx) {
   BinaryUtils.writeAscii(buf, pos, "soLD");
   BinaryUtils.writeSize(buf, pos + 4, 4);
   BinaryUtils.writeSize(buf, pos + 8, 16);
-  writtenSize = DescriptorCodec.writeDescriptor(buf, sourceAdd[tag], pos + 12) + 12;
+  writtenSize = DescriptorCodec.writeDescriptor(buf, sourceAdd.placedData ?? sourceAdd[tag], pos + 12) + 12;
   return writtenSize;
 }
 
@@ -1656,7 +1657,8 @@ function writeAdditionalLayerInfo(buf, pos, sourceAdd, isPSB, context) {
       delete sourceAdd[tag];
     }
   }
-  for (const tag in sourceAdd) {
+  for (const sourceTag in sourceAdd) {
+    const tag = sourceTag === "placedData" ? "SoLd" : sourceTag;
     const usesExtendedSize = usesPsbExtendedSize(tag, isPSB);
     BinaryUtils.writeAscii(buf, pos, usesExtendedSize ? "8B64" : "8BIM");
     pos += 4;

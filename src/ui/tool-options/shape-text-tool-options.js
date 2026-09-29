@@ -545,7 +545,7 @@ TextFontOptionBase.prototype.onToolEvent = function(toolEvent) {
     transformInputs.refPointAngle.setValue(toolEvent.freeTransform.refPointIndex);
     transformInputs.xInput.setValue(toolEvent.freeTransform.refPoint.x);
     transformInputs.yInput.setValue(toolEvent.freeTransform.refPoint.y);
-    transformInputs.widthInput.setValue(decomposedMatrix.w * (transformInputs.widthInput.getDisplaySuffix() == "%" ? 100 : layerBounds.width));
+    transformInputs.widthInput.setValue(decomposedMatrix.a * (transformInputs.widthInput.getDisplaySuffix() == "%" ? 100 : layerBounds.width));
     transformInputs.heightInput.setValue(decomposedMatrix.d * (transformInputs.heightInput.getDisplaySuffix() == "%" ? 100 : layerBounds.height));
     transformInputs.rotationInput.setValue(-rotationRad * 180 / Math.PI);
     transformInputs.hSkewInput.setValue(0 * 180 / Math.PI);
