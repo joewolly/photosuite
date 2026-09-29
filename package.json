@@ -17,9 +17,11 @@
     "verify:imports": "node scripts/check-imports-resolve.mjs",
     "verify:cycles": "node scripts/find-import-cycles.mjs --check",
     "tauri": "tauri",
-    "dev": "npm run vendor:fixlinks && tauri dev --no-dev-server",
-    "build": "npm run vendor:fixlinks && tauri build",
-    "build:signed": "sh -c 'npm run vendor:fixlinks; set -a; [ -f .env ] && . ./.env; set +a; exec tauri build'"
+    "dev": "npm run vendor:fixlinks && tauri dev --no-dev-server --config src-tauri/tauri.dev.conf.json",
+    "build": "tauri build",
+    "build:signed": "sh -c 'set -a; [ -f .env ] && . ./.env; set +a; exec tauri build'",
+    "prepare:frontend": "node scripts/prepare-frontend-dist.mjs",
+    "verify:frontend": "node scripts/verify-frontend-dist.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

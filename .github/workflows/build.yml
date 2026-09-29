@@ -46,7 +46,7 @@ jobs:
           node-version: 25
           cache: npm
       - run: npm ci
-      - run: npm run vendor:fixlinks
+      - run: npm run prepare:frontend
       - run: npm run lint
       - run: npm run verify
       - run: npm test
@@ -72,7 +72,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 25
-      - run: npm run vendor:fixlinks
+      - run: npm ci
+      - run: npm run prepare:frontend
       - run: cargo check --locked --manifest-path src-tauri/Cargo.toml
       # Real ComfyUI/model tests remain ignored and explicitly opt-in.
       - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
@@ -166,9 +167,7 @@ jobs:
 
       - run: npm ci
 
-      # Restores the placeholder files that dangling vendor symlinks point at.
-      - name: Repair vendor symlinks
-        run: npm run vendor:fixlinks
+      # Tauri beforeBuildCommand stages and verifies the runtime frontend.
 
       # Apple secrets, all optional — set every one of them to get a signed and
       # notarized .dmg, set none to get an unsigned one:
