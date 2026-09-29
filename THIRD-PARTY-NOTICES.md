@@ -14,9 +14,9 @@ the repository.
 
 Each vendored library keeps its own unmodified licence text next to its code:
 `src/vendor/<lib>/LICENSE`, `src/vendor/js/<lib>/LICENSE`,
-`src/vendor/wasm/<lib>/LICENSE`, `src/assets/ico/LICENSE`. Tauri serves `src/`
-as the application's web root and packages that tree into the binary, so those
-texts travel with the application as well as with the source.
+`src/vendor/wasm/<lib>/LICENSE`, `src/assets/ico/LICENSE`. Production builds stage selected runtime files and license texts into `dist/`,
+then Tauri embeds that generated tree. Source paths above are relative to `src/`
+in the embedded frontend. Vendor development trees are not packaged.
 
 Libraries loaded straight from their upstream checkout (`pako`, `paper`, `upng`,
 `utif`, `uzip`, `utex`, `omggif`, `js-sha1`, `pdfi`, `acorn`, `parse-exr`) keep

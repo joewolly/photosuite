@@ -66,6 +66,7 @@ const stripCommentsAndStrings = (src) => blank(src, false);
 
 function walk(dir, out = []) {
   for (const name of fs.readdirSync(dir)) {
+    if (name === "vendor") continue; // Out of scope; do not traverse upstream build links.
     const full = path.join(dir, name);
     if (fs.statSync(full).isDirectory()) walk(full, out);
     else if (name.endsWith(".js")) out.push(full);

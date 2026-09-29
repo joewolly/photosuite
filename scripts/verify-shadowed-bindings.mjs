@@ -13,6 +13,7 @@ import path from "node:path";
 import globals from "globals";
 
 const config = [
+  { ignores: ["src/vendor/**", "src/external/**"] },
   {
     files: ["src/**/*.js"],
     languageOptions: {
