@@ -1,0 +1,1392 @@
+[
+  {
+    "path": "/tmp/photosuite-m8-fixtures/direct-right.psd",
+    "snapshot": {
+      "width": 417,
+      "height": 257,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 257
+          },
+          "hash": "00f4a0e06db3a89e6ec9a2606b5892f9d14190dfc5ab6bfc07eecc6d601b09d8",
+          "mask": null
+        }
+      ],
+      "composite": "f512ee33d8279314ad1f59824d596709d3628f2356947876c7cccc6aec737f63"
+    },
+    "bytes": 57205
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/direct-right.psb",
+    "snapshot": {
+      "width": 417,
+      "height": 257,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 257
+          },
+          "hash": "00f4a0e06db3a89e6ec9a2606b5892f9d14190dfc5ab6bfc07eecc6d601b09d8",
+          "mask": null
+        }
+      ],
+      "composite": "f512ee33d8279314ad1f59824d596709d3628f2356947876c7cccc6aec737f63"
+    },
+    "bytes": 62899
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/landscape-left.psd",
+    "snapshot": {
+      "width": 417,
+      "height": 257,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          106
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 96,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 257
+          },
+          "hash": "5753ef10e276f8fc7c9fae5e7473b8a3ef74a8f3f6760293d74aa7e5b8f5cce0",
+          "mask": null
+        }
+      ],
+      "composite": "e563e6ad3b93c01f372fbf53da5d241aa1f8078a2af9eb93aa0fb8ab7c2a383f"
+    },
+    "bytes": 65302
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/landscape-left.psb",
+    "snapshot": {
+      "width": 417,
+      "height": 257,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          106
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 96,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 257
+          },
+          "hash": "5753ef10e276f8fc7c9fae5e7473b8a3ef74a8f3f6760293d74aa7e5b8f5cce0",
+          "mask": null
+        }
+      ],
+      "composite": "e563e6ad3b93c01f372fbf53da5d241aa1f8078a2af9eb93aa0fb8ab7c2a383f"
+    },
+    "bytes": 70996
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/sky-top.psd",
+    "snapshot": {
+      "width": 321,
+      "height": 353,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          116
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 96,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 353
+          },
+          "hash": "f59ea6020668ec4e87a14521f01f76d223dc67599bebb8c0817a080bec10b204",
+          "mask": null
+        }
+      ],
+      "composite": "886bfb6cb9d4c9413bae539c163d66f48cd53343c6172979563021a3c9155ce6"
+    },
+    "bytes": 58062
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/sky-top.psb",
+    "snapshot": {
+      "width": 321,
+      "height": 353,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          116
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 96,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 353
+          },
+          "hash": "f59ea6020668ec4e87a14521f01f76d223dc67599bebb8c0817a080bec10b204",
+          "mask": null
+        }
+      ],
+      "composite": "886bfb6cb9d4c9413bae539c163d66f48cd53343c6172979563021a3c9155ce6"
+    },
+    "bytes": 65100
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/ground-bottom.psd",
+    "snapshot": {
+      "width": 321,
+      "height": 353,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 353
+          },
+          "hash": "e4e9a8330a6b6d35309c4043630f0fda123e53f217918ba82fa5c220932871c8",
+          "mask": null
+        }
+      ],
+      "composite": "3a57a73bb070857a837277a88ee2a54be5b1f9d447d12309ab95b3e0aac63a3f"
+    },
+    "bytes": 44278
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/ground-bottom.psb",
+    "snapshot": {
+      "width": 321,
+      "height": 353,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 353
+          },
+          "hash": "e4e9a8330a6b6d35309c4043630f0fda123e53f217918ba82fa5c220932871c8",
+          "mask": null
+        }
+      ],
+      "composite": "3a57a73bb070857a837277a88ee2a54be5b1f9d447d12309ab95b3e0aac63a3f"
+    },
+    "bytes": 51316
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/two-side.psd",
+    "snapshot": {
+      "width": 512,
+      "height": 256,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          74
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 64,
+            "y": 0,
+            "width": 384,
+            "height": 256
+          },
+          "hash": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 512,
+            "height": 256
+          },
+          "hash": "014fc190106dacca8f57380c4716786b711a8e621c19721db873cdacb64b460e",
+          "mask": null
+        }
+      ],
+      "composite": "e1765c01af9209c2eaf25814a6fbb8ec1d417b4276e0d3630515f900a0d71170"
+    },
+    "bytes": 789520
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/two-side.psb",
+    "snapshot": {
+      "width": 512,
+      "height": 256,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          74
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 64,
+            "y": 0,
+            "width": 384,
+            "height": 256
+          },
+          "hash": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 512,
+            "height": 256
+          },
+          "hash": "014fc190106dacca8f57380c4716786b711a8e621c19721db873cdacb64b460e",
+          "mask": null
+        }
+      ],
+      "composite": "e1765c01af9209c2eaf25814a6fbb8ec1d417b4276e0d3630515f900a0d71170"
+    },
+    "bytes": 795192
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/four-side.psd",
+    "snapshot": {
+      "width": 417,
+      "height": 353,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          58
+        ],
+        [
+          68
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 48,
+            "y": 48,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 353
+          },
+          "hash": "a01be88bf49082bda3b287399c3a456581c8e6aa9938091bbe4d573b87c38e3a",
+          "mask": null
+        }
+      ],
+      "composite": "6a64e7d6f3ffc8ec140f6e6512131266bb215644d91ff17a344e3a199092c26c"
+    },
+    "bytes": 98194
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/four-side.psb",
+    "snapshot": {
+      "width": 417,
+      "height": 353,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          58
+        ],
+        [
+          68
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 48,
+            "y": 48,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 353
+          },
+          "hash": "a01be88bf49082bda3b287399c3a456581c8e6aa9938091bbe4d573b87c38e3a",
+          "mask": null
+        }
+      ],
+      "composite": "6a64e7d6f3ffc8ec140f6e6512131266bb215644d91ff17a344e3a199092c26c"
+    },
+    "bytes": 105232
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/transparent.psd",
+    "snapshot": {
+      "width": 352,
+      "height": 320,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 256,
+            "height": 320
+          },
+          "hash": "574f6c6df99d25070f3b77855adb6b54b0309ebebc5eec00b3cc1ea1fc990c1a",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 352,
+            "height": 320
+          },
+          "hash": "c1213a7e763485daff4e8e684d2d020f056517257214ecf47e6d9363f98a5139",
+          "mask": null
+        }
+      ],
+      "composite": "c4cc1730283cb6bdefd5337178ab37dbb23116f1afe2610abdc408a4c87e02bb"
+    },
+    "bytes": 59341
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/transparent.psb",
+    "snapshot": {
+      "width": 352,
+      "height": 320,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 256,
+            "height": 320
+          },
+          "hash": "574f6c6df99d25070f3b77855adb6b54b0309ebebc5eec00b3cc1ea1fc990c1a",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 352,
+            "height": 320
+          },
+          "hash": "c1213a7e763485daff4e8e684d2d020f056517257214ecf47e6d9363f98a5139",
+          "mask": null
+        }
+      ],
+      "composite": "c4cc1730283cb6bdefd5337178ab37dbb23116f1afe2610abdc408a4c87e02bb"
+    },
+    "bytes": 67061
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/empty-prompt.psd",
+    "snapshot": {
+      "width": 417,
+      "height": 257,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 257
+          },
+          "hash": "3d0f8a38863b4dc8583179e351ab10ef02bba5b10a8082059439fa4daf11c86e",
+          "mask": null
+        }
+      ],
+      "composite": "df6b307b7796e4e05fc250e04ce3eb1813d81c0da377d53f9e00f039aa102b15"
+    },
+    "bytes": 56343
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/empty-prompt.psb",
+    "snapshot": {
+      "width": 417,
+      "height": 257,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "f63f1d8ea01557da3e7029414e16108faf1da58fbcd455bf481b5ef4d83b219e",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 257
+          },
+          "hash": "3d0f8a38863b4dc8583179e351ab10ef02bba5b10a8082059439fa4daf11c86e",
+          "mask": null
+        }
+      ],
+      "composite": "df6b307b7796e4e05fc250e04ce3eb1813d81c0da377d53f9e00f039aa102b15"
+    },
+    "bytes": 62037
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/group-mask-guides.psd",
+    "snapshot": {
+      "width": 369,
+      "height": 289,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          58
+        ],
+        [
+          52
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 48,
+            "y": 32,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+          "mask": null
+        },
+        {
+          "name": "</Layer group>",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "hash": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "mask": null
+        },
+        {
+          "name": "Negative masked layer",
+          "rect": {
+            "x": 40,
+            "y": 27,
+            "width": 75,
+            "height": 65
+          },
+          "hash": "fc6799438948acade42e0403c44d56fbd75b78f141467baf46b75294ca55484c",
+          "mask": {
+            "rect": {
+              "x": 45,
+              "y": 30,
+              "width": 50,
+              "height": 50
+            },
+            "hash": "4c6d55141d2231f3b27e3811dc473e912511f950a0de2d33f93797248ba8e961"
+          }
+        },
+        {
+          "name": "Group",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "hash": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 369,
+            "height": 289
+          },
+          "hash": "4d0752c1d1ecedb71ef63942592e2a00c0df2fbb3939e9599bde4a49e3d871a6",
+          "mask": null
+        }
+      ],
+      "composite": "f728620c59a40ca54401cdb485bd8156954c455ea985bceb1db9bbe8467d1855"
+    },
+    "bytes": 77896
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/group-mask-guides.psb",
+    "snapshot": {
+      "width": 369,
+      "height": 289,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          58
+        ],
+        [
+          52
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 48,
+            "y": 32,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+          "mask": null
+        },
+        {
+          "name": "</Layer group>",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "hash": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "mask": null
+        },
+        {
+          "name": "Negative masked layer",
+          "rect": {
+            "x": 40,
+            "y": 27,
+            "width": 75,
+            "height": 65
+          },
+          "hash": "fc6799438948acade42e0403c44d56fbd75b78f141467baf46b75294ca55484c",
+          "mask": {
+            "rect": {
+              "x": 45,
+              "y": 30,
+              "width": 50,
+              "height": 50
+            },
+            "hash": "4c6d55141d2231f3b27e3811dc473e912511f950a0de2d33f93797248ba8e961"
+          }
+        },
+        {
+          "name": "Group",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "hash": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 369,
+            "height": 289
+          },
+          "hash": "4d0752c1d1ecedb71ef63942592e2a00c0df2fbb3939e9599bde4a49e3d871a6",
+          "mask": null
+        }
+      ],
+      "composite": "f728620c59a40ca54401cdb485bd8156954c455ea985bceb1db9bbe8467d1855"
+    },
+    "bytes": 84710
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/tab-source.psd",
+    "snapshot": {
+      "width": 417,
+      "height": 257,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 257
+          },
+          "hash": "6bfd3baeb378d9e5dd18967418d214d92028eed6d2a8cae0c78c954ee27ce8c3",
+          "mask": null
+        }
+      ],
+      "composite": "7750a2263e171b91a3619e140e2114a3055d07428f910d2396b1abeb482f7dad"
+    },
+    "bytes": 41440
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/tab-source.psb",
+    "snapshot": {
+      "width": 417,
+      "height": 257,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 417,
+            "height": 257
+          },
+          "hash": "6bfd3baeb378d9e5dd18967418d214d92028eed6d2a8cae0c78c954ee27ce8c3",
+          "mask": null
+        }
+      ],
+      "composite": "7750a2263e171b91a3619e140e2114a3055d07428f910d2396b1abeb482f7dad"
+    },
+    "bytes": 47134
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/generate-fill.psd",
+    "snapshot": {
+      "width": 384,
+      "height": 256,
+      "history": 3,
+      "index": 2,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 384,
+            "height": 256
+          },
+          "hash": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+          "mask": null
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 86,
+            "y": 36,
+            "width": 192,
+            "height": 176
+          },
+          "hash": "1688391e9bc83419ebf61b3ee4cf7873750f89691f8f20e97f9860e5d3e146b4",
+          "mask": null
+        }
+      ],
+      "composite": "7a00cf8fd2f3fdc729389b163d7049a3fd580b3c8d6bfb5902b0a71df41cf8a9"
+    },
+    "bytes": 602417
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/generate-fill.psb",
+    "snapshot": {
+      "width": 384,
+      "height": 256,
+      "history": 3,
+      "index": 2,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 384,
+            "height": 256
+          },
+          "hash": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+          "mask": null
+        },
+        {
+          "name": "Generative Fill",
+          "rect": {
+            "x": 86,
+            "y": 36,
+            "width": 192,
+            "height": 176
+          },
+          "hash": "1688391e9bc83419ebf61b3ee4cf7873750f89691f8f20e97f9860e5d3e146b4",
+          "mask": null
+        }
+      ],
+      "composite": "7a00cf8fd2f3fdc729389b163d7049a3fd580b3c8d6bfb5902b0a71df41cf8a9"
+    },
+    "bytes": 607449
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/ai-remove.psd",
+    "snapshot": {
+      "width": 384,
+      "height": 256,
+      "history": 3,
+      "index": 2,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 384,
+            "height": 256
+          },
+          "hash": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+          "mask": null
+        },
+        {
+          "name": "AI Remove",
+          "rect": {
+            "x": 86,
+            "y": 36,
+            "width": 192,
+            "height": 176
+          },
+          "hash": "f308100002fe3d9d79ab64966bf9d190583514dfd888873c155d7b79a48dc4e9",
+          "mask": null
+        }
+      ],
+      "composite": "ab411eb3027d32f1bc370b66a8a523c9f6ec1ecfd0102aad03b0b02a8dba0c6c"
+    },
+    "bytes": 599997
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/ai-remove.psb",
+    "snapshot": {
+      "width": 384,
+      "height": 256,
+      "history": 3,
+      "index": 2,
+      "guides": [
+        [
+          10
+        ],
+        [
+          20
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 384,
+            "height": 256
+          },
+          "hash": "72696765676e92f69753910a3b9928ae093968b040a68d8613f86cc7f1222a45",
+          "mask": null
+        },
+        {
+          "name": "AI Remove",
+          "rect": {
+            "x": 86,
+            "y": 36,
+            "width": 192,
+            "height": 176
+          },
+          "hash": "f308100002fe3d9d79ab64966bf9d190583514dfd888873c155d7b79a48dc4e9",
+          "mask": null
+        }
+      ],
+      "composite": "ab411eb3027d32f1bc370b66a8a523c9f6ec1ecfd0102aad03b0b02a8dba0c6c"
+    },
+    "bytes": 605029
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/limit.psd",
+    "snapshot": {
+      "width": 1024,
+      "height": 1024,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          266
+        ],
+        [
+          276
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 256,
+            "y": 256,
+            "width": 512,
+            "height": 512
+          },
+          "hash": "41696ba9c735d4d72d1a066b497c72acc788c0cb7547450dafe33210b2391af0",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 1024
+          },
+          "hash": "d00e7639a892ae5978b35fde775aa216e3e79d1c1033cc3a345cd9e308379655",
+          "mask": null
+        }
+      ],
+      "composite": "0a791dd40e73a9b945f0cf77bd48210a8cffabe1d96d58c6c401693a224aa94b"
+    },
+    "bytes": 528493
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/limit.psb",
+    "snapshot": {
+      "width": 1024,
+      "height": 1024,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          266
+        ],
+        [
+          276
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 256,
+            "y": 256,
+            "width": 512,
+            "height": 512
+          },
+          "hash": "41696ba9c735d4d72d1a066b497c72acc788c0cb7547450dafe33210b2391af0",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 1024
+          },
+          "hash": "d00e7639a892ae5978b35fde775aa216e3e79d1c1033cc3a345cd9e308379655",
+          "mask": null
+        }
+      ],
+      "composite": "0a791dd40e73a9b945f0cf77bd48210a8cffabe1d96d58c6c401693a224aa94b"
+    },
+    "bytes": 546965
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/final-reopened-group.psd",
+    "snapshot": {
+      "width": 385,
+      "height": 305,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          74
+        ],
+        [
+          68
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 64,
+            "y": 48,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+          "mask": null
+        },
+        {
+          "name": "</Layer group>",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mask": null
+        },
+        {
+          "name": "Negative masked layer",
+          "rect": {
+            "x": 56,
+            "y": 43,
+            "width": 75,
+            "height": 65
+          },
+          "hash": "fc6799438948acade42e0403c44d56fbd75b78f141467baf46b75294ca55484c",
+          "mask": {
+            "rect": {
+              "x": 61,
+              "y": 46,
+              "width": 50,
+              "height": 50
+            },
+            "hash": "4c6d55141d2231f3b27e3811dc473e912511f950a0de2d33f93797248ba8e961"
+          }
+        },
+        {
+          "name": "Group",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 369,
+            "height": 289
+          },
+          "hash": "4d0752c1d1ecedb71ef63942592e2a00c0df2fbb3939e9599bde4a49e3d871a6",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 385,
+            "height": 305
+          },
+          "hash": "791d502fab176441927c3fb99db33b836d2d80c4289331282f4f66115b0f0b7e",
+          "mask": null
+        }
+      ],
+      "composite": "31ae42a93adad32166e55e82860a4202928517ad032233c236e35bca1e94b5c9"
+    },
+    "bytes": 115320
+  },
+  {
+    "path": "/tmp/photosuite-m8-fixtures/final-reopened-group.psb",
+    "snapshot": {
+      "width": 385,
+      "height": 305,
+      "history": 2,
+      "index": 1,
+      "guides": [
+        [
+          74
+        ],
+        [
+          68
+        ]
+      ],
+      "layers": [
+        {
+          "name": "Background",
+          "rect": {
+            "x": 64,
+            "y": 48,
+            "width": 321,
+            "height": 257
+          },
+          "hash": "1001c5999998b5d85d2f86eefe3f1d58fd331b2717e49dda1e28259749783660",
+          "mask": null
+        },
+        {
+          "name": "</Layer group>",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mask": null
+        },
+        {
+          "name": "Negative masked layer",
+          "rect": {
+            "x": 56,
+            "y": 43,
+            "width": 75,
+            "height": 65
+          },
+          "hash": "fc6799438948acade42e0403c44d56fbd75b78f141467baf46b75294ca55484c",
+          "mask": {
+            "rect": {
+              "x": 61,
+              "y": 46,
+              "width": 50,
+              "height": 50
+            },
+            "hash": "4c6d55141d2231f3b27e3811dc473e912511f950a0de2d33f93797248ba8e961"
+          }
+        },
+        {
+          "name": "Group",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 16,
+            "y": 16,
+            "width": 369,
+            "height": 289
+          },
+          "hash": "4d0752c1d1ecedb71ef63942592e2a00c0df2fbb3939e9599bde4a49e3d871a6",
+          "mask": null
+        },
+        {
+          "name": "Generative Expand",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 385,
+            "height": 305
+          },
+          "hash": "791d502fab176441927c3fb99db33b836d2d80c4289331282f4f66115b0f0b7e",
+          "mask": null
+        }
+      ],
+      "composite": "31ae42a93adad32166e55e82860a4202928517ad032233c236e35bca1e94b5c9"
+    },
+    "bytes": 124686
+  }
+]

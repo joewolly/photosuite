@@ -207,6 +207,9 @@ export function buildImageMenu() {
       },
       opensDialog: true
     }, {
+      name: "Generative Expand",
+      resolveRowState: doc => ({ enabled: !!doc, labelOverride: "Generative Expand…" })
+    }, {
       name: "AI Upscale",
       resolveRowState: doc => ({ enabled: !!doc, labelOverride: "AI Upscale…" })
     }],
@@ -340,6 +343,9 @@ export function buildImageMenu() {
         actionKind: "start",
         adjustmentKey: "aply"
       }
+    }, {
+      appEventType: EventType.uiDispatch,
+      payload: { dispatchKind: UiCommand.generativeExpand }
     }, {
       appEventType: EventType.uiDispatch,
       payload: { dispatchKind: UiCommand.aiUpscale }

@@ -11,7 +11,7 @@ export class GenerativeSession {
     return !!session && !session.provenancePending && session.ids.length === session.settings.count && session.ids.every(id => this.jobs.get(id)?.state === "preview");
   }
   start(doc, config, options) {
-    if (this.current || this.jobs.list().some(j => ["ai-remove", "generate.fill"].includes(j.operation) && (!JOB_TERMINAL.has(j.state) || j.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current masked generation first.");
+    if (this.current || this.jobs.list().some(j => ["ai-remove", "generate.fill", "generate.expand"].includes(j.operation) && (!JOB_TERMINAL.has(j.state) || j.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current masked generation first.");
     const started = performance.now(), layer = requireInpaintSource(doc, "Generative Fill");
     const prepared = prepareGenerativeInput(layer, doc.selectionMask, doc.width, doc.height, config, options);
     const session = { doc, layer, ...prepared, ids: [], selected: 0, seeds: [], completedAt: [], provenancePending: true, workflow: GENERATIVE_WORKFLOW };

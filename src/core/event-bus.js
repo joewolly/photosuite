@@ -91,6 +91,7 @@ export const UiCommand = Object.freeze({
   confirmPersistStartupResource: "confirmPersistStartupResource",
 
   removeBackgroundFromSelection: "removeBackgroundFromSelection",
+  generativeExpand: "generativeExpand",
   generativeFill: "generativeFill",
   generativeInfo: "generativeInfo",
   aiRemove: "aiRemove",

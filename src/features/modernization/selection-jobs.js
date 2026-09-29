@@ -1,3 +1,8 @@
+import { generationOptions, validateGenerativeConfig } from "./generative-workload.js";
+import { createExpandProvider } from "./comfy-provider.js";
+import { expansionGeometry, prepareExpandInput } from "./expand-workload.js";
+import { captureExpandSource } from "./expand-source.js";
+import { createExpandAdapter } from "./expand-target.js";
 import { GenerativeSession } from "./generative-session.js";
 import { createGenerativeProvider } from "./comfy-provider.js";
 import { createUpscaleProvider } from "./upscale-provider.js";
@@ -20,14 +25,15 @@ import { generateUuid } from "../../core/uid.js";
 
 function plainRect(rect) { return { x: rect.x, y: rect.y, width: rect.width, height: rect.height }; }
 export class SelectionJobs {
-  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider(), subjectProvider = createSubjectProvider(), promptedProvider = createPromptedProvider(), upscaleProvider = createUpscaleProvider(), generativeProvider = createGenerativeProvider()) {
+  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider(), subjectProvider = createSubjectProvider(), promptedProvider = createPromptedProvider(), upscaleProvider = createUpscaleProvider(), generativeProvider = createGenerativeProvider(), expandProvider = createExpandProvider()) {
     this.controller = controller;
     this.promptedProvider = promptedProvider;
-    this.jobs = new ModernizationJobs({ "generate.fill": generativeProvider, "enhance.upscale": upscaleProvider, "quick-select": provider, "ai-remove": inpaintProvider, "segment.subject": subjectProvider, "segment.prompted": promptedProvider });
+    this.jobs = new ModernizationJobs({ "generate.expand": expandProvider, "generate.fill": generativeProvider, "enhance.upscale": upscaleProvider, "quick-select": provider, "ai-remove": inpaintProvider, "segment.subject": subjectProvider, "segment.prompted": promptedProvider });
     this.sessions = new Map();
     this.labels = new Map();
     this.subjectModes = new Map();
     this.upscalePreviews = new Map();
+    this.expandPreviews = new Map();
     this.latestCheck = 0;
     this.replacing = false;
     this.generative = new GenerativeSession(this);
@@ -59,9 +65,24 @@ export class SelectionJobs {
     this.lastUpscaleMetrics = { jobId, sourceCaptureMs };
     this.labels.set(this.jobs.get(jobId).documentId, doc.name || "Untitled"); this.render(); return jobId;
   }
+  submitExpand(doc, config, sides, options) {
+    if (this.jobs.list().some(j => ["ai-remove", "generate.fill", "generate.expand"].includes(j.operation) && (!JOB_TERMINAL.has(j.state) || j.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current generation first.");
+    const settings = generationOptions({ ...options, count: options?.count ?? 1 });
+    if (settings.count !== 1) throw new JobError("invalid-request", "Generative Expand retains one variation at a time.");
+    validateGenerativeConfig(config);
+    const start = performance.now(), geometry = expansionGeometry(doc.width, doc.height, sides);
+    const context = captureExpandSource(this.controller, doc, geometry);
+    const { input } = prepareExpandInput(context.pixels, geometry, config, settings);
+    let id;
+    id = this.jobs.submit({ operation: "generate.expand", input, adapter: createExpandAdapter(this.controller, context,
+      (preview, jobId) => { if (preview) this.expandPreviews.set(jobId, { ...preview, seed: input.seed }); else this.expandPreviews.delete(id); },
+      metrics => { this.lastExpandMetrics = { ...this.lastExpandMetrics, ...metrics }; }) });
+    this.lastExpandMetrics = { preparationMs: performance.now() - start, geometry, seed: input.seed };
+    this.labels.set(this.jobs.get(id).documentId, doc.name || "Untitled"); this.render(); return id;
+  }
   submitGenerative(doc, config, options) { return this.generative.start(doc, config, options); }
   submitAI(doc, config) {
-    if (this.jobs.list().some((job) => ["ai-remove", "generate.fill"].includes(job.operation) && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Remove result first.");
+    if (this.jobs.list().some((job) => ["ai-remove", "generate.fill", "generate.expand"].includes(job.operation) && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Remove result first.");
     const layer = requireInpaintSource(doc);
     const { input, coverage } = prepareInpaintInput(layer, doc.selectionMask, doc.width, doc.height, config);
     const id = this.jobs.submit({ operation: "ai-remove", input, adapter: createInpaintAdapter(this.controller, doc, layer, input.rect, coverage) });
@@ -204,7 +225,7 @@ export class SelectionJobs {
       label.setAttribute("role", "status");
       const states = { queued: "Queued", preparing: "Preparing", running: job.progress.stage, preview: job.operation === "quick-select" ? "Ready to preview — paint to refine" : "Ready — review result", committed: "Accepted", discarded: "Discarded", cancelled: job.stopping ? "Cancelled — waiting for workload to stop" : "Cancelled", stale: "Source changed — rerun", failed: job.error?.message || "Failed" };
       const numeric = job.progress.kind === "numeric" && job.state === "running" ? ` (${job.progress.completed}/${job.progress.total})` : "";
-      label.textContent = `${job.operation === "enhance.upscale" ? "AI Upscale 4×" : job.operation === "ai-remove" ? "AI Remove" : job.operation === "segment.prompted" ? "Object Selection" : job.operation === "segment.subject" ? (this.subjectModes.get(job.id) ? "Remove Background" : "Select Subject") : "Quick Select"} · ${this.labels.get(job.documentId) || "Document"} · ${states[job.state]}${numeric}`;
+      label.textContent = `${job.operation === "generate.expand" ? "Generative Expand" : job.operation === "enhance.upscale" ? "AI Upscale 4×" : job.operation === "ai-remove" ? "AI Remove" : job.operation === "segment.prompted" ? "Object Selection" : job.operation === "segment.subject" ? (this.subjectModes.get(job.id) ? "Remove Background" : "Select Subject") : "Quick Select"} · ${this.labels.get(job.documentId) || "Document"} · ${states[job.state]}${numeric}`;
       if (job.error) label.title = job.error.message;
       row.appendChild(label);
       const button = (text, action) => {
@@ -215,6 +236,18 @@ export class SelectionJobs {
       if (job.state === "preview") { button("Accept", () => this.jobs.accept(job.id)); button("Discard", () => this.jobs.discard(job.id)); }
       else if (!JOB_TERMINAL.has(job.state)) button("Cancel", () => this.jobs.cancel(job.id));
       this.el.appendChild(row);
+      const expanded = this.expandPreviews.get(job.id);
+      if (expanded && job.state === "preview") {
+        const { geometry: g, bytes } = expanded, canvas = document.createElement("canvas");
+        canvas.width = g.newWidth; canvas.height = g.newHeight;
+        canvas.style.maxWidth = "560px"; canvas.style.maxHeight = "320px"; canvas.style.objectFit = "contain";
+        canvas.style.background = "repeating-conic-gradient(#777 0% 25%, #bbb 0% 50%) 0 / 16px 16px";
+        canvas.setAttribute("aria-label", `Expanded preview ${g.newWidth} × ${g.newHeight}; cyan boundary protects original content`);
+        const ctx = canvas.getContext("2d"); ctx.putImageData(new ImageData(bytes, g.newWidth, g.newHeight), 0, 0);
+        ctx.strokeStyle = "#00e5ff"; ctx.lineWidth = 1; ctx.strokeRect(g.left + 0.5, g.top + 0.5, g.width - 1, g.height - 1);
+        this.el.appendChild(canvas);
+        const size = document.createElement("div"); size.textContent = `${g.width} × ${g.height} → ${g.newWidth} × ${g.newHeight} · Seed ${expanded.seed} · Cyan: protected original bounds · Accept expands canvas`; this.el.appendChild(size);
+      }
       const preview = this.upscalePreviews.get(job.id);
       if (preview && job.state === "preview") {
         const canvas = document.createElement("canvas"), { thumbnail } = preview;

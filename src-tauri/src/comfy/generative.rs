@@ -44,6 +44,13 @@ pub async fn comfy_generative(
     request: tauri::ipc::Request<'_>,
     state: tauri::State<'_, ComfyState>,
 ) -> Result<tauri::ipc::Response, String> {
+    invoke_masked(request, state, WORKFLOW).await
+}
+pub(super) async fn invoke_masked(
+    request: tauri::ipc::Request<'_>,
+    state: tauri::State<'_, ComfyState>,
+    workflow_id: &'static str,
+) -> Result<tauri::ipc::Response, String> {
     let header = request
         .headers()
         .get("x-photosuite-inpaint")
@@ -64,7 +71,13 @@ pub async fn comfy_generative(
     let lease = state.acquire(&value.input.request_id)?;
     let owned = data.clone();
     tauri::async_runtime::spawn_blocking(move || {
-        let output = run_masked(&value.input, &owned, &lease.active, Some(&value.prompt));
+        let output = run_masked_as(
+            &value.input,
+            &owned,
+            &lease.active,
+            Some(&value.prompt),
+            workflow_id,
+        );
         drop(lease);
         output.map(tauri::ipc::Response::new)
     })

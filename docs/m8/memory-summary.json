@@ -1,0 +1,168 @@
+{
+  "samples": 1991,
+  "processes": [
+    {
+      "pid": 53148,
+      "ppid": 1,
+      "rssKiB": 1456,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642010.240858,
+      "last": 1790644099.357186,
+      "peakRSSKiB": 2320
+    },
+    {
+      "pid": 68083,
+      "ppid": 1,
+      "rssKiB": 176,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642010.240858,
+      "last": 1790644099.357186,
+      "peakRSSKiB": 192
+    },
+    {
+      "pid": 69671,
+      "ppid": 4895,
+      "rssKiB": 774192,
+      "command": ".venv/bin/python main.py --listen 127.0.0.1 --port 8188 --disable-auto-launch --models-directory /Users/joe/ComfyUI-Shared/models --input-directory /Users/joe/ComfyUI-Shared/input --output-directory /Users/joe/ComfyUI-Shared/output",
+      "first": 1790642010.240858,
+      "last": 1790642085.6789918,
+      "peakRSSKiB": 780688
+    },
+    {
+      "pid": 93918,
+      "ppid": 1,
+      "rssKiB": 176,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642010.240858,
+      "last": 1790644099.357186,
+      "peakRSSKiB": 364400
+    },
+    {
+      "pid": 73359,
+      "ppid": 1,
+      "rssKiB": 32,
+      "command": "/private/tmp/photosuite-m8-target/debug/bundle/macos/PhotoSuite.app/Contents/MacOS/photosuite",
+      "first": 1790642103.213444,
+      "last": 1790643781.838937,
+      "peakRSSKiB": 168064
+    },
+    {
+      "pid": 73368,
+      "ppid": 1,
+      "rssKiB": 156320,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642105.2802079,
+      "last": 1790643781.838937,
+      "peakRSSKiB": 624256
+    },
+    {
+      "pid": 73370,
+      "ppid": 1,
+      "rssKiB": 152144,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642105.2802079,
+      "last": 1790642267.629489,
+      "peakRSSKiB": 158720
+    },
+    {
+      "pid": 74164,
+      "ppid": 1,
+      "rssKiB": 28608,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642191.0417302,
+      "last": 1790642191.0417302,
+      "peakRSSKiB": 28608
+    },
+    {
+      "pid": 74168,
+      "ppid": 1,
+      "rssKiB": 356224,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642192.074857,
+      "last": 1790642194.13433,
+      "peakRSSKiB": 363792
+    },
+    {
+      "pid": 74292,
+      "ppid": 4895,
+      "rssKiB": 235248,
+      "command": ".venv/bin/python main.py --listen 127.0.0.1 --port 8188 --disable-auto-launch --models-directory /Users/joe/ComfyUI-Shared/models --input-directory /Users/joe/ComfyUI-Shared/input --output-directory /Users/joe/ComfyUI-Shared/output",
+      "first": 1790642245.5757492,
+      "last": 1790642438.247987,
+      "peakRSSKiB": 3155744
+    },
+    {
+      "pid": 74356,
+      "ppid": 1,
+      "rssKiB": 160160,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642298.040386,
+      "last": 1790642479.3929899,
+      "peakRSSKiB": 179888
+    },
+    {
+      "pid": 74649,
+      "ppid": 1,
+      "rssKiB": 162896,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790642541.752939,
+      "last": 1790643781.838937,
+      "peakRSSKiB": 385088
+    },
+    {
+      "pid": 74889,
+      "ppid": 4895,
+      "rssKiB": 54688,
+      "command": ".venv/bin/python main.py --listen 127.0.0.1 --port 8188 --disable-auto-launch --models-directory /Users/joe/ComfyUI-Shared/models --input-directory /Users/joe/ComfyUI-Shared/input --output-directory /Users/joe/ComfyUI-Shared/output",
+      "first": 1790642683.157252,
+      "last": 1790643494.420625,
+      "peakRSSKiB": 2918976
+    },
+    {
+      "pid": 79548,
+      "ppid": 1,
+      "rssKiB": 32,
+      "command": "/private/tmp/photosuite-m8-target/debug/bundle/macos/PhotoSuite.app/Contents/MacOS/photosuite",
+      "first": 1790643794.477876,
+      "last": 1790644099.357186,
+      "peakRSSKiB": 176944
+    },
+    {
+      "pid": 79552,
+      "ppid": 1,
+      "rssKiB": 8960,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790643795.529603,
+      "last": 1790644099.357186,
+      "peakRSSKiB": 617056
+    },
+    {
+      "pid": 79555,
+      "ppid": 1,
+      "rssKiB": 160288,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790643796.586578,
+      "last": 1790643945.307371,
+      "peakRSSKiB": 280848
+    },
+    {
+      "pid": 79639,
+      "ppid": 4895,
+      "rssKiB": 223776,
+      "command": ".venv/bin/python main.py --listen 127.0.0.1 --port 8188 --disable-auto-launch --models-directory /Users/joe/ComfyUI-Shared/models --input-directory /Users/joe/ComfyUI-Shared/input --output-directory /Users/joe/ComfyUI-Shared/output",
+      "first": 1790643862.082078,
+      "last": 1790644022.2939231,
+      "peakRSSKiB": 2098576
+    },
+    {
+      "pid": 79828,
+      "ppid": 1,
+      "rssKiB": 76064,
+      "command": "/System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent",
+      "first": 1790643993.78549,
+      "last": 1790644099.357186,
+      "peakRSSKiB": 380288
+    }
+  ],
+  "note": "1Hz RSS observation; WebContent attribution by launch time; unified GPU memory not isolated."
+}

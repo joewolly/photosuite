@@ -11,6 +11,7 @@ use std::{
     time::{Duration, Instant},
 };
 
+pub mod expand;
 pub mod generative;
 pub mod upscale;
 
@@ -528,6 +529,25 @@ fn run_masked(
     active: &Active,
     prompt: Option<&str>,
 ) -> Result<Vec<u8>, String> {
+    run_masked_as(
+        input,
+        bytes,
+        active,
+        prompt,
+        if prompt.is_some() {
+            generative::WORKFLOW
+        } else {
+            WORKFLOW
+        },
+    )
+}
+fn run_masked_as(
+    input: &Input,
+    bytes: &[u8],
+    active: &Active,
+    prompt: Option<&str>,
+    workflow_id: &str,
+) -> Result<Vec<u8>, String> {
     if let Some(text) = prompt {
         generative::validate_prompt(text)?;
         generative::validate_model(&input.config)?;
@@ -559,11 +579,7 @@ fn run_masked(
         &base,
         &input.request_id,
         masked_workflow(input, prompt),
-        if prompt.is_some() {
-            generative::WORKFLOW
-        } else {
-            WORKFLOW
-        },
+        workflow_id,
         input.width,
         input.height,
         MAX_PNG,

@@ -1,3 +1,4 @@
+import { EXPAND_WORKFLOW } from "./expand-workload.js";
 import { JobError } from "./job-service.js";
 import { generateUuid } from "../../core/uid.js";
 import { validateInpaintConfig } from "./inpaint-config.js";
@@ -31,7 +32,18 @@ export async function testGenerativeConnection(config, invoke = nativeInvoke) {
 export function createGenerativeProvider(invoke = nativeInvoke) {
   return createMaskedProvider(invoke, true);
 }
-function createMaskedProvider(invoke, generative) {
+export function createExpandProvider(invoke = nativeInvoke) {
+  return createMaskedProvider(invoke, true, true);
+}
+export async function testExpandConnection(config, invoke = nativeInvoke) {
+  config = validateGenerativeConfig(config);
+  try {
+    const result = await invoke("comfy_expand_preflight", { config });
+    if (result?.ready !== true || result.version !== "0.37.4" || result.workflow !== EXPAND_WORKFLOW || result.model !== config.checkpoint) throw new Error("Incompatible Generative Expand backend.");
+    return result;
+  } catch (error) { throw errorFor(error); }
+}
+function createMaskedProvider(invoke, generative, expand = false) {
   return {
     validateInput: generative ? validateGenerativeInput : validateInpaintInput,
     copyResult: generative ? copyGenerativeResult : copyInpaintResult,
@@ -63,7 +75,7 @@ function createMaskedProvider(invoke, generative) {
           raw.set(input.rgba); raw.set(input.mask, input.rgba.length);
           const metadata = { requestId, config: input.config, width: input.modelWidth, height: input.modelHeight, seed: input.seed };
           callbacks.progress({ kind: "stage", stage: "Preparing" });
-          const command = generative ? "comfy_generative" : "comfy_inpaint";
+          const command = expand ? "comfy_expand" : generative ? "comfy_generative" : "comfy_inpaint";
           const body = generative ? { input: metadata, prompt: input.prompt } : metadata;
           const promise = invoke(command, raw, { headers: { "x-photosuite-inpaint": encodeURIComponent(JSON.stringify(body)) } });
           timer = setTimeout(poll, 0);

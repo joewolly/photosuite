@@ -644,6 +644,16 @@ do not silently accumulate its deferred scope into the next milestone.
 
 ### M8 — Generative Expand for plain raster documents
 
+* **Local implementation accepted (2026-09-28):** bounded numeric expansion,
+  one transient candidate, zero accepted overlap into the original canvas,
+  and one atomic geometry/raster history entry. RGB8 Normal raster layers,
+  ordinary groups, zero-feather raster masks and guides are supported; paths,
+  selections, extra channels, slices and other unsupported structures reject.
+  Final canvas is at most 1024². Real ComfyUI, native Tauri, rollback, exact
+  offline replay and PSD/PSB acceptance are recorded in [M8 evidence](m8/acceptance.md).
+  Quality remains preview-dependent; [corpus review](m8/quality.md) records
+  mixed and failed continuations. No new M7 schema/provenance is persisted.
+  M5a remains deferred. This is local acceptance, not a release.
 * **Scope:** one bounded canvas expansion with retained original layers and a
   generated exterior/seam layer committed atomically.
 * **Non-goals:** artboard expansion, arbitrary documents with unsupported
