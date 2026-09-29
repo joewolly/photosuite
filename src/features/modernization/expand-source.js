@@ -5,6 +5,24 @@ import { adjustmentKeyOf } from "../../document/formats/psd/adjustment-parsers.j
 import { JobError } from "./job-service.js";
 import { EXPAND_LIMITS, requireExpand, expansionGeometry } from "./expand-workload.js";
 
+function expandResourceKeys(resources) {
+  const reject = () => requireExpand(false, "Generative Expand v1: unsupported document resources; use PSD resource IDs and Uint8Array bytes backed by ordinary ArrayBuffer storage.");
+  if (!resources || ![Object.prototype, null].includes(Object.getPrototypeOf(resources))) reject();
+  const keys = [];
+  for (const key of Reflect.ownKeys(resources)) {
+    const property = Object.getOwnPropertyDescriptor(resources, key);
+    if (!property.enumerable) continue;
+    // The PSD reader uses "r" + readUint16(); the writer uses the same canonical ID.
+    if (typeof key !== "string" || !/^r(0|[1-9][0-9]{0,4})$/.test(key) || Number(key.slice(1)) > 65535) reject();
+    const value = property.value;
+    if (!(value instanceof Uint8Array) || !(value.buffer instanceof ArrayBuffer) || !Number.isSafeInteger(value.byteLength) || !Number.isSafeInteger(value.buffer.byteLength)) reject();
+    // Reject detached storage before any compositor or structuredClone work.
+    try { new Uint8Array(value.buffer, value.byteOffset, value.byteLength); } catch { reject(); }
+    keys.push(key);
+  }
+  return keys.sort();
+}
+
 export function requireExpandDocument(doc) {
   const reject = detail => requireExpand(false, `Generative Expand v1: ${detail}`);
   if (!doc || !doc.layers.length || doc.layers.length > EXPAND_LIMITS.layers) reject("use a document with 1–64 raster/group entries.");
@@ -33,12 +51,27 @@ export function requireExpandDocument(doc) {
     }
     if (bytes > EXPAND_LIMITS.sourceBytes) reject("raster and mask buffers exceed 16 MiB.");
   }
+  const backingBuffers = new Set();
+  for (const key of expandResourceKeys(doc.resources)) {
+    const buffer = doc.resources[key].buffer;
+    // History's structuredClone copies whole backing buffers, including subview slack,
+    // and preserves shared references. Match that allocation, once per backing buffer.
+    if (!backingBuffers.has(buffer)) { bytes += buffer.byteLength; backingBuffers.add(buffer); }
+    if (bytes > EXPAND_LIMITS.sourceBytes) reject("raster, mask and resource buffers exceed 16 MiB.");
+  }
   return bytes;
 }
 export function sameExpandBytes(a, b) { return a?.length === b?.length && a.every((v, i) => v === b[i]); }
 function metadata(doc) {
-  const value = JSON.stringify([doc.width, doc.height, doc.guides, doc.resources, doc.add, doc.paths, doc.layerComps, doc.selectedLayerIndices, doc.selectedLayerPaths,
-    doc.layers.map(l => [l.rect, l.add, l.name, l.layerFlags, l.Opct, l.blendMode, l.blendIfData, l.pixelContent, l.isClippingMask, l.getMask() && { ...l.getMask(), channel: undefined }])]);
+  let binaryBytes = 0;
+  const value = JSON.stringify([doc.width, doc.height, doc.guides, doc.add, doc.paths, doc.layerComps, doc.selectedLayerIndices, doc.selectedLayerPaths,
+    doc.layers.map(l => [l.rect, l.add, l.name, l.layerFlags, l.Opct, l.blendMode, l.blendIfData, l.pixelContent, l.isClippingMask, l.getMask() && { ...l.getMask(), channel: undefined }])], (key, item) => {
+    // PSD additional metadata can retain binary tags (e.g. FMsk and Txt2.raw).
+    // Stop oversized binary metadata before JSON enumerates its byte indices.
+    if (ArrayBuffer.isView(item)) binaryBytes += item.byteLength;
+    requireExpand(binaryBytes <= 1048576, "Document geometry metadata exceeds the 1,048,576-character M8 limit.");
+    return item;
+  });
   requireExpand(value.length <= 1048576, "Document geometry metadata exceeds the 1,048,576-character M8 limit.");
   return value;
 }
@@ -46,8 +79,10 @@ export function captureExpandSource(controller, doc, g) {
   requireIdleResultEditor(controller); requireExpandDocument(doc);
   requireExpand(controller.openDocs.includes(doc), "The source document was closed.");
   expansionGeometry(doc.width, doc.height, g);
+  const sourceMetadata = metadata(doc), resources = structuredClone(doc.resources);
+  const resourceState = Object.keys(resources).sort().map(key => [key, resources[key]]);
   doc.markDirty(); const pixels = doc.getRasterData().slice();
-  return { documentId: getResultDocumentInfo(doc).documentId, doc, geometry: g, pixels, metadata: metadata(doc), layers: doc.layers.slice(),
+  return { documentId: getResultDocumentInfo(doc).documentId, doc, geometry: g, pixels, metadata: sourceMetadata, resourceState, layers: doc.layers.slice(),
     buffers: doc.layers.map(l => l.buffer.slice()), masks: doc.layers.map(l => l.getMask()?.channel.slice()), history: doc.history.slice(), historyIndex: doc.historyIndex };
 }
 export function validateExpandSource(controller, context, accept = false) {
@@ -56,6 +91,8 @@ export function validateExpandSource(controller, context, accept = false) {
   if (accept) requireIdleResultEditor(controller);
   const stale = () => { throw new JobError("stale-result", "The source pixels, geometry or history changed. Rerun Generative Expand."); };
   try { requireExpandDocument(doc); } catch { stale(); }
+  const resourceKeys = Object.keys(doc.resources).sort();
+  if (resourceKeys.length !== context.resourceState.length || context.resourceState.some(([key, bytes], i) => resourceKeys[i] !== key || !sameExpandBytes(bytes, doc.resources[key]))) stale();
   if (doc.width !== g.width || doc.height !== g.height || metadata(doc) !== context.metadata || doc.historyIndex !== context.historyIndex || doc.history.length !== context.history.length || doc.history.some((h, i) => h !== context.history[i]) || doc.layers.some((l, i) => l !== context.layers[i] || !sameExpandBytes(l.buffer, context.buffers[i]) || (l.getMask() && !sameExpandBytes(l.getMask().channel, context.masks[i])))) stale();
   doc.markDirty(); if (!sameExpandBytes(doc.getRasterData(), context.pixels)) stale();
 }

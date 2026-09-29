@@ -106,12 +106,14 @@ it("groups and multiple off-canvas masked layers preserve original composition",
 for(const large of [false,true])it("real PSD/PSB offline serialization preserves expansion, masks and guides: "+large,async()=>{
  const {PSDParser}=await import("../../../src/document/formats/psd/psd-parser.js");const {RenderBuffer}=await import("../../../src/core/render-buffer.js");const {registerTrackers}=await import("../../../src/features/trackers/register-trackers.js");registerTrackers(TrackerRegistry);
  const f=fixture(),m=new Mask();m.rect=new Rect(-1,1,4,3);m.channel=new Uint8Array(12).fill(128);m.color=0;f.layer.d=m;
+ f.doc.resources.r9999=Uint8Array.of(0,128,255,7);
  const id=await preview(f);assert.equal(f.bridge.jobs.accept(id),true);const accepted=state(f),buffer=new RenderBuffer();
  const length=PSDParser.serialize(f.doc,buffer,[false,false,false,large]);const reopened=new Document("offline"+(large?".psb":".psd"));PSDParser.parse(buffer.data.slice(0,length).buffer,reopened);
  assert.equal(reopened.width,49);assert.equal(reopened.height,49);assert.deepEqual(reopened.guides,f.doc.guides);
  reopened.setLayers(reopened.layers); reopened.invalidateAllLayers(); reopened.markDirty(); reopened.getRasterData(); assert.deepEqual([...reopened.buffer],accepted.composite);assert.equal(reopened.layers.length,2);
  for(let i=0;i<2;i++){assert.deepEqual(reopened.layers[i].rect,f.doc.layers[i].rect);assert.deepEqual(reopened.layers[i].buffer,f.doc.layers[i].buffer);}
  assert.deepEqual(reopened.layers[0].d.rect,f.layer.d.rect);assert.deepEqual(reopened.layers[0].d.channel,f.layer.d.channel);
+ assert.deepEqual(reopened.resources.r9999,f.doc.resources.r9999);
 });
 for(const large of [false,true])it("reopened empty group markers remain eligible for expansion: "+large,async()=>{
  const {PSDParser}=await import("../../../src/document/formats/psd/psd-parser.js"),{RenderBuffer}=await import("../../../src/core/render-buffer.js"),{requireExpandDocument}=await import("../../../src/features/modernization/expand-source.js");
@@ -158,4 +160,155 @@ it("exact upper bound and dimension/area/source-byte caps reject before work",as
  assert.equal(expansionGeometry(512,512,{left:256,top:256,right:256,bottom:256}).byteLength,4194304);
  assert.throws(()=>expansionGeometry(1,1,{left:511,top:511,right:512,bottom:512}));
  const f=fixture();f.layer.rect=new Rect(0,0,2049,2048);f.layer.buffer=new Uint8Array(2049*2048*4);assert.throws(()=>f.submit(),/16 MiB/);await flushJobs();assert.equal(f.fake.calls.length,0);
+});
+
+it("resource backing bytes join raster and mask bytes at the exact source limit", async () => {
+  const { EXPAND_LIMITS } = await import("../../../src/features/modernization/expand-workload.js");
+  const { requireExpandDocument, captureExpandSource } = await import("../../../src/features/modernization/expand-source.js");
+  const f = fixture(), mask = new Mask();
+  mask.rect = new Rect(0, 0, 2, 2); mask.channel = new Uint8Array(4); f.layer.d = mask;
+  const remaining = EXPAND_LIMITS.sourceBytes - requireExpandDocument(f.doc);
+  f.doc.resources.r9999 = new Uint8Array(remaining);
+  assert.equal(requireExpandDocument(f.doc), EXPAND_LIMITS.sourceBytes);
+  const context = captureExpandSource(f.controller, f.doc, expansionGeometry(31, 27, sides));
+  assert.ok(context.metadata.length < 1048576);
+  assert.notEqual(context.resourceState.find(([key]) => key === "r9999")[1].buffer, f.doc.resources.r9999.buffer);
+  const id = f.submit(); await flushJobs(); assert.equal(f.fake.calls.length, 1); f.bridge.jobs.cancel(id);
+  f.doc.resources.r9999 = new Uint8Array(remaining + 1);
+  const before = state(f), resources = structuredClone(f.doc.resources);
+  f.doc.getRasterData = () => { throw Error("must reject before compositing"); };
+  assert.throws(() => f.submit(), /resource buffers exceed 16 MiB/);
+  await flushJobs(); assert.equal(f.fake.calls.length, 1); delete f.doc.getRasterData;
+  assert.deepEqual(state(f), before); assert.deepEqual(f.doc.resources, resources);
+});
+
+it("a tiny resource view cannot hide an oversized backing-buffer clone", async () => {
+  const f = fixture(), backing = new ArrayBuffer(16 * 1048576 + 1);
+  f.doc.resources.r9999 = new Uint8Array(backing, 7, 1);
+  const before = state(f);
+  f.doc.getRasterData = () => { throw Error("must reject before compositing"); };
+  assert.throws(() => f.submit(), /resource buffers exceed 16 MiB/);
+  await flushJobs(); assert.equal(f.fake.calls.length, 0); delete f.doc.getRasterData;
+  assert.deepEqual(state(f), before); assert.equal(f.doc.resources.r9999.buffer, backing);
+});
+
+it("aggregate resource overflow rejects synchronously with zero provider calls", async () => {
+  const { requireExpandDocument } = await import("../../../src/features/modernization/expand-source.js");
+  const f = fixture(), mask = new Mask();
+  mask.rect = new Rect(0, 0, 2, 2); mask.channel = new Uint8Array(4); f.layer.d = mask;
+  f.doc.resources.r9999 = new Uint8Array(16 * 1048576 - requireExpandDocument(f.doc) + 1);
+  const before = state(f), resources = structuredClone(f.doc.resources);
+  f.doc.getRasterData = () => { throw Error("must reject before compositing"); };
+  assert.throws(() => f.submit(), /resource buffers exceed 16 MiB/);
+  await flushJobs(); assert.equal(f.fake.calls.length, 0); delete f.doc.getRasterData;
+  assert.deepEqual(state(f), before); assert.deepEqual(f.doc.resources, resources);
+});
+
+it("shared resource objects and overlapping views count their backing storage once", async () => {
+  const { requireExpandDocument, captureExpandSource } = await import("../../../src/features/modernization/expand-source.js");
+  const f = fixture(), baseline = requireExpandDocument(f.doc), backing = new ArrayBuffer(9 * 1048576);
+  f.doc.resources.r9997 = new Uint8Array(backing);
+  f.doc.resources.r9998 = f.doc.resources.r9997;
+  f.doc.resources.r9999 = new Uint8Array(backing, 1, 8);
+  assert.equal(requireExpandDocument(f.doc), baseline + backing.byteLength);
+  const context = captureExpandSource(f.controller, f.doc, expansionGeometry(31, 27, sides));
+  const captured = new Map(context.resourceState);
+  assert.equal(captured.get("r9997"), captured.get("r9998"));
+  assert.equal(captured.get("r9997").buffer, captured.get("r9999").buffer);
+  assert.notEqual(captured.get("r9997").buffer, backing);
+});
+
+for (const change of ["byte", "replacement", "add", "remove", "rename"]) {
+  it("resource freshness revokes preview and Accept after " + change, async () => {
+    const f = fixture(); f.doc.resources.r9999 = Uint8Array.of(1, 2, 3);
+    const id = await preview(f), before = state(f);
+    if (change === "byte") f.doc.resources.r9999[1] = 9;
+    if (change === "replacement") f.doc.resources.r9999 = Uint8Array.of(1, 9, 3);
+    if (change === "add") f.doc.resources.r9998 = Uint8Array.of(4);
+    if (change === "remove") delete f.doc.resources.r9999;
+    if (change === "rename") { f.doc.resources.r9998 = f.doc.resources.r9999; delete f.doc.resources.r9999; }
+    const resources = structuredClone(f.doc.resources);
+    assert.equal(f.bridge.jobs.revalidate(id), false);
+    assert.equal(f.bridge.jobs.get(id).state, "stale");
+    assert.throws(() => f.bridge.jobs.accept(id));
+    assert.deepEqual(state(f), before); assert.deepEqual(f.doc.resources, resources);
+    assert.equal(f.bridge.expandPreviews.size, 0); assert.equal(f.fake.calls.length, 1);
+  });
+}
+
+it("Accept itself rejects changed resource bytes without prior revalidation", async () => {
+  const f = fixture(); f.doc.resources.r9999 = Uint8Array.of(1, 2, 3);
+  const id = await preview(f), before = state(f); f.doc.resources.r9999[0]++;
+  assert.equal(f.bridge.jobs.accept(id), false);
+  assert.equal(f.bridge.jobs.get(id).state, "stale"); assert.deepEqual(state(f), before);
+});
+
+it("identical resource bytes and reordered keys remain fresh", async () => {
+  const f = fixture(); f.doc.resources.r9998 = Uint8Array.of(1); f.doc.resources.r9999 = Uint8Array.of(2);
+  const id = await preview(f), entries = Object.entries(f.doc.resources).reverse();
+  f.doc.resources = Object.fromEntries(entries.map(([key, bytes]) => [key, bytes.slice()]));
+  assert.equal(f.bridge.jobs.revalidate(id), true); assert.equal(f.bridge.jobs.accept(id), true);
+});
+
+it("Accept, Undo and Redo preserve exact resource keys and bytes without inference", async () => {
+  const { BinaryUtils } = await import("../../../src/core/binary/binary-utils.js");
+  const f = fixture(), backing = Uint8Array.of(99, 1, 2, 3, 98);
+  f.doc.resources.r0 = new Uint8Array(0);
+  f.doc.resources.r1005 = new Uint8Array(16);
+  f.doc.resources.r1044 = Uint8Array.of(0, 0, 0, 42);
+  f.doc.resources.r9998 = backing.subarray(1, 4);
+  f.doc.resources.r9999 = f.doc.resources.r9998;
+  f.doc.resources.r65535 = Uint8Array.of(0, 128, 255);
+  const original = structuredClone(f.doc.resources), id = await preview(f);
+  assert.equal(f.bridge.jobs.accept(id), true);
+  const accepted = structuredClone(f.doc.resources);
+  assert.deepEqual(Object.keys(accepted).sort(), Object.keys(original).sort());
+  for (const key of Object.keys(original)) if (key !== "r1044") assert.deepEqual(accepted[key], original[key]);
+  assert.equal(BinaryUtils.readUint32BE(accepted.r1044, 0), 43);
+  f.doc.resources.r9998[0] = 77;
+  f.history.stepHistoryBackward(f.doc); assert.deepEqual(f.doc.resources, original);
+  f.doc.resources.r65535[0] = 66;
+  f.history.stepHistoryForward(f.doc); assert.deepEqual(f.doc.resources, accepted);
+  assert.equal(f.fake.calls.length, 1);
+});
+
+for (const [kind, value] of [
+  ["object", {}], ["string", "bytes"], ["function", () => {}], ["array", [1, 2]],
+  ["ArrayBuffer", new ArrayBuffer(4)], ["DataView", new DataView(new ArrayBuffer(4))],
+  ["Uint16Array", new Uint16Array(2)], ["Uint8ClampedArray", new Uint8ClampedArray(4)],
+  ["shared", new Uint8Array(new SharedArrayBuffer(4))],
+]) it("unsupported resource rejects before provider work: " + kind, async () => {
+  const f = fixture(); f.doc.resources.r9999 = value; const before = state(f);
+  assert.throws(() => f.submit(), /Generative Expand v1: unsupported document resources/);
+  await flushJobs(); assert.equal(f.fake.calls.length, 0);
+  assert.deepEqual(state(f), before); assert.equal(f.doc.resources.r9999, value);
+});
+
+for (const key of ["r01", "r-1", "r65536", "r1x", "other", Symbol("r1005")]) {
+  it("unsupported resource key rejects before provider work: " + String(key), async () => {
+    const f = fixture(); f.doc.resources[key] = Uint8Array.of(1); const before = state(f);
+    assert.throws(() => f.submit(), /unsupported document resources/);
+    await flushJobs(); assert.equal(f.fake.calls.length, 0); assert.deepEqual(state(f), before);
+    assert.deepEqual(f.doc.resources[key], Uint8Array.of(1));
+  });
+}
+
+it("resource accessors and detached buffers fail without invoking getters or inference", async () => {
+  const f = fixture();
+  Object.defineProperty(f.doc.resources, "r9999", { enumerable: true, configurable: true, get() { throw Error("must not invoke resource getter"); } });
+  assert.throws(() => f.submit(), /unsupported document resources/);
+  delete f.doc.resources.r9999;
+  const bytes = new Uint8Array(4); structuredClone(bytes.buffer, { transfer: [bytes.buffer] });
+  f.doc.resources.r9999 = bytes;
+  assert.throws(() => f.submit(), /unsupported document resources/);
+  await flushJobs(); assert.equal(f.fake.calls.length, 0);
+});
+
+it("oversized PSD additional binary metadata rejects before compositor work", async () => {
+  const f = fixture(); f.doc.add.FMsk = new Uint8Array(16 * 1048576);
+  const before = state(f);
+  f.doc.getRasterData = () => { throw Error("must reject before compositing"); };
+  assert.throws(() => f.submit(), /metadata exceeds/);
+  await flushJobs(); assert.equal(f.fake.calls.length, 0); delete f.doc.getRasterData;
+  assert.deepEqual(state(f), before);
 });
