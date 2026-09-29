@@ -1,0 +1,32 @@
+[
+  {
+    "path": "src/vendor/subject-model/LICENSE",
+    "bytes": 1066,
+    "sha256": "92a7089e0915fc32bc40067560b398f1e6a7a5958abd7d04eda393629a5acefb"
+  },
+  {
+    "path": "src/vendor/subject-model/UPSTREAM-MODEL-CARD.md",
+    "bytes": 8715,
+    "sha256": "2620edfa55e856b9cfe47710d6bd2308b2ccd4af6b2b539e3a45c24fe5c2701c"
+  },
+  {
+    "path": "src/vendor/prompted-model/LICENSE",
+    "bytes": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": "src/vendor/prompted-model/NOTICE",
+    "bytes": 942,
+    "sha256": "c16640d9de1d2cd637064fe98c3e90beaf7899c12ec5a45b6744e9fb151140bb"
+  },
+  {
+    "path": "src/vendor/prompted-model/UPSTREAM-MODEL-CARD.md",
+    "bytes": 19965,
+    "sha256": "dfa401b1b9358b9650ae487dd2f2bb336fd745c3609e3244adf2e97a22343857"
+  },
+  {
+    "path": "src/vendor/prompted-model/.gitattributes",
+    "bytes": 94,
+    "sha256": "577fd774cf8ae5dda2e6d4cfe39887c3eb87331213e0a91800ad2845fbb0b8fd"
+  }
+]

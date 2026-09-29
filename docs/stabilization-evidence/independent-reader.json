@@ -1,0 +1,720 @@
+[
+  {
+    "path": "/tmp/photosuite-stability-audit/integrated-final.psd",
+    "size": [
+      288,
+      224
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "AI Remove",
+        "id": 2,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          236,
+          195
+        ]
+      },
+      {
+        "name": "Background",
+        "id": 1,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          272,
+          208
+        ]
+      },
+      {
+        "name": "Renamed generated result",
+        "id": 3,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          236,
+          195
+        ]
+      },
+      {
+        "name": "Generative Expand",
+        "id": 4,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          288,
+          224
+        ]
+      }
+    ],
+    "compositeMatch": true,
+    "storedMode": "RGB"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/integrated-final.psb",
+    "size": [
+      288,
+      224
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "AI Remove",
+        "id": 2,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          236,
+          195
+        ]
+      },
+      {
+        "name": "Background",
+        "id": 1,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          272,
+          208
+        ]
+      },
+      {
+        "name": "Renamed generated result",
+        "id": 3,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          236,
+          195
+        ]
+      },
+      {
+        "name": "Generative Expand",
+        "id": 4,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          288,
+          224
+        ]
+      }
+    ],
+    "compositeMatch": true,
+    "storedMode": "RGB"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/native-32bit-raw.psd",
+    "size": [
+      4,
+      2
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "Native edited import",
+        "id": 42,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Float base",
+        "id": 43,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          4,
+          2
+        ]
+      }
+    ],
+    "compositeMatch": true,
+    "storedMode": "RGB"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/native-32bit-raw.psb",
+    "size": [
+      4,
+      2
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "Native edited import",
+        "id": 42,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Float base",
+        "id": 43,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          4,
+          2
+        ]
+      }
+    ],
+    "compositeMatch": true,
+    "storedMode": "RGB"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/native-32bit-zip-prediction.psd",
+    "size": [
+      4,
+      2
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "Native edited import",
+        "id": 42,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Float base",
+        "id": 43,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          4,
+          2
+        ]
+      }
+    ],
+    "compositeMatch": true,
+    "storedMode": "RGB"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/native-32bit-zip-prediction.psb",
+    "size": [
+      4,
+      2
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "Native edited import",
+        "id": 42,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Float base",
+        "id": 43,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          4,
+          2
+        ]
+      }
+    ],
+    "compositeMatch": true,
+    "storedMode": "RGB"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/classic-native.psd",
+    "size": [
+      260,
+      190
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "AI Remove",
+        "id": 2,
+        "kind": "pixel",
+        "bbox": [
+          3,
+          3,
+          223,
+          182
+        ]
+      },
+      {
+        "name": "Background",
+        "id": 7,
+        "kind": "pixel",
+        "bbox": [
+          8,
+          0,
+          268,
+          195
+        ]
+      },
+      {
+        "name": "Brightness/Contrast 1",
+        "id": 8,
+        "kind": "brightnesscontrast",
+        "bbox": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Renamed generated result",
+        "id": 3,
+        "kind": "pixel",
+        "bbox": [
+          62,
+          48,
+          205,
+          158
+        ]
+      },
+      {
+        "name": "Shape 1",
+        "id": 5,
+        "kind": "shape",
+        "bbox": [
+          110,
+          190,
+          180,
+          220
+        ]
+      },
+      {
+        "name": "Audit ",
+        "id": 6,
+        "kind": "type",
+        "bbox": [
+          130,
+          151,
+          193,
+          171
+        ]
+      },
+      {
+        "name": "Generative Expand",
+        "id": 4,
+        "kind": "pixel",
+        "bbox": [
+          -13,
+          -13,
+          275,
+          211
+        ]
+      }
+    ],
+    "compositeMatch": false,
+    "storedMode": "RGBA"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/classic-native.psb",
+    "size": [
+      260,
+      190
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "AI Remove",
+        "id": 2,
+        "kind": "pixel",
+        "bbox": [
+          3,
+          3,
+          223,
+          182
+        ]
+      },
+      {
+        "name": "Background",
+        "id": 7,
+        "kind": "pixel",
+        "bbox": [
+          8,
+          0,
+          268,
+          195
+        ]
+      },
+      {
+        "name": "Brightness/Contrast 1",
+        "id": 8,
+        "kind": "brightnesscontrast",
+        "bbox": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Renamed generated result",
+        "id": 3,
+        "kind": "pixel",
+        "bbox": [
+          62,
+          48,
+          205,
+          158
+        ]
+      },
+      {
+        "name": "Shape 1",
+        "id": 5,
+        "kind": "shape",
+        "bbox": [
+          110,
+          190,
+          180,
+          220
+        ]
+      },
+      {
+        "name": "Audit ",
+        "id": 6,
+        "kind": "type",
+        "bbox": [
+          130,
+          151,
+          193,
+          171
+        ]
+      },
+      {
+        "name": "Generative Expand",
+        "id": 4,
+        "kind": "pixel",
+        "bbox": [
+          -13,
+          -13,
+          275,
+          211
+        ]
+      }
+    ],
+    "compositeMatch": false,
+    "storedMode": "RGBA"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/classic-fixed.psd",
+    "size": [
+      260,
+      190
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "AI Remove",
+        "id": 2,
+        "kind": "pixel",
+        "bbox": [
+          3,
+          3,
+          223,
+          182
+        ]
+      },
+      {
+        "name": "Background",
+        "id": 7,
+        "kind": "smartobject",
+        "bbox": [
+          8,
+          0,
+          268,
+          195
+        ]
+      },
+      {
+        "name": "Brightness/Contrast 1",
+        "id": 8,
+        "kind": "brightnesscontrast",
+        "bbox": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Renamed generated result",
+        "id": 3,
+        "kind": "pixel",
+        "bbox": [
+          62,
+          48,
+          205,
+          158
+        ]
+      },
+      {
+        "name": "Shape 1",
+        "id": 5,
+        "kind": "shape",
+        "bbox": [
+          110,
+          190,
+          180,
+          220
+        ]
+      },
+      {
+        "name": "Audit ",
+        "id": 6,
+        "kind": "type",
+        "bbox": [
+          130,
+          151,
+          193,
+          171
+        ]
+      },
+      {
+        "name": "Generative Expand",
+        "id": 4,
+        "kind": "pixel",
+        "bbox": [
+          -13,
+          -13,
+          275,
+          211
+        ]
+      }
+    ],
+    "compositeMatch": false,
+    "storedMode": "RGBA",
+    "smartObjectDataBytes": 12802
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/classic-fixed.psb",
+    "size": [
+      260,
+      190
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "AI Remove",
+        "id": 2,
+        "kind": "pixel",
+        "bbox": [
+          3,
+          3,
+          223,
+          182
+        ]
+      },
+      {
+        "name": "Background",
+        "id": 7,
+        "kind": "smartobject",
+        "bbox": [
+          8,
+          0,
+          268,
+          195
+        ]
+      },
+      {
+        "name": "Brightness/Contrast 1",
+        "id": 8,
+        "kind": "brightnesscontrast",
+        "bbox": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Renamed generated result",
+        "id": 3,
+        "kind": "pixel",
+        "bbox": [
+          62,
+          48,
+          205,
+          158
+        ]
+      },
+      {
+        "name": "Shape 1",
+        "id": 5,
+        "kind": "shape",
+        "bbox": [
+          110,
+          190,
+          180,
+          220
+        ]
+      },
+      {
+        "name": "Audit ",
+        "id": 6,
+        "kind": "type",
+        "bbox": [
+          130,
+          151,
+          193,
+          171
+        ]
+      },
+      {
+        "name": "Generative Expand",
+        "id": 4,
+        "kind": "pixel",
+        "bbox": [
+          -13,
+          -13,
+          275,
+          211
+        ]
+      }
+    ],
+    "compositeMatch": false,
+    "storedMode": "RGBA",
+    "smartObjectDataBytes": 12802
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/final-after-classic.psd",
+    "size": [
+      288,
+      224
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "AI Remove",
+        "id": 2,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          236,
+          195
+        ]
+      },
+      {
+        "name": "Background",
+        "id": 1,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          272,
+          208
+        ]
+      },
+      {
+        "name": "Renamed generated result",
+        "id": 3,
+        "kind": "pixel",
+        "bbox": [
+          76,
+          61,
+          227,
+          216
+        ]
+      },
+      {
+        "name": "Generative Expand",
+        "id": 4,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          288,
+          224
+        ]
+      }
+    ],
+    "compositeMatch": true,
+    "storedMode": "RGB"
+  },
+  {
+    "path": "/tmp/photosuite-stability-audit/final-after-classic.psb",
+    "size": [
+      288,
+      224
+    ],
+    "depth": 8,
+    "layers": [
+      {
+        "name": "AI Remove",
+        "id": 2,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          236,
+          195
+        ]
+      },
+      {
+        "name": "Background",
+        "id": 1,
+        "kind": "pixel",
+        "bbox": [
+          16,
+          16,
+          272,
+          208
+        ]
+      },
+      {
+        "name": "Renamed generated result",
+        "id": 3,
+        "kind": "pixel",
+        "bbox": [
+          76,
+          61,
+          227,
+          216
+        ]
+      },
+      {
+        "name": "Generative Expand",
+        "id": 4,
+        "kind": "pixel",
+        "bbox": [
+          0,
+          0,
+          288,
+          224
+        ]
+      }
+    ],
+    "compositeMatch": true,
+    "storedMode": "RGB"
+  }
+]

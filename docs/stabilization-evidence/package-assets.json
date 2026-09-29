@@ -1,0 +1,72 @@
+[
+  {
+    "path": "src/vendor/onnxruntime/ThirdPartyNotices.txt",
+    "bytes": 326866,
+    "sha256": "e9e90971a8e75a9a8ac0c6412e29c1202d079998389915aa485f46c816c3b4cc"
+  },
+  {
+    "path": "src/vendor/onnxruntime/LICENSE",
+    "bytes": 1073,
+    "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+  },
+  {
+    "path": "src/vendor/onnxruntime/ort-wasm-simd-threaded.wasm",
+    "bytes": 11210254,
+    "sha256": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4"
+  },
+  {
+    "path": "src/vendor/onnxruntime/ort.wasm.min.mjs",
+    "bytes": 48259,
+    "sha256": "6ef726f355b791129f7ddf3f62e7877a16b9b777abe87004b8ab306e6b9cf265"
+  },
+  {
+    "path": "src/vendor/onnxruntime/ort-wasm-simd-threaded.mjs",
+    "bytes": 20854,
+    "sha256": "6e2180c97c109434ba67f1b83454cc48c5f812e79990094ed0cc3cffeabe18b0"
+  },
+  {
+    "path": "src/vendor/wasm/libheif/libheif.wasm",
+    "bytes": 1422377,
+    "sha256": "e4aa8333fbe55ec7c6c776f735236f40bed9103188498f8131d4e52b73cdfee8"
+  },
+  {
+    "path": "src/vendor/wasm/harfbuzz/hb.wasm",
+    "bytes": 196351,
+    "sha256": "5f7c0de43c65235fa0e86e48443646e1dad865763bf8014b5e89704759d16e36"
+  },
+  {
+    "path": "src/vendor/wasm/fribidi/fribidi.wasm",
+    "bytes": 33491,
+    "sha256": "6e7b7b51bd82c45e6dff9cd4afeab8826565a19cba7bb5bbf59965ea84976233"
+  },
+  {
+    "path": "src/vendor/wasm/libwebp/webp.wasm",
+    "bytes": 89970,
+    "sha256": "019b47d7aeb0612b0fee677020e9d56a4064f9ae1b4197c46b3a370bcb2ee2ac"
+  },
+  {
+    "path": "src/vendor/wasm/stb-image/jpg.wasm",
+    "bytes": 63156,
+    "sha256": "e1eeac3d782cc0185dae4113323472371807f6f2b2ae09da8820caec79f28538"
+  },
+  {
+    "path": "src/vendor/wasm/zstd/zstd.wasm",
+    "bytes": 29645,
+    "sha256": "00af493375857e2eb6336ad3c3706b00459e62e0e9df4356fcb643274b0a093e"
+  },
+  {
+    "path": "src/vendor/subject-model/birefnet-lite-512-fp16.onnx",
+    "bytes": 94377615,
+    "sha256": "79bc52b86f15cf146646e2e82ee9a6589151e4d28db4c190c9dd98c3a3a7344c"
+  },
+  {
+    "path": "src/vendor/prompted-model/decoder.onnx",
+    "bytes": 8681263,
+    "sha256": "40433699e5555adb18401d1f69ad12d58ec93e2209f41873c4077609a363f25f"
+  },
+  {
+    "path": "src/vendor/prompted-model/encoder.onnx",
+    "bytes": 55015529,
+    "sha256": "d1a57be72fc8cbbe25ea6dc1aac74432552eb1aaabaca13d6e3290f339d718f4"
+  }
+]
