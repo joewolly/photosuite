@@ -29,7 +29,7 @@ cargo --version
 PhotoSuite uses Git submodules:
 
 ```bash
-git clone --recursive https://github.com/eolix/photosuite.git
+git clone --recursive https://github.com/joewolly/photosuite.git
 cd photosuite
 npm install
 ```
