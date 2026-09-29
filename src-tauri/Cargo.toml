@@ -2,7 +2,7 @@
 name = "photosuite"
 version = "0.10.0"
 description = "PhotoSuite - Advanced Image Editor"
-authors = ["eolix"]
+authors = ["Joseph Wolochow", "eolix"]
 edition = "2021"
 rust-version = "1.77.2"
 
