@@ -11,7 +11,7 @@ The attachment's worktree premise was incorrect. The user explicitly corrected i
 - Accepted M8 and verified origin source: `96e33e399e39ac03dfb5dd416006391b3866c5c0`.
 - Verified upstream main: `8e9768ffd7fb54f8617f6cc3f941a01435895481`.
 - Original merge base: `be4f9e6a8f288f6ff27b7eea8481b69918698fcc`.
-- Final production-code commit: `dd249e0` on `codex/modernization-stability-audit`; the subsequent documentation commit contains this report and receipts.
+- Final production-code commit: `dd249e0` on `codex/modernization-stability-audit`; the subsequent documentation commits contain this report and receipts.
 - Full raw logs, native scripts, saved PSD/PSB files, and process samples are retained outside the package at `/Users/joe/Documents/Codex/2026-09-28/photosuite-stability-audit/`. Compact evidence is in [stabilization-evidence](stabilization-evidence/).
 
 ## Upstream integration and fixes
@@ -33,7 +33,8 @@ Created local commits:
 2. `4fc3e66` — `fix: stabilize modernization notices and release defaults`.
 3. `b9ee791` — `ci: validate JavaScript and Rust modernization`.
 4. `dd249e0` — `fix: preserve Smart Object persistence and transform controls`.
-5. Documentation/evidence commit following the above.
+5. `57e2552` — documentation and evidence.
+6. Final documentation correction records the native ad-hoc signing inspection.
 
 Two concrete classic-editor defects emerged during native acceptance, both inherited from the pre-modernization source:
 
@@ -148,7 +149,7 @@ Modernization npm addition `@xmldom/xmldom` remains dev/test-only. Rust reqwest/
 
 **Large-model strategy:** keep current clones/offline builds working now. BiRefNet is ~90 MiB, close to GitHub's [100 MiB ordinary-file cap](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github). Before the next model update, choose either forward-only LFS with CI/offline provisioning and quota ownership, or immutable release artifacts with pinned SHA-256, size bounds, explicit download/provisioning, mirrors and license notices. Prefer deterministic verified provisioning for future artifacts once a reliable offline cache/build path exists. Do not rewrite pushed history. [Git LFS semantics](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage) do not by themselves solve availability or billing.
 
-Product name `PhotoSuite`, identifier `app.photosuite`, version `0.9.14` remain unchanged. The fork's release identifier/version policy needs the user's decision; these values may collide with upstream installations. Named upstream Developer ID was removed; signing/notarization requires explicit environment/CI secrets. Local validation was an unsigned debug bundle, not a notarized installer or public release.
+Product name `PhotoSuite`, identifier `app.photosuite`, version `0.9.14` remain unchanged. The fork's release identifier/version policy needs the user's decision; these values may collide with upstream installations. Named upstream Developer ID was removed; signing/notarization requires explicit environment/CI secrets. Local validation was an ad-hoc linker-signed debug executable, with no Developer ID, no TeamIdentifier, and no sealed bundle resources; it was not a notarized installer or public release.
 
 ## CSP and test quality
 
@@ -202,7 +203,7 @@ The code is suitable as a **local stabilized development baseline with these not
 | 4 | Final branch `codex/modernization-stability-audit`; production SHA `dd249e0`, followed by this report commit (final delivery gives its SHA). |
 | 5 | Four reviewed upstream commits integrated, listed above. |
 | 6 | README conflict reconciled; PSD automatic merge independently reviewed. |
-| 7 | Four implementation/integration commits plus audit documentation commit. |
+| 7 | Four implementation/integration commits plus two audit documentation commits. |
 | 8 | Workflow, README/notices, crate-notice generator, signing config, PSD codec/resource parser, transform toolbar, three font licenses, focused tests/fixtures, two stabilization diagnostics, audit report/evidence. Exact manifest retained in evidence. |
 | 9 | Actual raw/ZIP-predicted Lr32 imports and RGB8 edits pass; no high-bit-depth preservation. |
 | 10 | Shipped/external notices distinguished; font licenses added; Rust appendix current. |

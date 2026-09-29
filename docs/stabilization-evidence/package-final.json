@@ -20,5 +20,11 @@
     "src/vendor/onnxruntime/ort-wasm-simd-threaded.wasm",
     "src/vendor/onnxruntime/ort.wasm.min.mjs",
     "src/vendor/onnxruntime/ort-wasm-simd-threaded.mjs"
-  ]
+  ],
+  "signing": {
+    "signature": "adhoc, linker-signed",
+    "teamIdentifier": null,
+    "sealedResources": false,
+    "developerIdOrNotarization": false
+  }
 }
