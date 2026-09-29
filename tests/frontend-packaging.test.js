@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { inventory, verify, root, allowedPath } from '../scripts/frontend-dist.mjs';
+import { inventory, verify, root, allowedPath, sourceBytes, normalizeSourceBytes } from '../scripts/frontend-dist.mjs';
 
 test('production inventory follows entry points, workers, binary loaders and license companions', () => {
   const files = inventory();
@@ -33,7 +33,7 @@ test('verifier rejects additions, missing runtime assets, altered bytes and syml
     for (const [name, source] of inventory()) {
       const target = path.join(stage, name);
       fs.mkdirSync(path.dirname(target), { recursive: true });
-      fs.copyFileSync(path.join(root, source), target, fs.constants.COPYFILE_FICLONE);
+      fs.writeFileSync(target, sourceBytes(source));
     }
     const before = verify(stage);
     for (const name of ['.git', '.env', 'vendor/paper/test/fake.js', 'extra.js', 'vendor/model.pth']) {
@@ -65,4 +65,13 @@ test('verifier rejects additions, missing runtime assets, altered bytes and syml
     }
     assert.deepEqual(verify(stage), before);
   } finally { fs.rmSync(stage, { recursive: true, force: true }); }
+});
+
+test('staging normalizes Windows text line endings without touching binary data', () => {
+  const crlf = Buffer.from('one\r\ntwo\r\n');
+  assert.equal(normalizeSourceBytes('src/main.js', crlf).toString(), 'one\ntwo\n');
+  assert.equal(normalizeSourceBytes('src/vendor/pako/LICENSE', crlf).toString(), 'one\ntwo\n');
+  for (const source of ['model.onnx', 'runtime.wasm', 'font.ttf', 'preset.abr']) {
+    assert.deepEqual(normalizeSourceBytes(source, crlf), crlf);
+  }
 });

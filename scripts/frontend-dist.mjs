@@ -8,6 +8,15 @@ export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 export const dist = path.join(root, 'dist');
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'scripts/frontend-runtime-assets.json')));
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
+// Git's Windows checkout settings must not change the embedded frontend.
+// Only reviewed text formats are normalized; model/font/image/WASM bytes are exact.
+export function sourceBytes(source) {
+  return normalizeSourceBytes(source, fs.readFileSync(path.join(root, source)));
+}
+export function normalizeSourceBytes(source, bytes) {
+  const text = /\.(js|mjs|html|css|json|svg|cube|txt|md)$/i.test(source) || /(^|\/)(LICENSE[^/]*|COPYING[^/]*)$/.test(source);
+  return text ? Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n')) : bytes;
+}
 export function allowedPath(name) {
   if (name.includes('\\') || name.startsWith('/') || name.split('/').some(p => !p || p.startsWith('.'))) return false;
   return !/(^|\/)(tests?|__tests__|fixtures?|examples?|scripts|build|target|node_modules|evidence|audit|corpus|logs?|ci)(\/|$)|\.(test|spec)\.|\.(map|sh|rs|c|cpp|h|toml|lock|log|ckpt|pth|pt|safetensors|pem|key)$|(^|\/)(package\.json|Makefile|Dockerfile|build\.[^/]+)$/i.test(name);
@@ -88,7 +97,7 @@ export function verify(directory = dist) {
   for (const [name, source] of expected) {
     const bytes = fs.readFileSync(path.join(directory, name));
     const hash = sha256(bytes);
-    if (hash !== sha256(fs.readFileSync(path.join(root, source)))) throw new Error(`Changed staged bytes: ${name}`);
+    if (hash !== sha256(sourceBytes(source))) throw new Error(`Changed staged bytes: ${name}`);
     records.push({ path: name, bytes: bytes.length, sha256: hash });
   }
   return records;
