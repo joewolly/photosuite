@@ -111,7 +111,10 @@ jobs:
             os: ubuntu-24.04
             artifact: PhotoSuite-linux
             rust_targets: ''
-            tauri_args: ''
+            # The large embedded models make rpm-rs's default gzip bundling
+            # extremely slow. Keep the override scoped to hosted packaging.
+            tauri_args: >-
+              --config '{"bundle":{"linux":{"rpm":{"compression":{"type":"zstd","level":3}}}}}'
             bundle_paths: |
               src-tauri/target/release/bundle/deb/*.deb
               src-tauri/target/release/bundle/rpm/*.rpm
