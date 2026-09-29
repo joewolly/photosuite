@@ -14,7 +14,7 @@ export function sourceBytes(source) {
   return normalizeSourceBytes(source, fs.readFileSync(path.join(root, source)));
 }
 export function normalizeSourceBytes(source, bytes) {
-  const text = /\.(js|mjs|html|css|json|svg|cube|txt|md)$/i.test(source) || /(^|\/)(LICENSE[^/]*|COPYING[^/]*)$/.test(source);
+  const text = /\.(js|mjs|html|css|json|svg|cube|txt|md)$/i.test(source) || /(^|\/)(LICENSE[^/]*|COPYING[^/]*|NOTICE[^/]*)$/.test(source);
   return text ? Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n')) : bytes;
 }
 export function allowedPath(name) {

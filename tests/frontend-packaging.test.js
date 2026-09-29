@@ -71,6 +71,7 @@ test('staging normalizes Windows text line endings without touching binary data'
   const crlf = Buffer.from('one\r\ntwo\r\n');
   assert.equal(normalizeSourceBytes('src/main.js', crlf).toString(), 'one\ntwo\n');
   assert.equal(normalizeSourceBytes('src/vendor/pako/LICENSE', crlf).toString(), 'one\ntwo\n');
+  assert.equal(normalizeSourceBytes('src/vendor/prompted-model/NOTICE', crlf).toString(), 'one\ntwo\n');
   for (const source of ['model.onnx', 'runtime.wasm', 'font.ttf', 'preset.abr']) {
     assert.deepEqual(normalizeSourceBytes(source, crlf), crlf);
   }
