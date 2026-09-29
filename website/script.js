@@ -9,11 +9,11 @@
  * static link to /releases/latest, which this script only upgrades.
  */
 
-const GITHUB_REPO = 'eolix/photosuite';
+const GITHUB_REPO = 'joewolly/photosuite';
 const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`;
 const RELEASES_URL = `https://github.com/${GITHUB_REPO}/releases`;
 
-const CACHE_KEY = 'photosuite:latest-release';
+const CACHE_KEY = 'joewolly/photosuite:latest-release';
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 /**

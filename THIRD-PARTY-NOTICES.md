@@ -2,7 +2,8 @@
 
 PhotoSuite is distributed under the GNU General Public License v3.0 — see
 [`LICENSE`](LICENSE). Its complete corresponding source, including every build
-script named below, is at <https://github.com/eolix/photosuite>.
+script named below, is at <https://github.com/joewolly/photosuite>.
+This fork builds on the original [PhotoSuite by eolix](https://github.com/eolix/photosuite).
 
 This file collects the attribution and licence notices for the third-party works
 included in that source tree and in the distributed application. It is packaged

@@ -11,9 +11,9 @@ Install it by copying the folder into your plugins directory and restarting:
 
 | OS | Plugins folder |
 |----|----|
-| macOS | `~/Library/Application Support/app.photosuite/plugins/` |
-| Linux | `~/.local/share/app.photosuite/plugins/` |
-| Windows | `%APPDATA%\app.photosuite\plugins\` |
+| macOS | `~/Library/Application Support/com.joewolly.photosuite/plugins/` |
+| Linux | `~/.local/share/com.joewolly.photosuite/plugins/` |
+| Windows | `%APPDATA%\com.joewolly.photosuite\plugins\` |
 
 Then open **Window → Hello World**. Open a document first — the button needs one.
 

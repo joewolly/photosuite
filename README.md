@@ -5,13 +5,13 @@
 <h1 align="center">PhotoSuite</h1>
 
 <p align="center">
-  <strong>A desktop image editor faithfully replicating classic Adobe Photoshop with 1:1 native PSD/PSB compatibility.</strong>
+  <strong>A local-first desktop PSD/PSB editor with a classic Photoshop-style workspace and modern local AI tools.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/eolix/photosuite/actions/workflows/build.yml"><img src="https://github.com/eolix/photosuite/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
+  <a href="https://github.com/joewolly/photosuite/actions/workflows/build.yml"><img src="https://github.com/joewolly/photosuite/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
   <a href="https://v2.tauri.app"><img src="https://img.shields.io/badge/Tauri-v2-24C8D8.svg?logo=tauri&logoColor=white" alt="Tauri v2"></a>
-  <a href="https://github.com/eolix/photosuite/releases"><img src="https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-blue.svg" alt="Platform Support"></a>
+  <a href="https://github.com/joewolly/photosuite/releases"><img src="https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-blue.svg" alt="Platform Support"></a>
   <a href="#open-source-used-here"><img src="https://img.shields.io/badge/Open%20Source-Submodules%20%26%20Libraries-green.svg" alt="Open Source"></a>
 </p>
 
@@ -32,7 +32,7 @@
 
 ```sh
 # Clone with submodules included
-git clone --recursive https://github.com/eolix/photosuite.git
+git clone --recursive https://github.com/joewolly/photosuite.git
 cd photosuite
 
 # Install dependencies and start in development mode
@@ -49,13 +49,15 @@ npm run dev
 
 ## Downloads
 
-Pre-built binary packages are available on the **[Releases](https://github.com/eolix/photosuite/releases)** page:
+Pre-built binary packages are available on the **[Releases](https://github.com/joewolly/photosuite/releases)** page:
 
 | Platform | Package Format | Architecture |
 |:---|:---|:---|
 | **macOS** | Universal `.dmg` | Apple Silicon (arm64) & Intel (x86_64) |
 | **Linux** | `.deb`, `.rpm` | x86_64 |
 | **Windows** | NSIS installer (`.exe`) | x64 |
+
+**Unsigned builds:** v0.10.0 artifacts are unsigned and not notarized, so macOS Gatekeeper or Windows SmartScreen may show an additional warning or confirmation before first launch. See the [v0.10.0 release notes](docs/releases/v0.10.0.md) for validation and known limits.
 
 ---
 
@@ -80,10 +82,10 @@ Click any image for the full-resolution version.
 
 ## What this is
 
-PhotoSuite is a full-featured desktop raster and vector graphics editor designed with fidelity in mind rather than reinterpretation. Panels sit where you expect them, shortcuts match your muscle memory, dialogs expose identical fields, and tools behave exactly like the originals, right down to modifier keys. If you know Photoshop ~CS6, you already know PhotoSuite.
+PhotoSuite is a desktop raster and vector graphics editor focused on PSD/PSB documents and a familiar classic Photoshop-style workspace. Panels, shortcuts and tools aim to feel familiar to Photoshop ~CS6 users, with modern local-assisted selection and editing alongside the classic tools.
 
-* **PSD/PSB Native Format**: PSD is the native format, not a lossy import filter. Documents round-trip cleanly through the binary format: layer records, masks, blending modes, channel data, descriptors, layer effects, smart-filter stacks, text engine data, vector paths, slices, and colour profiles. A file saved in PhotoSuite opens in Photoshop with its layer tree intact, and vice versa. PSB is supported for large documents.
-* **Offline-First & Private**: Built as a [Tauri v2](https://v2.tauri.app) application. The editor runs HTML5, WebAssembly, and WebGL inside the system webview, backed by a lightweight Rust host for filesystem access, native menus, dialogs, clipboard, and printing. Everything stays local on your machine with zero telemetry or cloud requirements.
+* **PSD/PSB Native Format**: PSD is the native format, with support for layer records, masks, blending modes, channel data, descriptors, layer effects, smart-filter stacks, text engine data, vector paths, slices, and colour profiles. PSB is supported for large documents. Layered 32-bit PSD files are imported into PhotoSuite's existing RGB8 editing pipeline rather than being misread as flattened documents; this is not true 32-bit editing or HDR preservation. See the [compatibility audit](docs/modernization-integration-audit.md) for tested round trips and remaining limitations.
+* **Offline-First & Private**: Built as a [Tauri v2](https://v2.tauri.app) application using HTML5, WebAssembly and WebGL in the system webview, with a Rust host for desktop integration. Bundled subject and object selection run locally in the app. Optional AI Remove, Generative Fill, Generative Expand and AI Upscale connect only to your explicitly configured local loopback ComfyUI service. No telemetry or cloud service is required; plugins and web features can still use the network.
 
 > *Disclaimer*: Not affiliated with or endorsed by Adobe. Photoshop is a registered trademark of Adobe Inc., referenced here solely to describe the interface and behavioral specifications this project aims to replicate.
 
@@ -96,6 +98,17 @@ Gimp. Or Affinity. I'm certain they have great features, but my goal is not to m
 ---
 
 ## Key features
+
+* **Local AI & Modern Selection**:
+  * **Select Subject**: Automatic foreground selection using the bundled BiRefNet-lite model and local ONNX/WASM inference; no cloud service or extra setup.
+  * **Automatic Remove Background**: Uses the same local subject model to apply a non-destructive raster mask, preserving source pixels.
+  * **Object Selection**: Enable AI point / box mode for the bundled SAM 2.1 model, with positive/negative points and box prompting. Corrections reuse the source embedding for responsive refinement.
+  * **Quick Select**: Runs its expensive selection computation off the main UI thread for better responsiveness; no AI model required.
+  * **AI Remove**: Selected-region object/content removal through local ComfyUI inpainting. Preview before accepting an ordinary raster layer.
+  * **Generative Fill**: Optional text prompts and up to three bounded, sequential variations. Preview, switch, discard or accept one ordinary raster layer; pixels outside the authorized selection remain exact.
+  * **Generative Expand**: Extends the canvas and generates only the newly exposed region. Original interior pixels remain exact, with preview before acceptance and exact offline Undo/Redo afterward. Support is intentionally limited to eligible RGB8 raster documents and bounded geometry.
+  * **AI Upscale 4×**: Local Real-ESRGAN super-resolution through ComfyUI, with alpha preserved and resized separately. Accept opens a new ordinary raster document, leaving the source intact.
+  * **Optional generation provenance**: Accepted Generative Fill layers can carry passive PSD/PSB metadata. Recipes can be disabled and prompts are not saved by default. Metadata never runs generation on file open; saved recipes cannot regenerate after reopening.
 
 * **Layer Engine & Styles**:
   * Raster layers, vector layers, layer groups, clipping masks, and layer masks.
@@ -153,6 +166,11 @@ Comprehensive architecture guides and development documentation are located in [
 |:---|:---|
 | **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** | Codebase architecture, module layering rules, directory layout, and design principles. |
 | **[docs/PLUGINS.md](docs/PLUGINS.md)** | Guide to writing sidebar plugins using standard HTML, CSS, and JavaScript. |
+| **[Local AI setup & limits](#local-ai-setup--limits)** | Bundled selection tools, optional ComfyUI setup, model requirements and limits. |
+| **[Modernization roadmap](docs/modernization-roadmap.md)** | Modernization scope, architecture decisions and future work. |
+| **[Integration audit](docs/modernization-integration-audit.md)** | Integrated editing, PSD/PSB persistence, macOS acceptance and known limitations. |
+| **[Hosted CI validation](docs/hosted-ci-validation.md)** | Recorded JavaScript/Rust checks and cross-platform installer build evidence. |
+| **[v0.10.0 release notes](docs/releases/v0.10.0.md)** | Release highlights, setup, validation and compatibility limits. |
 | **[tests/README.md](tests/README.md)** | Behavioural test suite documentation, test harness, and mocking guidelines. |
 | **[src/vendor/README.md](src/vendor/README.md)** | Complete third-party vendor provenance, pinned commits, upstream licenses, and build scripts. |
 
@@ -170,16 +188,20 @@ Comprehensive architecture guides and development documentation are located in [
 ```sh
 npm run dev        # Launch the app from source with Tauri
 npm run build      # Build the production application bundle for your current platform
-npm test           # Run the behavioral test suite (1,600+ tests)
+npm test           # Run the behavioral test suite (2,100+ JavaScript tests)
 npm run verify     # Verify imports, cyclic dependencies, static bindings, and bootstrap
 npm run lint       # Run ESLint across src/
 ```
 
 Automated cross-platform builds (macOS universal, Linux deb/rpm, Windows x64) are run on every release tag via [GitHub Actions](.github/workflows/build.yml).
 
+Branch pushes and pull requests run JavaScript lint, verification and tests, plus Rust checks and tests. Run the Rust checks locally with `cargo check --locked --manifest-path src-tauri/Cargo.toml` and `cargo test --locked --manifest-path src-tauri/Cargo.toml`.
+
 ---
 
 ## Inspiration and prior art
+
+This fork builds on **[PhotoSuite by eolix](https://github.com/eolix/photosuite)**, retaining the original author's work and upstream fixes.
 
 The primary inspiration for this project is **[Photopea](https://www.photopea.com)**, Ivan Kutskir's browser-based editor, which demonstrated that a desktop-class image editor with complete PSD fidelity is achievable in a web runtime. The author has also open-sourced many format libraries utilised by this project. An archive snapshot is available at [ruanjiyang/Photopea-Offline](https://github.com/ruanjiyang/Photopea-Offline).
 
@@ -197,15 +219,24 @@ All third-party libraries live in [`src/vendor/`](src/vendor/README.md) as pinne
 * **Data & Assets**: [Lensfun](https://github.com/lensfun/lensfun) for camera and lens profile data (LGPL / CC), [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT), [Font Awesome Free](https://github.com/FortAwesome/Font-Awesome) for the Shape tool's icon library (CC BY 4.0), [uiGradients](https://github.com/ghosh/uiGradients) for the Gradient tool's extra library (MIT), [Subtle Patterns](https://github.com/atlemo/SubtlePatterns) for pattern presets (CC BY-SA 3.0), individual [Brusheezy](https://www.brusheezy.com) artists for the extra brush libraries (CC BY-ND / CC BY-SA), [Fresh LUTs](https://freshluts.com) for Colour Lookup presets (CC0), and the DejaVu, Droid Sans Fallback, and Noto font families for script-fallback text rendering (Bitstream Vera + Arev / Apache-2.0 / SIL OFL 1.1).
 
 
-### Bounded AI Upscale
+---
 
-[AI Upscale setup and limits](docs/m5b/README.md) describes the optional local
-4× rendered-composite → new raster document workflow, model provenance,
-[quality caveats](docs/m5b/quality.md), and [native acceptance](docs/m5b/acceptance.md).
+## Local AI setup & limits
 
-### Selected-region Generative Fill
+Bundled selection tools work offline without a service. Generative tools and AI Upscale require your own local ComfyUI installation and model files; ComfyUI, Stable Diffusion and Real-ESRGAN are not bundled or downloaded by PhotoSuite.
 
-[Generative Fill setup and limits](docs/m6/README.md) describes optional prompt-driven
-local editing with up to three sequential previews and session-only Regenerate.
-Accept adds one ordinary raster layer; pixels outside the selection remain exact.
-See [model quality limitations](docs/m6/quality.md) and [native acceptance](docs/m6/acceptance.md).
+| Feature | Runtime | Extra setup |
+|:---|:---|:---|
+| [Select Subject / Automatic Remove Background](docs/m3/README.md) | Bundled ONNX/WASM | None |
+| [Object Selection](docs/m4/README.md) | Bundled ONNX/WASM | None |
+| Quick Select | Built-in worker computation | None |
+| [AI Remove](docs/m2-local-inpaint.md) | Local ComfyUI | Compatible SD 1.5 inpainting checkpoint with CLIP and VAE |
+| [Generative Fill](docs/m6/README.md) | Local ComfyUI | Reviewed `sd-v1-5-inpainting.ckpt` |
+| [Generative Expand](docs/m8/README.md) | Local ComfyUI | Same reviewed generation checkpoint as Fill |
+| [AI Upscale 4×](docs/m5b/README.md) | Local ComfyUI | Reviewed `realesr-general-x4v3.pth` |
+
+Use the documented ComfyUI **0.37.4** setup (AI Remove also supports **0.37.0**). Configure the service in **Preferences → AI Remove**, using an explicit `http://127.0.0.1:PORT` or `http://[::1]:PORT` endpoint. Hostnames and cloud endpoints are unsupported. AI Remove, generation and upscale have separate model settings; Fill and Expand share the generation checkpoint. The linked guides include model hashes, licenses, supported inputs and setup checks.
+
+Generative Expand supports eligible raster documents up to **1024 pixels per axis after expansion**, with at most **512 added pixels per side** and one preview at a time. Text, Smart Objects, vector content and other unsupported document types must be handled separately; see the [complete limits](docs/m8/README.md). AI Upscale accepts sources up to **1024 pixels per side and 524,288 total pixels**. Model output quality varies: review the [Fill](docs/m6/quality.md), [Expand](docs/m8/quality.md) and [Upscale](docs/m5b/quality.md) quality notes before accepting results.
+
+[Generation metadata preferences](docs/m7/README.md) control passive provenance for accepted Generative Fill results. Recipes do not retain exact selection coverage and cannot regenerate after reopening. ComfyUI may retain its own uploads, outputs and prompt history separately from PhotoSuite's save preferences.
