@@ -27,7 +27,10 @@ function walk(dir) {
   const out = [];
   for (const name of fs.readdirSync(dir)) {
     const full = path.join(dir, name);
-    const stat = fs.statSync(full);
+    // Vendor development links can intentionally target unbuilt files.
+    // Never follow symlinks or create placeholder files in upstream trees.
+    const stat = fs.lstatSync(full);
+    if (stat.isSymbolicLink()) continue;
     if (stat.isDirectory()) {
       out.push(...walk(full));
     } else if (name.endsWith(".js")) {
