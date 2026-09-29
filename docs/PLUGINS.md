@@ -10,14 +10,14 @@ Copy the example into your plugins folder and restart the app:
 
 ```bash
 # macOS
-cp -R examples/plugins/hello-panel "$HOME/Library/Application Support/app.photosuite/plugins/"
+cp -R examples/plugins/hello-panel "$HOME/Library/Application Support/com.joewolly.photosuite/plugins/"
 ```
 
 | OS | Plugins folder |
 |----|----|
-| macOS | `~/Library/Application Support/app.photosuite/plugins/` |
-| Linux | `~/.local/share/app.photosuite/plugins/` |
-| Windows | `%APPDATA%\app.photosuite\plugins\` |
+| macOS | `~/Library/Application Support/com.joewolly.photosuite/plugins/` |
+| Linux | `~/.local/share/com.joewolly.photosuite/plugins/` |
+| Windows | `%APPDATA%\com.joewolly.photosuite\plugins\` |
 
 PhotoSuite creates the folder on first launch and scans it once at startup, so
 restart after every change. Then open **Window → Hello World**.
