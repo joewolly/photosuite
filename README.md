@@ -168,6 +168,7 @@ Comprehensive architecture guides and development documentation are located in [
 | **[docs/PLUGINS.md](docs/PLUGINS.md)** | Guide to writing sidebar plugins using standard HTML, CSS, and JavaScript. |
 | **[Local AI setup & limits](#local-ai-setup--limits)** | Bundled selection tools, optional ComfyUI setup, model requirements and limits. |
 | **[Modernization roadmap](docs/modernization-roadmap.md)** | Modernization scope, architecture decisions and future work. |
+| **[AI roadmap](docs/AI-ROADMAP.md)** | Living roadmap for the M9–M18 local AI editing track, model decisions, acceptance gates and progress. |
 | **[Integration audit](docs/modernization-integration-audit.md)** | Integrated editing, PSD/PSB persistence, macOS acceptance and known limitations. |
 | **[Hosted CI validation](docs/hosted-ci-validation.md)** | Recorded JavaScript/Rust checks and cross-platform installer build evidence. |
 | **[v0.10.0 release notes](docs/releases/v0.10.0.md)** | Release highlights, setup, validation and compatibility limits. |
