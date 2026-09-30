@@ -1,0 +1,1371 @@
+{
+  "date": "2026-09-30",
+  "codeCommit": "8c48d5154cfc9ed89ceff460be6767d52ad03edc",
+  "baseline": "4fcb483fc5eb911c80dccd071f59b6bf715b95af",
+  "binary": {
+    "binary": "src-tauri/target/debug/bundle/macos/PhotoSuite.app/Contents/MacOS/photosuite",
+    "architecture": "CPU_TYPE.ARM64",
+    "binary_bytes": 248435896,
+    "binary_sha256": "d8c720bcb06ac08a81b7e4a48fcc26e2f6a410cdaf9e76480f7f4ac4fb99ab94",
+    "relocations_applied": 0,
+    "asset_count": 717,
+    "table_offset": 213592952,
+    "table_reference_offset": -1,
+    "missing": [],
+    "extra": [],
+    "changed": [],
+    "index_html": "Decoded; all runtime links and original inline scripts match staged HTML"
+  },
+  "hardware": {
+    "chip": "Apple M5",
+    "memoryBytes": 17179869184,
+    "macOS": "27.0.1",
+    "build": "26A434"
+  },
+  "native": {
+    "directControls": [
+      "Generative Fill dialog",
+      "Check backend",
+      "Generate",
+      "preview",
+      "Accept"
+    ],
+    "instrumentedRuntime": true,
+    "mockProvider": false,
+    "backendStoppedForOffline": true,
+    "finalEvents": [
+      {
+        "label": "final-binary",
+        "time": 1790749392435,
+        "sha256": "d8c720bcb06ac08a81b7e4a48fcc26e2f6a410cdaf9e76480f7f4ac4fb99ab94"
+      },
+      {
+        "label": "final-direct-fill-accept",
+        "time": 1790749489741,
+        "history": 3,
+        "layers": 2
+      },
+      {
+        "label": "final-direct-fill-accept",
+        "time": 1790749490014,
+        "history": 3,
+        "layers": 2
+      },
+      {
+        "label": "final-direct-fill-accept",
+        "time": 1790749490014,
+        "history": 3,
+        "layers": 2
+      },
+      {
+        "label": "final-direct-fill-accept",
+        "time": 1790749490094,
+        "history": 3,
+        "layers": 2
+      },
+      {
+        "label": "final-direct-fill-accept",
+        "time": 1790749490095,
+        "history": 3,
+        "layers": 2
+      },
+      {
+        "label": "final-direct-fill-accept",
+        "time": 1790749490188,
+        "history": 3,
+        "layers": 2
+      },
+      {
+        "label": "discard-pass",
+        "time": 1790749505448,
+        "op": "ai-remove",
+        "id": "m1-2",
+        "unchanged": true
+      },
+      {
+        "label": "accept-pass",
+        "time": 1790749520399,
+        "op": "ai-remove",
+        "id": "m1-3",
+        "protectedChangedBytes": 0,
+        "sourceExact": true,
+        "activeDocumentIsolated": true,
+        "historyWithoutInference": true,
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 3,
+          "index": 2,
+          "composite": "262eefd4692c584b8c5a08639d7a3a3de5d2fea178ea1a8d8e34af4c0bd8f45f",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "AI Remove",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "e76812d2ef8e4c305860f4a68501ab304d11705f80cd5c142257f4f6bacf53bc"
+            }
+          ]
+        },
+        "recipe": null
+      },
+      {
+        "label": "discard-pass",
+        "time": 1790749535469,
+        "op": "generate.fill",
+        "id": "m1-4",
+        "unchanged": true
+      },
+      {
+        "label": "accept-pass",
+        "time": 1790749550427,
+        "op": "generate.fill",
+        "id": "m1-5",
+        "protectedChangedBytes": 0,
+        "sourceExact": true,
+        "activeDocumentIsolated": true,
+        "historyWithoutInference": true,
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 3,
+          "index": 2,
+          "composite": "22382c617f9598acf74671ff97a36fca56b65bef78b84b2366f5a7aad2f0d281",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Fill",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "75e54467918dd837424ec70b0ec4cd196d9354660b410cf0d9e0c0773ec94e20"
+            }
+          ]
+        },
+        "recipe": {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 42,
+          "createdAt": "2026-09-30T06:25:50.406Z",
+          "prompt": "blue gridded background",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "documentWidth": 128,
+            "documentHeight": 96
+          },
+          "selection": {
+            "sha256": "951e2fdb095298c229d543615ff3e27cc0d46ce8340706a6e9eecf7efb912614",
+            "rect": {
+              "x": 46,
+              "y": 28,
+              "width": 36,
+              "height": 39
+            }
+          },
+          "selectionPersistence": "none"
+        }
+      },
+      {
+        "label": "discard-pass",
+        "time": 1790749565373,
+        "op": "generate.expand",
+        "id": "m1-6",
+        "unchanged": true
+      },
+      {
+        "label": "accept-pass",
+        "time": 1790749580319,
+        "op": "generate.expand",
+        "id": "m1-7",
+        "protectedChangedBytes": 0,
+        "sourceExact": true,
+        "activeDocumentIsolated": true,
+        "historyWithoutInference": true,
+        "snapshot": {
+          "width": 168,
+          "height": 104,
+          "history": 2,
+          "index": 1,
+          "composite": "cda8a9ec7f4af2d9cbb57eddab5695f0348d61f7b6b73bb809315629de6403ac",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 16,
+                "y": 8,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Expand",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 168,
+                "height": 104
+              },
+              "hash": "7998eaecec1977b72eb2b03d47688155e1c4ee377ce843ba8653012973541126"
+            }
+          ]
+        },
+        "recipe": null
+      },
+      {
+        "label": "discard-pass",
+        "time": 1790749580705,
+        "op": "enhance.upscale",
+        "id": "m1-8",
+        "unchanged": true
+      },
+      {
+        "label": "accept-pass",
+        "time": 1790749581117,
+        "op": "enhance.upscale",
+        "id": "m1-9",
+        "protectedChangedBytes": 0,
+        "sourceExact": true,
+        "activeDocumentIsolated": true,
+        "historyWithoutInference": true,
+        "snapshot": {
+          "width": 512,
+          "height": 384,
+          "history": 1,
+          "index": 0,
+          "composite": "731ab7a651205b5b9452cfb917d406ce39b625ee0fe5680cc8a640961de87b35",
+          "layers": [
+            {
+              "name": "AI Upscale 4x",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 512,
+                "height": 384
+              },
+              "hash": "731ab7a651205b5b9452cfb917d406ce39b625ee0fe5680cc8a640961de87b35"
+            }
+          ]
+        },
+        "recipe": null
+      },
+      {
+        "label": "lifecycle-pass",
+        "time": 1790749581820,
+        "scenario": "cancel",
+        "id": "m1-10",
+        "job": {
+          "id": "m1-10",
+          "operation": "generate.fill",
+          "documentId": "1d83a8f9-4837-47e9-9e40-8f9509cb253b",
+          "revision": 1,
+          "state": "cancelled",
+          "progress": {
+            "kind": "stage",
+            "stage": "Generating"
+          },
+          "error": {
+            "code": "cancellation",
+            "message": "Selection cancelled."
+          },
+          "cancelled": true,
+          "stopping": false,
+          "hasInput": false,
+          "hasResult": false
+        },
+        "sourceExact": true,
+        "noPreview": true,
+        "noHistoryMutation": true
+      },
+      {
+        "label": "lifecycle-pass",
+        "time": 1790749584518,
+        "scenario": "mutate",
+        "id": "m1-11",
+        "job": {
+          "id": "m1-11",
+          "operation": "generate.fill",
+          "documentId": "aeb4461c-d1c6-4827-88d1-f82b564c93df",
+          "revision": 1,
+          "state": "stale",
+          "progress": {
+            "kind": "stage",
+            "stage": "Generating"
+          },
+          "error": {
+            "code": "stale-result",
+            "message": "The source layer, target or selection changed. Rerun Generative Fill."
+          },
+          "cancelled": false,
+          "stopping": false,
+          "hasInput": false,
+          "hasResult": false
+        },
+        "sourceExact": null,
+        "noPreview": true,
+        "noHistoryMutation": true
+      },
+      {
+        "label": "lifecycle-pass",
+        "time": 1790749585256,
+        "scenario": "close",
+        "id": "m1-12",
+        "job": {
+          "id": "m1-12",
+          "operation": "generate.fill",
+          "documentId": "03b6e878-6eca-4d8a-8f69-f7fb785ffe60",
+          "revision": 1,
+          "state": "cancelled",
+          "progress": {
+            "kind": "stage",
+            "stage": "Generating"
+          },
+          "error": {
+            "code": "document-closed",
+            "message": "The source document was closed."
+          },
+          "cancelled": true,
+          "stopping": false,
+          "hasInput": false,
+          "hasResult": false
+        },
+        "sourceExact": true,
+        "noPreview": true,
+        "noHistoryMutation": true
+      },
+      {
+        "label": "matrix-pass",
+        "time": 1790749585262,
+        "files": 30,
+        "jobSubmissions": 12,
+        "live": []
+      },
+      {
+        "label": "native-pinning-pass",
+        "time": 1790749667117,
+        "seeds": [
+          42,
+          43
+        ],
+        "profile": null,
+        "recipe": {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-30T06:27:47.077Z",
+          "prompt": "blue gridded background",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "documentWidth": 128,
+            "documentHeight": 96
+          },
+          "selection": {
+            "sha256": "951e2fdb095298c229d543615ff3e27cc0d46ce8340706a6e9eecf7efb912614",
+            "rect": {
+              "x": 46,
+              "y": 28,
+              "width": 36,
+              "height": 39
+            }
+          },
+          "selectionPersistence": "none"
+        },
+        "configurationPinned": true,
+        "otherCandidateReleased": true
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726258,
+        "path": "/tmp/photosuite-m9-evidence/final-direct-fill.psd",
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 1,
+          "index": 0,
+          "composite": "22382c617f9598acf74671ff97a36fca56b65bef78b84b2366f5a7aad2f0d281",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Fill",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "75e54467918dd837424ec70b0ec4cd196d9354660b410cf0d9e0c0773ec94e20"
+            }
+          ]
+        },
+        "recipe": {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 42,
+          "createdAt": "2026-09-30T06:23:51.675Z",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "documentWidth": 128,
+            "documentHeight": 96
+          },
+          "selection": {
+            "sha256": "951e2fdb095298c229d543615ff3e27cc0d46ce8340706a6e9eecf7efb912614",
+            "rect": {
+              "x": 46,
+              "y": 28,
+              "width": 36,
+              "height": 39
+            }
+          },
+          "selectionPersistence": "none"
+        },
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726276,
+        "path": "/tmp/photosuite-m9-evidence/final-direct-fill.psb",
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 1,
+          "index": 0,
+          "composite": "22382c617f9598acf74671ff97a36fca56b65bef78b84b2366f5a7aad2f0d281",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Fill",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "75e54467918dd837424ec70b0ec4cd196d9354660b410cf0d9e0c0773ec94e20"
+            }
+          ]
+        },
+        "recipe": {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 42,
+          "createdAt": "2026-09-30T06:23:51.675Z",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "documentWidth": 128,
+            "documentHeight": 96
+          },
+          "selection": {
+            "sha256": "951e2fdb095298c229d543615ff3e27cc0d46ce8340706a6e9eecf7efb912614",
+            "rect": {
+              "x": 46,
+              "y": 28,
+              "width": 36,
+              "height": 39
+            }
+          },
+          "selectionPersistence": "none"
+        },
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726296,
+        "path": "/tmp/photosuite-m9-evidence/final-ai-remove.psd",
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 1,
+          "index": 0,
+          "composite": "262eefd4692c584b8c5a08639d7a3a3de5d2fea178ea1a8d8e34af4c0bd8f45f",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "AI Remove",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "e76812d2ef8e4c305860f4a68501ab304d11705f80cd5c142257f4f6bacf53bc"
+            }
+          ]
+        },
+        "recipe": null,
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726320,
+        "path": "/tmp/photosuite-m9-evidence/final-ai-remove.psb",
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 1,
+          "index": 0,
+          "composite": "262eefd4692c584b8c5a08639d7a3a3de5d2fea178ea1a8d8e34af4c0bd8f45f",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "AI Remove",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "e76812d2ef8e4c305860f4a68501ab304d11705f80cd5c142257f4f6bacf53bc"
+            }
+          ]
+        },
+        "recipe": null,
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726339,
+        "path": "/tmp/photosuite-m9-evidence/final-generate-fill.psd",
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 1,
+          "index": 0,
+          "composite": "22382c617f9598acf74671ff97a36fca56b65bef78b84b2366f5a7aad2f0d281",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Fill",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "75e54467918dd837424ec70b0ec4cd196d9354660b410cf0d9e0c0773ec94e20"
+            }
+          ]
+        },
+        "recipe": {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 42,
+          "createdAt": "2026-09-30T06:25:50.406Z",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "documentWidth": 128,
+            "documentHeight": 96
+          },
+          "selection": {
+            "sha256": "951e2fdb095298c229d543615ff3e27cc0d46ce8340706a6e9eecf7efb912614",
+            "rect": {
+              "x": 46,
+              "y": 28,
+              "width": 36,
+              "height": 39
+            }
+          },
+          "selectionPersistence": "none"
+        },
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726361,
+        "path": "/tmp/photosuite-m9-evidence/final-generate-fill.psb",
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 1,
+          "index": 0,
+          "composite": "22382c617f9598acf74671ff97a36fca56b65bef78b84b2366f5a7aad2f0d281",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Fill",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "75e54467918dd837424ec70b0ec4cd196d9354660b410cf0d9e0c0773ec94e20"
+            }
+          ]
+        },
+        "recipe": {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 42,
+          "createdAt": "2026-09-30T06:25:50.406Z",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "documentWidth": 128,
+            "documentHeight": 96
+          },
+          "selection": {
+            "sha256": "951e2fdb095298c229d543615ff3e27cc0d46ce8340706a6e9eecf7efb912614",
+            "rect": {
+              "x": 46,
+              "y": 28,
+              "width": 36,
+              "height": 39
+            }
+          },
+          "selectionPersistence": "none"
+        },
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726384,
+        "path": "/tmp/photosuite-m9-evidence/final-generate-expand.psd",
+        "snapshot": {
+          "width": 168,
+          "height": 104,
+          "history": 1,
+          "index": 0,
+          "composite": "cda8a9ec7f4af2d9cbb57eddab5695f0348d61f7b6b73bb809315629de6403ac",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 16,
+                "y": 8,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Expand",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 168,
+                "height": 104
+              },
+              "hash": "7998eaecec1977b72eb2b03d47688155e1c4ee377ce843ba8653012973541126"
+            }
+          ]
+        },
+        "recipe": null,
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726404,
+        "path": "/tmp/photosuite-m9-evidence/final-generate-expand.psb",
+        "snapshot": {
+          "width": 168,
+          "height": 104,
+          "history": 1,
+          "index": 0,
+          "composite": "cda8a9ec7f4af2d9cbb57eddab5695f0348d61f7b6b73bb809315629de6403ac",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 16,
+                "y": 8,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Expand",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 168,
+                "height": 104
+              },
+              "hash": "7998eaecec1977b72eb2b03d47688155e1c4ee377ce843ba8653012973541126"
+            }
+          ]
+        },
+        "recipe": null,
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726432,
+        "path": "/tmp/photosuite-m9-evidence/final-enhance-upscale.psd",
+        "snapshot": {
+          "width": 512,
+          "height": 384,
+          "history": 1,
+          "index": 0,
+          "composite": "731ab7a651205b5b9452cfb917d406ce39b625ee0fe5680cc8a640961de87b35",
+          "layers": [
+            {
+              "name": "AI Upscale 4x",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 512,
+                "height": 384
+              },
+              "hash": "731ab7a651205b5b9452cfb917d406ce39b625ee0fe5680cc8a640961de87b35"
+            }
+          ]
+        },
+        "recipe": null,
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726457,
+        "path": "/tmp/photosuite-m9-evidence/final-enhance-upscale.psb",
+        "snapshot": {
+          "width": 512,
+          "height": 384,
+          "history": 1,
+          "index": 0,
+          "composite": "731ab7a651205b5b9452cfb917d406ce39b625ee0fe5680cc8a640961de87b35",
+          "layers": [
+            {
+              "name": "AI Upscale 4x",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 512,
+                "height": 384
+              },
+              "hash": "731ab7a651205b5b9452cfb917d406ce39b625ee0fe5680cc8a640961de87b35"
+            }
+          ]
+        },
+        "recipe": null,
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726475,
+        "path": "/tmp/photosuite-m9-evidence/final-pinned-fill.psd",
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 1,
+          "index": 0,
+          "composite": "b645443825ef03c9fc063591f277e005f4cd11399094403d4d08902a77195aa1",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Fill",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "ce5bcad673023983cbb2af8d3ca91d8a9f25b888cbd1175f32f4aa76eee4718f"
+            }
+          ]
+        },
+        "recipe": {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-30T06:27:47.077Z",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "documentWidth": 128,
+            "documentHeight": 96
+          },
+          "selection": {
+            "sha256": "951e2fdb095298c229d543615ff3e27cc0d46ce8340706a6e9eecf7efb912614",
+            "rect": {
+              "x": 46,
+              "y": 28,
+              "width": 36,
+              "height": 39
+            }
+          },
+          "selectionPersistence": "none"
+        },
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-reopen-pass",
+        "time": 1790749726492,
+        "path": "/tmp/photosuite-m9-evidence/final-pinned-fill.psb",
+        "snapshot": {
+          "width": 128,
+          "height": 96,
+          "history": 1,
+          "index": 0,
+          "composite": "b645443825ef03c9fc063591f277e005f4cd11399094403d4d08902a77195aa1",
+          "layers": [
+            {
+              "name": "Background",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde"
+            },
+            {
+              "name": "Generative Fill",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 128,
+                "height": 96
+              },
+              "hash": "ce5bcad673023983cbb2af8d3ca91d8a9f25b888cbd1175f32f4aa76eee4718f"
+            }
+          ]
+        },
+        "recipe": {
+          "recipeVersion": 1,
+          "layerId": 2,
+          "operation": "generate.fill",
+          "workflow": "photosuite-generative-fill-v1",
+          "backend": "comfyui",
+          "checkpoint": "sd-v1-5-inpainting.ckpt",
+          "seed": 43,
+          "createdAt": "2026-09-30T06:27:47.077Z",
+          "settings": {
+            "steps": 20,
+            "cfg": 7,
+            "sampler": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "maskGrowth": 0,
+            "roi": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "modelWidth": 512,
+            "modelHeight": 512
+          },
+          "source": {
+            "layerId": 1,
+            "sha256": "b2fc233cd3e0a4b48bde234e036851baca47231cba3d0ab98074b84be3cb5dde",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 128,
+              "height": 96
+            },
+            "documentWidth": 128,
+            "documentHeight": 96
+          },
+          "selection": {
+            "sha256": "951e2fdb095298c229d543615ff3e27cc0d46ce8340706a6e9eecf7efb912614",
+            "rect": {
+              "x": 46,
+              "y": 28,
+              "width": 36,
+              "height": 39
+            }
+          },
+          "selectionPersistence": "none"
+        },
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-history-pass",
+        "time": 1790749726500,
+        "op": "ai-remove",
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-history-pass",
+        "time": 1790749726510,
+        "op": "generate.fill",
+        "providerDispatches": 0
+      },
+      {
+        "label": "offline-history-pass",
+        "time": 1790749726519,
+        "op": "generate.expand",
+        "providerDispatches": 0
+      },
+      {
+        "label": "final-unavailable-pass",
+        "time": 1790749726632,
+        "op": "ai-remove",
+        "id": "m1-15",
+        "message": "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences.",
+        "job": {
+          "id": "m1-15",
+          "operation": "ai-remove",
+          "documentId": "7a41ef66-1c66-443b-8d3a-cdd1fa5caf99",
+          "revision": 1,
+          "state": "failed",
+          "progress": {
+            "kind": "stage",
+            "stage": "Preparing"
+          },
+          "error": {
+            "code": "provider-failure",
+            "message": "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences."
+          },
+          "cancelled": false,
+          "stopping": false,
+          "hasInput": false,
+          "hasResult": false
+        },
+        "unchanged": true
+      },
+      {
+        "label": "final-unavailable-pass",
+        "time": 1790749726721,
+        "op": "generate.fill",
+        "id": "m1-16",
+        "message": "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences.",
+        "job": {
+          "id": "m1-16",
+          "operation": "generate.fill",
+          "documentId": "8f67219a-97fc-4b21-8174-03953672b907",
+          "revision": 1,
+          "state": "failed",
+          "progress": {
+            "kind": "stage",
+            "stage": "Preparing"
+          },
+          "error": {
+            "code": "provider-failure",
+            "message": "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences."
+          },
+          "cancelled": false,
+          "stopping": false,
+          "hasInput": false,
+          "hasResult": false
+        },
+        "unchanged": true
+      },
+      {
+        "label": "final-unavailable-pass",
+        "time": 1790749726804,
+        "op": "generate.expand",
+        "id": "m1-17",
+        "message": "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences.",
+        "job": {
+          "id": "m1-17",
+          "operation": "generate.expand",
+          "documentId": "e07ed8ab-6cce-4962-ab51-be8a8d07bfd6",
+          "revision": 1,
+          "state": "failed",
+          "progress": {
+            "kind": "stage",
+            "stage": "Preparing"
+          },
+          "error": {
+            "code": "provider-failure",
+            "message": "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences."
+          },
+          "cancelled": false,
+          "stopping": false,
+          "hasInput": false,
+          "hasResult": false
+        },
+        "unchanged": true
+      },
+      {
+        "label": "final-unavailable-pass",
+        "time": 1790749726882,
+        "op": "enhance.upscale",
+        "id": "m1-18",
+        "message": "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences.",
+        "job": {
+          "id": "m1-18",
+          "operation": "enhance.upscale",
+          "documentId": "68336899-2595-4dc4-9177-522bade71aaa",
+          "revision": 1,
+          "state": "failed",
+          "progress": {
+            "kind": "stage",
+            "stage": "Preparing"
+          },
+          "error": {
+            "code": "provider-failure",
+            "message": "Could not reach the local ComfyUI service. Start ComfyUI and check Preferences."
+          },
+          "cancelled": false,
+          "stopping": false,
+          "hasInput": false,
+          "hasResult": false
+        },
+        "unchanged": true
+      },
+      {
+        "label": "offline-pass",
+        "time": 1790749726887,
+        "uniqueFiles": 12,
+        "historyOperations": 3,
+        "unavailableCapabilities": 4,
+        "live": []
+      }
+    ]
+  },
+  "validation": {
+    "javascript": {
+      "passed": 2196,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 424
+    },
+    "lint": "pass",
+    "static": "pass",
+    "lockedRustCheck": "pass",
+    "lockedRustTests": {
+      "passed": 25,
+      "ignoredOptIn": 3,
+      "failed": 0
+    },
+    "realRustTests": {
+      "passed": 3,
+      "casesPerCorpus": 1,
+      "failed": 0
+    },
+    "nativeBuild": "pass",
+    "runtimeAssets": 717
+  },
+  "archive": "/Users/joe/Documents/Codex/2026-09-30/photosuite-m9-acceptance",
+  "savedFiles": [
+    {
+      "name": "final-ai-remove.psb",
+      "bytes": 21193,
+      "sha256": "3042b28a808c771ea605c7aa7611196a3ee7a40c29154b5f0a64a00c8542974e"
+    },
+    {
+      "name": "final-ai-remove.psd",
+      "bytes": 19041,
+      "sha256": "ed2744a61b9b4eeaf54043898762117faecb7093ed139acbe736ef42597cb9e8"
+    },
+    {
+      "name": "final-direct-fill.psb",
+      "bytes": 23218,
+      "sha256": "15364658a66a5e8fcdedc28091bf541331a2757355c5d0424c2d0e3a93d3a063"
+    },
+    {
+      "name": "final-direct-fill.psd",
+      "bytes": 21066,
+      "sha256": "dd19a4ac6c14bb76e90f78f8e2e30231350a4296eb10de4f5d280811051fa843"
+    },
+    {
+      "name": "final-enhance-upscale.psb",
+      "bytes": 955071,
+      "sha256": "99cc9ecdc3590add0cba18838a2127417016a15925bc7bcedcfbc1b2306d7a52"
+    },
+    {
+      "name": "final-enhance-upscale.psd",
+      "bytes": 949671,
+      "sha256": "553eecfae276868faad8cb7b81c420fc39034b1386d8a372e56c2fc04285520a"
+    },
+    {
+      "name": "final-generate-expand.psb",
+      "bytes": 31297,
+      "sha256": "76a0cf5372221b0a5b55c00c076e5210d9d18e755028d1f3b4bf78b76cb3c6a7"
+    },
+    {
+      "name": "final-generate-expand.psd",
+      "bytes": 29033,
+      "sha256": "52c1aed760c9440653550d1c875abd38c0f10756adcda86fc03cc14e3daf1b55"
+    },
+    {
+      "name": "final-generate-fill.psb",
+      "bytes": 23218,
+      "sha256": "cd57d2f56ca7c60469a98cea6f66932424c2f542233e3299cdaaaa570959b277"
+    },
+    {
+      "name": "final-generate-fill.psd",
+      "bytes": 21066,
+      "sha256": "2c8200931c019809f2d1cb6cf524e0a7a87f5ea118635de727a0c23b88856c6c"
+    },
+    {
+      "name": "final-pinned-fill.psb",
+      "bytes": 23145,
+      "sha256": "9658a9b70763c99a5938d07d8e5083ab1549a04c21545b4f430ea4aed9f8feab"
+    },
+    {
+      "name": "final-pinned-fill.psd",
+      "bytes": 20993,
+      "sha256": "fde67f5631d4c9287fd3eb6a4a13c408a78fbe153385f82b0dbffd5816dac29f"
+    }
+  ]
+}
