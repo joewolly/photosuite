@@ -1,11 +1,8 @@
-import { generationOptions, validateGenerativeConfig } from "./generative-workload.js";
-import { createExpandProvider } from "./comfy-provider.js";
-import { expansionGeometry, prepareExpandInput } from "./expand-workload.js";
+import { generationOptions } from "./generative-workload.js";
+import { expansionGeometry, prepareExpandSnapshot } from "./expand-workload.js";
 import { captureExpandSource } from "./expand-source.js";
 import { createExpandAdapter } from "./expand-target.js";
 import { GenerativeSession } from "./generative-session.js";
-import { createGenerativeProvider } from "./comfy-provider.js";
-import { createUpscaleProvider } from "./upscale-provider.js";
 import { prepareUpscaleSource, createUpscaleAdapter } from "./upscale-target.js";
 /** Application-owned Quick Select sessions; providers never see this module. */
 import { ModernizationJobs, JOB_TERMINAL, JobError } from "./job-service.js";
@@ -13,8 +10,9 @@ import { createQuickSelectProvider } from "./quick-select-provider.js";
 import { createSelectionAdapter, requireQuickSelectSource } from "./selection-target.js";
 import { getResultDocumentInfo } from "../results/result-targets.js";
 import { showToast } from "../../core/user-prompts.js";
-import { createComfyProvider } from "./comfy-provider.js";
-import { prepareInpaintInput } from "./inpaint-workload.js";
+import { createAIProviders, providerSelection } from "./ai-providers.js";
+import { AI_CAPABILITIES } from "./ai-capabilities.js";
+import { prepareInpaintSnapshot } from "./inpaint-workload.js";
 import { requireInpaintSource, createInpaintAdapter } from "./inpaint-target.js";
 
 import { createSubjectProvider } from "./subject-provider.js";
@@ -25,10 +23,11 @@ import { generateUuid } from "../../core/uid.js";
 
 function plainRect(rect) { return { x: rect.x, y: rect.y, width: rect.width, height: rect.height }; }
 export class SelectionJobs {
-  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider = createComfyProvider(), subjectProvider = createSubjectProvider(), promptedProvider = createPromptedProvider(), upscaleProvider = createUpscaleProvider(), generativeProvider = createGenerativeProvider(), expandProvider = createExpandProvider()) {
+  constructor(controller, provider = createQuickSelectProvider(), mount = true, inpaintProvider, subjectProvider = createSubjectProvider(), promptedProvider = createPromptedProvider(), upscaleProvider, generativeProvider, expandProvider, aiProviders) {
     this.controller = controller;
     this.promptedProvider = promptedProvider;
-    this.jobs = new ModernizationJobs({ "generate.expand": expandProvider, "generate.fill": generativeProvider, "enhance.upscale": upscaleProvider, "quick-select": provider, "ai-remove": inpaintProvider, "segment.subject": subjectProvider, "segment.prompted": promptedProvider });
+    this.aiProviders = aiProviders || createAIProviders({ overrides: { [AI_CAPABILITIES.remove]: inpaintProvider, [AI_CAPABILITIES.fill]: generativeProvider, [AI_CAPABILITIES.expand]: expandProvider, [AI_CAPABILITIES.upscale]: upscaleProvider } });
+    this.jobs = new ModernizationJobs({ [AI_CAPABILITIES.expand]: this.aiProviders.port(AI_CAPABILITIES.expand), [AI_CAPABILITIES.fill]: this.aiProviders.port(AI_CAPABILITIES.fill), [AI_CAPABILITIES.upscale]: this.aiProviders.port(AI_CAPABILITIES.upscale), "quick-select": provider, [AI_CAPABILITIES.remove]: this.aiProviders.port(AI_CAPABILITIES.remove), "segment.subject": subjectProvider, "segment.prompted": promptedProvider });
     this.sessions = new Map();
     this.labels = new Map();
     this.subjectModes = new Map();
@@ -57,9 +56,10 @@ export class SelectionJobs {
   }
   submitUpscale(doc, config) {
     if (this.jobs.list().some(job => job.operation === "enhance.upscale" && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Upscale result first.");
-    const { input, sourceCaptureMs } = prepareUpscaleSource(this.controller, doc, config);
+    const selection = providerSelection(config); this.aiProviders.resolve(AI_CAPABILITIES.upscale, selection);
+    const { input, sourceCaptureMs } = prepareUpscaleSource(this.controller, doc);
     let jobId;
-    jobId = this.jobs.submit({ operation: "enhance.upscale", input, adapter: createUpscaleAdapter(this.controller, doc, input,
+    jobId = this.jobs.submit({ operation: AI_CAPABILITIES.upscale, input: this.aiProviders.request(AI_CAPABILITIES.upscale, selection, input), adapter: createUpscaleAdapter(this.controller, doc, input,
       (thumbnail, id, width, height) => { if (thumbnail) this.upscalePreviews.set(id, { thumbnail, width, height }); else this.upscalePreviews.delete(jobId); },
       metrics => { this.lastUpscaleMetrics = { ...this.lastUpscaleMetrics, ...metrics, jobId }; }) });
     this.lastUpscaleMetrics = { jobId, sourceCaptureMs };
@@ -69,23 +69,24 @@ export class SelectionJobs {
     if (this.jobs.list().some(j => ["ai-remove", "generate.fill", "generate.expand"].includes(j.operation) && (!JOB_TERMINAL.has(j.state) || j.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current generation first.");
     const settings = generationOptions({ ...options, count: options?.count ?? 1 });
     if (settings.count !== 1) throw new JobError("invalid-request", "Generative Expand retains one variation at a time.");
-    validateGenerativeConfig(config);
+    const selection = providerSelection(config); this.aiProviders.resolve(AI_CAPABILITIES.expand, selection);
     const start = performance.now(), geometry = expansionGeometry(doc.width, doc.height, sides);
     const context = captureExpandSource(this.controller, doc, geometry);
-    const { input } = prepareExpandInput(context.pixels, geometry, config, settings);
+    const { input } = prepareExpandSnapshot(context.pixels, geometry, settings);
     let id;
-    id = this.jobs.submit({ operation: "generate.expand", input, adapter: createExpandAdapter(this.controller, context,
+    id = this.jobs.submit({ operation: AI_CAPABILITIES.expand, input: this.aiProviders.request(AI_CAPABILITIES.expand, selection, input), adapter: createExpandAdapter(this.controller, context,
       (preview, jobId) => { if (preview) this.expandPreviews.set(jobId, { ...preview, seed: input.seed }); else this.expandPreviews.delete(id); },
       metrics => { this.lastExpandMetrics = { ...this.lastExpandMetrics, ...metrics }; }) });
     this.lastExpandMetrics = { preparationMs: performance.now() - start, geometry, seed: input.seed };
     this.labels.set(this.jobs.get(id).documentId, doc.name || "Untitled"); this.render(); return id;
   }
-  submitGenerative(doc, config, options) { return this.generative.start(doc, config, options); }
+  submitGenerative(doc, config, options) { return this.generative.start(doc, providerSelection(config), options); }
   submitAI(doc, config) {
     if (this.jobs.list().some((job) => ["ai-remove", "generate.fill", "generate.expand"].includes(job.operation) && (!JOB_TERMINAL.has(job.state) || job.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current AI Remove result first.");
+    const selection = providerSelection(config); this.aiProviders.resolve(AI_CAPABILITIES.remove, selection);
     const layer = requireInpaintSource(doc);
-    const { input, coverage } = prepareInpaintInput(layer, doc.selectionMask, doc.width, doc.height, config);
-    const id = this.jobs.submit({ operation: "ai-remove", input, adapter: createInpaintAdapter(this.controller, doc, layer, input.rect, coverage) });
+    const { input, coverage } = prepareInpaintSnapshot(layer, doc.selectionMask, doc.width, doc.height);
+    const id = this.jobs.submit({ operation: AI_CAPABILITIES.remove, input: this.aiProviders.request(AI_CAPABILITIES.remove, selection, input), adapter: createInpaintAdapter(this.controller, doc, layer, input.rect, coverage) });
     this.labels.set(this.jobs.get(id).documentId, doc.name || "Untitled");
     this.render();
     return id;

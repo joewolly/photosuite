@@ -1,11 +1,9 @@
-import { loadLocalInpaintConfig } from "../../core/app-settings.js";
-import { UPSCALE_MODEL, upscaleGeometry } from "../../features/modernization/upscale-workload.js";
-import { testUpscaleConnection } from "../../features/modernization/upscale-provider.js";
+import { loadAIProviderSelection } from "../../core/app-settings.js";
+import { upscaleGeometry } from "../../features/modernization/upscale-workload.js";
 /** Explicit command only: opening the dialog does not upload pixels or run inference. */
 export async function showUpscaleDialog(controller, doc) {
-  const g = upscaleGeometry(doc?.width, doc?.height), settings = await loadLocalInpaintConfig();
+  const g = upscaleGeometry(doc?.width, doc?.height), config = await loadAIProviderSelection("enhance.upscale");
   if (!controller.openDocs.includes(doc)) throw new Error("The source document was closed.");
-  const config = { endpoint: settings.endpoint, model: UPSCALE_MODEL };
   const dialog = document.createElement("dialog");
   dialog.setAttribute("aria-label", "AI Upscale");
   Object.assign(dialog.style, { background: "#292929", color: "#eee", border: "1px solid #666", borderRadius: "8px", padding: "24px", maxWidth: "480px" });
@@ -20,7 +18,7 @@ export async function showUpscaleDialog(controller, doc) {
   let ready = false;
   const check = button("Check backend", async () => {
     check.disabled = true; run.disabled = true; status.textContent = "Checking ComfyUI and upscale model…";
-    try { const info = await testUpscaleConnection(config); ready = true; status.textContent = `Ready: ComfyUI ${info.version}, ${info.model}.`; }
+    try { const info = await controller.getSelectionJobs().aiProviders.check("enhance.upscale", config); ready = true; status.textContent = `Ready: ${info.label} ${info.version}, ${info.model}.`; }
     catch (error) { ready = false; status.textContent = error.message; }
     finally { check.disabled = false; run.disabled = !ready; }
   });

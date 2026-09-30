@@ -45,7 +45,7 @@ import {
 } from "../menu/menu-bar-predicates.js";
 import { AppWindow } from "./app-window.js";
 import { FileLoader, FileProcessor } from "./file-loader.js";
-import { persistAppSettings, loadLocalInpaintConfig } from "../../core/app-settings.js";
+import { persistAppSettings, loadAIProviderSelection } from "../../core/app-settings.js";
 import { BrushPresetUtil } from "../../features/brush/brush-presets.js";
 import { EventType, UiCommand } from "../../core/event-bus.js";
 import { nativeWriteFile, openExternalUrl, pickSavePath } from "../../core/tauri-host.js";
@@ -351,7 +351,7 @@ const UI_COMMAND_HANDLERS = {
   },
   aiRemove(controller) {
     const doc = controller.getCurrentDoc();
-    void loadLocalInpaintConfig().then((config) => {
+    void loadAIProviderSelection("ai-remove").then((config) => {
       if (!controller.openDocs.includes(doc)) throw new Error("The source document was closed.");
       controller.getSelectionJobs().submitAI(doc, config);
     }).catch((error) => showToast(error.message));

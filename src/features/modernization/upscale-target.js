@@ -13,7 +13,7 @@ export function prepareUpscaleSource(controller, doc, config) {
   requireIdleResultEditor(controller); const g = requireSource(doc), start = performance.now();
   if (!controller.openDocs.includes(doc)) throw new JobError("document-closed", "The source document was closed.");
   const rgba = rendered(doc).slice();
-  return { input: { width: g.width, height: g.height, scale: 4, rgba, config: { ...config } }, sourceCaptureMs: performance.now() - start };
+  return { input: { width: g.width, height: g.height, scale: 4, rgba, ...(config === undefined ? {} : { config: { ...config } }) }, sourceCaptureMs: performance.now() - start };
 }
 export function createUpscaleAdapter(controller, doc, input, onPreview = () => {}, onMetrics = () => {}) {
   return {

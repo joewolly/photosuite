@@ -3,8 +3,8 @@
 > Living roadmap for PhotoSuite's AI editing track.
 >
 > **Baseline:** PhotoSuite v0.10.1  
-> **Last updated:** 2026-09-29  
-> **Current focus:** M9 — Multi-model AI provider architecture
+> **Last updated:** 2026-09-30<br>
+> **Current focus:** M10 — Modern local generation/editing model (NEXT; not started)
 
 ## Purpose
 
@@ -61,8 +61,8 @@ Every AI feature must continue to preserve these rules:
 
 | Milestone | Status | Focus | Primary dependency |
 |---|---|---|---|
-| **M9** | **NEXT** | Multi-model AI provider architecture | M0–M8 baseline |
-| **M10** | PLANNED | Modern local generation/editing model | M9 |
+| **M9** | **DONE** | Multi-model AI provider architecture | M0–M8 baseline |
+| **M10** | **NEXT** | Modern local generation/editing model | M9 |
 | **M11** | PLANNED | Instruction-based AI Edit | M10 |
 | **M12** | PLANNED | Reference-image editing | M11 |
 | **M13** | PLANNED | High-resolution region/context pipeline | M10–M12 |
@@ -76,7 +76,7 @@ Every AI feature must continue to preserve these rules:
 
 # M9 — Multi-model AI provider architecture
 
-**Status:** NEXT
+**Status:** DONE
 
 ## Goal
 
@@ -110,30 +110,56 @@ Decouple PhotoSuite AI features from one specific model/workflow so future model
 
 ## Acceptance criteria
 
-- [ ] Existing M2/M5b/M6/M8 workflows run through the new provider abstraction.
-- [ ] Document/history behavior is byte-for-byte or semantically equivalent where exact bytes are not the existing contract.
-- [ ] Unsupported capabilities fail before provider execution.
-- [ ] Provider cancellation and stale-result behavior still satisfy M1 lifecycle rules.
-- [ ] Current local ComfyUI security restrictions remain enforced.
-- [ ] Tests cover provider selection, capability negotiation, cancellation, stale results, and provider failure.
-- [ ] No provider can directly modify PhotoSuite document state.
-- [ ] Migration is documented for future AI milestones.
+- [x] Existing M2/M5b/M6/M8 workflows run through the new provider abstraction.
+- [x] Document/history behavior is byte-for-byte or semantically equivalent where exact bytes are not the existing contract.
+- [x] Unsupported capabilities fail before provider execution.
+- [x] Provider cancellation and stale-result behavior still satisfy M1 lifecycle rules.
+- [x] Current local ComfyUI security restrictions remain enforced.
+- [x] Tests cover provider selection, capability negotiation, cancellation, stale results, and provider failure.
+- [x] No provider can directly modify PhotoSuite document state.
+- [x] Migration is documented for future AI milestones.
 
-## Evidence to record
+## Final architecture and evidence
 
-- Branch / PR:
-- Final commit:
-- JS tests:
-- Rust tests:
-- Native acceptance:
-- Provider matrix:
-- Known limitations:
+Features submit logical, capability-specific pixel snapshots to an immutable
+`AIProviderRegistry`. Explicit bindings and copied validated configurations select
+handlers; stateless ports reuse the existing M1 scheduler. The single shipping
+`comfyui-local` provider owns model/workflow identity, working-resolution
+adaptation and consolidated JS request/poll/cancel settlement. Existing Rust
+transport/security and M0 document/history authority are unchanged.
+
+Capabilities: `ai-remove`, `generate.fill`, `generate.expand`, `enhance.upscale`.
+Instruction/reference edit identifiers are reserved and deterministically
+unsupported. Masks/alpha/scales are support declarations per handler. Provider
+selection, binding, profile, resolution and port terminology and the complete
+extension procedure are defined in [M9 architecture](m9/README.md).
+
+- Branch: `codex/m9-ai-provider-architecture`; local commits only, no PR/release.
+- Actual starting main SHA: `4fcb483fc5eb911c80dccd071f59b6bf715b95af`.
+- Implementation commit: `8c48d5154cfc9ed89ceff460be6767d52ad03edc`;
+  completion report committed immediately afterward.
+- JavaScript: 2,196 passed, zero failed/skipped; lint/static verification pass.
+- Rust: locked check pass; 25 default tests pass plus all three opt-in real tests.
+- Native Apple M5/macOS: four real ComfyUI workflows available/unavailable;
+  exact containment/history; cancellation/stale/closure; pinned multi-candidate
+  configuration; twelve unique PSD/PSB files reopened with backend stopped.
+- Full evidence, limitations, file inventory and all fifteen completion criteria:
+  [M9 acceptance](m9/acceptance.md).
+
+M10 can replace execution behind existing capability ports without rewriting
+transactions, lifecycle or feature authority. Actual FLUX compatibility is
+unverified. Its graph/runtime/configuration/security/model-rights and quality
+review remain future work. Recipe-v1 metadata intentionally retains the reviewed
+ComfyUI whitelist; a new passive provenance schema, new instruction/reference
+contracts/UI, native alpha, larger regions and changed limits require separate
+acceptance. Current SD1.5/Real-ESRGAN choices, legacy settings and quality limits
+remain unchanged; no fallback, downloads, cloud endpoints or new AI UI were added.
 
 ---
 
 # M10 — Modern local generation/editing model
 
-**Status:** PLANNED
+**Status:** NEXT
 
 ## Goal
 
@@ -529,6 +555,8 @@ Use this table for decisions that should survive individual implementation threa
 | 2026-09-29 | Preserve the M0–M8 detached-preview / explicit-Accept transaction architecture. | It keeps model execution separate from document authority and preserves exact Undo/Redo semantics. | Only with evidence of a superior equally-safe model |
 | 2026-09-29 | Build M9 before replacing SD 1.5. | Future model changes should not require another feature-specific architecture rewrite. | After M9 acceptance |
 | 2026-09-29 | Treat FLUX.2 [klein] 4B as a candidate, not a permanent dependency. | Model quality and the open ecosystem move quickly. | M10 start |
+| 2026-09-30 | Accept M9 capability registry, logical pixel contracts and explicit immutable provider selection; retain M1/M0 authority and current local ComfyUI security. | Replacing model execution no longer requires feature transport/padding or document/history changes. Unsupported operations and failures remain deterministic. | M10 provider and passive provenance review |
+| 2026-09-30 | Preserve existing settings keys and current models; reserve instruction/reference capabilities without implementing them. | M9 changes architecture while retaining v0.10.1 behavior and limiting scope. | Separately accepted M10+ work |
 
 ---
 
@@ -580,3 +608,4 @@ Copy this section into the milestone's implementation/acceptance document when w
 | Date | Change |
 |---|---|
 | 2026-09-29 | Created AI roadmap for M9–M18. AI elevated to a first-class PhotoSuite development track. M9 marked NEXT. |
+| 2026-09-30 | Completed M9 and marked M10 NEXT. Recorded provider terminology/ownership/extension decisions, native real-backend/offline acceptance, full validation and remaining M10 seams in docs/m9. No M10 work started. |
