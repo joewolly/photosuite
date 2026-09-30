@@ -1,10 +1,11 @@
 import { getRecipePrivacy } from "../../document/formats/metadata/generation-recipes.js";
 import { loadLocalInpaintConfig, saveLocalInpaintConfig, saveRecipePrivacy } from "../../core/app-settings.js";
-import { testInpaintConnection } from "../../features/modernization/comfy-provider.js";
+import { createAIProviders, providerSelection } from "../../features/modernization/ai-providers.js";
 import { loadGenerativeConfig, saveGenerativeCheckpoint } from "../../core/app-settings.js";
 
 /** Explicit settings actions only; displaying this pane does not use the network. */
 export function mountLocalInpaintSettings(pane) {
+  const providers = createAIProviders();
   const intro = document.createElement("p");
   intro.textContent = "Remove selected pixels using your own local ComfyUI 0.37.0 or 0.37.4 service and SD 1.5 inpainting checkpoint with CLIP and VAE. PhotoSuite installs or downloads none of these.";
   pane.appendChild(intro);
@@ -72,7 +73,7 @@ export function mountLocalInpaintSettings(pane) {
   test.addEventListener("click", async () => {
     const own = ++revision; test.disabled = true; status.textContent = "Checking local service, workflow and checkpoint…";
     try {
-      const result = await testInpaintConnection(config());
+      const result = await providers.check("ai-remove", providerSelection(config()));
       if (own === revision) status.textContent = "Ready: ComfyUI " + result.version + "; checkpoint " + result.model + ". Model compatibility is confirmed by a successful generation. Save changes before editing.";
     } catch (error) { if (own === revision) status.textContent = error.message; }
     finally { test.disabled = false; }

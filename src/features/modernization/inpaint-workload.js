@@ -1,6 +1,7 @@
 /** Coordinates and bytes only. Inference padding is never a document rectangle. */
 import { JobError } from "./job-service.js";
 import { validateInpaintConfig } from "./inpaint-config.js";
+import { prepareComfyMasked } from "./comfy-pixels.js";
 export const INPAINT_LIMITS = Object.freeze({ dimension: 1024, pixels: 1024 * 1024, context: 64, sourcePixels: 4 * 1024 * 1024, sourceDimension: 8192 });
 function requireInput(ok, message) { if (!ok) throw new JobError("invalid-request", message); }
 export function checkedRect(rect, maxDimension = 8192, maxPixels = INPAINT_LIMITS.sourcePixels) {
@@ -35,25 +36,8 @@ export function removalROI(selection, width, height) {
 }
 export function prepareInpaintInput(layer, selection, width, height, config, seed = crypto.getRandomValues(new Uint32Array(1))[0]) {
   validateInpaintConfig(config);
-  byteView(layer.buffer, checkedRect(layer.rect) * 4);
-  const rect = removalROI(selection, width, height);
-  const modelWidth = Math.max(512, Math.ceil(rect.width / 8) * 8), modelHeight = Math.max(512, Math.ceil(rect.height / 8) * 8);
-  const rgba = new Uint8Array(modelWidth * modelHeight * 4), mask = new Uint8Array(modelWidth * modelHeight);
-  const coverage = new Uint8Array(rect.width * rect.height);
-  for (let y = 0; y < modelHeight; y++) for (let x = 0; x < modelWidth; x++) {
-    const dx = rect.x + Math.min(x, rect.width - 1), dy = rect.y + Math.min(y, rect.height - 1);
-    const offset = (y * modelWidth + x) * 4;
-    if (dx >= layer.rect.x && dy >= layer.rect.y && dx < layer.rect.x + layer.rect.width && dy < layer.rect.y + layer.rect.height) {
-      const source = ((dy - layer.rect.y) * layer.rect.width + dx - layer.rect.x) * 4;
-      rgba.set(layer.buffer.subarray(source, source + 4), offset);
-    }
-    if (x < rect.width && y < rect.height && dx >= selection.rect.x && dy >= selection.rect.y && dx < selection.rect.x + selection.rect.width && dy < selection.rect.y + selection.rect.height) {
-      const alpha = selection.channel[(dy - selection.rect.y) * selection.rect.width + dx - selection.rect.x];
-      coverage[y * rect.width + x] = alpha;
-      mask[y * modelWidth + x] = alpha ? 255 : 0;
-    }
-  }
-  const input = { rect, modelWidth, modelHeight, modelOffset: { x: 0, y: 0 }, rgba, mask, seed, config: { ...config } };
+  const { input: snapshot, coverage } = prepareInpaintSnapshot(layer, selection, width, height, seed);
+  const input = prepareComfyMasked(snapshot, { ...config });
   validateInpaintInput(input);
   return { input, coverage };
 }
@@ -85,4 +69,23 @@ export function copyInpaintResult(result) {
     byteView(result.bytes, length);
     return { pixelFormat: "rgba8", rect: { ...result.rect }, byteLength: length, bytes: result.bytes.slice(), name: "AI Remove" };
   } catch { throw new JobError("malformed-result", "AI Remove returned invalid result dimensions or bytes."); }
+}
+
+/** Copied ROI pixels and hardened mask; document selection coverage stays separate. */
+export function prepareInpaintSnapshot(layer, selection, width, height, seed = crypto.getRandomValues(new Uint32Array(1))[0]) {
+  byteView(layer.buffer, checkedRect(layer.rect) * 4);
+  const rect = removalROI(selection, width, height), pixels = rect.width * rect.height;
+  const rgba = new Uint8Array(pixels * 4), mask = new Uint8Array(pixels), coverage = new Uint8Array(pixels);
+  for (let y = 0; y < rect.height; y++) for (let x = 0; x < rect.width; x++) {
+    const dx = rect.x + x, dy = rect.y + y, offset = y * rect.width + x;
+    if (dx >= layer.rect.x && dy >= layer.rect.y && dx < layer.rect.x + layer.rect.width && dy < layer.rect.y + layer.rect.height) {
+      const source = ((dy - layer.rect.y) * layer.rect.width + dx - layer.rect.x) * 4;
+      rgba.set(layer.buffer.subarray(source, source + 4), offset * 4);
+    }
+    if (dx >= selection.rect.x && dy >= selection.rect.y && dx < selection.rect.x + selection.rect.width && dy < selection.rect.y + selection.rect.height) {
+      coverage[offset] = selection.channel[(dy - selection.rect.y) * selection.rect.width + dx - selection.rect.x];
+      mask[offset] = coverage[offset] ? 255 : 0;
+    }
+  }
+  return { input: { rect, rgba, mask, seed }, coverage };
 }

@@ -2,7 +2,9 @@
 import { captureRecipeSource, createGenerationRecipe } from "../../document/formats/metadata/generation-recipes.js";
 import { JOB_TERMINAL, JobError } from "./job-service.js";
 import { requireInpaintSource, createInpaintAdapter } from "./inpaint-target.js";
-import { prepareGenerativeInput, GENERATIVE_WORKFLOW } from "./generative-workload.js";
+import { prepareGenerativeSnapshot } from "./generative-workload.js";
+
+import { AI_CAPABILITIES } from "./ai-capabilities.js";
 
 export class GenerativeSession {
   constructor(bridge) { this.bridge = bridge; this.current = null; this.notice = ""; }
@@ -10,11 +12,12 @@ export class GenerativeSession {
   ready(session = this.current) {
     return !!session && !session.provenancePending && session.ids.length === session.settings.count && session.ids.every(id => this.jobs.get(id)?.state === "preview");
   }
-  start(doc, config, options) {
+  start(doc, selection, options) {
     if (this.current || this.jobs.list().some(j => ["ai-remove", "generate.fill", "generate.expand"].includes(j.operation) && (!JOB_TERMINAL.has(j.state) || j.stopping))) throw new JobError("resource-limit", "Accept, discard or finish cancelling the current masked generation first.");
+    const resolved = this.bridge.aiProviders.resolve(AI_CAPABILITIES.fill, selection);
     const started = performance.now(), layer = requireInpaintSource(doc, "Generative Fill");
-    const prepared = prepareGenerativeInput(layer, doc.selectionMask, doc.width, doc.height, config, options);
-    const session = { doc, layer, ...prepared, ids: [], selected: 0, seeds: [], completedAt: [], provenancePending: true, workflow: GENERATIVE_WORKFLOW };
+    const prepared = prepareGenerativeSnapshot(layer, doc.selectionMask, doc.width, doc.height, options);
+    const session = { doc, layer, ...prepared, ids: [], selected: 0, seeds: [], completedAt: [], provenancePending: true, selection: resolved, profile: this.bridge.aiProviders.resolve(AI_CAPABILITIES.fill, resolved, prepared.input).profile };
     this.current = session; this.notice = "";
     session.provenanceReady = captureRecipeSource(doc, layer).then(value => {
       if (this.current === session) session.provenance = value;
@@ -43,7 +46,7 @@ export class GenerativeSession {
         const start = performance.now(); base.commit(context, result, createGenerationRecipe(session, index)); session.provenanceFailed ||= !!context.provenanceFailed; this.metrics.acceptMs = performance.now() - start;
       },
     };
-    const id = this.jobs.submit({ operation: "generate.fill", input: { ...session.input, seed }, adapter });
+    const id = this.jobs.submit({ operation: AI_CAPABILITIES.fill, input: this.bridge.aiProviders.request(AI_CAPABILITIES.fill, session.selection, { ...session.input, seed }), adapter });
     session.ids.push(id); session.seeds.push(seed); session.selected = index;
     this.bridge.labels.set(this.jobs.get(id).documentId, session.doc.name || "Untitled");
     this.bridge.render();
@@ -80,10 +83,10 @@ export class GenerativeSession {
     const session = this.current;
     if (!this.ready(session)) throw new JobError("invalid-transition", "Regenerate requires a still-valid preview session.");
     for (const id of session.ids) if (!this.jobs.revalidate(id)) throw new JobError("stale-result", "Source or selection changed. Regenerate unavailable.");
-    const { doc, input, settings } = session;
+    const { doc, selection, settings } = session;
     const options = { ...settings, seed: reuseSeed ? settings.seed : null };
     this.release("");
-    return this.start(doc, input.config, options);
+    return this.start(doc, selection, options);
   }
   release(message = "Discarded. Regenerate session ended.") {
     const session = this.current; this.current = null; this.notice = message;
@@ -92,7 +95,7 @@ export class GenerativeSession {
         if (this.jobs.get(id)?.state === "preview") this.jobs.discard(id);
         else this.jobs.cancel(id);
       }
-      session.input = session.coverage = session.doc = session.layer = session.settings = session.provenance = null;
+      session.input = session.coverage = session.doc = session.layer = session.settings = session.provenance = session.selection = session.profile = null;
       session.seeds.length = 0;
     }
     this.bridge.render();

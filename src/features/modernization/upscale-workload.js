@@ -1,6 +1,7 @@
 /** M5b pixel-only contract. RGB8 interpreted as sRGB; no profile conversion. */
 import { JobError } from "./job-service.js";
-export const UPSCALE_MODEL = "realesr-general-x4v3.pth";
+import { validateUpscaleConfig } from "./comfy-config.js";
+export { UPSCALE_MODEL, validateUpscaleConfig } from "./comfy-config.js";
 export const UPSCALE_LIMITS = Object.freeze({ scale: 4, sourceDimension: 1024, sourcePixels: 524288,
   outputDimension: 4096, outputPixels: 8388608, outputBytes: 32 * 1024 * 1024, workingBytes: 384 * 1024 * 1024 });
 function requireUpscale(ok, message) { if (!ok) throw new JobError("invalid-request", message); }
@@ -15,11 +16,6 @@ export function upscaleGeometry(width, height, scale = 4) {
     && outputBytes <= UPSCALE_LIMITS.outputBytes && workingBytes <= UPSCALE_LIMITS.workingBytes,
   "AI Upscale limit: source ≤1024 per side / 524,288 pixels; result ≤4096 per side / 8,388,608 pixels / 32 MiB RGBA. Use a smaller source.");
   return { width, height, scale, outputWidth, outputHeight, outputPixels, outputBytes, workingBytes };
-}
-export function validateUpscaleConfig(config) {
-  const match = /^http:\/\/(?:127\.0\.0\.1|\[::1\]):([0-9]+)\/?$/.exec(config?.endpoint);
-  requireUpscale(match && Number(match[1]) > 0 && Number(match[1]) <= 65535, "Set the ComfyUI endpoint in Preferences → AI Remove to http://127.0.0.1:PORT or http://[::1]:PORT.");
-  requireUpscale(config.model === UPSCALE_MODEL, "AI Upscale requires the reviewed realesr-general-x4v3.pth model in ComfyUI's upscale_models folder.");
 }
 function bytes(value, count) {
   requireUpscale((value instanceof Uint8Array || value instanceof Uint8ClampedArray) && value.buffer instanceof ArrayBuffer && value.length === count, "Invalid AI Upscale pixel bytes.");

@@ -1,5 +1,6 @@
 import { setRecipePrivacy } from "../document/formats/metadata/generation-recipes.js";
-import { GENERATIVE_MODEL, validateGenerativeConfig } from "../features/modernization/generative-workload.js";
+import { GENERATIVE_MODEL, validateGenerativeConfig, legacyProviderSelection } from "../features/modernization/comfy-config.js";
+import { AI_CAPABILITIES } from "../features/modernization/ai-capabilities.js";
 /**
  * Tauri plugin-store persistence for application settings and editor prefs sync.
  */
@@ -136,4 +137,15 @@ export async function saveRecipePrivacy(value) {
   if (!store) throw new Error("Generation privacy settings require the PhotoSuite desktop application.");
   await store.set("generationPrivacy", next); await store.save();
   return setRecipePrivacy(next);
+}
+
+/** Resolve existing v1 store keys without writing/migrating or probing a provider. */
+export async function loadAIProviderSelection(capability) {
+  const local = await loadLocalInpaintConfig();
+  if (capability === AI_CAPABILITIES.remove || capability === AI_CAPABILITIES.upscale) return legacyProviderSelection(capability, local);
+  if (capability === AI_CAPABILITIES.fill || capability === AI_CAPABILITIES.expand) {
+    const store = await openSettingsStore();
+    return legacyProviderSelection(capability, local, (store && await store.get("generativeCheckpoint")) ?? GENERATIVE_MODEL);
+  }
+  return null; // No implicit provider/model for future capabilities.
 }

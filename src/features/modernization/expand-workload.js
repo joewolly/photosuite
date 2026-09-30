@@ -1,7 +1,8 @@
 /** M8 coordinates and copied pixels. Document expansion and model padding are distinct. */
 import { JobError } from "./job-service.js";
 import { generationOptions, validateGenerativeConfig, validateGenerativeInput } from "./generative-workload.js";
-export const EXPAND_WORKFLOW = "photosuite-generative-expand-v1";
+import { prepareComfyMasked } from "./comfy-pixels.js";
+export { EXPAND_WORKFLOW } from "./comfy-config.js";
 export const EXPAND_LIMITS = Object.freeze({ dimension: 1024, pixels: 1048576, side: 512, exteriorPixels: 786432, sourceBytes: 16 * 1048576, layers: 64, candidates: 1, candidateBytes: 4 * 1048576, previewBytes: 4 * 1048576, overlap: 16 });
 export function requireExpand(ok, message) { if (!ok) throw new JobError("invalid-request", message); }
 export function expansionGeometry(width, height, sides) {
@@ -15,23 +16,8 @@ export function expansionGeometry(width, height, sides) {
 }
 export function insideOriginal(g, x, y) { return x >= g.left && x < g.left + g.width && y >= g.top && y < g.top + g.height; }
 export function prepareExpandInput(source, g, config, options) {
-  const settings = generationOptions({ ...options, count: options?.count ?? 1 });
-  requireExpand(settings.count === 1, "Generative Expand retains one variation at a time.");
-  config = validateGenerativeConfig(config);
-  requireExpand((source instanceof Uint8Array || source instanceof Uint8ClampedArray) && source.length === g.width * g.height * 4, "Invalid expanded source pixels.");
-  const modelWidth = Math.max(512, Math.ceil(g.newWidth / 8) * 8), modelHeight = Math.max(512, Math.ceil(g.newHeight / 8) * 8);
-  const rgba = new Uint8Array(modelWidth * modelHeight * 4), mask = new Uint8Array(modelWidth * modelHeight);
-  const overlap = EXPAND_LIMITS.overlap;
-  for (let y = 0; y < modelHeight; y++) for (let x = 0; x < modelWidth; x++) {
-    // Edge replication supplies context outside the old canvas, without scaling it.
-    const sx = Math.max(0, Math.min(g.width - 1, x - g.left)), sy = Math.max(0, Math.min(g.height - 1, y - g.top));
-    const from = (sy * g.width + sx) * 4, to = (y * modelWidth + x) * 4;
-    rgba.set(source.subarray(from, from + 4), to);
-    const seam = (g.left > 0 && x < g.left + overlap) || (g.right > 0 && x >= g.left + g.width - overlap)
-      || (g.top > 0 && y < g.top + overlap) || (g.bottom > 0 && y >= g.top + g.height - overlap);
-    mask[y * modelWidth + x] = x < g.newWidth && y < g.newHeight && (!insideOriginal(g, x, y) || seam) ? 255 : 0;
-  }
-  const input = { rect: { x: 0, y: 0, width: g.newWidth, height: g.newHeight }, modelWidth, modelHeight, modelOffset: { x: 0, y: 0 }, rgba, mask, config, prompt: settings.prompt, seed: settings.seed };
+  const { input: snapshot, settings } = prepareExpandSnapshot(source, g, options);
+  const input = prepareComfyMasked(snapshot, validateGenerativeConfig(config));
   validateGenerativeInput(input);
   return { input, settings };
 }
@@ -53,4 +39,21 @@ export function expandedPreview(source, result, g) {
 }
 export function assertOriginalProjection(before, after, g) {
   for (let y = 0; y < g.height; y++) for (let x = 0; x < g.width * 4; x++) requireExpand(before[y * g.width * 4 + x] === after[((y + g.top) * g.newWidth + g.left) * 4 + x], "Expanded composition changed protected original pixels.");
+}
+
+/** Unpadded feature snapshot. The provider supplies its own working resolution. */
+export function prepareExpandSnapshot(source, g, options) {
+  const settings = generationOptions({ ...options, count: options?.count ?? 1 });
+  requireExpand(settings.count === 1, "Generative Expand retains one variation at a time.");
+  requireExpand((source instanceof Uint8Array || source instanceof Uint8ClampedArray) && source.buffer instanceof ArrayBuffer && source.length === g.width * g.height * 4, "Invalid expanded source pixels.");
+  const rgba = new Uint8Array(g.byteLength), mask = new Uint8Array(g.newWidth * g.newHeight);
+  for (let y = 0; y < g.newHeight; y++) for (let x = 0; x < g.newWidth; x++) {
+    const sx = Math.max(0, Math.min(g.width - 1, x - g.left)), sy = Math.max(0, Math.min(g.height - 1, y - g.top));
+    const from = (sy * g.width + sx) * 4, to = (y * g.newWidth + x) * 4;
+    rgba.set(source.subarray(from, from + 4), to);
+    const seam = (g.left > 0 && x < g.left + EXPAND_LIMITS.overlap) || (g.right > 0 && x >= g.left + g.width - EXPAND_LIMITS.overlap)
+      || (g.top > 0 && y < g.top + EXPAND_LIMITS.overlap) || (g.bottom > 0 && y >= g.top + g.height - EXPAND_LIMITS.overlap);
+    mask[y * g.newWidth + x] = !insideOriginal(g, x, y) || seam ? 255 : 0;
+  }
+  return { input: { rect: { x: 0, y: 0, width: g.newWidth, height: g.newHeight }, rgba, mask, prompt: settings.prompt, seed: settings.seed }, settings };
 }

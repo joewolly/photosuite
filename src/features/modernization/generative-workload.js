@@ -1,10 +1,9 @@
 /** M6 primitives only; no editor authority, durable recipe or provider graph. */
 import { JobError } from "./job-service.js";
-import { validateInpaintConfig } from "./inpaint-config.js";
-import { prepareInpaintInput, validateInpaintInput, copyInpaintResult } from "./inpaint-workload.js";
+import { validateGenerativeConfig } from "./comfy-config.js";
+export { GENERATIVE_MODEL, GENERATIVE_WORKFLOW, validateGenerativeConfig } from "./comfy-config.js";
+import { prepareInpaintInput, prepareInpaintSnapshot, validateInpaintInput, copyInpaintResult } from "./inpaint-workload.js";
 
-export const GENERATIVE_MODEL = "sd-v1-5-inpainting.ckpt";
-export const GENERATIVE_WORKFLOW = "photosuite-generative-fill-v1";
 export const GENERATIVE_LIMITS = Object.freeze({ promptBytes: 2048, promptUnits: 1024, candidates: 3, candidateBytes: 4 * 1024 * 1024, retainedBytes: 12 * 1024 * 1024, thumbnailBytes: 0, maskGrowth: 0 });
 export function validatePrompt(prompt) {
   if (typeof prompt !== "string" || prompt.length > GENERATIVE_LIMITS.promptUnits
@@ -14,11 +13,6 @@ export function validatePrompt(prompt) {
     throw new JobError("invalid-request", "Prompt must be valid text, at most 1024 characters and 2048 UTF-8 bytes.");
   }
   return prompt; // Including empty text and whitespace: never rewrite the user's prompt.
-}
-export function validateGenerativeConfig(config) {
-  const value = validateInpaintConfig({ ...config, enabled: true });
-  if (value.checkpoint !== GENERATIVE_MODEL) throw new JobError("backend-setup", `Generative Fill requires the reviewed ${GENERATIVE_MODEL} checkpoint. Configure its separate setting in Preferences → AI Remove.`);
-  return value;
 }
 export function generationOptions(value) {
   const prompt = validatePrompt(value?.prompt);
@@ -40,4 +34,12 @@ export function validateGenerativeInput(input) {
 }
 export function copyGenerativeResult(result) {
   return { ...copyInpaintResult(result), name: "Generative Fill" };
+}
+
+/** Feature contract: working-resolution adaptation belongs to the provider. */
+export function prepareGenerativeSnapshot(layer, selection, width, height, options) {
+  const settings = generationOptions(options);
+  const prepared = prepareInpaintSnapshot(layer, selection, width, height, settings.seed);
+  prepared.input.prompt = settings.prompt;
+  return { ...prepared, settings };
 }

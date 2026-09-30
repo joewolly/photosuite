@@ -122,10 +122,9 @@ export async function captureRecipeSource(doc, layer) {
 }
 export function createGenerationRecipe(session, index) {
   if (!session.provenance) return null;
-  return { recipeVersion: 1, layerId: 1, operation: "generate.fill", workflow: session.workflow, backend: "comfyui",
-    checkpoint: session.input.config.checkpoint, seed: session.seeds[index], createdAt: session.completedAt[index], prompt: session.settings.prompt,
-    settings: { steps: 20, cfg: 7, sampler: "euler", scheduler: "normal", denoise: 1, maskGrowth: 0,
-      roi: copyRect(session.input.rect), modelWidth: session.input.modelWidth, modelHeight: session.input.modelHeight },
+  return { recipeVersion: 1, layerId: 1, operation: "generate.fill", workflow: session.profile.workflow, backend: session.profile.backend,
+    checkpoint: session.profile.checkpoint, seed: session.seeds[index], createdAt: session.completedAt[index], prompt: session.settings.prompt,
+    settings: { ...session.profile.settings, roi: copyRect(session.input.rect), modelWidth: session.profile.modelWidth, modelHeight: session.profile.modelHeight },
     ...session.provenance, selectionPersistence: "none" };
 }
 /** Informational, local-only source check; never authorizes execution, even on a match. */

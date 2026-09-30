@@ -1,11 +1,10 @@
-import { loadGenerativeConfig } from "../../core/app-settings.js";
-import { testExpandConnection } from "../../features/modernization/comfy-provider.js";
+import { loadAIProviderSelection } from "../../core/app-settings.js";
 import { requireExpandDocument } from "../../features/modernization/expand-source.js";
 import { expansionGeometry } from "../../features/modernization/expand-workload.js";
 /** Opening this dialog uploads nothing. M8 v1 saves no generation recipe or prompt. */
 export async function showExpandDialog(controller, doc) {
   requireExpandDocument(doc);
-  const config = await loadGenerativeConfig();
+  const config = await loadAIProviderSelection("generate.expand");
   if (!controller.openDocs.includes(doc)) throw new Error("The source document was closed.");
   const dialog = document.createElement("dialog"); dialog.setAttribute("aria-label", "Generative Expand");
   Object.assign(dialog.style, { background: "#292929", color: "#eee", border: "1px solid #666", borderRadius: "8px", padding: "24px", width: "440px", maxWidth: "80vw", maxHeight: "80vh", overflowY: "auto" });
@@ -27,7 +26,7 @@ export async function showExpandDialog(controller, doc) {
   const button = (label, action) => { const el = text("button", label); el.style.marginRight = "8px"; el.addEventListener("click", action); return el; };
   const check = button("Check backend", async () => {
     check.disabled = run.disabled = true; status.textContent = "Checking local service and generation checkpoint…";
-    try { const info = await testExpandConnection(config); status.textContent = `Ready: ComfyUI ${info.version}.`; run.disabled = false; }
+    try { const info = await controller.getSelectionJobs().aiProviders.check("generate.expand", config); status.textContent = `Ready: ${info.label} ${info.version}.`; run.disabled = false; }
     catch (error) { status.textContent = error.message; }
     finally { check.disabled = false; }
   });
